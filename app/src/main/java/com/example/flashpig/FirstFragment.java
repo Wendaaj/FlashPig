@@ -32,5 +32,4 @@ public class FirstFragment extends Fragment {
         });
     }
 
-    //HALLLÅÅÅÅÅÅ
 }
