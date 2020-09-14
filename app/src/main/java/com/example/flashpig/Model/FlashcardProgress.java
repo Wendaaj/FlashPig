@@ -1,16 +1,32 @@
 package com.example.flashpig.Model;
 
-import java.util.List;
+import java.util.EnumSet;
 
 public class FlashcardProgress {
-    Deck deck;
+    private Deck deck;
+    private EnumSet<Difficulties> enumSetEasy = EnumSet.of(Difficulties.EASY);
+    private EnumSet<Difficulties> enumSetMedium = EnumSet.of(Difficulties.MEDIUM);
+    private EnumSet<Difficulties> enumSetHard = EnumSet.of(Difficulties.HARD);
 
-    private void showCards(List<Cards> cards) {
-
+    public FlashcardProgress(Deck deck) {
+        this.deck = deck;
     }
 
-    private void moveCard() {}
+    private void showCards(Difficulties difficulties) {
+        switch (difficulties) {
+            case EASY:
+            case MEDIUM:
+            case HARD:
+            default:
+        }
+    }
 
-    private void deleteCard() {}
+    private void moveCard(Cards card, Difficulties difficulty) {
+        card.setDifficulty(difficulty);
+    }
+
+    private void deleteCard(Cards card) {
+        card.setDifficulty(Difficulties.NOTHING);
+    }
 
 }
