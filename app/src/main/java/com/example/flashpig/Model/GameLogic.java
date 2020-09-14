@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.List;
 
-public abstract class GameLogic extends AppCompatActivity {
+public abstract class GameLogic {
     String gameTitle;
     View vGame;
     Deck deck;
