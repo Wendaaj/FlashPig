@@ -1,5 +1,7 @@
 package com.example.flashpig.Model;
 
-public class Cards {
+public class MemoryPairUpLogic {
+
+
 
 }
