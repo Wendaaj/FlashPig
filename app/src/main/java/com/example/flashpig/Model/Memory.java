@@ -12,7 +12,7 @@ public class Memory extends GameLogic implements MemoryPairUpLogic {
         super(title, viewGame, deck, frontsideCards, backsideCards);
     }
 
-    void isMatch() {    //onFingerPressed    //sätta value för faceUp / faceDown ist för två olika listor?
+    void isMatch() {    //onFingerPressed
     int i;
     int j;
         for (i = 0; i < frontsideCards.size(); i++) {
@@ -23,7 +23,7 @@ public class Memory extends GameLogic implements MemoryPairUpLogic {
         }
     }
 
-    void flipCard(){
+    void flipCard(){  //sätta value för faceUp / faceDown ist för två olika listor?
                
 
 
