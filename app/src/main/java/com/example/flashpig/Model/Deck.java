@@ -13,15 +13,23 @@ public class Deck {
         this.amountcards = amountcards;
     }
     private void addCard(Cards card){
-
+        deck.add(card);
     }
     private void deleteCard(Cards card){
+        if(deck.contains(card)) {
+            deck.remove(card);
+        }
 
     }
     private void editCard(Cards card){
 
     }
     private void clearDeck(List<Cards> deck){
+        if(deck.isEmpty()){
+            //error
+        }else{
+            deck.clear();
+        }
 
     }
 }
