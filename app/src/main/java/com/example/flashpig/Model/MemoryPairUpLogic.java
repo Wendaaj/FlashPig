@@ -1,7 +1,12 @@
 package com.example.flashpig.Model;
 
-public class MemoryPairUpLogic {
+import java.util.List;
 
+public interface MemoryPairUpLogic {
 
+        //isMatch(chosenCard1, chosenCard2) {}
 
-}
+        //ifMatch(){}
+    }
+
+   
