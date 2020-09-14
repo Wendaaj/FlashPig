@@ -27,12 +27,12 @@ public abstract class GameLogic extends AppCompatActivity {
         }
     }
 
-    private Image gameWon(int deckSize) {}
+    abstract Image gameWon(int deckSize);
 
-    private void restartGame(View v) {}
+    abstract void restartGame(View v);
 
-    private void returnHome(View v) {}
+    abstract void returnHome(View v);
 
-    private void magicAlgoritm() {}
+    abstract void magicAlgoritm();
 }
 
