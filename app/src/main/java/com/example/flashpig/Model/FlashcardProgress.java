@@ -22,7 +22,9 @@ public class FlashcardProgress {
     }
 
     private void moveCard(Cards card, Difficulties difficulty) {
-        card.setDifficulty(difficulty);
+        if (!card.getDifficulty().equals(difficulty)) {
+            card.setDifficulty(difficulty);
+        }
     }
 
     private void deleteCard(Cards card) {
