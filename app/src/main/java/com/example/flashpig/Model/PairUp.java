@@ -9,18 +9,28 @@ public class PairUp extends GameLogic implements MemoryPairUpLogic {
 
     private boolean match = false;
 
-    public PairUp(String title, View viewGame, Deck deck, List<Cards> frontsideCards, List<Cards> backsideCards) {
-        super(title, viewGame, deck, frontsideCards, backsideCards);
+    public PairUp(String title, View viewGame, Deck deck, boolean match) {
+        super(title, viewGame, deck);
+        this.match = match;
     }
 
-    void isMatch(Cards chosenCard1, Cards chosenCard2) {
-        if (chosenCard1 == chosenCard2){
-            match = true;
+    @Override
+    public void isMatch(Cards chosenCard1, Cards chosenCard2, Deck deck) {
+        if (chosenCard1.getid == chosenCard2.getid) {
+            deck.getAmountCards() - 1;
+            ifMatch();
         }
     }
 
     @Override
-    Image gameWon(int deckSize) {
+    public void ifMatch() {
+        if (deck.getAmountCards == 0) {
+            gameWon(deck);
+        }
+    }
+
+    @Override
+    Image gameWon(Deck deck) {
         return null;
     }
 
@@ -36,6 +46,16 @@ public class PairUp extends GameLogic implements MemoryPairUpLogic {
 
     @Override
     void magicAlgoritm() {
+
+    }
+
+    @Override
+    public void isMatch(Cards chosenCard1, Cards chosenCard2, Deck deck) {
+
+    }
+
+    @Override
+    public void ifMatch() {
 
     }
 }
