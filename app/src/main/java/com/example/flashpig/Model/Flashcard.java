@@ -7,23 +7,23 @@ import java.util.List;
 
 public class Flashcard extends GameLogic {
 
-    public Flashcard(String title, View viewGame, Deck deck, List<Cards> frontsideCards, List<Cards> backsideCards) {
+    public Flashcard(String title, View viewGame, Deck deck, List<Card> frontsideCards, List<Card> backsideCards) {
         super(title, viewGame, deck, frontsideCards, backsideCards);
     }
 
-    private void addEasyCard(Cards card) {
+    private void addEasyCard(Card card) {
         card.setDifficulty(Difficulties.EASY);
     }
 
-    private void addMediumCard(Cards card) {
+    private void addMediumCard(Card card) {
         card.setDifficulty(Difficulties.MEDIUM);
     }
 
-    private void addEasyCard(Cards card) {
+    private void addEasyCard(Card card) {
         card.setDifficulty(Difficulties.HARD);
     }
 
-    private void flipCard(Cards card) {
+    private void flipCard(Card card) {
         card.getId().showBackside();
     }
 
