@@ -3,28 +3,30 @@ package com.example.flashpig.Model;
 import java.util.List;
 
 public class Deck {
-    public List<Cards> deck;
-    public String deckName;
+    public List<Card> deck;
+    public int deckId;
+    private String deckName;
     private int amountcards;
 
-    public Deck(List<Cards> deck, String deckName, int amountcards) {
-        this.deck = deck;
+    public Deck(String deckName, int deckId) {
         this.deckName = deckName;
-        this.amountcards = amountcards;
+        this.deckId = deckId;
+
     }
-    private void addCard(Cards card){
+    private void addCard(Card card, int deckId){
         deck.add(card);
+
     }
-    private void deleteCard(Cards card){
+    private void deleteCard(Card card){
         if(deck.contains(card)) {
             deck.remove(card);
         }
 
     }
-    private void editCard(Cards card){
+    private void editCard(Card card){
 
     }
-    private void clearDeck(List<Cards> deck){
+    private void clearDeck(List<Card> deck){
         if(deck.isEmpty()){
             //error
         }else{
