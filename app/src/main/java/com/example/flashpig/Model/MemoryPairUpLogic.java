@@ -4,9 +4,10 @@ import java.util.List;
 
 public interface MemoryPairUpLogic {
 
-        //isMatch(chosenCard1, chosenCard2) {}
 
-        //ifMatch(){}
+        void isMatch(Cards chosenCard1, Cards chosenCard2, Deck deck);
+
+        void ifMatch();
     }
 
    

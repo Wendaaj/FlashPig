@@ -6,29 +6,31 @@ import android.view.View;
 import java.util.List;
 
 public class Memory extends GameLogic implements MemoryPairUpLogic {
-    private boolean matched = false;
+    Deck deck;
 
     public Memory(String title, View viewGame, Deck deck, List<Cards> frontsideCards, List<Cards> backsideCards) {
         super(title, viewGame, deck, frontsideCards, backsideCards);
+        this.deck = deck;
     }
 
-    void isMatch() {    //onFingerPressed
-    int i;
-    int j;
-        for (i = 0; i < frontsideCards.size(); i++) {
-            for (j = 0; j < backsideCards.size(); j++) {
-                 if (frontsideCards.get(i) == backsideCards.get(i)) {
-            }        matched = true;
-                 }
+    @Override
+    public void isMatch(Cards chosenCard1, Cards chosenCard2, Deck deck) {
+         if (chosenCard1.getid == chosenCard2.getid) {
+             deck.getAmountCards() - 1;
+             ifMatch();
+       }
+    }
+
+    @Override
+    public void ifMatch() {
+        if (deck.getAmountCards == 0) {
+            gameWon(0);
         }
     }
 
-    void flipCard(){  //sätta value för faceUp / faceDown ist för två olika listor?
-               
-
-
+    private void flipCard(Cards chosenCard1){
+       chosenCard1.getIsFront() = !chosenCard1.getIsFront();
     }
-
 
     @Override
     Image gameWon(int deckSize) {
@@ -49,4 +51,5 @@ public class Memory extends GameLogic implements MemoryPairUpLogic {
     void magicAlgoritm() {
 
     }
+
 }
