@@ -40,7 +40,7 @@ public class FlashcardProgress {
      * @param card The card to be moved.
      * @param difficulty The difficulty the card is to change to.
      */
-    private void moveCard(Cards card, Difficulties difficulty) {
+    private void moveCard(Card card, Difficulties difficulty) {
         if (!card.getDifficulty().equals(difficulty)) {
             card.setDifficulty(difficulty);
         }
@@ -50,7 +50,7 @@ public class FlashcardProgress {
      * Basically resets the card so that it is neither easy, medium or hard.
      * @param card The card to be reset.
      */
-    private void deleteCard(Cards card) {
+    private void deleteCard(Card card) {
         card.setDifficulty(Difficulties.NOTHING);
     }
 
