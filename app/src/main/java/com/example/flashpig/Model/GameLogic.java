@@ -14,8 +14,8 @@ public abstract class GameLogic {
     String gameTitle;
     View vGame;
     Deck deck;
-    Cards chosenCard1, chosenCard2;
-    List<Cards> frontsideCards, backsideCards;
+    Card chosenCard1, chosenCard2;
+    List<Card> frontsideCards, backsideCards;
     Button buttonHome, buttonRestart;
 
     public GameLogic(String title, View viewGame, Deck deck) {
