@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.List;
 
+import javax.crypto.spec.DESedeKeySpec;
+
 public abstract class GameLogic {
     String gameTitle;
     View vGame;
@@ -16,18 +18,13 @@ public abstract class GameLogic {
     List<Cards> frontsideCards, backsideCards;
     Button buttonHome, buttonRestart;
 
-    public GameLogic(String title, View viewGame, Deck deck, List<Cards> frontsideCards, List<Cards> backsideCards) {
+    public GameLogic(String title, View viewGame, Deck deck) {
         this.gameTitle = title;
         this.vGame = viewGame;
         this.deck = deck;
-
-        for (Cards card : deck.deck) {
-            //frontsideCards.add(card.getFrontside());
-            //backsideCards.add(card.getFrontside());
-        }
     }
 
-    abstract Image gameWon(int deckSize);
+    abstract Image gameWon(Deck deck);
 
     abstract void restartGame(View v);
 
