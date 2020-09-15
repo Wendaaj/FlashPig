@@ -29,7 +29,7 @@ public class Memory extends GameLogic implements MemoryPairUpLogic {
     }
 
     private void flipCard(Cards chosenCard1){
-       chosenCard1.getIsFront() = !chosenCard1.getIsFront() ;
+       chosenCard1.getIsFront() = !chosenCard1.getIsFront();
     }
 
     @Override
