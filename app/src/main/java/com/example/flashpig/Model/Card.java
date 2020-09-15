@@ -12,14 +12,18 @@ public class Card {
 
 
     void  CreateFrontside(String str, Image img){
-        if (str.equals(null));
-       
+        if (str.equals(null)){
 
         }
 
-    void CreateBackside(String str, Image img){
 
-    }
+        }
+
+
+    void CreateBackside(String str, Image img){
+    if (str.equals(null)){
+
+    }                      }
 
     
 
