@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.List;
 
+import javax.crypto.spec.DESedeKeySpec;
+
 public abstract class GameLogic {
     String gameTitle;
     View vGame;
@@ -27,7 +29,7 @@ public abstract class GameLogic {
         }
     }
 
-    abstract Image gameWon(int deckSize);
+    abstract Image gameWon(Deck deck);
 
     abstract void restartGame(View v);
 

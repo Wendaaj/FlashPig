@@ -6,11 +6,9 @@ import android.view.View;
 import java.util.List;
 
 public class Flashcard extends GameLogic {
-    Deck deck;
 
     public Flashcard(String title, View viewGame, Deck deck, List<Cards> frontsideCards, List<Cards> backsideCards) {
         super(title, viewGame, deck, frontsideCards, backsideCards);
-        this.deck = deck;
     }
 
     private void addEasyCard(Cards card) {
@@ -30,8 +28,12 @@ public class Flashcard extends GameLogic {
     }
 
     @Override
-    Image gameWon(int deckSize) {
-        return null;
+    Image gameWon(Deck deck) {
+        if (deck.size() == 0) {
+            return null;
+        } else {
+            return null;
+        }
     }
 
     @Override
