@@ -18,15 +18,10 @@ public abstract class GameLogic {
     List<Cards> frontsideCards, backsideCards;
     Button buttonHome, buttonRestart;
 
-    public GameLogic(String title, View viewGame, Deck deck, List<Cards> frontsideCards, List<Cards> backsideCards) {
+    public GameLogic(String title, View viewGame, Deck deck) {
         this.gameTitle = title;
         this.vGame = viewGame;
         this.deck = deck;
-
-        for (Cards card : deck.deck) {
-            //frontsideCards.add(card.getFrontside());
-            //backsideCards.add(card.getFrontside());
-        }
     }
 
     abstract Image gameWon(Deck deck);
