@@ -1,6 +1,12 @@
 package com.example.flashpig.Model;
 
 import android.media.Image;
+/**
+ * Class for card.
+ *
+ * @author Jesper
+ * @version 2020-09-14
+ */
 
 public class Card {
     private int id;
@@ -10,6 +16,11 @@ public class Card {
     private Image frontImg;
     private Image backImg;
     private Enum difficulty;
+
+    /**
+     * Card constructor
+     *
+     */
 
     public Card(int id, boolean isFrontside, String frontsideStr, String backsideStr,
                 Image frontImg, Image backImg, Enum difficulty) {
@@ -78,13 +89,24 @@ public class Card {
         this.difficulty = difficulty;
     }
 
+    /**
+     * Method to create frontside of card
+     * @param str the tect or numbers to use
+     * @param img the picture to use
+     *
+     */
     void  CreateFrontside(String str, Image img){
         if (str.equals(null)){
 
         }
 }
 
-
+    /**
+     * Method to create backside of card
+     * @param str the tect or numbers to use
+     * @param img the picture to use
+     *
+     */
     void CreateBackside(String str, Image img){
     if (str.equals(null)){
 
