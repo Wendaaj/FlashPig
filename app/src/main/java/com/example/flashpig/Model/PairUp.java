@@ -5,22 +5,38 @@ import android.view.View;
 
 import java.util.List;
 
-public class PairUp extends GameLogic implements MemoryPairUpLogic {
+/**
+ * Class for MemoryPairUpLogic.
+ *
+ * @author Madeleine
+ * @version 2020-09-16
+ */
 
-    private boolean match = false;
+public class PairUp extends GameLogic implements MemoryPairUpLogic {
 
     public PairUp(String title, View viewGame, Deck deck, boolean match) {
         super(title, viewGame, deck);
-        this.match = match;
     }
 
+    /**
+     * Method to compare two cards from a deck
+     * @param Card the cards to be compared
+     * @param Deck the deck to be used
+     *
+     */
+
     @Override
-    public void isMatch(Cards chosenCard1, Cards chosenCard2, Deck deck) {
-        if (chosenCard1.getid == chosenCard2.getid) {
+    public void isMatch(Card chosenCard1, Card chosenCard2, Deck deck) {
+        if (chosenCard1.getId() == chosenCard2.getId()) {
             deck.getAmountCards() - 1;
             ifMatch();
         }
     }
+
+    /**
+     * Method to check if it is a match
+     *
+     */
 
     @Override
     public void ifMatch() {
@@ -29,35 +45,37 @@ public class PairUp extends GameLogic implements MemoryPairUpLogic {
         }
     }
 
+    /**
+     * Method to show that game is won
+     * @param Deck that has been used to win the game
+     *
+     */
+
     @Override
     Image gameWon(Deck deck) {
         return null;
     }
 
+    /**
+     * Method to restart the game
+     * @param View that will be shown
+     *
+     */
+
     @Override
     void restartGame(View v) {
-
     }
+
+    /**
+     * Method to return to startpage
+     * @param View that will be shown
+     *
+     */
 
     @Override
     void returnHome(View v) {
-
     }
 
-    @Override
-    void magicAlgoritm() {
-
-    }
-
-    @Override
-    public void isMatch(Cards chosenCard1, Cards chosenCard2, Deck deck) {
-
-    }
-
-    @Override
-    public void ifMatch() {
-
-    }
 }
 
 
