@@ -30,4 +30,3 @@ public abstract class GameLogic {
 
     abstract void returnHome(View v);
 }
-
