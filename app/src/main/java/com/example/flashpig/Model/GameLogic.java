@@ -10,6 +10,12 @@ import java.util.List;
 
 import javax.crypto.spec.DESedeKeySpec;
 
+/**
+ * An abstract class that holds the common game logic.
+ *
+ * @author wendy
+ * @version 2020-09-17
+ */
 public abstract class GameLogic {
     String gameTitle;
     View vGame;
@@ -18,6 +24,12 @@ public abstract class GameLogic {
     List<Card> frontsideCards, backsideCards;
     Button buttonHome, buttonRestart;
 
+    /**
+     * Constructor for GameLogic.
+     * @param title The games name.
+     * @param viewGame The games view.
+     * @param deck The deck chosen to play the game.
+     */
     public GameLogic(String title, View viewGame, Deck deck) {
         this.gameTitle = title;
         this.vGame = viewGame;
