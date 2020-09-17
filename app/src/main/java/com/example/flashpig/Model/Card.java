@@ -95,7 +95,7 @@ public class Card {
      * @param img the picture to use
      *
      */
-    void  CreateFrontside(String str, Image img){
+    void CreateFrontside(String str, Image img){
         if (str.equals(null)){
 
         }

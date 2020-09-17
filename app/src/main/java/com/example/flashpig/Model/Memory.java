@@ -49,7 +49,7 @@ public class Memory extends GameLogic implements MemoryPairUpLogic {
 
     @Override
     public void ifMatch() {
-        if (deck.getAmountCards == 0) {
+        if (deck.getAmountCards == 0) { //getter from Deck class
             gameWon(deck);
         }
     }
@@ -60,9 +60,11 @@ public class Memory extends GameLogic implements MemoryPairUpLogic {
      *
      */
 
-    private void flipCard(Card chosenCard1){
+    private void flipCard(Card chosenCard1){ //onFingerPressed
         if(chosenCard1.isFrontside()){
-            //chosenCard1.isFrontside()= !chosenCard1.isFrontside();
+            chosenCard1.showBackside(); //method from GameLogic
+        } else {
+            chosenCard1.showFrontside(); //method from GameLogic
         }
     }
 

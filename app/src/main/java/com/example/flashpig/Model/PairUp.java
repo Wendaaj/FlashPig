@@ -28,7 +28,7 @@ public class PairUp extends GameLogic implements MemoryPairUpLogic {
     @Override
     public void isMatch(Card chosenCard1, Card chosenCard2, Deck deck) {
         if (chosenCard1.getId() == chosenCard2.getId()) {
-            deck.getAmountCards() - 1;
+            deck.getAmountCards() - 1; //getter from Deck class
             ifMatch();
         }
     }
@@ -40,7 +40,7 @@ public class PairUp extends GameLogic implements MemoryPairUpLogic {
 
     @Override
     public void ifMatch() {
-        if (deck.getAmountCards == 0) {
+        if (deck.getAmountCards == 0) { //getter from Deck class
             gameWon(deck);
         }
     }
@@ -48,6 +48,7 @@ public class PairUp extends GameLogic implements MemoryPairUpLogic {
     /**
      * Method to show that game is won
      * @param Deck that has been used to win the game
+     * @return img
      *
      */
 
