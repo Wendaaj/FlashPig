@@ -19,7 +19,7 @@ public class Flashcard extends GameLogic {
         card.setDifficulty(Difficulties.MEDIUM);
     }
 
-    private void addEasyCard(Card card) {
+    private void addHardCard(Card card) {
         card.setDifficulty(Difficulties.HARD);
     }
 
