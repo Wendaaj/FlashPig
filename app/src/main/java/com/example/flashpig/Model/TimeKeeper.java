@@ -11,11 +11,6 @@ public class TimeKeeper {
     private long pauseOffset;
     private boolean running;
 
-
-
-
-
-
     private void startChronometer(View v) {
         if (!running) {
             chronometer.setBase(SystemClock.elapsedRealtime() - pauseOffset);
