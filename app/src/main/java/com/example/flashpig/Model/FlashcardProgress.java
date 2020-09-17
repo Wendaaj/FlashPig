@@ -3,7 +3,7 @@ package com.example.flashpig.Model;
 import java.util.EnumSet;
 
 /**
- * Shows cards after difficulty.
+ * Shows cards after the difficulty that was chosen when playing the game Flashcard.
  *
  * @author Wendy
  * @version 2020-09-14

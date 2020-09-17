@@ -29,7 +29,5 @@ public abstract class GameLogic {
     abstract void restartGame(View v);
 
     abstract void returnHome(View v);
-
-    abstract void magicAlgoritm();
 }
 
