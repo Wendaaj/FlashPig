@@ -67,4 +67,7 @@ public class Deck {
        return deck.size();
         }
 
+    public String getDeckName() {
+        return deckName;
+    }
 }
