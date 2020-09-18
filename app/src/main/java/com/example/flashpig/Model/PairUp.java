@@ -6,13 +6,14 @@ import android.view.View;
 import java.util.List;
 
 /**
- * Class for MemoryPairUpLogic.
+ * Class for PairUp
  *
  * @author Madeleine
  * @version 2020-09-16
  */
 
 public class PairUp extends GameLogic implements MemoryPairUpLogic {
+    int deckSize = deck.getAmountCards();
 
     public PairUp(String title, View viewGame, Deck deck, boolean match) {
         super(title, viewGame, deck);
@@ -28,7 +29,7 @@ public class PairUp extends GameLogic implements MemoryPairUpLogic {
     @Override
     public void isMatch(Card chosenCard1, Card chosenCard2, Deck deck) {
         if (chosenCard1.getId() == chosenCard2.getId()) {
-            deck.getAmountCards() - 1; //getter from Deck class
+            deckSize = deckSize - 1; //getter from Deck class
             ifMatch();
         }
     }
@@ -40,7 +41,7 @@ public class PairUp extends GameLogic implements MemoryPairUpLogic {
 
     @Override
     public void ifMatch() {
-        if (deck.getAmountCards == 0) { //getter from Deck class
+        if (deckSize == 0) { //getter from Deck class
             gameWon(deck);
         }
     }
