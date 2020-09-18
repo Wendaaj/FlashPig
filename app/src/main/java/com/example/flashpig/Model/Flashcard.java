@@ -21,7 +21,7 @@ public class Flashcard extends GameLogic {
      * Method to add the picked card to easy.
      * @param card The current card.
      */
-    private void addEasyCard(Card card) {
+    public void addEasyCard(Card card) {
         card.setDifficulty(Difficulties.EASY);
     }
 
@@ -29,7 +29,7 @@ public class Flashcard extends GameLogic {
      * Method to add the picked card to medium.
      * @param card The current card.
      */
-    private void addMediumCard(Card card) {
+    public void addMediumCard(Card card) {
         card.setDifficulty(Difficulties.MEDIUM);
     }
 
@@ -37,7 +37,7 @@ public class Flashcard extends GameLogic {
      * Method to add the picked card to hard.
      * @param card The current card.
      */
-    private void addHardCard(Card card) {
+    public void addHardCard(Card card) {
         card.setDifficulty(Difficulties.HARD);
     }
 
@@ -45,7 +45,7 @@ public class Flashcard extends GameLogic {
      * Method to flip the card and show the information of the cards backside.
      * @param card The current card.
      */
-    private void flipCard(Card card) { card.isFrontside(); }
+    public void flipCard(Card card) { card.isFrontside(); }
 
     @Override
     Image gameWon(Deck deck) {
