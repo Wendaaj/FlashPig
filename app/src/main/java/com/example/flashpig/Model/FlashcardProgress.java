@@ -1,6 +1,12 @@
 package com.example.flashpig.Model;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
+import java.util.ArrayList;
 import java.util.EnumSet;
+import java.util.List;
 
 /**
  * Shows cards after the difficulty that was chosen when playing the game Flashcard.
@@ -10,9 +16,10 @@ import java.util.EnumSet;
  */
 public class FlashcardProgress {
     private Deck deck;
-    private EnumSet<Difficulties> enumSetEasy = EnumSet.of(Difficulties.EASY);
-    private EnumSet<Difficulties> enumSetMedium = EnumSet.of(Difficulties.MEDIUM);
-    private EnumSet<Difficulties> enumSetHard = EnumSet.of(Difficulties.HARD);
+    private List<Card> easyList = new ArrayList<>();
+    private List<Card> mediumList = new ArrayList<>();
+    private List<Card> hardList = new ArrayList<>();
+    private List<Card> nothingList = new ArrayList<>();
 
     /**
      * FlashcardProgress constructor
@@ -20,18 +27,31 @@ public class FlashcardProgress {
      */
     public FlashcardProgress(Deck deck) {
         this.deck = deck;
+        sortList(deck);
+    }
+
+    private void sortList(Deck deck) {
+        for (Card card : deck.deck) {
+            switch (card.getDifficulty().toString()) {
+                case "EASY": easyList.add(card);
+                case "MEDIUM": mediumList.add(card);
+                case "HARD": hardList.add(card);
+                default: nothingList.add(card);
+            }
+        }
     }
 
     /**
      * Show the cards after which difficulty is choosen. The cards are picked out from the deck and shown in the view.
      * @param difficulties The choosen difficulty to show.
+     * @return Returns the list with cards of the choosen difficulty.
      */
-    private void showCards(Difficulties difficulties) {
+    public List<Card> showCards(Difficulties difficulties) {
         switch (difficulties) {
-            case EASY:
-            case MEDIUM:
-            case HARD:
-            default:
+            case EASY: return easyList;
+            case MEDIUM: return mediumList;
+            case HARD: return hardList;
+            default: return nothingList;
         }
     }
 
@@ -40,7 +60,7 @@ public class FlashcardProgress {
      * @param card The card to be moved.
      * @param difficulty The difficulty the card is to change to.
      */
-    private void moveCard(Card card, Difficulties difficulty) {
+    public void moveCard(Card card, Difficulties difficulty) {
         if (!card.getDifficulty().equals(difficulty)) {
             card.setDifficulty(difficulty);
         }
@@ -50,7 +70,7 @@ public class FlashcardProgress {
      * Basically resets the card so that it is neither easy, medium or hard.
      * @param card The card to be reset.
      */
-    private void deleteCard(Card card) {
+    public void deleteCard(Card card) {
         card.setDifficulty(Difficulties.NOTHING);
     }
 
