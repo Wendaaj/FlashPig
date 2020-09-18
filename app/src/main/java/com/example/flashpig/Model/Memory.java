@@ -6,7 +6,7 @@ import android.view.View;
 import java.util.List;
 
 /**
- * Class for MemoryPairUpLogic.
+ * Class for Memory
  *
  * @author Madeleine
  * @version 2020-09-16
@@ -14,6 +14,7 @@ import java.util.List;
 
 public class Memory extends GameLogic implements MemoryPairUpLogic {
     Deck deck;
+    int deckSize = deck.getAmountCards();
 
     /**
      * Constructor for Memory
@@ -37,7 +38,7 @@ public class Memory extends GameLogic implements MemoryPairUpLogic {
         flipCard(chosenCard1);
         flipCard(chosenCard2);
          if (chosenCard1.getId() == chosenCard2.getId()) {
-             deck.getAmountCards() - 1;
+             deckSize = deckSize - 1;
              ifMatch();
        }
     }
@@ -49,7 +50,7 @@ public class Memory extends GameLogic implements MemoryPairUpLogic {
 
     @Override
     public void ifMatch() {
-        if (deck.getAmountCards == 0) { //getter from Deck class
+        if (deckSize == 0) { //getter from Deck class
             gameWon(deck);
         }
     }
@@ -62,9 +63,9 @@ public class Memory extends GameLogic implements MemoryPairUpLogic {
 
     private void flipCard(Card chosenCard1){ //onFingerPressed
         if(chosenCard1.isFrontside()){
-            chosenCard1.showBackside(); //method from GameLogic
+            chosenCard1.setFrontside(false);
         } else {
-            chosenCard1.showFrontside(); //method from GameLogic
+            chosenCard1.isFrontside();
         }
     }
 
