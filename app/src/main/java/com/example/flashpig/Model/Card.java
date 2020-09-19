@@ -3,7 +3,6 @@ package com.example.flashpig.Model;
 import android.media.Image;
 /**
  * Class for card.
- *
  * @author Jesper
  * @version 2020-09-14
  */
@@ -25,12 +24,12 @@ public class Card {
     public Card(int id, boolean isFrontside, String frontsideStr, String backsideStr,
                 Image frontImg, Image backImg, Enum difficulty) {
         this.id = id;
-        this.isFrontside = isFrontside;
         this.frontsideStr = frontsideStr;
         this.backsideStr = backsideStr;
         this.frontImg = frontImg;
         this.backImg = backImg;
-        this.difficulty = difficulty;
+        setDifficulty(Difficulties.NOTHING);
+        setFrontside(true);
     }
 
     public int getId() {
