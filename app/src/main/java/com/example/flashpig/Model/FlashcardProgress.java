@@ -1,11 +1,6 @@
 package com.example.flashpig.Model;
 
-import android.os.Build;
-
-import androidx.annotation.RequiresApi;
-
 import java.util.ArrayList;
-import java.util.EnumSet;
 import java.util.List;
 
 /**
@@ -31,7 +26,7 @@ public class FlashcardProgress {
     }
 
     private void sortList(Deck deck) {
-        for (Card card : deck.deck) {
+        for (Card card : deck.cards) {
             switch (card.getDifficulty().toString()) {
                 case "EASY": easyList.add(card);
                 case "MEDIUM": mediumList.add(card);

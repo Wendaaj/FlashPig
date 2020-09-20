@@ -33,5 +33,25 @@ public class ModelTest {
         Assert.assertEquals(card.getDifficulty(), Difficulties.HARD);
     }
 
+    @Test
+    public void canShowCardsAfterDifficulty() {
+        Card card1 = new Card(rand.nextInt(),true, "Efter vem uppkom namnet Madematik?", "SMÄQ",null,null, Difficulties.EASY);
+        Card card2 = new Card(rand.nextInt(),true, "Lever Smäq upp till sitt namn Madematik?", "Man kan aldrig vara för smart.",null,null, Difficulties.EASY);
+        Card card3 = new Card(rand.nextInt(),true, "Kommer Smäq slakta tentorna?", "OM hon kommer",null,null, Difficulties.HARD);
+        deck.addCard(card1,rand.nextInt());
+        deck.addCard(card2,rand.nextInt());
+        deck.addCard(card3,rand.nextInt());
+        List<Card> actualList = new ArrayList<>();
+        actualList.add(card1);
+        actualList.add(card2);
+        FlashcardProgress flashcardProgress = new FlashcardProgress(deck);
+        List<Card> expectedList = flashcardProgress.showCards(Difficulties.EASY);
+        Assert.assertEquals(expectedList,actualList);
+    }
+
+    @Test
+    public void canChangeCardsDifficulty() {
+    }
+
 
 }
