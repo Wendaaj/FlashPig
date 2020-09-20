@@ -58,7 +58,20 @@ public class ModelTest {
         Deck deck = new Deck("Legender", 2);
 
         if (chosenCard1.getId() == chosenCard2.getId()) {
-            assert (true);
+          //  assertTrue(chosenCard1==chosenCard2);
+        }
+    }
+
+    @Test
+    public void isMatchNo() {
+        Card chosenCard1 = new Card(2,true, "Vem är Zorri?",
+                "Kungen", null, null, Difficulties.EASY);
+        Card chosenCard2 = new Card(3,true, "Vem är Zorri?",
+                "Kungen", null, null, Difficulties.EASY);
+        Deck deck = new Deck("Legender", 2);
+
+        if (chosenCard1.getId() == chosenCard2.getId()) {
+            assert(true);
         }
     }
 
