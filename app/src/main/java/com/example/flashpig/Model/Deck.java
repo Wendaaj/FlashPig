@@ -1,5 +1,6 @@
 package com.example.flashpig.Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,7 +10,7 @@ import java.util.List;
  * @version 2020-09-17
  */
 public class Deck {
-    public List<Card> deck;
+    public List<Card> cards = new ArrayList<>();
     public int deckId;
     private String deckName;
     private int amountcards;
@@ -31,7 +32,7 @@ public class Deck {
      * @param deckId
      */
     public void addCard(Card card, int deckId){
-        deck.add(card);
+        cards.add(card);
     }
 
     /**
@@ -39,22 +40,26 @@ public class Deck {
      * @param card
      */
     public void deleteCard(Card card){
-        if(deck.contains(card)) {
-            deck.remove(card);
+        boolean cardExists;
+        if(cards.contains(card)) {
+            cards.remove(card);
+            cardExists = true;
         }else {
-            System.out.println("Card does't exist in deck.");
+            cardExists = false;
         }
     }
 
     /**
      * Method for deleting all cards in a deck.
-     * @param deck
+     * @param cards
      */
-    public void clearDeck(List<Card> deck){
-        if(!deck.isEmpty()){
-            deck.clear();
+    public void clearDeck(List<Card> cards){
+        boolean deckNotEmpty;
+        if(!cards.isEmpty()){
+            cards.clear();
+            deckNotEmpty = true;
         }else{
-            System.out.println("Deck is already empty.");
+            deckNotEmpty = false;
         }
 
     }
@@ -64,7 +69,7 @@ public class Deck {
      * @return
      */
     public int getAmountCards(){
-       return deck.size();
+       return cards.size();
         }
 
     public String getDeckName() {

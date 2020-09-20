@@ -18,7 +18,6 @@ import javax.crypto.spec.DESedeKeySpec;
  */
 public abstract class GameLogic {
     String gameTitle;
-    View vGame;
     Deck deck;
     Card chosenCard1, chosenCard2;
     List<Card> frontsideCards, backsideCards;
@@ -27,18 +26,16 @@ public abstract class GameLogic {
     /**
      * Constructor for GameLogic.
      * @param title The games name.
-     * @param viewGame The games view.
      * @param deck The deck chosen to play the game.
      */
     public GameLogic(String title, View viewGame, Deck deck) {
         this.gameTitle = title;
-        this.vGame = viewGame;
         this.deck = deck;
     }
 
     abstract Image gameWon(Deck deck);
 
-    abstract void restartGame(View v);
+    abstract void restartGame();
 
-    abstract void returnHome(View v);
+    abstract void returnHome();
 }

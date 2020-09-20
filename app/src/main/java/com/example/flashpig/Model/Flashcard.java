@@ -23,6 +23,7 @@ public class Flashcard extends GameLogic {
      */
     public void addEasyCard(Card card) {
         card.setDifficulty(Difficulties.EASY);
+        //Timekeeper set to 10 hours
     }
 
     /**
@@ -32,6 +33,7 @@ public class Flashcard extends GameLogic {
     public void addMediumCard(Card card) {
         card.setDifficulty(Difficulties.MEDIUM);
     }
+    //Timekeeper set to 10 min
 
     /**
      * Method to add the picked card to hard.
@@ -40,6 +42,8 @@ public class Flashcard extends GameLogic {
     public void addHardCard(Card card) {
         card.setDifficulty(Difficulties.HARD);
     }
+    //Timekeeper er to 1 min
+
 
     /**
      * Method to flip the card and show the information of the cards backside.
