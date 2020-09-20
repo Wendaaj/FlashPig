@@ -28,7 +28,7 @@ public abstract class GameLogic {
      * @param title The games name.
      * @param deck The deck chosen to play the game.
      */
-    public GameLogic(String title, View viewGame, Deck deck) {
+    public GameLogic(String title, Deck deck) {
         this.gameTitle = title;
         this.deck = deck;
     }

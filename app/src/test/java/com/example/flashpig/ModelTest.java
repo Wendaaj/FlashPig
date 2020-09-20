@@ -50,6 +50,11 @@ public class ModelTest {
     }
 
     @Test
+    public void canChangeCardsDifficulty() {
+
+    }
+
+    @Test
     public void isMatch() {
         Card chosenCard1 = new Card(2,true, "Vem är Zorri?",
                 "Kungen", null, null, Difficulties.EASY);

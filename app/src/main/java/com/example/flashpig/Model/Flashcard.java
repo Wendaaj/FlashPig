@@ -61,12 +61,12 @@ public class Flashcard extends GameLogic {
     }
 
     @Override
-    void restartGame(View v) {
+    void restartGame() {
 
     }
 
     @Override
-    void returnHome(View v) {
+    void returnHome() {
 
     }
 }
