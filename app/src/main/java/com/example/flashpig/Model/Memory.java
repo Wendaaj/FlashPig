@@ -21,15 +21,17 @@ public class Memory extends GameLogic implements MemoryPairUpLogic {
      *
      */
 
-    public Memory(String title, View viewGame, Deck deck, Deck deck1) {
-        super(title, viewGame, deck);
+    public Memory(String title, Deck deck, Deck deck1, int deckSize) {
+        super(title, deck);
         this.deck = deck1;
+        this.deckSize = deckSize;
     }
 
     /**
      * Method to compare two cards from a deck
-     * @param Card the cards to be compared
-     * @param Deck the deck to be used
+     * @param chosenCard1 the cards to be compared
+     * @param chosenCard2 the cards to be compared
+     * @param deck the deck to be used
      *
      */
 
@@ -50,28 +52,28 @@ public class Memory extends GameLogic implements MemoryPairUpLogic {
 
     @Override
     public void ifMatch() {
-        if (deckSize == 0) { //getter from Deck class
+        if (deckSize == 0) {
             gameWon(deck);
         }
     }
 
     /**
      * Method to turn a card
-     * @param Card the card to turn over
+     * @param chosenCard1 the card to turn over
      *
      */
 
-    private void flipCard(Card chosenCard1){ //onFingerPressed
+    public void flipCard(Card chosenCard1){ //onFingerPressed
         if(chosenCard1.isFrontside()){
             chosenCard1.setFrontside(false);
         } else {
-            chosenCard1.isFrontside();
+            chosenCard1.setFrontside(true);
         }
     }
 
     /**
      * Method to show that game is won
-     * @param Deck that has been used to win the game
+     * @param deck that has been used to win the game
      * @return img
      */
 
@@ -82,22 +84,20 @@ public class Memory extends GameLogic implements MemoryPairUpLogic {
 
     /**
      * Method to restart the game
-     * @param View that will be shown
      *
      */
 
     @Override
-    void restartGame(View v) {
+    void restartGame() {
     }
 
     /**
      * Method to return to startpage
-     * @param View that will be shown
      *
      */
 
     @Override
-    void returnHome(View v) {
+    void returnHome() {
     }
 
 }

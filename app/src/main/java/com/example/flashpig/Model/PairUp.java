@@ -15,21 +15,22 @@ import java.util.List;
 public class PairUp extends GameLogic implements MemoryPairUpLogic {
     int deckSize = deck.getAmountCards();
 
-    public PairUp(String title, View viewGame, Deck deck, boolean match) {
-        super(title, viewGame, deck);
+    public PairUp(String title, Deck deck) {
+        super(title, deck);
     }
 
     /**
      * Method to compare two cards from a deck
-     * @param Card the cards to be compared
-     * @param Deck the deck to be used
+     * @param chosenCard1 the cards to be compared
+     * @param chosenCard2 the cards to be compared
+     * @param deck the deck to be used
      *
      */
 
     @Override
     public void isMatch(Card chosenCard1, Card chosenCard2, Deck deck) {
         if (chosenCard1.getId() == chosenCard2.getId()) {
-            deckSize = deckSize - 1; //getter from Deck class
+            deckSize = deckSize - 1;
             ifMatch();
         }
     }
@@ -41,14 +42,14 @@ public class PairUp extends GameLogic implements MemoryPairUpLogic {
 
     @Override
     public void ifMatch() {
-        if (deckSize == 0) { //getter from Deck class
+        if (deckSize == 0) {
             gameWon(deck);
         }
     }
 
     /**
      * Method to show that game is won
-     * @param Deck that has been used to win the game
+     * @param deck that has been used to win the game
      * @return img
      *
      */
@@ -60,22 +61,20 @@ public class PairUp extends GameLogic implements MemoryPairUpLogic {
 
     /**
      * Method to restart the game
-     * @param View that will be shown
      *
      */
 
     @Override
-    void restartGame(View v) {
+    void restartGame() {
     }
 
     /**
      * Method to return to startpage
-     * @param View that will be shown
      *
      */
 
     @Override
-    void returnHome(View v) {
+    void returnHome() {
     }
 
 }

@@ -6,6 +6,8 @@ import com.example.flashpig.Model.Deck;
 import com.example.flashpig.Model.Difficulties;
 import com.example.flashpig.Model.Flashcard;
 import com.example.flashpig.Model.FlashcardProgress;
+import com.example.flashpig.Model.Memory;
+import com.example.flashpig.Model.PairUp;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -35,9 +37,16 @@ public class ModelTest {
 
     @Test
     public void canShowCardsAfterDifficulty() {
-        Card card1 = new Card(rand.nextInt(),true, "Efter vem uppkom namnet Madematik?", "SMÄQ",null,null, Difficulties.EASY);
-        Card card2 = new Card(rand.nextInt(),true, "Lever Smäq upp till sitt namn Madematik?", "Man kan aldrig vara för smart.",null,null, Difficulties.EASY);
-        Card card3 = new Card(rand.nextInt(),true, "Kommer Smäq slakta tentorna?", "OM hon kommer",null,null, Difficulties.HARD);
+        Card card1 = new Card(rand.nextInt(),true,
+                "Efter vem uppkom namnet Madematik?",
+                "SMÄQ",null,null, Difficulties.EASY);
+        Card card2 = new Card(rand.nextInt(),true,
+                "Lever Smäq upp till sitt namn Madematik?",
+                "Man kan aldrig vara för smart.",null,
+                null, Difficulties.EASY);
+        Card card3 = new Card(rand.nextInt(),true,
+                "Kommer Smäq slakta tentorna?", "OM hon kommer",
+                null,null, Difficulties.HARD);
         deck.addCard(card1,rand.nextInt());
         deck.addCard(card2,rand.nextInt());
         deck.addCard(card3,rand.nextInt());
@@ -55,16 +64,122 @@ public class ModelTest {
     }
 
     @Test
-    public void isMatch() {
+    public void memoryIsMatchPositive() {
         Card chosenCard1 = new Card(2,true, "Vem är Zorri?",
                 "Kungen", null, null, Difficulties.EASY);
+
         Card chosenCard2 = new Card(2,true, "Vem är Zorri?",
                 "Kungen", null, null, Difficulties.EASY);
+
         Deck deck = new Deck("Legender", 2);
 
-        if (chosenCard1.getId() == chosenCard2.getId()) {
-            assert (true);
-        }
+        Memory memory = new Memory("GameOfTheGame", deck, deck, 1);
+        int deckSize = deck.getAmountCards();
+
+        memory.isMatch(chosenCard1, chosenCard2, deck);
+
+        Assert.assertEquals(deckSize, 0);
+    }
+
+    @Test
+    public void memoryIsMatchNegative() {
+        Card chosenCard1 = new Card(2,true, "Vem är Zorri?",
+                "Kungen", null, null, Difficulties.EASY);
+
+        Card chosenCard2 = new Card(3,true, "Vem är Zorri?",
+                "Kungen", null, null, Difficulties.EASY);
+
+
+        Deck deck = new Deck("Legender", 2);
+
+        Memory memory = new Memory("GameOfTheGame", deck, deck, 1);
+        int deckSize = deck.getAmountCards();
+
+        memory.isMatch(chosenCard1, chosenCard2, deck);
+
+        Assert.assertEquals(deckSize, 1);
+    }
+
+    @Test
+    public void pairUpIsMatchPositive() {
+        Card chosenCard1 = new Card(2,true, "Vem är Zorri?",
+                "Kungen", null, null, Difficulties.EASY);
+
+        Card chosenCard2 = new Card(2,true, "Vem är Zorri?",
+                "Kungen", null, null, Difficulties.EASY);
+
+        Deck deck = new Deck("Legender", 2);
+
+        PairUp pairUp = new PairUp("FunGame", deck);
+        int deckSize = deck.getAmountCards();
+
+        pairUp.isMatch(chosenCard1, chosenCard2, deck);
+
+        Assert.assertEquals(deckSize, 0);
+    }
+
+
+    @Test
+    public void pairUpIsMatchNegative() {
+        Card chosenCard1 = new Card(2,true, "Vem är Zorri?",
+                "Kungen", null, null, Difficulties.EASY);
+
+        Card chosenCard2 = new Card(3,true, "Vem är Zorri?",
+                "Kungen", null, null, Difficulties.EASY);
+
+        Deck deck = new Deck("Legender", 2);
+
+        PairUp pairUp = new PairUp("FunGame", deck);
+        int deckSize = deck.getAmountCards();
+
+        pairUp.isMatch(chosenCard1, chosenCard2, deck);
+
+        Assert.assertEquals(deckSize, 1);
+    }
+
+    /*@Test
+    public void memoryIfMatch() {
+
+        Deck deck = new Deck("Legender", 2);
+
+        int deckSize = deck.getAmountCards();
+
+        Memory memory = new Memory("GameOfTheGame", deck, deck, 1);
+
+        memory.ifMatch();
+
+        Assert.assertEquals(deckSize, 0);
+
+    } */
+
+    @Test
+    public void testFlipCardBacksideDown() {
+
+        Card chosenCard1 = new Card(2,true, "Vem är Zorri?",
+                "Kungen", null, null, Difficulties.EASY);
+
+        Memory memory = new Memory("GameOfTheGame", deck, deck, 1);
+
+        chosenCard1.setFrontside(false);
+        memory.flipCard(chosenCard1);
+
+        Assert.assertTrue(chosenCard1.isFrontside());
+
+    }
+
+    @Test
+    public void testFlipCardFrontsideUp() {
+
+        Card chosenCard1 = new Card(2,true, "Vem är Zorri?",
+                "Kungen", null, null, Difficulties.EASY);
+
+        Memory memory = new Memory("GameOfTheGame", deck, deck, 1);
+
+        chosenCard1.setFrontside(true);
+        memory.flipCard(chosenCard1);
+
+        Assert.assertEquals(chosenCard1.isFrontside(), false);
+
     }
 
 }
