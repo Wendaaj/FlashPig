@@ -13,8 +13,8 @@ import java.util.List;
  */
 public class Flashcard extends GameLogic {
 
-    public Flashcard(String title, View viewGame, Deck deck) {
-        super(title, viewGame, deck);
+    public Flashcard(String title, Deck deck) {
+        super(title, deck);
     }
 
     /**
@@ -49,7 +49,7 @@ public class Flashcard extends GameLogic {
      * Method to flip the card and show the information of the cards backside.
      * @param card The current card.
      */
-    public void flipCard(Card card) { card.isFrontside(); }
+    public void turnOver(Card card) { card.isFrontside(); }
 
     @Override
     Image gameWon(Deck deck) {
@@ -62,7 +62,6 @@ public class Flashcard extends GameLogic {
 
     @Override
     void restartGame() {
-
     }
 
     @Override

@@ -1,8 +1,5 @@
 package com.example.flashpig;
 
-
-import android.media.Image;
-
 import com.example.flashpig.Model.Card;
 import com.example.flashpig.Model.Deck;
 import com.example.flashpig.Model.Difficulties;
@@ -24,7 +21,7 @@ public class ModelTest {
 
     @Test
     public void canChooseDifficulty(){
-        Flashcard flashcard = new Flashcard("Madematik",null, deck);
+        Flashcard flashcard = new Flashcard("Madematik", deck);
         Card card = new Card(1,true,"Vad betyder bae på danska?",
                 "Madde",null,null, Difficulties.NOTHING);
         flashcard.addEasyCard(card);
@@ -62,7 +59,7 @@ public class ModelTest {
 
     @Test
     public void canChangeCardsDifficulty() {
-
+        
     }
 
     @Test
