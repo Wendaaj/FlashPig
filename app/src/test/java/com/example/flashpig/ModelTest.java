@@ -1,6 +1,8 @@
 package com.example.flashpig;
 
 
+import android.media.Image;
+
 import com.example.flashpig.Model.Card;
 import com.example.flashpig.Model.Deck;
 import com.example.flashpig.Model.Difficulties;
@@ -64,7 +66,7 @@ public class ModelTest {
     }
 
     @Test
-    public void memoryIsMatchPositive() {
+    void memoryIsMatchPositive() {
         Card chosenCard1 = new Card(2,true, "Vem är Zorri?",
                 "Kungen", null, null, Difficulties.EASY);
 
@@ -82,7 +84,7 @@ public class ModelTest {
     }
 
     @Test
-    public void memoryIsMatchNegative() {
+    void memoryIsMatchNegative() {
         Card chosenCard1 = new Card(2,true, "Vem är Zorri?",
                 "Kungen", null, null, Difficulties.EASY);
 
@@ -101,7 +103,7 @@ public class ModelTest {
     }
 
     @Test
-    public void pairUpIsMatchPositive() {
+    void pairUpIsMatchPositive() {
         Card chosenCard1 = new Card(2,true, "Vem är Zorri?",
                 "Kungen", null, null, Difficulties.EASY);
 
@@ -120,7 +122,7 @@ public class ModelTest {
 
 
     @Test
-    public void pairUpIsMatchNegative() {
+    void pairUpIsMatchNegative() {
         Card chosenCard1 = new Card(2,true, "Vem är Zorri?",
                 "Kungen", null, null, Difficulties.EASY);
 
@@ -137,23 +139,8 @@ public class ModelTest {
         Assert.assertEquals(deckSize, 1);
     }
 
-    /*@Test
-    public void memoryIfMatch() {
-
-        Deck deck = new Deck("Legender", 2);
-
-        int deckSize = deck.getAmountCards();
-
-        Memory memory = new Memory("GameOfTheGame", deck, deck, 1);
-
-        memory.ifMatch();
-
-        Assert.assertEquals(deckSize, 0);
-
-    } */
-
     @Test
-    public void testFlipCardBacksideDown() {
+    void testFlipCardBacksideDown() {
 
         Card chosenCard1 = new Card(2,true, "Vem är Zorri?",
                 "Kungen", null, null, Difficulties.EASY);
@@ -168,7 +155,7 @@ public class ModelTest {
     }
 
     @Test
-    public void testFlipCardFrontsideUp() {
+    void testFlipCardFrontsideUp() {
 
         Card chosenCard1 = new Card(2,true, "Vem är Zorri?",
                 "Kungen", null, null, Difficulties.EASY);
@@ -180,6 +167,56 @@ public class ModelTest {
 
         Assert.assertEquals(chosenCard1.isFrontside(), false);
 
+    }
+    @Test
+    void ifMatchPositive() {
+
+        //NOT DONE
+
+        Deck deck = new Deck("Legender", 2);
+        int deckSize = deck.getAmountCards();
+        Memory memory = new Memory("GameOfTheGame", deck, deck, 1);
+        memory.ifMatch();
+
+        //Assert.assertTrue();
+
+    }
+
+    @Test
+    void ifMatchNegative() {
+
+        // NOT DONE
+
+        Deck deck = new Deck("Legender", 2);
+        int deckSize = deck.getAmountCards();
+        Memory memory = new Memory("GameOfTheGame", deck, deck, 1);
+        memory.ifMatch();
+
+        //Assert.assertEquals();
+
+    }
+
+    @Test
+    void gameWon() {
+        Deck deck = new Deck("Legender", 2);
+
+        //NOT DONE
+    }
+
+
+
+    @Test
+    void restartGame() {
+
+        //NOT DONE
+    }
+
+
+
+    @Test
+    void returnHome() {
+
+        //NOT DONE
     }
 
 }
