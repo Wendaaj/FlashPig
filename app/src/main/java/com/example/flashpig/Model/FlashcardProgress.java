@@ -38,11 +38,11 @@ public class FlashcardProgress {
 
     /**
      * Show the cards after which difficulty is choosen. The cards are picked out from the deck and shown in the view.
-     * @param difficulties The choosen difficulty to show.
+     * @param difficulty The choosen difficulty to show.
      * @return Returns the list with cards of the choosen difficulty.
      */
-    public List<Card> showCards(Difficulties difficulties) {
-        switch (difficulties) {
+    public List<Card> showCards(Difficulty difficulty) {
+        switch (difficulty) {
             case EASY: return easyList;
             case MEDIUM: return mediumList;
             case HARD: return hardList;
@@ -55,7 +55,7 @@ public class FlashcardProgress {
      * @param card The card to be moved.
      * @param difficulty The difficulty the card is to change to.
      */
-    public void moveCard(Card card, Difficulties difficulty) {
+    public void moveCard(Card card, Difficulty difficulty) {
         if (!card.getDifficulty().equals(difficulty)) {
             card.setDifficulty(difficulty);
         }
@@ -65,8 +65,8 @@ public class FlashcardProgress {
      * Basically resets the card so that it is neither easy, medium or hard.
      * @param card The card to be reset.
      */
-    public void deleteCard(Card card) {
-        card.setDifficulty(Difficulties.NOTHING);
+    public void resetCard(Card card) {
+        card.setDifficulty(Difficulty.NOTHING);
     }
 
 }

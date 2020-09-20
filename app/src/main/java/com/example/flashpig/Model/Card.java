@@ -28,7 +28,7 @@ public class Card {
         this.backsideStr = backsideStr;
         this.frontImg = frontImg;
         this.backImg = backImg;
-        setDifficulty(Difficulties.NOTHING);
+        setDifficulty(Difficulty.NOTHING);
         setFrontside(true);
     }
 

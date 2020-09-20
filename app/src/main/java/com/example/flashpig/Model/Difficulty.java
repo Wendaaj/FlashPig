@@ -1,11 +1,11 @@
 package com.example.flashpig.Model;
 
-public enum  Difficulties {
+public enum Difficulty {
     EASY,
     MEDIUM,
     HARD,
     NOTHING;
 
-    private Difficulties() {
+    Difficulty() {
     }
 }

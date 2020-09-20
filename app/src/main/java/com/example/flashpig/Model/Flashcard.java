@@ -1,9 +1,6 @@
 package com.example.flashpig.Model;
 
 import android.media.Image;
-import android.view.View;
-
-import java.util.List;
 
 /**
  * A flashcard game.
@@ -22,7 +19,7 @@ public class Flashcard extends GameLogic {
      * @param card The current card.
      */
     public void addEasyCard(Card card) {
-        card.setDifficulty(Difficulties.EASY);
+        card.setDifficulty(Difficulty.EASY);
         //Timekeeper set to 10 hours
     }
 
@@ -31,7 +28,7 @@ public class Flashcard extends GameLogic {
      * @param card The current card.
      */
     public void addMediumCard(Card card) {
-        card.setDifficulty(Difficulties.MEDIUM);
+        card.setDifficulty(Difficulty.MEDIUM);
     }
     //Timekeeper set to 10 min
 
@@ -40,7 +37,7 @@ public class Flashcard extends GameLogic {
      * @param card The current card.
      */
     public void addHardCard(Card card) {
-        card.setDifficulty(Difficulties.HARD);
+        card.setDifficulty(Difficulty.HARD);
     }
     //Timekeeper er to 1 min
 
@@ -49,7 +46,10 @@ public class Flashcard extends GameLogic {
      * Method to flip the card and show the information of the cards backside.
      * @param card The current card.
      */
-    public void turnOver(Card card) { card.isFrontside(); }
+    public void turnOver(Card card) {
+        card.setFrontside(false);
+        System.out.println(card.getBacksideStr());
+    }
 
     @Override
     Image gameWon(Deck deck) {
