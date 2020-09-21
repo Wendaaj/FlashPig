@@ -1,5 +1,6 @@
 package com.example.flashpig.Model;
 
+import android.os.CountDownTimer;
 import android.os.SystemClock;
 import android.view.View;
 import android.widget.Chronometer;
@@ -10,6 +11,7 @@ public class TimeKeeper {
     private Chronometer chronometer;
     private long pauseOffset;
     private boolean running;
+    private CountDownTimer countDownTimer;
 
     private void startChronometer(View v) {
         if (!running) {
@@ -34,5 +36,57 @@ public class TimeKeeper {
     private void resetChronometer(View v) {
         chronometer.setBase(SystemClock.elapsedRealtime()); //Sets chronometer to 0
         pauseOffset = 0;
+    }
+
+
+    private void CountdownEasy(){
+        new CountDownTimer(60000,1000){
+
+            @Override
+            public void onTick(long l) {
+                // Card removed from view
+
+            }
+
+            @Override
+            public void onFinish() {
+                // Card back in view
+
+            }
+        };
+
+    }
+    private void CountdownMedium(){
+        new CountDownTimer(120000,1000){
+
+            @Override
+            public void onTick(long l) {
+                // Card removed from view
+
+            }
+
+            @Override
+            public void onFinish() {
+                // Card back in view
+
+            }
+        };
+
+    }
+    private void CountdownHard(){
+        new CountDownTimer(1000000,1000){
+
+            @Override
+            public void onTick(long l) {
+                //Card removed from view
+            }
+
+            @Override
+            public void onFinish() {
+                // Card back in view
+
+            }
+        };
+
     }
 }
