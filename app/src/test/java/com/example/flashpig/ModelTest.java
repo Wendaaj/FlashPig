@@ -48,9 +48,9 @@ public class ModelTest {
     //Tests for FlashcardProgess
     @Test
     public void canShowCardsAfterDifficulty() {
-        deck.addCard(card1,rand.nextInt());
-        deck.addCard(card2,rand.nextInt());
-        deck.addCard(card3,rand.nextInt());
+        deck.addCard(card1);
+        deck.addCard(card2);
+        deck.addCard(card3);
         card1.setDifficulty(Difficulty.EASY);
         card2.setDifficulty(Difficulty.EASY);
         card3.setDifficulty(Difficulty.NOTHING);
@@ -256,4 +256,66 @@ public class ModelTest {
         //NOT DONE
     }
 */
+//Test Deck
+    @Test
+    public void testAddCard() {
+        deck.addCard(card0);
+        Assert.assertEquals(deck.getAmountCards(), 1);
+    }
+
+    @Test
+    public void testDeleteCardNegative() {
+        deck.addCard(card0);
+        deck.addCard(card1);
+        deck.deleteCard(card0);
+        Assert.assertEquals(deck.deckContainsCard(card0), false);
+        Assert.assertEquals(deck.getAmountCards(), 1);
+
+    }
+
+    @Test
+    public void testDeleteCardPositive() {
+        deck.addCard(card0);
+        deck.addCard(card1);
+        deck.deleteCard(card0);
+        Assert.assertTrue(deck.deckContainsCard(card1));
+        Assert.assertEquals(deck.getAmountCards(), 1);
+    }
+
+    @Test
+    public void testClearDeckPositive() {
+        deck.addCard(card0);
+        deck.addCard(card1);
+        deck.clearDeck(deck.cards);
+        Assert.assertEquals(deck.getAmountCards(), 0);
+    }
+    @Test
+    public void testClearDeckNegative() {
+        deck.addCard(card0);
+        deck.addCard(card1);
+        deck.clearDeck(deck.cards);
+        deck.addCard(card2);
+        Assert.assertEquals(deck.getAmountCards(), 1);
+    }
+
+    @Test
+    public void testGetAmountCards() {
+        deck.addCard(card0);
+        deck.addCard(card1);
+        Assert.assertEquals(deck.getAmountCards(), 2);
+    }
+
+    @Test
+    public void testDeckContainsCardPositive() {
+        deck.addCard(card0);
+        deck.addCard(card1);
+        Assert.assertTrue(deck.deckContainsCard(card0));
+    }
+    @Test
+    public void testDeckContainsCardNegative() {
+        deck.addCard(card0);
+        deck.addCard(card1);
+        Assert.assertFalse(deck.deckContainsCard(card2));
+    }
+
 }
