@@ -39,7 +39,7 @@ public class Memory extends GameLogic implements MemoryPairUpLogic {
     public void isMatch(Card chosenCard1, Card chosenCard2, Deck deck) {
         flipCard(chosenCard1);
         flipCard(chosenCard2);
-         if (chosenCard1.getFrontsideStr().equals(chosenCard2.getBacksideStr()) || chosenCard1.getFrontImg().equals(chosenCard2.getBackImg())) {
+         if (chosenCard1.getId() == chosenCard2.getId()) {
              deckSize = deckSize - 1;
              ifMatch();
        }
