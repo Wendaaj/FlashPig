@@ -32,6 +32,42 @@ public class Card {
         setFrontside(true);
     }
 
+
+
+    /**
+     * Method to create frontside of card
+     * @param str the tect or numbers to use
+     * //@param img the picture to use
+     *
+     */
+    public void CreateFrontside(String str, Image img) {
+
+        if (this.isFrontside && str != null && !str.equals("")){
+            this.frontsideStr = str;
+        }
+
+        this.frontImg = img;
+
+
+
+
+}
+
+    /**
+     * Method to create backside of card
+     * @param str the tect or numbers to use
+     * //@param img the picture to use
+     *
+     */
+    public void CreateBackside(String str, Image img){
+        if (!this.isFrontside && str != null && !str.equals("")){
+            this.backsideStr = str;
+        }
+
+        this.backImg = img;
+
+}
+
     public int getId() {
         return id;
     }
@@ -88,39 +124,5 @@ public class Card {
     public void setDifficulty(Enum difficulty) {
         this.difficulty = difficulty;
     }
-
-    /**
-     * Method to create frontside of card
-     * @param str the tect or numbers to use
-     * //@param img the picture to use
-     *
-     */
-    public void CreateFrontside(String str, Image img) {
-
-        if (this.isFrontside && str != null && !str.equals("")){
-            this.frontsideStr = str;
-        }
-
-        this.frontImg = img;
-
-
-
-
-}
-
-    /**
-     * Method to create backside of card
-     * @param str the tect or numbers to use
-     * //@param img the picture to use
-     *
-     */
-    public void CreateBackside(String str, Image img){
-        if (!this.isFrontside && str != null && !str.equals("")){
-            this.backsideStr = str;
-        }
-
-        this.backImg = img;
-
-}
 
 }
