@@ -36,6 +36,7 @@ public class Card {
         return id;
     }
 
+
     public void setId(int id) {
         this.id = id;
     }
@@ -91,24 +92,35 @@ public class Card {
     /**
      * Method to create frontside of card
      * @param str the tect or numbers to use
-     * @param img the picture to use
+     * //@param img the picture to use
      *
      */
-    void CreateFrontside(String str, Image img){
-        if (str.equals(null)){
+    public void CreateFrontside(String str, Image img) {
 
+        if (this.isFrontside && str != null && !str.equals("")){
+            this.frontsideStr = str;
         }
+
+        this.frontImg = img;
+
+
+
+
 }
 
     /**
      * Method to create backside of card
      * @param str the tect or numbers to use
-     * @param img the picture to use
+     * //@param img the picture to use
      *
      */
-    void CreateBackside(String str, Image img){
-    if (str.equals(null)){
+    public void CreateBackside(String str, Image img){
+        if (!this.isFrontside && str != null && !str.equals("")){
+            this.backsideStr = str;
+        }
 
-    }
+        this.backImg = img;
+
 }
+
 }

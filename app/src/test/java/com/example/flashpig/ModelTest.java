@@ -22,7 +22,8 @@ public class ModelTest {
     Card card1 = new Card(rand.nextInt(),true, "Efter vem uppkom namnet Madematik?", "SMÄQ",null,null, Difficulty.EASY);
     Card card2 = new Card(rand.nextInt(),true, "Lever Smäq upp till sitt namn Madematik?", "Man kan aldrig vara för smart.",null, null, Difficulty.EASY);
     Card card3 = new Card(rand.nextInt(),true, "Kommer Smäq slakta tentorna?", "OM hon kommer", null,null, Difficulty.HARD);
-
+    Card card4 = new Card(rand.nextInt(),true, null, null, null,null, Difficulty.HARD);
+    Card card5 = new Card(rand.nextInt(),true, "hej", "hej", null,null, Difficulty.HARD);
     //Tests for Flashcard
     @Test
     public void canChooseDifficulty(){
@@ -123,6 +124,28 @@ public class ModelTest {
         pairUp.isMatch(chosenCard1, chosenCard2, deck);
 
         Assert.assertEquals(deckSize, 0);
+    }
+
+    @Test
+    public void canCreateCardFront(){
+        card4.CreateFrontside(null, null);
+
+        card5.CreateFrontside("hej", null);
+
+        Assert.assertEquals(card4.getFrontsideStr(),null);
+
+        Assert.assertEquals(card5.getFrontsideStr(),"hej");
+    }
+
+    @Test
+    public void canCreateCardBack(){
+        card4.CreateBackside(null, null);
+
+        card5.CreateBackside("hej", null);
+
+        Assert.assertEquals(card4.getBacksideStr(),null);
+
+        Assert.assertEquals(card5.getBacksideStr(),"hej");
     }
 
 
