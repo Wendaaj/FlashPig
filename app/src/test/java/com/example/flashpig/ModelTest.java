@@ -139,13 +139,16 @@ public class ModelTest {
 
     @Test
     public void canCreateCardBack(){
+        card4.setFrontside(false);
+        card5.setFrontside(false);
+
         card4.CreateBackside(null, null);
 
-        card5.CreateBackside("hej", null);
+        card5.CreateBackside("Hej", null);
 
         Assert.assertEquals(card4.getBacksideStr(),null);
 
-        Assert.assertEquals(card5.getBacksideStr(),"hej");
+        Assert.assertEquals(card5.getBacksideStr(),"Hej");
     }
 
 
