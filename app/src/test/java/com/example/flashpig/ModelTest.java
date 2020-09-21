@@ -18,12 +18,12 @@ import java.util.Random;
 public class ModelTest {
     Random rand = new Random();
     Deck deck = new Deck("Madematik", rand.nextInt());
-    Card card0 = new Card(rand.nextInt(),true,"Vad betyder bae på danska?", "Madde",null,null, Difficulty.NOTHING);
-    Card card1 = new Card(rand.nextInt(),true, "Efter vem uppkom namnet Madematik?", "SMÄQ",null,null, Difficulty.EASY);
-    Card card2 = new Card(rand.nextInt(),true, "Lever Smäq upp till sitt namn Madematik?", "Man kan aldrig vara för smart.",null, null, Difficulty.EASY);
-    Card card3 = new Card(rand.nextInt(),true, "Kommer Smäq slakta tentorna?", "OM hon kommer", null,null, Difficulty.HARD);
-    Card card4 = new Card(rand.nextInt(),true, null, null, null,null, Difficulty.HARD);
-    Card card5 = new Card(rand.nextInt(),true, "hej", "hej", null,null, Difficulty.HARD);
+    Card card0 = new Card(rand.nextInt(),"Vad betyder bae på danska?", "Madde",null,null);
+    Card card1 = new Card(rand.nextInt(), "Efter vem uppkom namnet Madematik?", "SMÄQ",null,null);
+    Card card2 = new Card(rand.nextInt(), "Lever Smäq upp till sitt namn Madematik?", "Man kan aldrig vara för smart.",null, null);
+    Card card3 = new Card(rand.nextInt(), "Kommer Smäq slakta tentorna?", "OM hon kommer", null,null);
+    Card card4 = new Card(rand.nextInt(), null, null, null,null);
+    Card card5 = new Card(rand.nextInt(), "hej", "hej", null,null);
     //Tests for Flashcard
     @Test
     public void canChooseDifficulty(){
@@ -73,11 +73,11 @@ public class ModelTest {
 
     @Test
     public void memoryIsMatchPositive() {
-        Card chosenCard1 = new Card(2,true, "Vem är Zorri?",
-                "Kungen", null, null, Difficulty.EASY);
+        Card chosenCard1 = new Card(2, "Vem är Zorri?",
+                "Kungen", null, null);
 
-        Card chosenCard2 = new Card(2,true, "Vem är Zorri?",
-                "Kungen", null, null, Difficulty.EASY);
+        Card chosenCard2 = new Card(2, "Vem är Zorri?",
+                "Kungen", null, null);
 
         Deck deck = new Deck("Legender", 2);
 
@@ -91,11 +91,11 @@ public class ModelTest {
 
     @Test
     public void memoryIsMatchNegative() { //FAAAAIL
-        Card chosenCard1 = new Card(2,true, "Vem är Zorri?",
-                "Kungen", null, null, Difficulty.EASY);
+        Card chosenCard1 = new Card(2, "Vem är Zorri?",
+                "Kungen", null, null);
 
-        Card chosenCard2 = new Card(2,true, "Vem är han?",
-                "Han e han", null, null, Difficulty.EASY);
+        Card chosenCard2 = new Card(2, "Vem är han?",
+                "Han e han", null, null);
 
 
         Deck deck = new Deck("Legender", 2);
@@ -110,11 +110,11 @@ public class ModelTest {
 
     @Test
     public void pairUpIsMatchPositive() {
-        Card chosenCard1 = new Card(2,true, "Vem är Zorri?",
-                "Kungen", null, null, Difficulty.EASY);
+        Card chosenCard1 = new Card(2, "Vem är Zorri?",
+                "Kungen", null, null);
 
-        Card chosenCard2 = new Card(2,true, "Vem är Zorri?",
-                "Kungen", null, null, Difficulty.EASY);
+        Card chosenCard2 = new Card(2, "Vem är Zorri?",
+                "Kungen", null, null);
 
         Deck deck = new Deck("Legender", 2);
 
@@ -170,8 +170,8 @@ public class ModelTest {
     @Test
     public void testFlipCardBacksideDown() {
 
-        Card chosenCard1 = new Card(2,true, "Vem är Zorri?",
-                "Kungen", null, null, Difficulty.EASY);
+        Card chosenCard1 = new Card(2, "Vem är Zorri?",
+                "Kungen", null, null);
 
         Memory memory = new Memory("GameOfTheGame", deck, deck, 1);
 
@@ -185,8 +185,8 @@ public class ModelTest {
     @Test
     public void testFlipCardFrontsideUp() {
 
-        Card chosenCard1 = new Card(2,true, "Vem är Zorri?",
-                "Kungen", null, null, Difficulty.EASY);
+        Card chosenCard1 = new Card(2, "Vem är Zorri?",
+                "Kungen", null, null);
 
         Memory memory = new Memory("GameOfTheGame", deck, deck, 1);
 

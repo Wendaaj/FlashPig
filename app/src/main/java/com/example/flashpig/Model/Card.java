@@ -21,8 +21,8 @@ public class Card {
      *
      */
 
-    public Card(int id, boolean isFrontside, String frontsideStr, String backsideStr,
-                Image frontImg, Image backImg, Enum difficulty) {
+    public Card(int id, String frontsideStr, String backsideStr,
+                Image frontImg, Image backImg) {
         this.id = id;
         this.frontsideStr = frontsideStr;
         this.backsideStr = backsideStr;
