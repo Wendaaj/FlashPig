@@ -53,7 +53,7 @@ public class TimeKeeper {
                 // Card back in view
 
             }
-        };
+        }.start();
 
     }
     private void CountdownMedium(){
@@ -70,7 +70,7 @@ public class TimeKeeper {
                 // Card back in view
 
             }
-        };
+        }.start();
 
     }
     private void CountdownHard(){
@@ -86,7 +86,7 @@ public class TimeKeeper {
                 // Card back in view
 
             }
-        };
+        }.start();
 
     }
 }
