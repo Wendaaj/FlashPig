@@ -39,9 +39,9 @@ public class TimeKeeper {
     }
 
 
-    private void CountdownEasy(){
+    private void CountdownEasy(Card card, Deck deck){
         new CountDownTimer(60000,1000){
-
+            // Card removed from view
             @Override
             public void onTick(long l) {
                 // Card removed from view
@@ -56,9 +56,9 @@ public class TimeKeeper {
         }.start();
 
     }
-    private void CountdownMedium(){
-        new CountDownTimer(120000,1000){
-
+    private void CountdownMedium(Card card, Deck deck){
+        new CountDownTimer(600000,1000){
+            // Card removed from view
             @Override
             public void onTick(long l) {
                 // Card removed from view
@@ -73,9 +73,9 @@ public class TimeKeeper {
         }.start();
 
     }
-    private void CountdownHard(){
-        new CountDownTimer(1000000,1000){
-
+    private void CountdownHard(Card card, Deck deck){
+        new CountDownTimer(6000000,1000){
+            // Card removed from view
             @Override
             public void onTick(long l) {
                 //Card removed from view

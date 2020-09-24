@@ -85,9 +85,7 @@ public class Card {
         isFrontside = frontside;
     }
 
-    public String getFrontsideStr() {
-        return frontsideStr;
-    }
+    public String getFrontsideStr() { return frontsideStr; }
 
     public void setFrontsideStr(String frontsideStr) {
         this.frontsideStr = frontsideStr;
