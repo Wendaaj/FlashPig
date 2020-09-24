@@ -3,6 +3,7 @@ package com.example.flashpig.Model;
 import android.media.Image;
 import android.view.View;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,16 +28,38 @@ public class Memory extends GameLogic implements MemoryPairUpLogic {
         this.deckSize = deckSize;
     }
 
+    public void divideCard(Deck deck){
+        for (Card card: deck.cards) {
+            Image frontImg = card.getFrontImg();
+            String frontStr = card.getFrontsideStr();
+            Image backImg = card.getBackImg();
+            String backStr = card.getBacksideStr();
+
+            saveElements(frontImg, frontStr, backImg, backStr);
+        }
+    }
+
+    public void saveElements(Image frontImg, String frontStr, Image backImg, String backStr){
+        List <Image> imageList = new ArrayList<>();
+        List <String> stringList = new ArrayList<>();
+
+        imageList.add(frontImg);
+        imageList.add(backImg);
+        stringList.add(frontStr);
+        stringList.add(backStr);
+
+    }
+
+
     /**
      * Method to compare two cards from a deck
      * @param chosenCard1 the cards to be compared
-     * @param chosenCard2 the cards to be compared
      * @param deck the deck to be used
      *
      */
 
     @Override
-    public void isMatch(Card chosenCard1, Card chosenCard2, Deck deck) {
+    public void isMatch(Card chosenCard1, Deck deck) {
         flipCard(chosenCard1);
         flipCard(chosenCard2);
          if (chosenCard1.getId() == chosenCard2.getId()) {
@@ -69,35 +92,6 @@ public class Memory extends GameLogic implements MemoryPairUpLogic {
         } else {
             chosenCard1.setFrontside(true);
         }
-    }
-
-    /**
-     * Method to show that game is won
-     * @param deck that has been used to win the game
-     * @return img
-     */
-
-    @Override
-    Image gameWon(Deck deck) {
-        return null;
-    }
-
-    /**
-     * Method to restart the game
-     *
-     */
-
-    @Override
-    void restartGame() {
-    }
-
-    /**
-     * Method to return to startpage
-     *
-     */
-
-    @Override
-    void returnHome() {
     }
 
 }

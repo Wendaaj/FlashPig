@@ -19,16 +19,16 @@ public class PairUp extends GameLogic implements MemoryPairUpLogic {
         super(title, deck);
     }
 
+
     /**
      * Method to compare two cards from a deck
      * @param chosenCard1 the cards to be compared
-     * @param chosenCard2 the cards to be compared
      * @param deck the deck to be used
      *
      */
 
     @Override
-    public void isMatch(Card chosenCard1, Card chosenCard2, Deck deck) {
+    public void isMatch(Card chosenCard1, Deck deck) {
         if (chosenCard1.getId() == chosenCard2.getId()) {
             deckSize = deckSize - 1;
             ifMatch();
@@ -45,36 +45,6 @@ public class PairUp extends GameLogic implements MemoryPairUpLogic {
         if (deckSize == 0) {
             gameWon(deck);
         }
-    }
-
-    /**
-     * Method to show that game is won
-     * @param deck that has been used to win the game
-     * @return img
-     *
-     */
-
-    @Override
-    Image gameWon(Deck deck) {
-        return null;
-    }
-
-    /**
-     * Method to restart the game
-     *
-     */
-
-    @Override
-    void restartGame() {
-    }
-
-    /**
-     * Method to return to startpage
-     *
-     */
-
-    @Override
-    void returnHome() {
     }
 
 }

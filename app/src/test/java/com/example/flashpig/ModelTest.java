@@ -18,13 +18,18 @@ import java.util.Random;
 public class ModelTest {
     Random rand = new Random();
     Deck deck = new Deck("Madematik", rand.nextInt());
-    Card card0 = new Card(rand.nextInt(),"Vad betyder bae på danska?", "Madde",null,null);
-    Card card1 = new Card(rand.nextInt(), "Efter vem uppkom namnet Madematik?", "SMÄQ",null,null);
-    Card card2 = new Card(rand.nextInt(), "Lever Smäq upp till sitt namn Madematik?", "Man kan aldrig vara för smart.",null, null);
-    Card card3 = new Card(rand.nextInt(), "Kommer Smäq slakta tentorna?", "OM hon kommer", null,null);
-    Card card4 = new Card(rand.nextInt(), null, null, null,null);
-    Card card5 = new Card(rand.nextInt(), "hej", "hej", null,null);
-
+    Card card0 = new Card(rand.nextInt(),"Vad betyder bae på danska?",
+            "Madde",null,null);
+    Card card1 = new Card(rand.nextInt(), "Efter vem uppkom namnet Madematik?",
+            "SMÄQ",null,null);
+    Card card2 = new Card(rand.nextInt(), "Lever Smäq upp till sitt namn Madematik?",
+            "Man kan aldrig vara för smart.",null, null);
+    Card card3 = new Card(rand.nextInt(), "Kommer Smäq slakta tentorna?",
+            "OM hon kommer", null,null);
+    Card card4 = new Card(rand.nextInt(), null, null, null,
+            null);
+    Card card5 = new Card(rand.nextInt(), "hej", "hej", null,
+            null);
     //Tests for Flashcard
     @Test
     public void canChooseDifficulty(){
@@ -85,7 +90,7 @@ public class ModelTest {
         Memory memory = new Memory("GameOfTheGame", deck, deck, 1);
         int deckSize = deck.getAmountCards();
 
-        memory.isMatch(chosenCard1, chosenCard2, deck);
+        memory.isMatch(chosenCard1, deck);
 
         Assert.assertEquals(deckSize, 0);
     }
@@ -95,7 +100,7 @@ public class ModelTest {
         Card chosenCard1 = new Card(2, "Vem är Zorri?",
                 "Kungen", null, null);
 
-        Card chosenCard2 = new Card(2, "Vem är han?",
+        Card chosenCard2 = new Card(3, "Vem är han?",
                 "Han e han", null, null);
 
 
@@ -104,7 +109,7 @@ public class ModelTest {
         Memory memory = new Memory("GameOfTheGame", deck, deck, 1);
         int deckSize = deck.getAmountCards();
 
-        memory.isMatch(chosenCard1, chosenCard2, deck);
+        memory.isMatch(chosenCard1, deck);
 
         Assert.assertEquals(deckSize, 1);
     }
@@ -122,7 +127,7 @@ public class ModelTest {
         PairUp pairUp = new PairUp("FunGame", deck);
         int deckSize = deck.getAmountCards();
 
-        pairUp.isMatch(chosenCard1, chosenCard2, deck);
+        pairUp.isMatch(chosenCard1, deck);
 
         Assert.assertEquals(deckSize, 0);
     }
@@ -153,24 +158,24 @@ public class ModelTest {
     }
 
 
-   /* @Test
+    /*@Test
     public void pairUpIsMatchNegative() { //FAAAIL
-        Card chosenCard1 = new Card(2,true, "Vem är Zorri?",
-                "Kungen", null, null, Difficulties.EASY);
+        Card chosenCard1 = new Card(2, "Vem är Zorri?",
+                "Kungen", null, null);
 
-        Card chosenCard2 = new Card(3,true, "Vem är Zorri?",
-                "Kungen", null, null, Difficulties.EASY);
+        Card chosenCard1 = new Card(3, "Vem är Zorri?",
+                "Kungen", null, null);
 
         Deck deck = new Deck("Legender", 2);
 
         PairUp pairUp = new PairUp("FunGame", deck);
         int deckSize = deck.getAmountCards();
 
-        pairUp.isMatch(chosenCard1, chosenCard2, deck);
+        pairUp.isMatch(chosenCard1, deck);
 
         Assert.assertEquals(deckSize, 1);
-    }
-*/
+    }*/
+
     @Test
     public void testFlipCardBacksideDown() {
 

@@ -4,7 +4,7 @@ import android.media.Image;
 /**
  * Class for card.
  * @author Jesper
- * @version 2020-09-14
+ * @version 2020-09-14l
  */
 
 public class Card {
