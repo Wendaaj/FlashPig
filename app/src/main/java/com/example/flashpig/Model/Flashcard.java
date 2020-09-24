@@ -1,7 +1,5 @@
 package com.example.flashpig.Model;
 
-import android.media.Image;
-
 /**
  * A flashcard game.
  *
@@ -49,23 +47,5 @@ public class Flashcard extends GameLogic {
     public void turnOver(Card card) {
         card.setFrontside(false);
         System.out.println(card.getBacksideStr());
-    }
-
-    @Override
-    Image gameWon(Deck deck) {
-        if (deck.getAmountCards() == 0) {
-            return null;
-        } else {
-            return null;
-        }
-    }
-
-    @Override
-    void restartGame() {
-    }
-
-    @Override
-    void returnHome() {
-
     }
 }

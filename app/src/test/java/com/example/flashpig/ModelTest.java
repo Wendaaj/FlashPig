@@ -24,6 +24,7 @@ public class ModelTest {
     Card card3 = new Card(rand.nextInt(), "Kommer Smäq slakta tentorna?", "OM hon kommer", null,null);
     Card card4 = new Card(rand.nextInt(), null, null, null,null);
     Card card5 = new Card(rand.nextInt(), "hej", "hej", null,null);
+
     //Tests for Flashcard
     @Test
     public void canChooseDifficulty(){
