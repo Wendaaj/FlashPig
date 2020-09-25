@@ -40,7 +40,7 @@ public class Card {
      * //@param img the picture to use
      *
      */
-    public void CreateFrontside(String str, Image img) {
+    public void EditFrontside(String str, Image img) {
 
         if (this.isFrontside && str != null && !str.equals("")){
             this.frontsideStr = str;
@@ -59,7 +59,7 @@ public class Card {
      * //@param img the picture to use
      *
      */
-    public void CreateBackside(String str, Image img){
+    public void EditBackside(String str, Image img){
         if (!this.isFrontside && str != null && !str.equals("")){
             this.backsideStr = str;
         }
@@ -87,32 +87,16 @@ public class Card {
 
     public String getFrontsideStr() { return frontsideStr; }
 
-    public void setFrontsideStr(String frontsideStr) {
-        this.frontsideStr = frontsideStr;
-    }
-
     public String getBacksideStr() {
         return backsideStr;
-    }
-
-    public void setBacksideStr(String backsideStr) {
-        this.backsideStr = backsideStr;
     }
 
     public Image getFrontImg() {
         return frontImg;
     }
 
-    public void setFrontImg(Image frontImg) {
-        this.frontImg = frontImg;
-    }
-
     public Image getBackImg() {
         return backImg;
-    }
-
-    public void setBackImg(Image backImg) {
-        this.backImg = backImg;
     }
 
     public Enum getDifficulty() {
