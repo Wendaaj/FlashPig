@@ -134,9 +134,9 @@ public class ModelTest {
 
     @Test
     public void canCreateCardFront(){
-        card4.CreateFrontside(null, null);
+        card4.EditFrontside(null, null);
 
-        card5.CreateFrontside("hej", null);
+        card5.EditFrontside("hej", null);
 
         Assert.assertEquals(card4.getFrontsideStr(),null);
 
@@ -148,9 +148,9 @@ public class ModelTest {
         card4.setFrontside(false);
         card5.setFrontside(false);
 
-        card4.CreateBackside(null, null);
+        card4.EditBackside(null, null);
 
-        card5.CreateBackside("Hej", null);
+        card5.EditBackside("Hej", null);
 
         Assert.assertEquals(card4.getBacksideStr(),null);
 
