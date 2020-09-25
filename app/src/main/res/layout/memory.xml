@@ -60,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="155dp"
         android:layout_marginLeft="155dp"
-        android:layout_marginTop="25dp "
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="156dp"
         android:layout_marginRight="156dp"
         android:fontFamily="@font/roboto_slab_bold"
