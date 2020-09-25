@@ -7,7 +7,7 @@
     android:background="#EFF3FB">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar3"
+        android:id="@+id/flashcardToolbar"
         android:layout_width="0dp"
         android:layout_height="67dp"
         android:background="@drawable/radius_corner"
@@ -54,7 +54,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar3" />
+        app:layout_constraintTop_toBottomOf="@+id/flashcardToolbar" />
 
     <ProgressBar
         android:id="@+id/progressBar"
