@@ -1,10 +1,5 @@
 package com.example.flashpig.Model;
 
-import android.media.Image;
-import android.view.View;
-
-import java.util.List;
-
 /**
  * Class for PairUp
  *
@@ -13,7 +8,6 @@ import java.util.List;
  */
 
 public class PairUp extends GameLogic implements MemoryPairUpLogic {
-    int deckSize = deck.getAmountCards();
 
     public PairUp(String title, Deck deck) {
         super(title, deck);
@@ -22,26 +16,28 @@ public class PairUp extends GameLogic implements MemoryPairUpLogic {
 
     /**
      * Method to compare two cards from a deck
-     * @param chosenCard1 the cards to be compared
-     * @param deck the deck to be used
-     *
      */
 
     @Override
-    public void isMatch(Card chosenCard1, Deck deck) {
-        if (chosenCard1.getId() == chosenCard2.getId()) {
-            deckSize = deckSize - 1;
-            ifMatch();
+    public boolean isMatched(Card chosenCard1, Card chosenCard2, Deck deck) {
+        int deckSize = deck.getAmountCards();
+        if (chosenCard1.getBackID() == chosenCard2.getBackID()) {
+            deckSize = deck.getAmountCards() - 1;
+            isEndOfGame(deckSize);
+            return true;
+        } else {
+            return false;
         }
+
     }
 
     /**
-     * Method to check if it is a match
+     * Method to check if it is end of game
      *
      */
 
     @Override
-    public void ifMatch() {
+    public void isEndOfGame(int deckSize) {
         if (deckSize == 0) {
             gameWon(deck);
         }
