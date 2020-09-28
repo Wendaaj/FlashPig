@@ -57,7 +57,7 @@ public class StartFragment extends Fragment implements View.OnClickListener {
         cardFront.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showBackside();
+                flipCard();
             }
         });
         btnEasy.setOnClickListener(this);
@@ -125,7 +125,8 @@ public class StartFragment extends Fragment implements View.OnClickListener {
                 case R.id.btn_hard:
                     viewModel.flashcard.addHardCard(viewModel.flashcard.getDeck().cards.get(currentQuestion));
             }
-            enableOptions(false);
+            //enableOptions(false);
+            flipCard();
             cardBack.setVisibility(View.INVISIBLE);
             loadUI();
         }else {
@@ -146,8 +147,10 @@ public class StartFragment extends Fragment implements View.OnClickListener {
         cardBack.setCameraDistance(scale);
     }
 
-    public void flipCard(View view) {
+    public void flipCard() {
         if (!isBackVisible) {
+            cardFront.setVisibility(View.INVISIBLE);
+            cardBack.setVisibility(View.VISIBLE);
             setRightOut.setTarget(cardFront);
             setLeftIn.setTarget(cardBack);
             setRightOut.start();
@@ -162,9 +165,10 @@ public class StartFragment extends Fragment implements View.OnClickListener {
             setRightOut.start();
             setLeftIn.start();
             isBackVisible = false;
-            btnEasy.setVisibility(View.GONE);
-            btnMedium.setVisibility(View.GONE);
-            btnHard.setVisibility(View.GONE);
+            btnEasy.setVisibility(View.INVISIBLE);
+            btnMedium.setVisibility(View.INVISIBLE);
+            btnHard.setVisibility(View.INVISIBLE);
+            cardFront.setVisibility(View.VISIBLE);
         }
     }
 }
