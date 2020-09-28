@@ -6,7 +6,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +17,7 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.flashpig.FirstFragment;
 import com.example.flashpig.R;
 
 public class StartFragment extends Fragment implements View.OnClickListener {
@@ -47,14 +50,19 @@ public class StartFragment extends Fragment implements View.OnClickListener {
         cardFront.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cardBack.setVisibility(View.VISIBLE);
-                enableOptions(true);
-                currentQuestion += 1;
+                showBackside();
             }
         });
         btnEasy.setOnClickListener(this);
         btnMedium.setOnClickListener(this);
         btnHard.setOnClickListener(this);
+    }
+
+    private void showBackside() {
+        cardFront.setVisibility(View.INVISIBLE);
+        cardBack.setVisibility(View.VISIBLE);
+        enableOptions(true);
+        cardFront.setVisibility(View.VISIBLE);
     }
 
     private void findViews(View view) {
@@ -70,9 +78,10 @@ public class StartFragment extends Fragment implements View.OnClickListener {
     }
 
     private void loadUI() {
-        titleCard.setText("Card nr. " + currentQuestion + 1);
-        updateProgressBar();
         loadCard(currentQuestion);
+        currentQuestion += 1;
+        titleCard.setText("Card nr. " + currentQuestion);
+        updateProgressBar();
     }
 
     private void loadCard(int i) {
@@ -100,13 +109,21 @@ public class StartFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btn_easy: viewModel.flashcard.addEasyCard(viewModel.flashcard.getDeck().cards.get(currentQuestion));
-            case R.id.btn_medium: viewModel.flashcard.addMediumCard(viewModel.flashcard.getDeck().cards.get(currentQuestion));
-            case R.id.btn_hard: viewModel.flashcard.addHardCard(viewModel.flashcard.getDeck().cards.get(currentQuestion));
+        if (!(currentQuestion == viewModel.flashcard.getDeck().getAmountCards())) {
+            switch (v.getId()) {
+                case R.id.btn_easy:
+                    viewModel.flashcard.addEasyCard(viewModel.flashcard.getDeck().cards.get(currentQuestion));
+                case R.id.btn_medium:
+                    viewModel.flashcard.addMediumCard(viewModel.flashcard.getDeck().cards.get(currentQuestion));
+                case R.id.btn_hard:
+                    viewModel.flashcard.addHardCard(viewModel.flashcard.getDeck().cards.get(currentQuestion));
+            }
+            enableOptions(false);
+            cardBack.setVisibility(View.INVISIBLE);
+            loadUI();
+        }else {
+            NavHostFragment.findNavController(StartFragment.this)
+                    .navigate(R.id.action_startFragment_to_endFragment);
         }
-        enableOptions(false);
-        cardBack.setVisibility(View.INVISIBLE);
-        loadUI();
     }
 }

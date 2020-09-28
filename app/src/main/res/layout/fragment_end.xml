@@ -47,7 +47,7 @@
         app:layout_constraintTop_toBottomOf="@+id/img_partypig" />
 
     <Button
-        android:id="@+id/button9"
+        android:id="@+id/btn_play_again"
         android:layout_width="120dp"
         android:layout_height="50dp"
         android:layout_marginTop="50dp"
@@ -58,11 +58,11 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button"
+        app:layout_constraintStart_toEndOf="@+id/btn_home"
         app:layout_constraintTop_toBottomOf="@+id/txt_done" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_home"
         android:layout_width="120dp"
         android:layout_height="50dp"
         android:layout_marginTop="50dp"
@@ -71,7 +71,7 @@
         android:text="@string/home"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@+id/button9"
+        app:layout_constraintEnd_toStartOf="@+id/btn_play_again"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_done" />

@@ -16,6 +16,7 @@ public class FlashcardViewModel extends ViewModel {
     public FlashcardViewModel() {
         Deck deck = fillDeck();
         flashcard = new Flashcard(deck.getDeckName(), deck);
+
     }
 
     private Deck fillDeck() {
