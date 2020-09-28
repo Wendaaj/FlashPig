@@ -28,6 +28,7 @@
         tools:layout_editor_absoluteY="16dp" />
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardviewccback"
         android:layout_width="344dp"
         android:layout_height="189dp"
         android:layout_marginStart="25dp"
@@ -77,7 +78,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="188dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textinputccback1"
