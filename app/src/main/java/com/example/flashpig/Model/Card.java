@@ -16,14 +16,6 @@ public class Card {
     private Image backImg;
     private Enum difficulty;
 
-    int backID;
-    public int getBackID() {
-        return backID;
-    }
-    public void setBackID(int backID) {
-        this.backID = backID;
-    }
-
     /**
      * Card constructor
      *
