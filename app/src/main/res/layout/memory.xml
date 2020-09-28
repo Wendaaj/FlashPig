@@ -15,7 +15,7 @@
         android:layout_marginTop="36dp"
         android:background="@drawable/memor_card"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarMemory" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbarMemory"  />
 
     <Button
         android:id="@+id/button8"
@@ -90,7 +90,7 @@
         android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/toolbarMemory"
-        tools:layout_editor_absoluteX="356dp" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/button1"
