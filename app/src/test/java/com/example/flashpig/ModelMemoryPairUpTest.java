@@ -74,8 +74,8 @@ public class ModelMemoryPairUpTest {
         deck.addCard(chosenCard1);
         deck.addCard(chosenCard2);
 
-        chosenCard1.setBackID(1);
-        chosenCard2.setBackID(1);
+        chosenCard1.setId(1);
+        chosenCard2.setId(1);
 
         memory.isMatched(chosenCard1, chosenCard2, deck);
 
@@ -88,8 +88,8 @@ public class ModelMemoryPairUpTest {
         deck.addCard(chosenCard1);
         deck.addCard(chosenCard2); // 2 cards in deck
 
-        chosenCard1.setBackID(2);
-        chosenCard2.setBackID(77);
+        chosenCard1.setId(2);
+        chosenCard2.setId(77);
 
         memory.isMatched(chosenCard1, chosenCard2, deck);
 
@@ -102,8 +102,8 @@ public class ModelMemoryPairUpTest {
         deck.addCard(chosenCard1);
         deck.addCard(chosenCard2);
 
-        chosenCard1.setBackID(1);
-        chosenCard2.setBackID(1);
+        chosenCard1.setId(1);
+        chosenCard2.setId(1);
 
         pairUp.isMatched(chosenCard1, chosenCard2, deck);
 
@@ -116,8 +116,8 @@ public class ModelMemoryPairUpTest {
        deck.addCard(chosenCard1);
        deck.addCard(chosenCard2); // 2 cards in deck
 
-       chosenCard1.setBackID(2);
-       chosenCard2.setBackID(77);
+       chosenCard1.setId(2);
+       chosenCard2.setId(77);
 
        pairUp.isMatched(chosenCard1, chosenCard2, deck);
 

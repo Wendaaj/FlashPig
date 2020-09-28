@@ -26,7 +26,7 @@ public class Memory extends GameLogic implements MemoryPairUpLogic {
     @Override
     public boolean isMatched(Card chosenCard1, Card chosenCard2, Deck deck) {
         int deckSize;
-        if (chosenCard1.getBackID() == chosenCard2.getBackID()) {
+        if (chosenCard1.getId() == chosenCard2.getId()) {
             deckSize = deck.getAmountCards() - 1;
             isEndOfGame(deckSize);
             return true;
