@@ -8,20 +8,19 @@
     tools:context=".Flashcard.StartFragment">
 
     <TextView
-        android:id="@+id/question_txt"
+        android:id="@+id/card_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="128dp"
-        android:layout_marginLeft="128dp"
+        android:layout_marginStart="154dp"
+        android:layout_marginLeft="154dp"
         android:layout_marginTop="140dp"
-        android:layout_marginEnd="128dp"
-        android:layout_marginRight="128dp"
+        android:layout_marginEnd="154dp"
+        android:layout_marginRight="154dp"
         android:fontFamily="@font/roboto_slab_bold"
         android:gravity="center"
-        android:text="Question nr.1"
+        android:text="Card nr.1"
         android:textSize="25dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -38,31 +37,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/question_txt" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/back_card"
-        android:layout_width="300dp"
-        android:layout_height="200dp"
-        android:layout_marginStart="55dp"
-        android:layout_marginLeft="55dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="55dp"
-        android:layout_marginRight="55dp"
-        app:cardCornerRadius="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressBar">
-
-        <TextView
-            android:id="@+id/back_txt"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fontFamily="@font/roboto_slab"
-            android:gravity="center"
-            android:text="Back txt" />
-    </androidx.cardview.widget.CardView>
+        app:layout_constraintTop_toBottomOf="@+id/card_title" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/front_card"
@@ -88,6 +63,31 @@
             android:text="Front txt" />
     </androidx.cardview.widget.CardView>
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/back_card"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="55dp"
+        android:layout_marginRight="55dp"
+        android:visibility="invisible"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressBar">
+
+        <TextView
+            android:id="@+id/back_txt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/roboto_slab"
+            android:gravity="center"
+            android:text="Back txt" />
+    </androidx.cardview.widget.CardView>
+
     <ImageView
         android:id="@+id/pig_img"
         android:layout_width="137dp"
@@ -110,6 +110,7 @@
         android:fontFamily="@font/roboto_slab_bold"
         android:text="@string/easy"
         android:textColor="#FFFFFF"
+        android:visibility="invisible"
         app:layout_constraintEnd_toStartOf="@+id/btn_medium"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -125,6 +126,7 @@
         android:text="@string/hard"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btn_medium"
@@ -140,6 +142,7 @@
         android:text="@string/medium"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
+        android:visibility="invisible"
         app:layout_constraintEnd_toStartOf="@+id/btn_hard"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btn_easy"
