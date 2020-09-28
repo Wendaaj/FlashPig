@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -27,7 +28,7 @@ public class StartFragment extends Fragment implements View.OnClickListener {
     private FlashcardViewModel viewModel;
     private TextView titleCard, txtBack, txtFront;
     private ProgressBar progressBar;
-    private CardView cardFront, cardBack;
+    private FrameLayout cardFront, cardBack;
     private Button btnEasy, btnMedium, btnHard;
     private int currentQuestion = 0;
     private AnimatorSet setRightOut;
@@ -42,7 +43,6 @@ public class StartFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_start, container, false);
     }
 
@@ -125,10 +125,8 @@ public class StartFragment extends Fragment implements View.OnClickListener {
                 case R.id.btn_hard:
                     viewModel.flashcard.addHardCard(viewModel.flashcard.getDeck().cards.get(currentQuestion));
             }
-            //enableOptions(false);
-            flipCard();
-            cardBack.setVisibility(View.INVISIBLE);
             loadUI();
+            flipCard();
         }else {
             NavHostFragment.findNavController(StartFragment.this)
                     .navigate(R.id.action_startFragment_to_endFragment);
@@ -149,8 +147,8 @@ public class StartFragment extends Fragment implements View.OnClickListener {
 
     public void flipCard() {
         if (!isBackVisible) {
-            cardFront.setVisibility(View.INVISIBLE);
             cardBack.setVisibility(View.VISIBLE);
+            cardFront.setClickable(false);
             setRightOut.setTarget(cardFront);
             setLeftIn.setTarget(cardBack);
             setRightOut.start();
@@ -168,7 +166,7 @@ public class StartFragment extends Fragment implements View.OnClickListener {
             btnEasy.setVisibility(View.INVISIBLE);
             btnMedium.setVisibility(View.INVISIBLE);
             btnHard.setVisibility(View.INVISIBLE);
-            cardFront.setVisibility(View.VISIBLE);
+            cardFront.setClickable(true);
         }
     }
 }
