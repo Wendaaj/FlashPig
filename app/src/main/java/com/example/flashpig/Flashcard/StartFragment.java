@@ -1,5 +1,7 @@
 package com.example.flashpig.Flashcard;
 
+import android.animation.AnimatorInflater;
+import android.animation.AnimatorSet;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -28,6 +30,9 @@ public class StartFragment extends Fragment implements View.OnClickListener {
     private CardView cardFront, cardBack;
     private Button btnEasy, btnMedium, btnHard;
     private int currentQuestion = 0;
+    private AnimatorSet setRightOut;
+    private AnimatorSet setLeftIn;
+    private boolean isBackVisible = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,6 +52,8 @@ public class StartFragment extends Fragment implements View.OnClickListener {
         viewModel = new ViewModelProvider(getActivity()).get(FlashcardViewModel.class);
         findViews(view);
         loadUI();
+        loadAnimations();
+        changeCameraDistance();
         cardFront.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -124,6 +131,40 @@ public class StartFragment extends Fragment implements View.OnClickListener {
         }else {
             NavHostFragment.findNavController(StartFragment.this)
                     .navigate(R.id.action_startFragment_to_endFragment);
+        }
+    }
+
+    private void loadAnimations() {
+        setRightOut = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.out_animation);
+        setLeftIn = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.in_animation);
+    }
+
+    private void changeCameraDistance() {
+        int distance = 8000;
+        float scale = getResources().getDisplayMetrics().density * distance;
+        cardFront.setCameraDistance(scale);
+        cardBack.setCameraDistance(scale);
+    }
+
+    public void flipCard(View view) {
+        if (!isBackVisible) {
+            setRightOut.setTarget(cardFront);
+            setLeftIn.setTarget(cardBack);
+            setRightOut.start();
+            setLeftIn.start();
+            isBackVisible = true;
+            btnEasy.setVisibility(View.VISIBLE);
+            btnMedium.setVisibility(View.VISIBLE);
+            btnHard.setVisibility(View.VISIBLE);
+        } else {
+            setRightOut.setTarget(cardBack);
+            setLeftIn.setTarget(cardFront);
+            setRightOut.start();
+            setLeftIn.start();
+            isBackVisible = false;
+            btnEasy.setVisibility(View.GONE);
+            btnMedium.setVisibility(View.GONE);
+            btnHard.setVisibility(View.GONE);
         }
     }
 }
