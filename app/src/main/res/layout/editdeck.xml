@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/editDeckLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".EditDeck.EditDeckActivity">
 
     <TextView
         android:id="@+id/amountCardsTextView"
@@ -15,10 +16,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/editDeckLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.126"
+        app:layout_constraintHorizontal_bias="0.094"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editDeckLayout"
-        app:layout_constraintVertical_bias="0.678" />
+        app:layout_constraintVertical_bias="0.674" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar2"
@@ -70,38 +71,12 @@
         app:layout_constraintTop_toTopOf="@+id/chooseDeckSpinner"
         app:srcCompat="@android:drawable/ic_menu_add" />
 
-    <ScrollView
-        android:id="@+id/scrollView3"
-        android:layout_width="422dp"
-        android:layout_height="491dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cardRecyclerView"
+        android:layout_width="421dp"
+        android:layout_height="500dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </TableLayout>
-    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
