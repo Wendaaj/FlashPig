@@ -65,13 +65,6 @@ public class StartFragment extends Fragment implements View.OnClickListener {
         btnHard.setOnClickListener(this);
     }
 
-    private void showBackside() {
-        cardFront.setVisibility(View.INVISIBLE);
-        cardBack.setVisibility(View.VISIBLE);
-        enableOptions(true);
-        cardFront.setVisibility(View.VISIBLE);
-    }
-
     private void findViews(View view) {
         progressBar = view.findViewById(R.id.progressBar);
         titleCard = view.findViewById(R.id.card_title);
@@ -85,28 +78,15 @@ public class StartFragment extends Fragment implements View.OnClickListener {
     }
 
     private void loadUI() {
+        updateProgressBar();
         loadCard(currentQuestion);
         currentQuestion += 1;
         titleCard.setText("Card nr. " + currentQuestion);
-        updateProgressBar();
     }
 
     private void loadCard(int i) {
         txtFront.setText(viewModel.flashcard.getDeck().cards.get(i).getFrontsideStr());
         txtBack.setText(viewModel.flashcard.getDeck().cards.get(i).getBacksideStr());
-    }
-
-    private void enableOptions(boolean bol) {
-        if (bol) {
-            btnEasy.setVisibility(View.VISIBLE);
-            btnMedium.setVisibility(View.VISIBLE);
-            btnHard.setVisibility(View.VISIBLE);
-        }
-        else {
-            btnEasy.setVisibility(View.INVISIBLE);
-            btnMedium.setVisibility(View.INVISIBLE);
-            btnHard.setVisibility(View.INVISIBLE);
-        }
     }
 
     private void updateProgressBar() {
