@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
@@ -13,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
 import com.example.flashpig.R;
 import com.google.android.material.textfield.TextInputLayout;
@@ -29,9 +29,6 @@ public class CardFragment extends Fragment {
     private Button ccButtonfront;
     private Button ccButtonback1;
     private Button ccButtonback2;
-
-
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

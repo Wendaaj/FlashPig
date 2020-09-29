@@ -7,13 +7,13 @@
     tools:context=".FirstFragment">
 
     <Button
-        android:id="@+id/flashcardButton"
+        android:id="@+id/createCardButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
         android:layout_marginEnd="154dp"
         android:layout_marginRight="154dp"
-        android:text="Flashcard"
+        android:text="Create Card"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
