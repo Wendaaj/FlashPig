@@ -8,8 +8,15 @@ package com.example.flashpig.Model;
  */
 public class Flashcard extends GameLogic {
 
+    private Deck deck;
+
     public Flashcard(String title, Deck deck) {
         super(title, deck);
+        this.deck = super.deck;
+    }
+
+    public Deck getDeck() {
+        return deck;
     }
 
     /**
