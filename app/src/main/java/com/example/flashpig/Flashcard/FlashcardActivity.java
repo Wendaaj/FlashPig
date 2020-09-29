@@ -2,10 +2,13 @@ package com.example.flashpig.Flashcard;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.example.flashpig.R;
@@ -13,27 +16,74 @@ import com.example.flashpig.R;
 import java.util.Objects;
 
 public class FlashcardActivity extends AppCompatActivity {
-    FlashcardViewModel viewModel;
-    Toolbar toolbar;
-    TextView title;
+    private FlashcardViewModel viewModel;
+    private ConstraintLayout quitView;
+    private Toolbar toolbar;
+    private TextView title;
+    private CheckBox checkBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flashcard);
+        findViews();
+        loadPreferences();
         viewModel = new ViewModelProvider(this).get(FlashcardViewModel.class);
 
-        toolbar = findViewById(R.id.flashcardToolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        title.setText(viewModel.flashcard.getDeck().getDeckName());
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!checkBox.isChecked()) {
+                    quit();
+                } else {
+                    onBackPressed();
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        savePreferences();
+        super.onBackPressed();
+    }
+
+    private void savePreferences(){
+        SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("state", checkBox.isChecked());
+        editor.apply();
+    }
+
+    private void loadPreferences(){
+        SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
+        boolean state = sharedPreferences.getBoolean("state", false);
+        checkBox.setChecked(state);
+    }
+
+    private void findViews() {
+        quitView = findViewById(R.id.quit_view);
+        checkBox = findViewById(R.id.checkBox);
+        toolbar = findViewById(R.id.flashcardToolbar);
+        title = findViewById(R.id.txt_title);
+    }
+
+    private void quit() {
+        quitView.setVisibility(View.VISIBLE);
+        findViewById(R.id.btn_yes).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
             }
         });
-
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-        title = findViewById(R.id.txt_title);
-        title.setText(viewModel.flashcard.getDeck().getDeckName());
+        findViewById(R.id.btn_no).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                quitView.setVisibility(View.INVISIBLE);
+            }
+        });
     }
 }
