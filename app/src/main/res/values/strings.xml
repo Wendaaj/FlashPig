@@ -18,5 +18,6 @@
     <string name="done">You´re done!</string>
     <string name="home">Home</string>
     <string name="play_again">Play again</string>
+    <string name="card_nr">Card nr.</string>
 
 </resources>
