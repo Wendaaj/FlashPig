@@ -5,77 +5,123 @@
     android:id="@+id/editDeckLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:contentDescription="@string/add_new_card"
     tools:context=".EditDeck.EditDeckActivity">
 
-    <TextView
-        android:id="@+id/amountCardsTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="27dp"
-        android:fontFamily="@font/roboto_slab_bold"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/editDeckLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.094"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editDeckLayout"
-        app:layout_constraintVertical_bias="0.674" />
-
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar2"
+        android:id="@+id/editCardToolbar"
         android:layout_width="0dp"
         android:layout_height="120dp"
-        android:background="#65B4FC "
+        android:background="@drawable/radius_corner"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_slab_bold"
+        android:text="@string/Deck_name"
+        android:textColor="#FFFFFF"
+
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/pigImageView"
+        app:layout_constraintEnd_toEndOf="@+id/editCardToolbar"
+        app:layout_constraintStart_toStartOf="@+id/editCardToolbar" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_slab_bold"
+
+        android:text="@string/save_deck"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/editCardToolbar"
+        app:layout_constraintEnd_toStartOf="@+id/pigImageView"
+        app:layout_constraintStart_toStartOf="@+id/editCardToolbar" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_slab_bold"
+        android:text="@string/front_side"
+
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/editCardToolbar"
+        app:layout_constraintEnd_toEndOf="@+id/editCardToolbar"
+        app:layout_constraintStart_toEndOf="@+id/pigImageView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/roboto_slab_bold"
+        android:text="@string/amount_cards"
+        android:textColor="#86889E"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/cardRecyclerView"
+        app:layout_constraintEnd_toStartOf="@+id/chooseDeckSpinner"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <ImageView
         android:id="@+id/pigImageView"
-        android:layout_width="216dp"
-        android:layout_height="73dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="47dp"
+        android:layout_width="146dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="65dp"
         android:contentDescription="@string/pig_img"
         android:rotationX="180"
-        app:layout_constraintBottom_toTopOf="@+id/toolbar2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar2"
+        app:layout_constraintTop_toTopOf="@+id/editCardToolbar"
         app:srcCompat="@drawable/pig" />
 
     <Spinner
         android:id="@+id/chooseDeckSpinner"
         android:layout_width="280dp"
         android:layout_height="35dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="55dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginLeft="35dp"
         android:background="#D3D3D3"
+        app:layout_constraintBottom_toBottomOf="@+id/addButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
+        app:layout_constraintTop_toTopOf="@+id/addButton"
+        app:layout_constraintVertical_bias="0.625" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/addNewCardBtn"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginRight="40dp"
-        android:clickable="true"
-        app:layout_constraintBottom_toBottomOf="@+id/chooseDeckSpinner"
+    <ImageButton
+        android:id="@+id/addButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginRight="35dp"
+        android:contentDescription="@string/add_new_card"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/chooseDeckSpinner"
+        app:layout_constraintHorizontal_bias="0.615"
+        app:layout_constraintStart_toEndOf="@+id/chooseDeckSpinner"
+        app:layout_constraintTop_toBottomOf="@+id/editCardToolbar"
         app:srcCompat="@android:drawable/ic_menu_add" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cardRecyclerView"
-        android:layout_width="421dp"
-        android:layout_height="500dp"
+        android:layout_width="match_parent"
+        android:layout_height="508dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
 
