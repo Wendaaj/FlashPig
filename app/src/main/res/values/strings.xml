@@ -12,5 +12,11 @@
 
     <!-- Strings used for Flashcard -->
     <string name="pig_img">Pig</string>
+    <string name="easy">Easy</string>
+    <string name="medium">Medium</string>
+    <string name="hard">Hard</string>
+    <string name="done">You´re done!</string>
+    <string name="home">Home</string>
+    <string name="play_again">Play again</string>
 
 </resources>

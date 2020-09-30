@@ -34,6 +34,9 @@ public class Deck {
      * @param card the card you want to add
      */
     public void addCard(Card card) {
+        if(cards.contains(card)){
+
+        }
         cards.add(card);
     }
 
