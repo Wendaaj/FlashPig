@@ -23,6 +23,7 @@
         android:text="@string/next"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textview_first" />
 
@@ -32,11 +33,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="155dp"
         android:layout_marginLeft="155dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="153dp"
         android:layout_marginRight="153dp"
         android:text="Flashcard"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_first" />
 
@@ -46,12 +48,27 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="155dp"
         android:layout_marginLeft="155dp"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="132dp"
         android:layout_marginEnd="153dp"
         android:layout_marginRight="153dp"
         android:text="Memory"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_first" />
+
+    <Button
+        android:id="@+id/pairup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="155dp"
+        android:layout_marginLeft="155dp"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="153dp"
+        android:layout_marginRight="153dp"
+        android:text="Pair Up"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_first" />
 

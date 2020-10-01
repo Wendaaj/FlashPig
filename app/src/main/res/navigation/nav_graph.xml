@@ -20,6 +20,9 @@
         <action
             android:id="@+id/action_FirstFragment_to_memoryActivity"
             app:destination="@id/memoryActivity" />
+        <action
+            android:id="@+id/action_FirstFragment_to_pairupActivity"
+            app:destination="@id/pairupActivity" />
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
@@ -42,6 +45,12 @@
         android:name="com.example.flashpig.memory.MainActivity_memory"
         android:label="activity_memory"
         tools:layout="@layout/activity_memory" />
+
+    <activity
+        android:id="@+id/pairupActivity"
+        android:name="com.example.flashpig.pairup.activity_pairup"
+        android:label="pairup_activity"
+        tools:layout="@layout/activity_pairup" />
 
 
 </navigation>

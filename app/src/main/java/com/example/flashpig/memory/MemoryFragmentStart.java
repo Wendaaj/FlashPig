@@ -31,9 +31,14 @@ import java.util.Random;
 
 //MEMORY VIEW LOGIK HÄÄÄÄR
 
+/*TODO
+- vänd på korten och matcha
+    - ta en knapp och vänd och sätt ist frontside på kortet på positio 0-3 och resten backSide
+    kolla ismatch och så och JA håll de uppe OM Nej vänd tillbaka med delay
+
+ */
 
 public class MemoryFragmentStart extends Fragment implements View.OnClickListener{
-
 
     ArrayList<Card> cards = new ArrayList<>(7);
     ArrayList <ImageButton> buttons = new ArrayList<>(7);
@@ -42,6 +47,7 @@ public class MemoryFragmentStart extends Fragment implements View.OnClickListene
     private boolean isBusy;
     Random rand;
     Deck deck;
+    Card card;
     private MemoryViewModel viewModel;
     private TextView titleCard, txtBack, txtFront;
     private ProgressBar progressBar;
@@ -72,12 +78,10 @@ public class MemoryFragmentStart extends Fragment implements View.OnClickListene
         backButton = (ImageButton) view.findViewById(R.id.backButton);
         backButton.setOnClickListener(this);
 
-      //  viewModel = new ViewModelProvider(getActivity()).get(MemoryViewModel.class);
-
-       //loadCards(deck);
-      // Collections.shuffle(cards);
-       // loadButtons();
-        /*for (int i = 0; i < buttons.size(); i++) {
+        /*loadCards(deck);
+        Collections.shuffle(cards);
+        loadButtons();
+        for (int i = 0; i < buttons.size(); i++) {
             buttons.get(i).setImageDrawable(getResources().getDrawable(R.drawable.pig));
         }*/
     }
@@ -88,9 +92,13 @@ public class MemoryFragmentStart extends Fragment implements View.OnClickListene
             Intent intent = new Intent(getActivity(), MemoryFragmentStart.class);
             startActivity(intent);
         }
+        if (v.getId() == R.id.button1) {
+            flipCard();
+        }
     }
 
     public void flipCard() {
+
 
     }
 

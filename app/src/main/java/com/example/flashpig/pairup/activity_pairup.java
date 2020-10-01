@@ -1,18 +1,16 @@
-package com.example.flashpig.memory;
+package com.example.flashpig.pairup;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.flashpig.R;
-
 import android.os.Bundle;
 
-public class MainActivity_memory extends AppCompatActivity {
+import com.example.flashpig.R;
+
+public class activity_pairup extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_memory);
-
-
+        setContentView(R.layout.activity_pairup);
     }
 }
