@@ -17,6 +17,9 @@
         <action
             android:id="@+id/action_FirstFragment_to_flashcardActivity"
             app:destination="@id/flashcardActivity" />
+        <action
+            android:id="@+id/action_FirstFragment_to_memoryActivity"
+            app:destination="@id/memoryActivity" />
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
@@ -33,4 +36,12 @@
         android:name="com.example.flashpig.Flashcard.FlashcardActivity"
         android:label="activity_flashcard"
         tools:layout="@layout/activity_flashcard" />
+
+    <activity
+        android:id="@+id/memoryActivity"
+        android:name="com.example.flashpig.memory.MainActivity_memory"
+        android:label="activity_memory"
+        tools:layout="@layout/activity_memory" />
+
+
 </navigation>

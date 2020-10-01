@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.flashpig.Flashcard.FlashcardActivity;
+import com.example.flashpig.memory.MainActivity_memory;
+
 
 public class FirstFragment extends Fragment {
 
@@ -41,5 +43,15 @@ public class FirstFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+
+        view.findViewById(R.id.memory).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), MainActivity_memory.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }

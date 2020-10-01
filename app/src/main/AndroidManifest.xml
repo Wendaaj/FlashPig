@@ -9,8 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Flashcard.FlashcardActivity"></activity>
-        <activity
+
+        <activity android:name=".memory.MainActivity_memory"></activity>
+        <activity android:name=".Flashcard.FlashcardActivity" /><activity
+
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
