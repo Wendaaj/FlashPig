@@ -1,26 +1,38 @@
 package com.example.flashpig.createcard;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.flashpig.MainActivity;
 import com.example.flashpig.R;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class CardFragment extends Fragment {
+    public static final int CAMERA_PERM_CODE = 101;
+    public static final int CAMERA_REQUEST_CODE = 102;
     private TextView ccCardn;
     private TextView ccTextTop;
     private Toolbar ccToolbar;
@@ -32,6 +44,8 @@ public class CardFragment extends Fragment {
     private Button ccButtonfront;
     private Button ccButtonback1;
     private Button ccButtonback2;
+    private ImageView ccImageView;
+
     private int currentCard = 1;
     private CardViewModel viewModel;
 
@@ -81,9 +95,59 @@ public class CardFragment extends Fragment {
             }
         });
 
+        ccCameraButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                askCameraPermission();
+
+            }
+        });
+
+        ccGalleryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
 
 
+
+    }
+
+    private void askCameraPermission() {
+        if(ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.CAMERA},  CAMERA_PERM_CODE);
+
+        }else {
+            openCamera();
+        }
+    }
+
+    private void openCamera() {
+        Intent camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(camera, CAMERA_REQUEST_CODE);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if(requestCode == CAMERA_REQUEST_CODE){
+            Bitmap image = (Bitmap) data.getExtras().get("data");
+            ccImageView.setImageBitmap(image);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if(requestCode == CAMERA_PERM_CODE){
+            if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                openCamera();
+            }else{
+                Toast.makeText(getActivity(), "Camera Permission is Required to Use Camera", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     private void findViews(View view){
@@ -98,6 +162,7 @@ public class CardFragment extends Fragment {
         ccButtonfront = view.findViewById(R.id.buttonccfront);
         ccButtonback1 = view.findViewById(R.id.buttonccback1);
         ccButtonback2 = view.findViewById(R.id.buttonccback2);
+        ccImageView = view.findViewById(R.id.ccImageView);
 
     }
 
