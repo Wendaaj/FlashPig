@@ -46,6 +46,5 @@ public class EndFragment extends Fragment {
                         .navigate(R.id.action_endFragment_to_startFragment);
             }
         });
-
     }
 }

@@ -1,6 +1,8 @@
 package com.example.flashpig.Flashcard;
 
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.flashpig.Model.Card;
@@ -11,12 +13,11 @@ import java.util.Random;
 
 public class FlashcardViewModel extends ViewModel {
     Random rand = new Random();
-    Flashcard flashcard;
+    public Flashcard flashcard;
 
     public FlashcardViewModel() {
         Deck deck = fillDeck();
         flashcard = new Flashcard(deck.getDeckName(), deck);
-
     }
 
     private Deck fillDeck() {

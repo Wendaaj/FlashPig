@@ -73,6 +73,7 @@ public class FlashcardActivity extends AppCompatActivity {
 
     private void quit() {
         quitView.setVisibility(View.VISIBLE);
+        findViewById(R.id.fragment_container).setVisibility(View.INVISIBLE);
         findViewById(R.id.btn_yes).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,6 +84,7 @@ public class FlashcardActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 quitView.setVisibility(View.INVISIBLE);
+                findViewById(R.id.fragment_container).setVisibility(View.VISIBLE);
             }
         });
     }

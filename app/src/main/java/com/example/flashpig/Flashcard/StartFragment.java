@@ -6,11 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
-import androidx.cardview.widget.CardView;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
@@ -18,12 +14,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.flashpig.FirstFragment;
 import com.example.flashpig.R;
 
 public class StartFragment extends Fragment implements View.OnClickListener {
@@ -33,7 +27,6 @@ public class StartFragment extends Fragment implements View.OnClickListener {
     private ProgressBar progressBar;
     private FrameLayout cardFront, cardBack;
     private Button btnEasy, btnMedium, btnHard;
-    private int currentQuestion = 0;
     private AnimatorSet setRightOut;
     private AnimatorSet setLeftIn;
     private boolean isBackVisible = false;
@@ -54,9 +47,9 @@ public class StartFragment extends Fragment implements View.OnClickListener {
         super.onViewCreated(view, savedInstanceState);
         viewModel = new ViewModelProvider(getActivity()).get(FlashcardViewModel.class);
         findViews(view);
-        loadUI();
         loadAnimations();
         changeCameraDistance();
+        loadCard();
         cardFront.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,39 +74,40 @@ public class StartFragment extends Fragment implements View.OnClickListener {
     }
 
     private void loadUI() {
-        updateProgressBar();
-        loadCard(currentQuestion);
-        currentQuestion += 1;
-        titleCard.setText("Card nr. " + currentQuestion);
-    }
-
-    private void loadCard(int i) {
-        txtFront.setText(viewModel.flashcard.getDeck().cards.get(i).getFrontsideStr());
-        txtBack.setText(viewModel.flashcard.getDeck().cards.get(i).getBacksideStr());
-    }
-
-    private void updateProgressBar() {
-        progressBar.setMax(viewModel.flashcard.getDeck().getAmountCards());
-        progressBar.setProgress(currentQuestion);
-    }
-
-    @Override
-    public void onClick(View v) {
-        if (!(currentQuestion == viewModel.flashcard.getDeck().getAmountCards())) {
-            switch (v.getId()) {
-                case R.id.btn_easy:
-                    viewModel.flashcard.addEasyCard(viewModel.flashcard.getDeck().cards.get(currentQuestion));
-                case R.id.btn_medium:
-                    viewModel.flashcard.addMediumCard(viewModel.flashcard.getDeck().cards.get(currentQuestion));
-                case R.id.btn_hard:
-                    viewModel.flashcard.addHardCard(viewModel.flashcard.getDeck().cards.get(currentQuestion));
-            }
-            loadUI();
+        if (!viewModel.flashcard.roundIsOver()) {
+            updateProgressBar();
             flipCard();
+            loadCard();
         }else {
             NavHostFragment.findNavController(StartFragment.this)
                     .navigate(R.id.action_startFragment_to_endFragment);
         }
+    }
+
+    private void loadCard() {
+        titleCard.setText("Card nr. " + (viewModel.flashcard.getDeck().cards.get(0).getId()));
+        txtFront.setText(viewModel.flashcard.gameDeck.get(0).getFrontsideStr());
+        txtBack.setText(viewModel.flashcard.gameDeck.get(0).getBacksideStr());
+    }
+
+    private void updateProgressBar() {
+        progressBar.setMax(viewModel.flashcard.getDeck().getAmountCards());
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_easy:
+                viewModel.flashcard.addEasyCard(viewModel.flashcard.gameDeck.get(0));
+                break;
+            case R.id.btn_medium:
+                viewModel.flashcard.addMediumCard(viewModel.flashcard.gameDeck.get(0));
+                break;
+            case R.id.btn_hard:
+                viewModel.flashcard.addHardCard(viewModel.flashcard.gameDeck.get(0));
+                break;
+        }
+        loadUI();
     }
 
     private void loadAnimations() {
