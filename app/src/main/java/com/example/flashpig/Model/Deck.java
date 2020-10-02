@@ -16,6 +16,7 @@ public class Deck {
     private int amountcards;
     private boolean deckNotEmpty;
 
+
     /**
      * Class constructor
      *
@@ -34,10 +35,9 @@ public class Deck {
      * @param card the card you want to add
      */
     public void addCard(Card card) {
-        if(cards.contains(card)){
-
-        }
-        cards.add(card);
+        if(!deckContainsCard(card)){
+            cards.add(card);
+        } //fix error message
     }
 
     /**
@@ -48,7 +48,7 @@ public class Deck {
     public void deleteCard(Card card) {
         if (deckContainsCard(card)) {
             cards.remove(card);
-        }
+        }  //fix error message
     }
 
     /**

@@ -8,9 +8,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.example.flashpig.Model.Card;
 import com.example.flashpig.R;
 
-public class EditDeckActivity extends AppCompatActivity implements RecyclerViewAdapter.ItemClickListener {
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+
+public class EditDeckActivity extends AppCompatActivity {
 
     RecyclerViewAdapter adapter;
 
@@ -20,21 +25,17 @@ public class EditDeckActivity extends AppCompatActivity implements RecyclerViewA
         setContentView(R.layout.editdeck);
 
         // populate the RecyclerView with cards
-        String[] data = {};
-
+        List<Card> cardsList = new ArrayList<>();
+        cardsList.add(new Card(1,"hello","bye", null, null));
+        cardsList.add(new Card(2, "hello", "bye", null, null));
         // set up the RecyclerView
         RecyclerView recyclerView = findViewById(R.id.cardRecyclerView);
 
 
         int numberOfColumns = 2;
         recyclerView.setLayoutManager(new GridLayoutManager(this, numberOfColumns));
-        adapter = new RecyclerViewAdapter(this, data);
-        adapter.setClickListener(this);
+        adapter = new RecyclerViewAdapter(this, cardsList);
         recyclerView.setAdapter(adapter);
-    }
-    @Override
-    public void onItemClick(View view, int position) {
-        Log.i("TAG", "You clicked number " + adapter.getItem(position) + ", which is at cell position " + position);
     }
 
 }
