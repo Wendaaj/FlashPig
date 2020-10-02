@@ -38,7 +38,7 @@
         app:layout_constraintStart_toStartOf="@+id/editCardToolbar" />
 
     <Button
-        android:id="@+id/saveDeckTextView"
+        android:id="@+id/saveDeckButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#00FFFFFF"

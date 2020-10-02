@@ -14,6 +14,4 @@ public class EditDeckViewModel extends ViewModel {
     public MutableLiveData<List<Card>> getListMutableLiveData() {
         return listMutableLiveData;
     }
-    
-
 }

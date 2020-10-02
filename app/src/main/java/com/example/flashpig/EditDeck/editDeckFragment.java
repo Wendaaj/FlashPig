@@ -46,10 +46,20 @@ public class editDeckFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         cardList = view.findViewById(R.id.cardRecyclerView);
+        deckName = view.findViewById(R.id.deckNameTextView);
+        amountCards = view.findViewById(R.id.ammountCardsTextView);
+        deckSpinner = view.findViewById(R.id.chooseDeckSpinner);
+        saveDeck = view.findViewById(R.id.saveDeckButton);
+        frontSide = view.findViewById(R.id.frontSideButton);
+        addCardButton = view.findViewById(R.id.addButton);
     }
 
-    public void onClickFrontToBack(View view){
-        frontSide.setText(R.string.back_side_text);
+    public void onClick(View view){
+        if(view.getId() == R.id.frontSideButton){
+
+        }
+
     }
+
 
 }

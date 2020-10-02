@@ -30,7 +30,7 @@ public class Deck {
     }
 
     /**
-     * Method for adding a new card to a deck.
+     * Adds a new card to a deck.
      *
      * @param card the card you want to add
      */
@@ -41,7 +41,7 @@ public class Deck {
     }
 
     /**
-     * Method for deleting a card from a deck.
+     * Deletes a card from a deck.
      *
      * @param card the specific card you want to delete.
      */
@@ -52,7 +52,7 @@ public class Deck {
     }
 
     /**
-     * Method for deleting all cards in a deck.
+     * Deletes all cards in a deck.
      *
      * @param cards the list of cards in the deck.
      */
@@ -67,7 +67,7 @@ public class Deck {
     }
 
     /**
-     * This method checks if a specific card exists in a deck.
+     * Checks if a specific card exists in a deck.
      * @param card the specific card.
      * @return true if the card exists and false if not.
      */
@@ -80,7 +80,7 @@ public class Deck {
     }
 
     /**
-     * Method returns the amount of cards in a deck.
+     * Returns the amount of cards in a deck.
      *
      * @return the card amount.
      */

@@ -21,6 +21,11 @@ import java.util.List;
  */
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.EditCardViewHolder> {
     private List<Card> cardsList;
+    private ItemClickListener mClickListener;
+
+    public Card getCard(int position) {
+        return cardsList.get(position);
+    }
 
     public RecyclerViewAdapter(Context context, List<Card> cardsList) {
         this.cardsList = cardsList;
@@ -42,8 +47,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     /**
-     * Adds the content we want to show on each card.
-     * The method checks also if the front or backside of the cards is showing.
+     * Adds content on each card.
+     * Checks if the front or backside of the cards is showing.
      * @param holder
      * @param position
      */
@@ -64,14 +69,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     /**
-     * An inner class for the viewHolder that holds each card in the recyclerView.
+     * Class for the viewHolder that holds each card in the recyclerView.
      */
-    public class EditCardViewHolder extends RecyclerView.ViewHolder {
+    public class EditCardViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView frontSideTextView, backSideTextView;
         ImageView frontImageView, backImageView;
 
         /**
-         * The constructor adds all required content on the card, when a new viewHolder is created.
+         * Class constructor.
+         * Adds all required content on the card, when a new viewHolder is created.
+         *
          * @param itemView
          */
         EditCardViewHolder(View itemView) {
@@ -80,9 +87,26 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             backSideTextView = itemView.findViewById(R.id.backCardTextView);
             frontImageView = itemView.findViewById(R.id.frontCardImageView);
             backImageView = itemView.findViewById(R.id.backCardImageView);
+        }
 
+       //in progress...
 
+        @Override
+        public void onClick(View view) {
+            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
         }
     }
-}
+
+        // allows clicks events to be caught
+        void setClickListener(ItemClickListener itemClickListener) {
+            this.mClickListener = itemClickListener;
+        }
+
+
+        // parent activity will implement this method to respond to click events
+        public interface ItemClickListener {
+            void onItemClick(View view, int position);
+        }
+    }
+
 
