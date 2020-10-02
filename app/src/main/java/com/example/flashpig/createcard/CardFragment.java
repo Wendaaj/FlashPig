@@ -21,7 +21,8 @@ import com.example.flashpig.R;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class CardFragment extends Fragment {
-    private EditText ccCardn;
+    private TextView ccCardn;
+    private TextView ccTextTop;
     private Toolbar ccToolbar;
     private ImageButton ccCameraButton;
     private ImageButton ccGalleryButton;
@@ -33,6 +34,9 @@ public class CardFragment extends Fragment {
     private Button ccButtonback2;
     private int currentCard = 1;
     private CardViewModel viewModel;
+
+    private String textFront;
+    private String textBack;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,6 +55,7 @@ public class CardFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+
         viewModel = new ViewModelProvider(getActivity()).get(CardViewModel.class);
         findViews(view);
         loadUI();
@@ -58,6 +63,8 @@ public class CardFragment extends Fragment {
         ccButtonfront.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                textFront = ccTextinput.getEditText().getText().toString();
+                ccTextinput.getEditText().getText().clear();
                 enableFront(false);
                 ccCardn.setText("Add backside nr" + currentCard);
             }
@@ -66,8 +73,11 @@ public class CardFragment extends Fragment {
         ccButtonback2.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                textBack = ccTextinput.getEditText().getText().toString();
+                ccTextinput.getEditText().getText().clear();
                 enableFront(true);
                 currentCard+=1;
+                ccCardn.setText("Add frontside nr" + currentCard);
             }
         });
 
@@ -77,7 +87,8 @@ public class CardFragment extends Fragment {
     }
 
     private void findViews(View view){
-        ccCardn = view.findViewById(R.id.ccText);
+        ccCardn = view.findViewById(R.id.cardNumber);
+        ccTextTop = view.findViewById(R.id.textViewccfront2);
         ccToolbar = view.findViewById(R.id.toolbar6);
         ccCameraButton = view.findViewById(R.id.imageButtoncc1);
         ccGalleryButton = view.findViewById(R.id.imageButtoncc2);
@@ -91,7 +102,10 @@ public class CardFragment extends Fragment {
     }
 
     private  void loadUI(){
+        enableFront(true);
         ccCardn.setText("Add frontside nr" + currentCard);
+        ccTextTop.setText("Deck name");
+
 
 
     }
@@ -102,12 +116,12 @@ public class CardFragment extends Fragment {
 
     private void enableFront(boolean bol) {
         if (bol) {
-            //changes
+
             ccCardn.setVisibility(View.VISIBLE);
-            ccButtonback2.setVisibility(View.VISIBLE);
-            ccButtonback1.setVisibility(View.VISIBLE);
-            ccButtonfront.setVisibility(View.INVISIBLE);
-            //Stays
+            ccButtonback2.setVisibility(View.INVISIBLE);
+            ccButtonback1.setVisibility(View.INVISIBLE);
+            ccButtonfront.setVisibility(View.VISIBLE);
+
             ccToolbar.setVisibility(View.VISIBLE);
             ccCameraButton.setVisibility(View.VISIBLE);
             ccGalleryButton.setVisibility(View.VISIBLE);
@@ -116,8 +130,9 @@ public class CardFragment extends Fragment {
             ccTextinput.setVisibility(View.VISIBLE);
         }
         else {
-            ccButtonback2.setVisibility(View.INVISIBLE);
-            ccButtonback1.setVisibility(View.INVISIBLE);
+            ccButtonfront.setVisibility(View.INVISIBLE);
+            ccButtonback2.setVisibility(View.VISIBLE);
+            ccButtonback1.setVisibility(View.VISIBLE);
 
 
         }
