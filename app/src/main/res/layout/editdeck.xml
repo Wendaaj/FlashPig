@@ -59,7 +59,6 @@
         android:background="#00FFFFFF"
 
         android:fontFamily="@font/roboto_slab_bold"
-        android:text="@string/front_side"
         android:textColor="#FFFFFF"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="@+id/editCardToolbar"
@@ -134,6 +133,7 @@
         android:layout_marginEnd="25dp"
         android:layout_marginRight="25dp"
         android:foregroundGravity="center"
+        android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

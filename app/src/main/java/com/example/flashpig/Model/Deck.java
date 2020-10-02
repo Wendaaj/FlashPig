@@ -15,7 +15,19 @@ public class Deck {
     private String deckName;
     private int amountcards;
     private boolean deckNotEmpty;
+    public boolean isFrontside = true;
 
+    public void setFrontside() {
+        if (isFrontside) {
+            for (Card card : cards) {
+                card.setFrontside(false);
+            }
+        } else {
+                    for (Card card : cards) {
+                        card.setFrontside(true);
+                    }
+                }
+    }
 
     /**
      * Class constructor
@@ -63,7 +75,6 @@ public class Deck {
         } else {
             deckNotEmpty = false;
         }
-
     }
 
     /**
@@ -96,4 +107,8 @@ public class Deck {
         this.deckName = deckName;
     }
 
+    public void setIsFrontside(boolean frontside) {
+        setFrontside();
+        isFrontside = frontside;
+    }
 }

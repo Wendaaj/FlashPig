@@ -21,7 +21,7 @@ import java.util.List;
  */
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.EditCardViewHolder> {
     private List<Card> cardsList;
-    private ItemClickListener mClickListener;
+    private ItemClickListener clickListener;
 
     public Card getCard(int position) {
         return cardsList.get(position);
@@ -58,10 +58,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         if(card.isFrontside()){
             holder.frontSideTextView.setText(card.getFrontsideStr());
         }else{
-            holder.backSideTextView.setText(card.getBacksideStr());
+            holder.frontSideTextView.setText(card.getBacksideStr());
         }
         //set the back and front imageviews also.
     }
+
+
 
     @Override
     public int getItemCount() {
@@ -69,7 +71,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     /**
-     * Class for the viewHolder that holds each card in the recyclerView.
+     * ViewHolder class that holds each card in the recyclerView.
      */
     public class EditCardViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView frontSideTextView, backSideTextView;
@@ -84,7 +86,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         EditCardViewHolder(View itemView) {
             super(itemView);
             frontSideTextView = itemView.findViewById(R.id.frontCardTextView);
-            backSideTextView = itemView.findViewById(R.id.backCardTextView);
             frontImageView = itemView.findViewById(R.id.frontCardImageView);
             backImageView = itemView.findViewById(R.id.backCardImageView);
         }
@@ -93,13 +94,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         @Override
         public void onClick(View view) {
-            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
+            if (clickListener != null) clickListener.onItemClick(view, getAdapterPosition());
         }
     }
 
         // allows clicks events to be caught
         void setClickListener(ItemClickListener itemClickListener) {
-            this.mClickListener = itemClickListener;
+            this.clickListener = itemClickListener;
         }
 
 

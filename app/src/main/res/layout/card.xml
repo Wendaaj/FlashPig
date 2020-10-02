@@ -41,25 +41,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toEndOf="@+id/backCardTextView"
-            app:layout_constraintStart_toStartOf="@+id/backCardTextView"
-            app:layout_constraintTop_toBottomOf="@+id/backCardImageView" />
-
-        <TextView
-            android:id="@+id/backCardTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginStart="46dp"
-            android:layout_marginLeft="46dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="46dp"
-            android:layout_marginRight="46dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="64dp"
+            android:layout_marginRight="64dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.518"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/frontCardImageView" />
+            app:layout_constraintTop_toBottomOf="@+id/backCardImageView" />
 
         <ImageView
             android:id="@+id/frontCardImageView"
