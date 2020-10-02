@@ -3,4 +3,13 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+
+    //Flashcard
+    <color name="background">#EFF3FB</color>
+    <color name="easy">#71BBFF</color>
+    <color name="medium">#4BAAAA</color>
+    <color name="hard">#FE8FAA</color>
+    <color name="done">#FFB46F</color>
+    <color name="home">#76ADFF</color>
+
 </resources>
