@@ -12,6 +12,8 @@
 
     <!-- Strings used for Flashcard -->
     <string name="pig_img">Pig</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="easy">Easy</string>
     <string name="medium">Medium</string>
     <string name="hard">Hard</string>
@@ -20,4 +22,16 @@
     <string name="play_again">Play again</string>
     <string name="card_nr">Card nr.</string>
 
+    <!--String used for editDeck-->
+    <string name="flashcard_nr">Flashcard nr</string>
+    <string name="Deck_name">Deck Name</string>
+    <string name="save_deck">Save Deck</string>
+    <string name="front_side">Front Side</string>
+    <string name="back_side">Back Side</string>
+    <string name="amount_cards">Amount Cards</string>
+    <string name="add_new_card">add new card</string>
+    <string name="front_side_image">Front side image</string>
+    <string name="back_side_image">Back side image</string>
+    <string name="front_side_text">Front</string>
+    <string name="back_side_text">Back</string>
 </resources>

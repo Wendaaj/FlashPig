@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EFF3FB">
+
+    <Button
+        android:id="@+id/button25.0"
+        android:layout_width="125dp"
+        android:layout_height="115dp"
+        android:layout_marginTop="504dp"
+        android:background="@drawable/pairup_card"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.178"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarPairUp"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/button26.0"
+        android:layout_width="125dp"
+        android:layout_height="115dp"
+        android:layout_marginBottom="192dp"
+        android:background="@drawable/pairup_card"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.853"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarPairUp"
+        app:layout_constraintVertical_bias="0.551" />
+
+    <Button
+        android:id="@+id/button27.0"
+        android:layout_width="125dp"
+        android:layout_height="115dp"
+        android:background="@drawable/pairup_card"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.178"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarPairUp"
+        app:layout_constraintVertical_bias="0.733" />
+
+    <Button
+        android:id="@+id/button28.0"
+        android:layout_width="125dp"
+        android:layout_height="115dp"
+        android:background="@drawable/pairup_card"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.853"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarPairUp"
+        app:layout_constraintVertical_bias="0.918" />
+
+    <Button
+        android:id="@+id/button29.0"
+        android:layout_width="125dp"
+        android:layout_height="115dp"
+        android:background="@drawable/pairup_card"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.178"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarPairUp"
+        app:layout_constraintVertical_bias="0.091" />
+
+    <Button
+        android:id="@+id/button30.0"
+        android:layout_width="125dp"
+        android:layout_height="115dp"
+        android:background="@drawable/pairup_card"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.853"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarPairUp"
+        app:layout_constraintVertical_bias="0.65" />
+
+    <Button
+        android:id="@+id/button31.0"
+        android:layout_width="125dp"
+        android:layout_height="115dp"
+        android:background="@drawable/pairup_card"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.178"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarPairUp"
+        app:layout_constraintVertical_bias="0.358" />
+
+    <Button
+        android:id="@+id/button32.0"
+        android:layout_width="125dp"
+        android:layout_height="115dp"
+        android:background="@drawable/pairup_card"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.867"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarPairUp"
+        app:layout_constraintVertical_bias="0.065" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarPairUp"
+        android:layout_width="0dp"
+        android:layout_height="67dp"
+        android:background="@drawable/pairup_pink"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/cardTitlePairUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="155dp"
+        android:layout_marginLeft="130dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="156dp"
+        android:layout_marginRight="156dp"
+        android:layout_marginBottom="12dp"
+        android:fontFamily="@font/roboto_slab_bold"
+        android:text="Pair Up"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbarPairUp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toolbarPairUp" />
+
+    <TextView
+        android:id="@+id/pairUpTime"
+        android:layout_width="39dp"
+        android:layout_height="21dp"
+        android:fontFamily="@font/roboto_slab_bold"
+        android:text="03:00"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbarPairUp"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/backbuttonpairup"
+        android:layout_width="22dp"
+        android:layout_height="20.47dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/vector"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbarPairUp"
+        app:layout_constraintEnd_toStartOf="@+id/cardTitlePairUp"
+        app:layout_constraintHorizontal_bias="0.218"
+        app:layout_constraintStart_toStartOf="@+id/toolbarPairUp"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

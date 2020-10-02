@@ -147,13 +147,6 @@ public class ModelTest {
     }
 
     @Test
-    public void testGetAmountCards() {
-        deck.addCard(card0);
-        deck.addCard(card1);
-        Assert.assertEquals(deck.getAmountCards(), 2);
-    }
-
-    @Test
     public void testDeckContainsCardPositive() {
         deck.addCard(card0);
         deck.addCard(card1);
