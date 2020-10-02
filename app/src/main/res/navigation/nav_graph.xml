@@ -19,7 +19,7 @@
             app:destination="@id/flashcardActivity" />
         <action
             android:id="@+id/action_FirstFragment_to_memoryActivity"
-            app:destination="@id/memoryActivity" />
+            app:destination="@id/startFragmentMemory" />
         <action
             android:id="@+id/action_FirstFragment_to_pairupActivity"
             app:destination="@id/pairupActivity" />
@@ -40,8 +40,8 @@
         android:label="activity_flashcard"
         tools:layout="@layout/activity_flashcard" />
 
-    <activity
-        android:id="@+id/memoryActivity"
+    <fragment
+        android:id="@+id/memory_fragment_start"
         android:name="com.example.flashpig.memory.MainActivity_memory"
         android:label="activity_memory"
         tools:layout="@layout/activity_memory" />

@@ -51,14 +51,15 @@ public class FirstFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), MainActivity_memory.class);
                 startActivity(intent);
+
             }
         });
 
         view.findViewById(R.id.pairup).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // Intent intent = new Intent(getActivity(), activity_pairup.class);
-               // startActivity(intent);
+                Intent intent = new Intent(getActivity(), activity_pairup.class);
+                startActivity(intent);
             }
         });
 
