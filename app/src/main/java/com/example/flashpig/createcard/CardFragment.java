@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.media.Image;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -45,6 +46,7 @@ public class CardFragment extends Fragment {
     private Button ccButtonback1;
     private Button ccButtonback2;
     private ImageView ccImageView;
+
 
     private int currentCard = 1;
     private CardViewModel viewModel;
@@ -136,6 +138,7 @@ public class CardFragment extends Fragment {
         if(requestCode == CAMERA_REQUEST_CODE){
             Bitmap image = (Bitmap) data.getExtras().get("data");
             ccImageView.setImageBitmap(image);
+
         }
     }
 
