@@ -1,6 +1,7 @@
 package com.example.flashpig.Model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -70,5 +71,35 @@ public class Flashcard extends GameLogic {
      */
     public void turnOver(Card card) {
         card.setFrontside(false);
+    }
+
+
+    //Move to Deck class later.
+    /**
+     * Get a list of cards with a specific difficulty.
+     * @param difficulty The wanted difficulty.
+     * @return Returns a list with cards with a specific difficulty.
+     */
+    public List<Card> getProducts(Difficulty difficulty) {
+        ArrayList<Card> result = new ArrayList();
+        Iterator var3 = this.deck.cards.iterator();
+
+        while(var3.hasNext()) {
+            Card c = (Card) var3.next();
+            if (c.getDifficulty().equals(difficulty)) {
+                result.add(c);
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Gets the amount of cards with a specific difficulty in a deck.
+     * @param difficulty The wanted difficulty.
+     * @return Returns the amount of cards with a specific difficulty.
+     */
+    public int getAmountCards(Difficulty difficulty){
+        List<Card> cards = getProducts(difficulty);
+        return  cards.size();
     }
 }

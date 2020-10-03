@@ -15,12 +15,13 @@
     <string name="easy">Easy</string>
     <string name="medium">Medium</string>
     <string name="hard">Hard</string>
-    <string name="done">You´re done!</string>
+    <string name="done">You´re done for today!</string>
     <string name="home">Home</string>
     <string name="play_again">Play again</string>
     <string name="card_nr">Card nr.</string>
     <string name="quit">Are you sure that you want to quit?</string>
     <string name="dont_show">Don´t show this again</string>
+    <string name="NA">-</string>
 
 
 </resources>
