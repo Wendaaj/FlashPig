@@ -6,9 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
@@ -20,17 +18,15 @@ import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.flashpig.FirstFragment;
+import com.example.flashpig.Model.Difficulty;
 import com.example.flashpig.R;
 
 public class StartFragment extends Fragment implements View.OnClickListener {
 
     private FlashcardViewModel viewModel;
-    private TextView titleCard, txtBack, txtFront;
-    private ProgressBar progressBar;
+    private TextView titleCard, txtBack, txtFront, easyAmount, mediumAmount, hardAmount;
     private FrameLayout cardFront, cardBack;
     private Button btnEasy, btnMedium, btnHard;
-    private int currentQuestion = 0;
     private AnimatorSet setRightOut;
     private AnimatorSet setLeftIn;
     private boolean isBackVisible = false;
@@ -51,9 +47,9 @@ public class StartFragment extends Fragment implements View.OnClickListener {
         super.onViewCreated(view, savedInstanceState);
         viewModel = new ViewModelProvider(getActivity()).get(FlashcardViewModel.class);
         findViews(view);
-        loadUI();
         loadAnimations();
         changeCameraDistance();
+        loadCard();
         cardFront.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,8 +61,68 @@ public class StartFragment extends Fragment implements View.OnClickListener {
         btnHard.setOnClickListener(this);
     }
 
+    private void loadUI() {
+
+        if (!viewModel.flashcard.roundIsOver()) {
+            loadCard();
+        }else {
+            NavHostFragment.findNavController(StartFragment.this)
+                    .navigate(R.id.action_startFragment_to_endFragment);
+        }
+    }
+
+    private void loadCard() {
+        easyAmount.setText(Integer.toString(viewModel.flashcard.getAmountCards(Difficulty.EASY)));
+        mediumAmount.setText(Integer.toString(viewModel.flashcard.getAmountCards(Difficulty.MEDIUM)));
+        hardAmount.setText(Integer.toString(viewModel.flashcard.getAmountCards(Difficulty.HARD)));
+        txtFront.setText(viewModel.flashcard.gameDeck.get(0).getFrontsideStr());
+        txtBack.setText(viewModel.flashcard.gameDeck.get(0).getBacksideStr());
+        titleCard.setText("Card nr. " + viewModel.flashcard.gameDeck.get(0).getId());
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_easy:
+                viewModel.flashcard.addEasyCard(viewModel.flashcard.gameDeck.get(0));
+                break;
+            case R.id.btn_medium:
+                viewModel.flashcard.addMediumCard(viewModel.flashcard.gameDeck.get(0));
+                break;
+            case R.id.btn_hard:
+                viewModel.flashcard.addHardCard(viewModel.flashcard.gameDeck.get(0));
+                break;
+        }
+        flipCard();
+        loadUI();
+    }
+
+    public void flipCard() {
+        if (!isBackVisible) {
+            setRightOut.setTarget(cardFront);
+            setLeftIn.setTarget(cardBack);
+            setRightOut.start();
+            setLeftIn.start();
+            isBackVisible = true;
+            btnEasy.setVisibility(View.VISIBLE);
+            btnMedium.setVisibility(View.VISIBLE);
+            btnHard.setVisibility(View.VISIBLE);
+            cardBack.setVisibility(View.VISIBLE);
+            cardFront.setClickable(false);
+        } else {
+            setRightOut.setTarget(cardBack);
+            setLeftIn.setTarget(cardFront);
+            setRightOut.start();
+            setLeftIn.start();
+            isBackVisible = false;
+            btnEasy.setVisibility(View.INVISIBLE);
+            btnMedium.setVisibility(View.INVISIBLE);
+            btnHard.setVisibility(View.INVISIBLE);
+            cardFront.setClickable(true);
+        }
+    }
+
     private void findViews(View view) {
-        progressBar = view.findViewById(R.id.progressBar);
         titleCard = view.findViewById(R.id.card_title);
         txtFront = view.findViewById(R.id.front_txt);
         txtBack = view.findViewById(R.id.back_txt);
@@ -75,42 +131,9 @@ public class StartFragment extends Fragment implements View.OnClickListener {
         btnHard = view.findViewById(R.id.btn_hard);
         cardFront = view.findViewById(R.id.front_card);
         cardBack = view.findViewById(R.id.back_card);
-    }
-
-    private void loadUI() {
-        updateProgressBar();
-        loadCard(currentQuestion);
-        currentQuestion += 1;
-        titleCard.setText("Card nr. " + currentQuestion);
-    }
-
-    private void loadCard(int i) {
-        txtFront.setText(viewModel.flashcard.getDeck().cards.get(i).getFrontsideStr());
-        txtBack.setText(viewModel.flashcard.getDeck().cards.get(i).getBacksideStr());
-    }
-
-    private void updateProgressBar() {
-        progressBar.setMax(viewModel.flashcard.getDeck().getAmountCards());
-        progressBar.setProgress(currentQuestion);
-    }
-
-    @Override
-    public void onClick(View v) {
-        if (!(currentQuestion == viewModel.flashcard.getDeck().getAmountCards())) {
-            switch (v.getId()) {
-                case R.id.btn_easy:
-                    viewModel.flashcard.addEasyCard(viewModel.flashcard.getDeck().cards.get(currentQuestion));
-                case R.id.btn_medium:
-                    viewModel.flashcard.addMediumCard(viewModel.flashcard.getDeck().cards.get(currentQuestion));
-                case R.id.btn_hard:
-                    viewModel.flashcard.addHardCard(viewModel.flashcard.getDeck().cards.get(currentQuestion));
-            }
-            loadUI();
-            flipCard();
-        }else {
-            NavHostFragment.findNavController(StartFragment.this)
-                    .navigate(R.id.action_startFragment_to_endFragment);
-        }
+        easyAmount = view.findViewById(R.id.amountEasy);
+        mediumAmount = view.findViewById(R.id.amountMedium);
+        hardAmount = view.findViewById(R.id.amountHard);
     }
 
     private void loadAnimations() {
@@ -123,30 +146,5 @@ public class StartFragment extends Fragment implements View.OnClickListener {
         float scale = getResources().getDisplayMetrics().density * distance;
         cardFront.setCameraDistance(scale);
         cardBack.setCameraDistance(scale);
-    }
-
-    public void flipCard() {
-        if (!isBackVisible) {
-            cardBack.setVisibility(View.VISIBLE);
-            cardFront.setClickable(false);
-            setRightOut.setTarget(cardFront);
-            setLeftIn.setTarget(cardBack);
-            setRightOut.start();
-            setLeftIn.start();
-            isBackVisible = true;
-            btnEasy.setVisibility(View.VISIBLE);
-            btnMedium.setVisibility(View.VISIBLE);
-            btnHard.setVisibility(View.VISIBLE);
-        } else {
-            setRightOut.setTarget(cardBack);
-            setLeftIn.setTarget(cardFront);
-            setRightOut.start();
-            setLeftIn.start();
-            isBackVisible = false;
-            btnEasy.setVisibility(View.INVISIBLE);
-            btnMedium.setVisibility(View.INVISIBLE);
-            btnHard.setVisibility(View.INVISIBLE);
-            cardFront.setClickable(true);
-        }
     }
 }
