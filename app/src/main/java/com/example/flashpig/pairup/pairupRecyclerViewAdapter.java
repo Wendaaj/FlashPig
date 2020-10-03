@@ -1,4 +1,4 @@
-package com.example.flashpig.memory;
+package com.example.flashpig.pairup;
 
 
 import android.content.Context;
@@ -19,14 +19,10 @@ import java.util.List;
 /**
  * An adapter class for the recyclerView
  */
-public class memoryRecyclerViewAdapter extends RecyclerView.Adapter<memoryRecyclerViewAdapter.EditCardViewHolder> {
+public class pairupRecyclerViewAdapter extends RecyclerView.Adapter<pairupRecyclerViewAdapter.EditCardViewHolder> {
     private List<Card> cardsList;
 
-    public List<Card> getCardsList() {
-        return cardsList;
-    }
-
-    public memoryRecyclerViewAdapter(Context context, List<Card> cardsList) {
+    public pairupRecyclerViewAdapter(Context context, List<Card> cardsList) {
         this.cardsList = cardsList;
     }
 
@@ -42,7 +38,7 @@ public class memoryRecyclerViewAdapter extends RecyclerView.Adapter<memoryRecycl
     public EditCardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.
                 from(parent.getContext()).
-                inflate(R.layout.memorycard, parent, false);
+                inflate(R.layout.pairupcard, parent, false);
         return new EditCardViewHolder(itemView);
     }
 
@@ -57,8 +53,8 @@ public class memoryRecyclerViewAdapter extends RecyclerView.Adapter<memoryRecycl
     public void onBindViewHolder(@NonNull EditCardViewHolder holder, int position) {
         Card card = cardsList.get(position);
 
-            holder.frontSideTextView.setText(card.getFrontsideStr());
-            holder.backSideTextView.setText(card.getBacksideStr());
+        holder.frontSideTextView.setText(card.getFrontsideStr());
+        holder.backSideTextView.setText(card.getBacksideStr());
 
         //set the back and front imageviews also.
     }
