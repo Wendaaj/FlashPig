@@ -16,6 +16,12 @@ import com.example.flashpig.R;
 
 import java.util.Objects;
 
+/**
+ * The flashcard activity.
+ *
+ * @author wendy
+ * @version 2020-10-04
+ */
 public class FlashcardActivity extends AppCompatActivity {
     private FlashcardViewModel viewModel;
     private ConstraintLayout quitView;
@@ -53,6 +59,9 @@ public class FlashcardActivity extends AppCompatActivity {
         super.onBackPressed();
     }
 
+    /**
+     * Saves if the user wants the "are you sure..." view to popup again or not.
+     */
     private void savePreferences(){
         SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -60,6 +69,9 @@ public class FlashcardActivity extends AppCompatActivity {
         editor.apply();
     }
 
+    /**
+     * Loads the users preference for if they wanted the "are you sure..." view to pop up.
+     */
     private void loadPreferences(){
         SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
         boolean state = sharedPreferences.getBoolean("state", false);
@@ -75,6 +87,9 @@ public class FlashcardActivity extends AppCompatActivity {
         noBtn = findViewById(R.id.btn_no);
     }
 
+    /**
+     * An "are you sure that you want to quit?" view that pops up and navigates the user where it wants.
+     */
     private void quit() {
         quitView.setVisibility(View.VISIBLE);
         findViewById(R.id.fragment_container).setVisibility(View.INVISIBLE);

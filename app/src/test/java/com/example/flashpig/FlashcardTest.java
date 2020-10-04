@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+import com.example.flashpig.Flashcard.FlashcardActivity;
 import com.example.flashpig.Model.Card;
 import com.example.flashpig.Model.Deck;
 import com.example.flashpig.Model.Difficulty;
@@ -29,7 +30,6 @@ public class FlashcardTest {
     Card card5 = new Card(rand.nextInt(), "hej", "hej", null,
             null);
 
-    //Tests for Flashcard
     @Test
     public void canChooseDifficulty(){
         Flashcard flashcard = new Flashcard("Madematik", deck);
