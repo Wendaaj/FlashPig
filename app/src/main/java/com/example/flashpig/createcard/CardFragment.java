@@ -95,6 +95,7 @@ public class CardFragment extends Fragment {
                 ccTextinput.getEditText().getText().clear();
                 enableFront(false);
                 ccImageView.setImageURI(null);
+                ccImageView.setImageBitmap(null);
                 ccCardn.setText("Add backside nr" + currentCard);
             }
         });
@@ -107,6 +108,7 @@ public class CardFragment extends Fragment {
                 enableFront(true);
                 currentCard+=1;
                 ccImageView.setImageURI(null);
+                ccImageView.setImageBitmap(null);
                 ccCardn.setText("Add frontside nr" + currentCard);
             }
         });

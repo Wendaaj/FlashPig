@@ -18,6 +18,10 @@
     <string name="newcard">New card</string>
     <string name="takepic">Take a pic</string>
     <string name="choosepicfromgallery">Choose from gallery</string>
+    <!-- Strings used for DeckCreate -->
+    <string name="enterdeckname">Enter deck name</string>
+    <string name="create">Create</string>
+    <string name="createflashcarddeck">Create flashcard deck</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
