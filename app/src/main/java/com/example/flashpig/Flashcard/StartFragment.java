@@ -24,7 +24,7 @@ import com.example.flashpig.R;
 public class StartFragment extends Fragment implements View.OnClickListener {
 
     private FlashcardViewModel viewModel;
-    private TextView titleCard, txtBack, txtFront, easyAmount, mediumAmount, hardAmount;
+    private TextView txtBack, txtFront, easyAmount, mediumAmount, hardAmount;
     private FrameLayout cardFront, cardBack;
     private Button btnEasy, btnMedium, btnHard;
     private AnimatorSet setRightOut;
@@ -77,7 +77,6 @@ public class StartFragment extends Fragment implements View.OnClickListener {
         hardAmount.setText(Integer.toString(viewModel.flashcard.getAmountCards(Difficulty.HARD)));
         txtFront.setText(viewModel.flashcard.gameDeck.get(0).getFrontsideStr());
         txtBack.setText(viewModel.flashcard.gameDeck.get(0).getBacksideStr());
-        titleCard.setText("Card nr. " + viewModel.flashcard.gameDeck.get(0).getId());
     }
 
     @Override
@@ -97,7 +96,7 @@ public class StartFragment extends Fragment implements View.OnClickListener {
         loadUI();
     }
 
-    public void flipCard() {
+    private void flipCard() {
         if (!isBackVisible) {
             setRightOut.setTarget(cardFront);
             setLeftIn.setTarget(cardBack);
@@ -123,7 +122,6 @@ public class StartFragment extends Fragment implements View.OnClickListener {
     }
 
     private void findViews(View view) {
-        titleCard = view.findViewById(R.id.card_title);
         txtFront = view.findViewById(R.id.front_txt);
         txtBack = view.findViewById(R.id.back_txt);
         btnEasy = view.findViewById(R.id.btn_easy);

@@ -35,7 +35,7 @@ public class Flashcard extends GameLogic {
     }
 
     /**
-     * Adds the picked card to easy.
+     * Sets the picked card to easy.
      * @param card The current card.
      */
     public void addEasyCard(Card card) {
@@ -45,7 +45,7 @@ public class Flashcard extends GameLogic {
     }
 
     /**
-     * Adds the picked card to medium.
+     * Sets the picked card to medium.
      * @param card The current card.
      */
     public void addMediumCard(Card card) {
@@ -55,7 +55,7 @@ public class Flashcard extends GameLogic {
     //Timekeeper set to 10 min
 
     /**
-     * Adds the picked card to hard.
+     * Sets the picked card to hard.
      * @param card The current card.
      */
     public void addHardCard(Card card) {

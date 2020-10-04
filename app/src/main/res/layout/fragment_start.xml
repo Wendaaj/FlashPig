@@ -7,29 +7,13 @@
     android:background="@color/background"
     tools:context=".Flashcard.StartFragment">
 
-    <TextView
-        android:id="@+id/card_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="154dp"
-        android:layout_marginLeft="154dp"
-        android:layout_marginTop="140dp"
-        android:layout_marginEnd="154dp"
-        android:layout_marginRight="154dp"
-        android:fontFamily="@font/roboto_slab_bold"
-        android:gravity="center"
-        android:textSize="25sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <FrameLayout
         android:id="@+id/front_card"
         android:layout_width="300dp"
         android:layout_height="200dp"
         android:layout_marginStart="55dp"
         android:layout_marginLeft="55dp"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="200dp"
         android:layout_marginEnd="55dp"
         android:layout_marginRight="55dp"
         android:background="@drawable/shadow"
@@ -53,7 +37,7 @@
         android:layout_height="200dp"
         android:layout_marginStart="55dp"
         android:layout_marginLeft="55dp"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="200dp"
         android:layout_marginEnd="55dp"
         android:layout_marginRight="55dp"
         android:background="@drawable/shadow"

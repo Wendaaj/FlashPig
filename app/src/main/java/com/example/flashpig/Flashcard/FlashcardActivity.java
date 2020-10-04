@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
@@ -21,6 +22,7 @@ public class FlashcardActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private TextView title;
     private CheckBox checkBox;
+    private Button yesBtn, noBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,18 +71,20 @@ public class FlashcardActivity extends AppCompatActivity {
         checkBox = findViewById(R.id.checkBox);
         toolbar = findViewById(R.id.flashcardToolbar);
         title = findViewById(R.id.txt_title);
+        yesBtn = findViewById(R.id.btn_yes);
+        noBtn = findViewById(R.id.btn_no);
     }
 
     private void quit() {
         quitView.setVisibility(View.VISIBLE);
         findViewById(R.id.fragment_container).setVisibility(View.INVISIBLE);
-        findViewById(R.id.btn_yes).setOnClickListener(new View.OnClickListener() {
+        yesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
             }
         });
-        findViewById(R.id.btn_no).setOnClickListener(new View.OnClickListener() {
+        noBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 quitView.setVisibility(View.INVISIBLE);

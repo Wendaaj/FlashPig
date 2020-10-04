@@ -30,26 +30,7 @@ public class ModelTest {
             null);
     Card card5 = new Card(rand.nextInt(), "hej", "hej", null,
             null);
-    //Tests for Flashcard
-    @Test
-    public void canChooseDifficulty(){
-        Flashcard flashcard = new Flashcard("Madematik", deck);
-        flashcard.addEasyCard(card0);
-        Assert.assertEquals(card0.getDifficulty(), Difficulty.EASY);
 
-        flashcard.addMediumCard(card0);
-        Assert.assertEquals(card0.getDifficulty(), Difficulty.MEDIUM);
-
-        flashcard.addHardCard(card0);
-        Assert.assertEquals(card0.getDifficulty(), Difficulty.HARD);
-    }
-
-    @Test
-    public void canTurnOverCard() {
-        Flashcard flashcard = new Flashcard("Madematik", deck);
-        flashcard.turnOver(card3);
-        Assert.assertEquals("OM hon kommer", card3.getBacksideStr());
-    }
 
     //Tests for FlashcardProgess
     @Test
@@ -76,8 +57,6 @@ public class ModelTest {
         Assert.assertEquals(card1.getDifficulty(), Difficulty.NOTHING);
         Assert.assertEquals(card2.getDifficulty(), Difficulty.MEDIUM);
     }
-
-
 
     @Test
     public void canCreateCardFront(){
