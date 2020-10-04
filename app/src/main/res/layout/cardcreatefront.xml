@@ -78,8 +78,30 @@
         <ImageView
             android:id="@+id/ccImageView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:src="@tools:sample/avatars" />
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/ccCameraText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="130dp"
+            android:text="@string/takepic"
+            app:layout_constraintStart_toEndOf="@+id/ccImageView"
+            app:layout_constraintTop_toBottomOf="@+id/imageButtoncc1" />
+
+        <TextView
+            android:id="@+id/ccGalleryText"
+            android:layout_width="114dp"
+            android:layout_height="46dp"
+            android:layout_marginStart="230dp"
+            android:layout_marginLeft="230dp"
+            android:layout_marginTop="130dp"
+            android:text="@string/choosepicfromgallery"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ccImageView" />
+
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView

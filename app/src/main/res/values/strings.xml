@@ -16,6 +16,8 @@
     <!-- Strings used for CardCreate -->
     <string name="finish">Finish</string>
     <string name="newcard">New card</string>
+    <string name="takepic">Take a pic</string>
+    <string name="choosepicfromgallery">Choose from gallery</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

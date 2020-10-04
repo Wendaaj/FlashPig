@@ -45,6 +45,8 @@ public class CardFragment extends Fragment {
     public static final int PERMISSION_CODE = 1001;
     private TextView ccCardn;
     private TextView ccTextTop;
+    private TextView ccCameraText;
+    private TextView ccGalleryText;
     private Toolbar ccToolbar;
     private ImageButton ccCameraButton;
     private ImageButton ccGalleryButton;
@@ -55,6 +57,7 @@ public class CardFragment extends Fragment {
     private Button ccButtonback1;
     private Button ccButtonback2;
     private ImageView ccImageView;
+
 
 
     private int currentCard = 1;
@@ -91,6 +94,7 @@ public class CardFragment extends Fragment {
                 textFront = ccTextinput.getEditText().getText().toString();
                 ccTextinput.getEditText().getText().clear();
                 enableFront(false);
+                ccImageView.setImageURI(null);
                 ccCardn.setText("Add backside nr" + currentCard);
             }
         });
@@ -102,6 +106,7 @@ public class CardFragment extends Fragment {
                 ccTextinput.getEditText().getText().clear();
                 enableFront(true);
                 currentCard+=1;
+                ccImageView.setImageURI(null);
                 ccCardn.setText("Add frontside nr" + currentCard);
             }
         });
@@ -169,10 +174,12 @@ public class CardFragment extends Fragment {
         if(requestCode == CAMERA_REQUEST_CODE){
             Bitmap image = (Bitmap) data.getExtras().get("data");
             ccImageView.setImageBitmap(image);
+            hideButtons();
 
         }
         if(requestCode == IMAGE_PICK_CODE){
             ccImageView.setImageURI(data.getData());
+            hideButtons();
 
         }
     }
@@ -220,6 +227,8 @@ public class CardFragment extends Fragment {
         ccButtonback1 = view.findViewById(R.id.buttonccback1);
         ccButtonback2 = view.findViewById(R.id.buttonccback2);
         ccImageView = view.findViewById(R.id.ccImageView);
+        ccCameraText = view.findViewById(R.id.ccCameraText);
+        ccGalleryText = view.findViewById(R.id.ccGalleryText);
 
     }
 
@@ -238,25 +247,37 @@ public class CardFragment extends Fragment {
 
     private void enableFront(boolean bol) {
         if (bol) {
-
-            ccCardn.setVisibility(View.VISIBLE);
             ccButtonback2.setVisibility(View.INVISIBLE);
             ccButtonback1.setVisibility(View.INVISIBLE);
-            ccButtonfront.setVisibility(View.VISIBLE);
 
+            ccCardn.setVisibility(View.VISIBLE);
+            ccButtonfront.setVisibility(View.VISIBLE);
             ccToolbar.setVisibility(View.VISIBLE);
             ccCameraButton.setVisibility(View.VISIBLE);
             ccGalleryButton.setVisibility(View.VISIBLE);
             ccPicCardview.setVisibility(View.VISIBLE);
             ccTextCardview.setVisibility(View.VISIBLE);
             ccTextinput.setVisibility(View.VISIBLE);
+            ccCameraText.setVisibility(View.VISIBLE);
+            ccGalleryText.setVisibility(View.VISIBLE);
         }
         else {
             ccButtonfront.setVisibility(View.INVISIBLE);
+
             ccButtonback2.setVisibility(View.VISIBLE);
             ccButtonback1.setVisibility(View.VISIBLE);
+            ccCameraButton.setVisibility(View.VISIBLE);
+            ccGalleryButton.setVisibility(View.VISIBLE);
+            ccCameraText.setVisibility(View.VISIBLE);
+            ccGalleryText.setVisibility(View.VISIBLE);
 
 
         }
+    }
+    private void hideButtons(){
+        ccGalleryButton.setVisibility(View.INVISIBLE);
+        ccCameraButton.setVisibility(View.INVISIBLE);
+        ccCameraText.setVisibility(View.INVISIBLE);
+        ccGalleryText.setVisibility(View.INVISIBLE);
     }
 }
