@@ -53,4 +53,9 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    static final int REQUEST_TAKE_PHOTO = 1;
+
+
+
 }

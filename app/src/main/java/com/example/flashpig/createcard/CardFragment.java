@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.media.Image;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,9 +33,16 @@ import com.example.flashpig.MainActivity;
 import com.example.flashpig.R;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class CardFragment extends Fragment {
     public static final int CAMERA_PERM_CODE = 101;
     public static final int CAMERA_REQUEST_CODE = 102;
+    public static final int IMAGE_PICK_CODE = 1000;
+    public static final int PERMISSION_CODE = 1001;
     private TextView ccCardn;
     private TextView ccTextTop;
     private Toolbar ccToolbar;
@@ -109,6 +118,22 @@ public class CardFragment extends Fragment {
         ccGalleryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                    if(getActivity().checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+                            ==PackageManager.PERMISSION_DENIED){
+                        String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
+                        requestPermissions(permissions, PERMISSION_CODE);
+                    }
+                    else{
+                        pickImageFromGallery(); 
+
+                    }
+                }
+                else{
+                    pickImageFromGallery();
+
+                }
+
 
             }
         });
@@ -116,6 +141,12 @@ public class CardFragment extends Fragment {
 
 
 
+    }
+
+    private void pickImageFromGallery() {
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        startActivityForResult(intent, IMAGE_PICK_CODE);
     }
 
     private void askCameraPermission() {
@@ -140,7 +171,19 @@ public class CardFragment extends Fragment {
             ccImageView.setImageBitmap(image);
 
         }
+        if(requestCode == IMAGE_PICK_CODE){
+            ccImageView.setImageURI(data.getData());
+
+        }
     }
+
+
+
+
+
+
+
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -148,8 +191,19 @@ public class CardFragment extends Fragment {
             if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
                 openCamera();
             }else{
-                Toast.makeText(getActivity(), "Camera Permission is Required to Use Camera", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Camera Permission is Required to Use Camera",
+                        Toast.LENGTH_SHORT).show();
             }
+        }
+        if(requestCode == PERMISSION_CODE){
+            if(grantResults.length >0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                pickImageFromGallery();
+            }
+            else{
+                Toast.makeText(getActivity(), "Permission is Required to Use Gallery",
+                        Toast.LENGTH_SHORT).show();
+            }
+
         }
     }
 
