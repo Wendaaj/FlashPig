@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".createcard.CreateDeckFragment">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar2"
@@ -30,6 +31,7 @@
         app:srcCompat="@drawable/pig" />
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/dcTextInputLayout"
         android:layout_width="391dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
@@ -39,13 +41,14 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar2">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/dcTextinput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="hint" />
+            android:hint="Enter name oink!" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/dcButton"
         android:layout_width="156dp"
         android:layout_height="55dp"
         android:layout_marginTop="151dp"
@@ -60,7 +63,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/dcTextView"
         android:layout_width="207dp"
         android:layout_height="43dp"
         android:layout_marginTop="85dp"

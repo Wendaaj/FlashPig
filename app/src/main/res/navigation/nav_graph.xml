@@ -15,8 +15,8 @@
             android:id="@+id/action_FirstFragment_to_SecondFragment"
             app:destination="@id/SecondFragment" />
         <action
-            android:id="@+id/action_FirstFragment_to_cardFragment"
-            app:destination="@id/cardFragment" />
+            android:id="@+id/action_FirstFragment_to_createDeckFragment"
+            app:destination="@id/createDeckFragment" />
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
@@ -33,4 +33,13 @@
         android:name="com.example.flashpig.createcard.CardFragment"
         android:label="cardcreatefront"
         tools:layout="@layout/cardcreatefront" />
+    <fragment
+        android:id="@+id/createDeckFragment"
+        android:name="com.example.flashpig.createcard.CreateDeckFragment"
+        android:label="deckcreate"
+        tools:layout="@layout/deckcreate" >
+        <action
+            android:id="@+id/action_createDeckFragment_to_cardFragment"
+            app:destination="@id/cardFragment" />
+    </fragment>
 </navigation>

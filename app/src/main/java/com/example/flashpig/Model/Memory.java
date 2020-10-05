@@ -1,5 +1,6 @@
 package com.example.flashpig.Model;
 
+import android.graphics.Bitmap;
 import android.media.Image;
 import android.view.View;
 
@@ -30,17 +31,17 @@ public class Memory extends GameLogic implements MemoryPairUpLogic {
 
     public void divideCard(Deck deck){
         for (Card card: deck.cards) {
-            Image frontImg = card.getFrontImg();
+            Bitmap frontImg = card.getFrontImg();
             String frontStr = card.getFrontsideStr();
-            Image backImg = card.getBackImg();
+            Bitmap backImg = card.getBackImg();
             String backStr = card.getBacksideStr();
 
             saveElements(frontImg, frontStr, backImg, backStr);
         }
     }
 
-    public void saveElements(Image frontImg, String frontStr, Image backImg, String backStr){
-        List <Image> imageList = new ArrayList<>();
+    public void saveElements(Bitmap frontImg, String frontStr, Bitmap backImg, String backStr){
+        List <Bitmap> imageList = new ArrayList<>();
         List <String> stringList = new ArrayList<>();
 
         imageList.add(frontImg);

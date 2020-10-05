@@ -1,13 +1,14 @@
 package com.example.flashpig.createcard;
-
 import android.Manifest;
+import com.example.flashpig.Model.Card;
+import com.example.flashpig.Model.Deck;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.media.Image;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
@@ -16,7 +17,6 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
@@ -28,21 +28,21 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.flashpig.MainActivity;
 import com.example.flashpig.R;
 import com.google.android.material.textfield.TextInputLayout;
-
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 
 public class CardFragment extends Fragment {
     public static final int CAMERA_PERM_CODE = 101;
     public static final int CAMERA_REQUEST_CODE = 102;
     public static final int IMAGE_PICK_CODE = 1000;
     public static final int PERMISSION_CODE = 1001;
+
     private TextView ccCardn;
     private TextView ccTextTop;
     private TextView ccCameraText;
@@ -58,10 +58,10 @@ public class CardFragment extends Fragment {
     private Button ccButtonback2;
     private ImageView ccImageView;
 
-
-
+    Random rand = new Random();
     private int currentCard = 1;
     private CardViewModel viewModel;
+    public Card card;
 
     private String textFront;
     private String textBack;
@@ -82,15 +82,16 @@ public class CardFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-
         viewModel = new ViewModelProvider(getActivity()).get(CardViewModel.class);
         findViews(view);
         loadUI();
+        card = new Card(rand.nextInt(), null, null, null, null);
+
 
         ccButtonfront.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                card.setFrontsideStr(ccTextinput.getEditText().getText().toString());
                 textFront = ccTextinput.getEditText().getText().toString();
                 ccTextinput.getEditText().getText().clear();
                 enableFront(false);
@@ -176,14 +177,39 @@ public class CardFragment extends Fragment {
         if(requestCode == CAMERA_REQUEST_CODE){
             Bitmap image = (Bitmap) data.getExtras().get("data");
             ccImageView.setImageBitmap(image);
+            card.setFrontImg(image);
+
             hideButtons();
 
         }
         if(requestCode == IMAGE_PICK_CODE){
-            ccImageView.setImageURI(data.getData());
+
+            Uri imageUri = data.getData();
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imageUri);
+                ccImageView.setImageBitmap(bitmap);
+                card.setFrontImg(bitmap);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            //ccImageView.setImageURI(data.getData());
+            //card.EditFrontside(null,image);
             hideButtons();
 
         }
+        /*if(requestCode == CAMERA_REQUEST_CODE && !card.isFrontside()){
+            Bitmap image = (Bitmap) data.getExtras().get("data");
+            ccImageView.setImageBitmap(image);
+
+            hideButtons();
+
+        }
+        if(requestCode == IMAGE_PICK_CODE && !card.isFrontside()){
+            ccImageView.setImageURI(data.getData());
+            hideButtons();
+
+        } */
     }
 
 
@@ -238,9 +264,6 @@ public class CardFragment extends Fragment {
         enableFront(true);
         ccCardn.setText("Add frontside nr" + currentCard);
         ccTextTop.setText("Deck name");
-
-
-
     }
 
     private void loadCard(int i) {
