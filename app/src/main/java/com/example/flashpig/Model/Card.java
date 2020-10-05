@@ -1,6 +1,9 @@
 package com.example.flashpig.Model;
 
+import android.graphics.Bitmap;
 import android.media.Image;
+import android.net.Uri;
+
 /**
  * Class for card.
  * @author Jesper
@@ -12,8 +15,8 @@ public class Card {
     private boolean isFrontside;
     private String frontsideStr;
     private String backsideStr;
-    private Image frontImg;
-    private Image backImg;
+    private Bitmap frontImg;
+    private Bitmap backImg;
     private Enum difficulty;
 
     /**
@@ -22,7 +25,7 @@ public class Card {
      */
 
     public Card(int id, String frontsideStr, String backsideStr,
-                Image frontImg, Image backImg) {
+                Bitmap frontImg, Bitmap backImg) {
         this.id = id;
         this.frontsideStr = frontsideStr;
         this.backsideStr = backsideStr;
@@ -34,13 +37,8 @@ public class Card {
 
 
 
-    /**
-     * Method to create frontside of card
-     * @param str the tect or numbers to use
-     * //@param img the picture to use
-     *
-     */
-    public void EditFrontside(String str, Image img) {
+    /*
+    public void EditFrontside(String str, Bitmap img) {
 
         if (this.isFrontside && str != null && !str.equals("")){
             this.frontsideStr = str;
@@ -51,15 +49,10 @@ public class Card {
 
 
 
-}
+}*/
 
-    /**
-     * Method to create backside of card
-     * @param str the tect or numbers to use
-     * //@param img the picture to use
-     *
-     */
-    public void EditBackside(String str, Image img){
+
+    /*public void EditBackside(String str, Bitmap img){
         if (!this.isFrontside && str != null && !str.equals("")){
             this.backsideStr = str;
         }
@@ -67,6 +60,23 @@ public class Card {
         this.backImg = img;
 
 }
+*/
+
+    public void setFrontsideStr(String frontsideStr) {
+        this.frontsideStr = frontsideStr;
+    }
+
+    public void setBacksideStr(String backsideStr) {
+        this.backsideStr = backsideStr;
+    }
+
+    public void setFrontImg(Bitmap frontImg) {
+        this.frontImg = frontImg;
+    }
+
+    public void setBackImg(Bitmap backImg) {
+        this.backImg = backImg;
+    }
 
     public int getId() {
         return id;
@@ -91,11 +101,11 @@ public class Card {
         return backsideStr;
     }
 
-    public Image getFrontImg() {
+    public Bitmap getFrontImg() {
         return frontImg;
     }
 
-    public Image getBackImg() {
+    public Bitmap getBackImg() {
         return backImg;
     }
 

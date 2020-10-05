@@ -25,6 +25,16 @@
     <string name="dont_show">Don´t show this again</string>
     <string name="NA">-</string>
 
+    <!-- Strings used for CardCreate -->
+    <string name="finish">Finish</string>
+    <string name="newcard">New card</string>
+    <string name="takepic">Take a pic</string>
+    <string name="choosepicfromgallery">Choose from gallery</string>
+    <!-- Strings used for DeckCreate -->
+    <string name="enterdeckname">Enter deck name</string>
+    <string name="create">Create</string>
+    <string name="createflashcarddeck">Create flashcard deck</string>
+
 
     <!--String used for editDeck-->
     <string name="flashcard_nr">Flashcard nr</string>

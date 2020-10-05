@@ -1,5 +1,12 @@
 package com.example.flashpig.Model;
 
+import android.graphics.Bitmap;
+import android.media.Image;
+import android.view.View;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Class for Memory Game
  *
@@ -17,7 +24,28 @@ public class Memory extends GameLogic implements MemoryPairUpLogic {
         super(title, deck);  //don't change OG deck
         this.deck = deck;
 
+    public void divideCard(Deck deck){
+        for (Card card: deck.cards) {
+            Bitmap frontImg = card.getFrontImg();
+            String frontStr = card.getFrontsideStr();
+            Bitmap backImg = card.getBackImg();
+            String backStr = card.getBacksideStr();
+
+            saveElements(frontImg, frontStr, backImg, backStr);
+        }
     }
+
+    public void saveElements(Bitmap frontImg, String frontStr, Bitmap backImg, String backStr){
+        List <Bitmap> imageList = new ArrayList<>();
+        List <String> stringList = new ArrayList<>();
+
+        imageList.add(frontImg);
+        imageList.add(backImg);
+        stringList.add(frontStr);
+        stringList.add(backStr);
+
+    }
+
 
     /**
      * Method to compare two cards from a deck

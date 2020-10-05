@@ -12,4 +12,7 @@
     <color name="done">#FFB46F</color>
     <color name="home">#76ADFF</color>
 
+    <color name="colorAccentorange">#FFB46F</color>
+    <color name="colorAccentblue">#76ADFF</color>
+
 </resources>
