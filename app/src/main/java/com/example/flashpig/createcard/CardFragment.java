@@ -65,6 +65,7 @@ public class CardFragment extends Fragment {
 
     private String textFront;
     private String textBack;
+    private String textOn;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
