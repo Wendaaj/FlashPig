@@ -1,6 +1,5 @@
 package com.example.flashpig.memory;
 
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,11 +18,17 @@ import java.util.List;
 /**
  * An adapter class for the recyclerView
  */
-public class memoryRecyclerViewAdapter extends RecyclerView.Adapter<memoryRecyclerViewAdapter.EditCardViewHolder> {
+public class memoryRecyclerViewAdapter extends RecyclerView.Adapter<memoryRecyclerViewAdapter.ViewHolder> {
+
     private List<Card> cardsList;
+    private ItemClickListener mClickListener;
+    public Context mContext;
+    Card card1, card2;
 
     public memoryRecyclerViewAdapter(Context context, List<Card> cardsList) {
+        this.mContext = context;
         this.cardsList = cardsList;
+        this.cardsList.addAll(cardsList);
     }
 
     /**
@@ -35,11 +40,11 @@ public class memoryRecyclerViewAdapter extends RecyclerView.Adapter<memoryRecycl
      */
     @NonNull
     @Override
-    public EditCardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.
                 from(parent.getContext()).
                 inflate(R.layout.memorycard, parent, false);
-        return new EditCardViewHolder(itemView);
+        return new ViewHolder(itemView);
     }
 
     /**
@@ -50,38 +55,87 @@ public class memoryRecyclerViewAdapter extends RecyclerView.Adapter<memoryRecycl
      * @param position
      */
     @Override
-    public void onBindViewHolder(@NonNull EditCardViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Card card = cardsList.get(position);
+        holder.frontSideTextView.setText(card.getFrontsideStr());
+        holder.frontSideTextView.setTag(position);
+        holder.backSideTextView.setText(card.getBacksideStr());
 
-            holder.frontSideTextView.setText(card.getFrontsideStr());
-            holder.backSideTextView.setText(card.getBacksideStr());
-
-        //set the back and front imageviews also.
     }
 
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
     @Override
     public int getItemCount() {
         return cardsList.size();
     }
 
-    /**
-     * An inner class for the viewHolder that holds each card in the recyclerView.
-     */
-    public class EditCardViewHolder extends RecyclerView.ViewHolder {
+    // stores and recycles views as they are scrolled off screen
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView frontSideTextView, backSideTextView;
         ImageView frontImageView, backImageView;
 
-        /**
-         * The constructor adds all required content on the card, when a new viewHolder is created.
-         *
-         * @param itemView
-         */
-        EditCardViewHolder(View itemView) {
+        ViewHolder(View itemView) {
             super(itemView);
             frontSideTextView = itemView.findViewById(R.id.frontCardTextView);
             backSideTextView = itemView.findViewById(R.id.backCardTextView);
             frontImageView = itemView.findViewById(R.id.frontCardImageView);
             backImageView = itemView.findViewById(R.id.backCardImageView);
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View view) {
+            if (mClickListener != null){
+                try {
+                    mClickListener.onItemClick(view, getAdapterPosition());
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public void flip(View view) {
+        if(view.findViewById(R.id.frontCardImageView).isShown()){
+            view.findViewById(R.id.frontCardTextView).setVisibility(View.INVISIBLE);
+            view.findViewById(R.id.frontCardImageView).setVisibility(View.INVISIBLE);
+            view.findViewById(R.id.backCardTextView).setVisibility(View.VISIBLE);
+            view.findViewById(R.id.backCardImageView).setVisibility(View.VISIBLE);
+        } else {
+            view.findViewById(R.id.frontCardTextView).setVisibility(View.VISIBLE);
+            view.findViewById(R.id.frontCardImageView).setVisibility(View.VISIBLE);
+            view.findViewById(R.id.backCardTextView).setVisibility(View.INVISIBLE);
+            view.findViewById(R.id.backCardImageView).setVisibility(View.INVISIBLE);
+        }
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
+
+
+    @Override
+    public void setHasStableIds(boolean hasStableIds) {
+        super.setHasStableIds(hasStableIds);
+    }
+
+
+    // convenience method for getting data at click position
+    public Card getItem(int position) {
+        return cardsList.get(position);
+    }
+
+    // allows clicks events to be caught
+    void setClickListener(ItemClickListener itemClickListener) {
+        this.mClickListener = itemClickListener;
+    }
+
+    // parent activity will implement this method to respond to click events
+    public interface ItemClickListener {
+        void onItemClick(View view, int position) throws InterruptedException;
     }
 }

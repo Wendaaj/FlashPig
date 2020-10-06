@@ -1,21 +1,23 @@
 package com.example.flashpig.memory;
 
-import android.content.Intent;
-import android.graphics.drawable.Icon;
-import android.os.Build;
+import android.animation.AnimatorInflater;
+import android.animation.AnimatorSet;
+
 import android.os.Bundle;
-import android.os.Handler;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
+
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.flashpig.Model.Card;
@@ -23,28 +25,23 @@ import com.example.flashpig.Model.Deck;
 import com.example.flashpig.Model.Memory;
 import com.example.flashpig.R;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Random;
+//TODO disable scroll, max 3 card/board, don't duplicate card
 
-//MEMORY VIEW LOGIK HÄÄÄÄR
+public class MemoryFragmentStart extends Fragment implements memoryRecyclerViewAdapter.ItemClickListener {
 
-/*TODO
-- vänd på korten och matcha
-    - ta en knapp och vänd och sätt ist frontside på kortet på positio 0-3 och resten backSide
-    kolla ismatch och så och JA håll de uppe OM Nej vänd tillbaka med delay
-
- */
-
-public class MemoryFragmentStart extends Fragment implements View.OnClickListener {
-
-    ArrayList<Card> cards = new ArrayList<>(7);
-    ArrayList<ImageButton> buttons = new ArrayList<>(7);
-    int selectedButton1;
-    int selectedButton2;
-    private int isMatched;
-    private MemoryViewModel viewModel;
-    private RecyclerView cardList;
+    private TextView frontSideTextView;
+    private TextView backSideTextView;
+    private ImageView frontImageView;
+    private ImageView backImageView;
+    private AnimatorSet setRightOut;
+    private AnimatorSet setLeftIn;
+    Card card1, card2;
+    private memoryRecyclerViewAdapter adapter;
+    Deck deck = new Deck("hej", 0);
+    Memory memory = new Memory("Zoris", this.deck);
+    int position1;
+    private RecyclerView recyclerView;
+    private memoryRecyclerViewAdapter memoryRecyclerViewAdapter;
 
     public MemoryFragmentStart() {
     }
@@ -52,7 +49,13 @@ public class MemoryFragmentStart extends Fragment implements View.OnClickListene
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // populate the RecyclerView with cards
+        deck.addCard(new Card(1,"front 1","back 1", null,
+                null));
+        deck.addCard(new Card(2,"front 1","back 1", null,
+                null));
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -63,65 +66,70 @@ public class MemoryFragmentStart extends Fragment implements View.OnClickListene
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        onClick(view);
+
+        findView(view);
+        loadAnimations();
+
+        // set up the RecyclerView
+        recyclerView = view.findViewById(R.id.memoryCardRecyclerView);
+
+        int numberOfColumns = 2;
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), numberOfColumns));
+        adapter = new memoryRecyclerViewAdapter(getActivity(), deck.cards);
+        adapter.setClickListener(this);
+        recyclerView.setAdapter(adapter);
+
+        recyclerView.addItemDecoration(new GridSpacingCardDecoration(2, 30));
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        memoryRecyclerViewAdapter = new memoryRecyclerViewAdapter(getContext(), deck.cards);
     }
 
-    /*private void loadCardstoButtons() {
+    private void findView(View v) {
+        frontSideTextView = v.findViewById(R.id.frontCardTextView);
+        recyclerView = v.findViewById(R.id.memoryCardRecyclerView);
+        backSideTextView = v.findViewById(R.id.backCardTextView);
+        frontImageView = v.findViewById(R.id.frontCardImageView);
+        backImageView = v.findViewById(R.id.backCardImageView);
+    }
 
-        //even int to front
-        for (int i = 0; i < (cards.size() % 2); i++) {
-            ImageButton temp = buttons.get(i);
-            //temp.set
-
-        }
-        //odd int to back
-        for (int i = 0; i < (cards.size() % 2); i++) {
-
-            if (i % 2 != 0) {
-                //buttons.set(cards.get(i).isFrontside());
-            }
-        }
-        Collections.shuffle(cards);
-    }*/
+    private void loadAnimations() {
+        setRightOut = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.out_animation);
+        setLeftIn = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.in_animation);
+    }
 
     @Override
-    public void onClick(View v) {
-
-        while (!buttons.isEmpty()) {
-            int cardsLeft = buttons.size();
-
-
-            if (selectedButton1 == selectedButton2) {
-                //sparas det att de är matchade
-                isMatched = -2;
-                cardsLeft = cardsLeft - 1;
-            }
-
-            if (selectedButton1 == isMatched || selectedButton2 == isMatched) {
-                //om de redan är matchade --> inget händer
-                return;
-            }
-
-            if (selectedButton1 != selectedButton2) {
-                //flip();
-                delay();
-                //flip();
+    public void onItemClick(View view, int position) throws InterruptedException {
+        int cardsCount = adapter.getItemCount();
+        while(cardsCount != 0) {
+            if (card1 == null) {
+                card1 = adapter.getItem(position);
+                position1 = position;
+                adapter.flip(view);
+                card1.setFrontside(true);
+                view.setClickable(false);
+            } else {
+                card2 = adapter.getItem(position);
+                adapter.flip(view);
+                memory.isMatched(card1, card2, deck);
+                if (memory.isMatched(card1, card2, deck)) {
+                    view.setClickable(false);
+                    cardsCount -= 2;
+                } else {
+                    delay();
+                    adapter.flip(view.findViewById(position1));
+                }
             }
         }
     }
 
-    private void delay() {
-        //set delay before turn when not a match
+    private void delay() throws InterruptedException {
+        //set 1 sec delay before turn when not a match
+        Thread.sleep(1000);
     }
 
-    public void flip(ImageButton button) {
-
-    }
 
     private void endGame() {
-        Intent intent = new Intent(getActivity(), MemoryFragmentEnd.class);
-        startActivity(intent);
+        NavHostFragment.findNavController(MemoryFragmentStart.this)
+                .navigate(R.id.action_startFragmentMemory_to_endFragmentMemory);
     }
-
-
 }

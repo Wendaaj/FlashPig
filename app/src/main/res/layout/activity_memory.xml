@@ -7,6 +7,20 @@
     android:background="@color/background"
     tools:context=".memory.MainActivity_memory">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarMemory"
+        android:layout_width="match_parent"
+        android:layout_height="67dp"
+        android:background="@drawable/memory_bar"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/back_button" />
+
     <fragment
         android:id="@+id/fragment_container"
         android:name="androidx.navigation.fragment.NavHostFragment"
