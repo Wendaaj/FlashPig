@@ -22,16 +22,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <EditText
         android:id="@+id/deckNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:editable="true"
         android:fontFamily="@font/roboto_slab_bold"
-        android:text="@string/Deck_name"
+        android:hint="@string/Deck_name"
+        android:inputType="text"
         android:textColor="#FFFFFF"
-        android:textSize="30sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/pigImageView"
         app:layout_constraintEnd_toEndOf="@+id/editCardToolbar"
@@ -53,7 +53,7 @@
 
 
     <Button
-        android:id="@+id/frontSideButton"
+        android:id="@+id/changeSideButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#00FFFFFF"
@@ -101,11 +101,15 @@
         android:layout_height="35dp"
         android:layout_marginStart="35dp"
         android:layout_marginLeft="35dp"
-        android:background="#D3D3D3"
+        android:orientation="vertical"
+        android:overScrollMode="ifContentScrolls"
+        android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="@+id/addButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/addButton"
-        app:layout_constraintVertical_bias="0.625" />
+        app:layout_constraintVertical_bias="0.625"
+        android:descendantFocusability="blocksDescendants"
+        tools:listitem="@layout/editdeck_spinner_item" />
 
     <ImageButton
         android:id="@+id/addButton"
@@ -130,8 +134,8 @@
         android:layout_marginStart="35dp"
         android:layout_marginLeft="35dp"
         android:layout_marginTop="50dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginRight="25dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginRight="45dp"
         android:foregroundGravity="center"
         android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"

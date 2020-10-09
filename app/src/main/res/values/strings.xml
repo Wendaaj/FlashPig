@@ -15,7 +15,7 @@
 
     <!--String used for editDeck-->
     <string name="flashcard_nr">Flashcard nr</string>
-    <string name="Deck_name">Deck Name</string>
+    <string name="Deck_name">Change Deck Name</string>
     <string name="save_deck">Save Deck</string>
     <string name="amount_cards">Amount Cards</string>
     <string name="add_new_card">add new card</string>
@@ -23,4 +23,7 @@
     <string name="back_side_image">Back side image</string>
     <string name="front_to_back">To Backside</string>
     <string name="back_to_front">To Frontside</string>
+    <string name="edit_spinner_item">Edit</string>
+    <string name="share_spinner_itemr">Share</string>
+    <string name="remove_spinner_item">Remove</string>
 </resources>

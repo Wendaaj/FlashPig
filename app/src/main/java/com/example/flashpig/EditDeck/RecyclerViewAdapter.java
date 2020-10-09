@@ -23,16 +23,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private List<Card> cardsList;
     private ItemClickListener clickListener;
 
+
+
+    public RecyclerViewAdapter(Context context, List<Card> cardsList) {
+        this.cardsList = cardsList;
+
+    }
+
     public Card getCard(int position) {
         return cardsList.get(position);
     }
 
-    public RecyclerViewAdapter(Context context, List<Card> cardsList) {
-        this.cardsList = cardsList;
-    }
-
     /**
      * Used when a new card is added to the recyclerView.
+     *
      * @param parent
      * @param viewType
      * @return
@@ -40,29 +44,28 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @NonNull
     @Override
     public EditCardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.
-                from(parent.getContext()).
-                inflate(R.layout.card, parent, false);
-        return new EditCardViewHolder(itemView);
+        View cardView = LayoutInflater.from(parent.getContext()).inflate(R.layout.card, parent, false);
+        return new EditCardViewHolder(cardView);
     }
 
     /**
      * Adds content on each card.
      * Checks if the front or backside of the cards is showing.
+     *
      * @param holder
      * @param position
      */
     @Override
     public void onBindViewHolder(@NonNull EditCardViewHolder holder, int position) {
         Card card = cardsList.get(position);
-        if(card.isFrontside()){
+        if (card.isFrontside()) {
             holder.frontSideTextView.setText(card.getFrontsideStr());
-        }else{
+        } else {
             holder.frontSideTextView.setText(card.getBacksideStr());
         }
         //set the back and front imageviews also.
-    }
 
+    }
 
 
     @Override
@@ -74,8 +77,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
      * ViewHolder class that holds each card in the recyclerView.
      */
     public class EditCardViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView frontSideTextView, backSideTextView;
-        ImageView frontImageView, backImageView;
+        TextView frontSideTextView;
+        ImageView frontImageView;
 
         /**
          * Class constructor.
@@ -85,12 +88,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
          */
         EditCardViewHolder(View itemView) {
             super(itemView);
-            frontSideTextView = itemView.findViewById(R.id.frontCardTextView);
-            frontImageView = itemView.findViewById(R.id.frontCardImageView);
-            backImageView = itemView.findViewById(R.id.backCardImageView);
+            frontSideTextView = itemView.findViewById(R.id.cardTextView);
+            frontImageView = itemView.findViewById(R.id.cardImageView);
         }
 
-       //in progress...
+
+        //in progress...
 
         @Override
         public void onClick(View view) {
@@ -108,6 +111,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         public interface ItemClickListener {
             void onItemClick(View view, int position);
         }
-    }
+}
 
 
