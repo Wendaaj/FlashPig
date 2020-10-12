@@ -29,15 +29,9 @@ public class FirstFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        view.findViewById(R.id.button_first).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(FirstFragment.this)
-                        .navigate(R.id.action_FirstFragment_to_SecondFragment);
-            }
-        });
 
-        view.findViewById(R.id.flashcard).setOnClickListener(new View.OnClickListener() {
+
+        view.findViewById(R.id.flashcard1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), FlashcardActivity.class);
@@ -46,7 +40,7 @@ public class FirstFragment extends Fragment {
         });
 
 
-        view.findViewById(R.id.memory).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.memory1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), MainActivity_memory.class);
@@ -55,7 +49,7 @@ public class FirstFragment extends Fragment {
             }
         });
 
-        view.findViewById(R.id.pairup).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.pairup1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), activity_pairup.class);
@@ -71,7 +65,7 @@ public class FirstFragment extends Fragment {
                         .navigate(R.id.action_FirstFragment_to_editDeckActivity2);
             }
         });
-        view.findViewById(R.id.createCardButton).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.createCardButton11).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(FirstFragment.this)

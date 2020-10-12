@@ -194,8 +194,7 @@ public class CardFragment extends Fragment {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            //ccImageView.setImageURI(data.getData());
-            //card.EditFrontside(null,image);
+
             hideButtons();
 
         }
