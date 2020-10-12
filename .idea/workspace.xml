@@ -6,12 +6,15 @@
     </shared>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a10b5362-38af-4b38-a15e-312ddc3e47db" name="Default Changelist" comment="">
+    <list default="true" id="41bec473-6a4e-4a8e-94e1-1bd4cc9332d3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/flashpig/Flashcard/FlashcardActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/flashpig/Flashcard/FlashcardActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/flashpig/Flashcard/StartFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/flashpig/Flashcard/StartFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/flashpig/Model/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/flashpig/Model/Card.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/flashpig/Model/Flashcard.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/flashpig/Model/Flashcard.java" afterDir="false" />
+=======
+>>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -423,12 +426,21 @@
       <option name="project" value="LOCAL" />
       <updated>1602227669113</updated>
     </task>
+<<<<<<< Updated upstream
     <task id="LOCAL-00026" summary="Updated methods in Flashcard. to make countdownlogic.">
       <created>1602496517087</created>
       <option name="number" value="00026" />
       <option name="presentableId" value="LOCAL-00026" />
       <option name="project" value="LOCAL" />
       <updated>1602496517087</updated>
+=======
+    <task id="LOCAL-00026" summary="Moved the game logic in fragment to FlashcardViewModel">
+      <created>1602519093473</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1602519093474</updated>
+>>>>>>> Stashed changes
     </task>
     <option name="localTasksCounter" value="27" />
     <servers />
@@ -459,8 +471,13 @@
     <MESSAGE value="merge with master" />
     <MESSAGE value="front to back button and GridSpacingCardDecoration" />
     <MESSAGE value="DeckSpinnerAdapter" />
+<<<<<<< Updated upstream
     <MESSAGE value="Updated methods in Flashcard. to make countdownlogic." />
     <option name="LAST_COMMIT_MESSAGE" value="Updated methods in Flashcard. to make countdownlogic." />
+=======
+    <MESSAGE value="Moved the game logic in fragment to FlashcardViewModel" />
+    <option name="LAST_COMMIT_MESSAGE" value="Moved the game logic in fragment to FlashcardViewModel" />
+>>>>>>> Stashed changes
   </component>
   <component name="WindowStateProjectService">
     <state x="158" y="73" key="#PSD" timestamp="1600068796130">
