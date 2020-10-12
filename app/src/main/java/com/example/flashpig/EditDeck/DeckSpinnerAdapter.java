@@ -1,7 +1,6 @@
 package com.example.flashpig.EditDeck;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,11 +18,11 @@ import com.example.flashpig.R;
 import java.util.ArrayList;
 
 public class DeckSpinnerAdapter extends ArrayAdapter<Deck> {
-
+    ArrayList<Deck> deckArrayList;
 
     public DeckSpinnerAdapter(Context context, ArrayList<Deck> deckArrayList){
         super(context, 0, deckArrayList);
-
+        this.deckArrayList = deckArrayList;
     }
 
     @NonNull
@@ -47,6 +46,20 @@ public class DeckSpinnerAdapter extends ArrayAdapter<Deck> {
         TextView deckName = convertView.findViewById(R.id.deckNameSpinner);
         TextView amountCards = convertView.findViewById(R.id.amountCardsSpinner);
         Button editSpinnerItemBtn = convertView.findViewById(R.id.spinnerEditButton);
+        ConstraintLayout constraintLayout = convertView.findViewById(R.id.spinnerConstraintLayout);
+        Button removeSpinnerItemBtn = convertView.findViewById(R.id.removeSpinnerItemBtn);
+
+
+
+        editSpinnerItemBtn.setOnClickListener(v-> manageVisibility(constraintLayout, deckName, amountCards));
+        removeSpinnerItemBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deckArrayList.remove(position);
+                notifyDataSetChanged();
+                manageVisibility(constraintLayout, deckName, amountCards);
+            }
+        });
 
         Deck currentDeck = getItem(position);
         if(currentDeck != null){
@@ -58,15 +71,29 @@ public class DeckSpinnerAdapter extends ArrayAdapter<Deck> {
                 convertView.setBackgroundColor(0x87CEEBFF);
             }
         }
-
         return convertView;
     }
+
     public void setVisibility(View view){
         Button editSpinnerItemBtn = view.findViewById(R.id.spinnerEditButton);
+        TextView amountCard = view.findViewById(R.id.amountCardsSpinner);
         editSpinnerItemBtn.setVisibility(View.INVISIBLE);
+        amountCard.setVisibility(View.INVISIBLE);
+
     }
-    public void setConstraintVisibility(View view){
-        ConstraintLayout constraintLayout = view.findViewById(R.id.spinnerConstraintLayout);
-        constraintLayout.setVisibility(View.VISIBLE);
+    public void manageVisibility(View constraintLayout, View deckName, View amountCards){
+        if(constraintLayout.getVisibility() == View.INVISIBLE){
+            constraintLayout.setVisibility(View.VISIBLE);
+            deckName.setVisibility(View.INVISIBLE);
+            amountCards.setVisibility(View.INVISIBLE);
+        }else{
+            constraintLayout.setVisibility(View.INVISIBLE);
+            deckName.setVisibility(View.VISIBLE);
+            amountCards.setVisibility(View.VISIBLE);
+        }
+
+    }
+    public void update(){
+
     }
 }

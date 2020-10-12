@@ -25,7 +25,7 @@
             android:layout_marginLeft="55dp"
             android:layout_marginEnd="55dp"
             android:layout_marginRight="55dp"
-            android:background="@android:drawable/ic_menu_edit"
+            android:background="@drawable/ic_baseline_edit_24"
             android:clickable="true"
             android:foregroundGravity="center|center_horizontal"
             android:scaleType="center"
@@ -57,6 +57,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/pig" />
+
+        <Button
+            android:id="@+id/deleteCardBtn"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginRight="4dp"
+            android:background="@drawable/ic_baseline_close_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

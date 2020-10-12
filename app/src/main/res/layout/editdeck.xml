@@ -31,11 +31,16 @@
         android:hint="@string/Deck_name"
         android:inputType="text"
         android:textColor="#FFFFFF"
+        android:textColorHighlight="#FFFFFF"
+        android:textColorLink="#F3ABAB"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
         app:layout_constraintBottom_toTopOf="@+id/pigImageView"
         app:layout_constraintEnd_toEndOf="@+id/editCardToolbar"
-        app:layout_constraintStart_toStartOf="@+id/editCardToolbar" />
+        app:layout_constraintStart_toStartOf="@+id/editCardToolbar"
+         />
 
     <Button
         android:id="@+id/saveDeckButton"

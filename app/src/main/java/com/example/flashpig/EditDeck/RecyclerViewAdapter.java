@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -59,10 +60,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(@NonNull EditCardViewHolder holder, int position) {
         Card card = cardsList.get(position);
         if (card.isFrontside()) {
-            holder.frontSideTextView.setText(card.getFrontsideStr());
+            holder.cardTextView.setText(card.getFrontsideStr());
         } else {
-            holder.frontSideTextView.setText(card.getBacksideStr());
+            holder.cardTextView.setText(card.getBacksideStr());
         }
+        holder.deleteCardBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cardsList.remove(card);
+                notifyDataSetChanged();
+            }
+        });
         //set the back and front imageviews also.
 
     }
@@ -77,8 +85,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
      * ViewHolder class that holds each card in the recyclerView.
      */
     public class EditCardViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView frontSideTextView;
-        ImageView frontImageView;
+        TextView cardTextView;
+        ImageView cardImageView;
+        Button deleteCardBtn;
 
         /**
          * Class constructor.
@@ -88,8 +97,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
          */
         EditCardViewHolder(View itemView) {
             super(itemView);
-            frontSideTextView = itemView.findViewById(R.id.cardTextView);
-            frontImageView = itemView.findViewById(R.id.cardImageView);
+            cardTextView = itemView.findViewById(R.id.cardTextView);
+            cardImageView = itemView.findViewById(R.id.cardImageView);
+            deleteCardBtn = itemView.findViewById(R.id.deleteCardBtn);
         }
 
 
@@ -98,6 +108,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         @Override
         public void onClick(View view) {
             if (clickListener != null) clickListener.onItemClick(view, getAdapterPosition());
+
         }
     }
 
