@@ -15,6 +15,7 @@ public class Flashcard extends GameLogic {
 
     private Deck deck;
     public List<Card> gameDeck = new ArrayList<>();
+    private Card currentCard;
 
     public Flashcard(String title, Deck deck) {
         super(title, deck);
@@ -134,5 +135,9 @@ public class Flashcard extends GameLogic {
     public int getAmountCards(Difficulty difficulty){
         List<Card> cards = getProducts(difficulty);
         return  cards.size();
+    }
+
+    public Card getCurrentCard() {
+        return currentCard = gameDeck.get(0);
     }
 }

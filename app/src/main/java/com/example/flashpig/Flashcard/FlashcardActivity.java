@@ -37,10 +37,11 @@ public class  FlashcardActivity extends AppCompatActivity {
         findViews();
         loadPreferences();
         viewModel = new ViewModelProvider(this).get(FlashcardViewModel.class);
+        viewModel.init();
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        title.setText(viewModel.flashcard.getDeck().getDeckName());
+        title.setText(viewModel.getDeckName());
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

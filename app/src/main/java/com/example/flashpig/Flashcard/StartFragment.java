@@ -9,6 +9,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
@@ -55,48 +56,70 @@ public class StartFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        viewModel = new ViewModelProvider(getActivity()).get(FlashcardViewModel.class);
         findViews(view);
         loadAnimations();
         changeCameraDistance();
-        loadUI();
-        txtBack.setText(viewModel.flashcard.gameDeck.get(0).getBacksideStr()); //Need to set the backside string in the beginning bcuz no animation here.
+        viewModel = new ViewModelProvider(getActivity()).get(FlashcardViewModel.class);
+        viewModel.init();
         cardFront.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 flipCard();
             }
         });
+
+        viewModel.getBackTxt().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                setLeftIn.addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        super.onAnimationEnd(animation);
+                        txtBack.setText(s);
+                    }
+                });
+            }
+        });
+
+        viewModel.getFrontTxt().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                txtFront.setText(s);
+            }
+        });
+
+        viewModel.getEasyAmount().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                easyAmount.setText(s);
+            }
+        });
+
+        viewModel.getMediumAmount().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                mediumAmount.setText(s);
+            }
+        });
+
+        viewModel.getHardAmount().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                hardAmount.setText(s);
+            }
+        });
+
         btnEasy.setOnClickListener(this);
         btnMedium.setOnClickListener(this);
         btnHard.setOnClickListener(this);
-    }
 
-    /**
-     * Checks if the round is over. If not, then load next card. If the round is over, navigate to next fragment.
-     */
-    private void loadUI() {
-        if (!viewModel.flashcard.roundIsOver()) {
-            loadCard();
-        } else {
-            NavHostFragment.findNavController(StartFragment.this)
-                    .navigate(R.id.action_startFragment_to_endFragment);
-        }
-    }
-
-    /**
-     * Updates how many cards are in a specific difficulty and shows the next cards information.
-     */
-    private void loadCard() {
-        easyAmount.setText(Integer.toString(viewModel.flashcard.getAmountCards(Difficulty.EASY)));
-        mediumAmount.setText(Integer.toString(viewModel.flashcard.getAmountCards(Difficulty.MEDIUM)));
-        hardAmount.setText(Integer.toString(viewModel.flashcard.getAmountCards(Difficulty.HARD)));
-        txtFront.setText(viewModel.flashcard.gameDeck.get(0).getFrontsideStr());
-        setLeftIn.addListener(new AnimatorListenerAdapter() {
+        viewModel.getGameOver().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
-            public void onAnimationEnd(Animator animation) {
-                super.onAnimationEnd(animation);
-                txtBack.setText(viewModel.flashcard.gameDeck.get(0).getBacksideStr());
+            public void onChanged(Boolean gameOver) {
+                if (gameOver){
+                    NavHostFragment.findNavController(StartFragment.this)
+                            .navigate(R.id.action_startFragment_to_endFragment);
+                }
             }
         });
     }
@@ -104,27 +127,19 @@ public class StartFragment extends Fragment implements View.OnClickListener {
     /**
      * Check which button is clicked and sets the card to the specific difficulty.
      *
-     * @param v The view.
+     * @param v The clicked button view.
      */
     @Override
     public void onClick(View v) {
-
         switch (v.getId()) {
             case R.id.btn_easy:
-                viewModel.flashcard.addEasyCard(viewModel.flashcard.gameDeck.get(0));
-
-                break;
+                viewModel.setCardsDifficulty(Difficulty.EASY); break;
             case R.id.btn_medium:
-                viewModel.flashcard.addMediumCard(viewModel.flashcard.gameDeck.get(0));
-
-
-                break;
+                viewModel.setCardsDifficulty(Difficulty.MEDIUM); break;
             case R.id.btn_hard:
-                viewModel.flashcard.addHardCard(viewModel.flashcard.gameDeck.get(0));
-                break;
+                viewModel.setCardsDifficulty(Difficulty.HARD); break;
         }
         flipCard();
-        loadUI();
     }
 
     /**
@@ -157,7 +172,7 @@ public class StartFragment extends Fragment implements View.OnClickListener {
     /**
      * Connects the fragments attributes with the views components.
      *
-     * @param view The view.
+     * @param view The respective view.
      */
     private void findViews(View view) {
         txtFront = view.findViewById(R.id.front_txt);
