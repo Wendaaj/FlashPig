@@ -58,30 +58,8 @@ public class ModelTest {
         Assert.assertEquals(card2.getDifficulty(), Difficulty.MEDIUM);
     }
 
-    @Test
-    public void canCreateCardFront(){
-        card4.EditFrontside(null, null);
 
-        card5.EditFrontside("hej", null);
 
-        Assert.assertEquals(card4.getFrontsideStr(),null);
-
-        Assert.assertEquals(card5.getFrontsideStr(),"hej");
-    }
-
-    @Test
-    public void canCreateCardBack(){
-        card4.setFrontside(false);
-        card5.setFrontside(false);
-
-        card4.EditBackside(null, null);
-
-        card5.EditBackside("Hej", null);
-
-        Assert.assertEquals(card4.getBacksideStr(),null);
-
-        Assert.assertEquals(card5.getBacksideStr(),"Hej");
-    }
 
 //Test Deck
     @Test
