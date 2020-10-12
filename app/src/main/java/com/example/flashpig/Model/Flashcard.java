@@ -17,6 +17,8 @@ public class Flashcard extends GameLogic {
     public List<Card> gameDeck = new ArrayList<>();
     private Card currentCard;
 
+
+
     public Flashcard(String title, Deck deck) {
         super(title, deck);
         this.deck = super.deck;
@@ -47,7 +49,9 @@ public class Flashcard extends GameLogic {
      */
     public void addEasyCard(Card card) {
         card.setDifficulty(Difficulty.EASY);
-        gameDeck.remove(card);
+
+       gameDeck.remove(card);
+
         new CountDownTimer(3600000, 1000) {
 
             @Override
@@ -70,6 +74,7 @@ public class Flashcard extends GameLogic {
      */
     public void addMediumCard(Card card) {
         card.setDifficulty(Difficulty.MEDIUM);
+
         gameDeck.remove(card);
         new CountDownTimer(600000, 1000) {
 

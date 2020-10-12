@@ -6,14 +6,22 @@
     </shared>
   </component>
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="41bec473-6a4e-4a8e-94e1-1bd4cc9332d3" name="Default Changelist" comment="">
+=======
+    <list default="true" id="a10b5362-38af-4b38-a15e-312ddc3e47db" name="Default Changelist" comment="Updated methods in Flashcard. to make countdownlogic.">
+>>>>>>> Stashed changes
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
 <<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/flashpig/Flashcard/FlashcardActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/flashpig/Flashcard/FlashcardActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/flashpig/Flashcard/StartFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/flashpig/Flashcard/StartFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/flashpig/Model/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/flashpig/Model/Card.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/flashpig/Model/Flashcard.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/flashpig/Model/Flashcard.java" afterDir="false" />
+<<<<<<< Updated upstream
 =======
+>>>>>>> Stashed changes
+=======
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/com/example/flashpig/ModelTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/com/example/flashpig/ModelTest.java" afterDir="false" />
 >>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -442,12 +450,26 @@
       <updated>1602519093474</updated>
 >>>>>>> Stashed changes
     </task>
+<<<<<<< Updated upstream
     <option name="localTasksCounter" value="27" />
+=======
+    <task id="LOCAL-00027" summary="Deleted ModelTest for editCard.">
+      <created>1602519842659</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1602519842659</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
+>>>>>>> Stashed changes
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+<<<<<<< Updated upstream
     <MESSAGE value="Implemented some methods in Deck" />
+=======
+>>>>>>> Stashed changes
     <MESSAGE value="fixed some errors in deck" />
     <MESSAGE value="deleted stashed thing in card 2.0" />
     <MESSAGE value="deleted stashed thing in card" />
@@ -473,10 +495,16 @@
     <MESSAGE value="DeckSpinnerAdapter" />
 <<<<<<< Updated upstream
     <MESSAGE value="Updated methods in Flashcard. to make countdownlogic." />
+<<<<<<< Updated upstream
     <option name="LAST_COMMIT_MESSAGE" value="Updated methods in Flashcard. to make countdownlogic." />
 =======
+<<<<<<< Updated upstream
     <MESSAGE value="Moved the game logic in fragment to FlashcardViewModel" />
     <option name="LAST_COMMIT_MESSAGE" value="Moved the game logic in fragment to FlashcardViewModel" />
+=======
+    <MESSAGE value="Deleted ModelTest for editCard." />
+    <option name="LAST_COMMIT_MESSAGE" value="Deleted ModelTest for editCard." />
+>>>>>>> Stashed changes
 >>>>>>> Stashed changes
   </component>
   <component name="WindowStateProjectService">
@@ -510,11 +538,19 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="498" y="153" key="AndroidCreateXmlResourceDialog/0.0.1280.680@0.0.1280.680" timestamp="1601365204786" />
+<<<<<<< Updated upstream
     <state x="306" y="23" key="CommitChangelistDialog2" timestamp="1602519758527">
       <screen x="0" y="23" width="1280" height="674" />
     </state>
     <state x="306" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1602228079498" />
     <state x="306" y="23" key="CommitChangelistDialog2/0.23.1280.674@0.23.1280.674" timestamp="1602519758527" />
+=======
+    <state x="306" y="23" key="CommitChangelistDialog2" timestamp="1602519842253">
+      <screen x="0" y="23" width="1280" height="674" />
+    </state>
+    <state x="306" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1602228079498" />
+    <state x="306" y="23" key="CommitChangelistDialog2/0.23.1280.674@0.23.1280.674" timestamp="1602519842253" />
+>>>>>>> Stashed changes
     <state x="306" y="23" key="CommitChangelistDialog2/0.23.1280.678@0.23.1280.678" timestamp="1602496516611" />
     <state x="421" y="96" key="FileChooserDialogImpl" timestamp="1601651290520">
       <screen x="0" y="0" width="1280" height="680" />
@@ -588,10 +624,18 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="103" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1601659297863" />
+<<<<<<< Updated upstream
     <state x="233" y="97" key="Vcs.Push.Dialog.v2" timestamp="1602496519102">
       <screen x="0" y="23" width="1280" height="678" />
     </state>
     <state x="233" y="74" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1602227671738" />
+=======
+    <state x="233" y="97" key="Vcs.Push.Dialog.v2" timestamp="1602519844717">
+      <screen x="0" y="23" width="1280" height="674" />
+    </state>
+    <state x="233" y="74" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1602227671738" />
+    <state x="233" y="97" key="Vcs.Push.Dialog.v2/0.23.1280.674@0.23.1280.674" timestamp="1602519844717" />
+>>>>>>> Stashed changes
     <state x="233" y="97" key="Vcs.Push.Dialog.v2/0.23.1280.678@0.23.1280.678" timestamp="1602496519102" />
     <state x="452" y="119" key="chooseDestDirectoryDialog" timestamp="1601621130740">
       <screen x="0" y="0" width="1280" height="680" />

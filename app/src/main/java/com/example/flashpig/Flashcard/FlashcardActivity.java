@@ -20,6 +20,7 @@ import java.util.Objects;
  * The flashcard activity.
  *
  * @author wendy
+ *
  * @version 2020-10-04
  */
 public class  FlashcardActivity extends AppCompatActivity {

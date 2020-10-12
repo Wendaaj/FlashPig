@@ -40,7 +40,7 @@ public class StartFragment extends Fragment implements View.OnClickListener {
     private Button btnEasy, btnMedium, btnHard;
     private AnimatorSet setRightOut, setLeftIn;
     private boolean isBackVisible = false;
-    Card card;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -204,6 +204,7 @@ public class StartFragment extends Fragment implements View.OnClickListener {
         cardFront.setCameraDistance(scale);
         cardBack.setCameraDistance(scale);
     }
+
 
 
 }

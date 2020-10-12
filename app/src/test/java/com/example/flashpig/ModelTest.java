@@ -32,7 +32,6 @@ public class ModelTest {
             null);
 
 
-    //Tests for FlashcardProgess
     @Test
     public void canShowCardsAfterDifficulty() {
         deck.addCard(card1);

@@ -19,6 +19,7 @@ public class Card {
     private Bitmap backImg;
     private Enum difficulty;
 
+
     /**
      * Card constructor
      *
@@ -37,30 +38,7 @@ public class Card {
 
 
 
-    /*
-    public void EditFrontside(String str, Bitmap img) {
 
-        if (this.isFrontside && str != null && !str.equals("")){
-            this.frontsideStr = str;
-        }
-
-        this.frontImg = img;
-
-
-
-
-}*/
-
-
-    /*public void EditBackside(String str, Bitmap img){
-        if (!this.isFrontside && str != null && !str.equals("")){
-            this.backsideStr = str;
-        }
-
-        this.backImg = img;
-
-}
-*/
 
     public void setFrontsideStr(String frontsideStr) {
         this.frontsideStr = frontsideStr;
@@ -116,5 +94,7 @@ public class Card {
     public void setDifficulty(Enum difficulty) {
         this.difficulty = difficulty;
     }
+
+
 
 }
