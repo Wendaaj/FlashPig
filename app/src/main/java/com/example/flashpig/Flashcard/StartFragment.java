@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,8 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.example.flashpig.Model.Card;
+import com.example.flashpig.Model.Deck;
 import com.example.flashpig.Model.Difficulty;
 import com.example.flashpig.R;
 
@@ -36,6 +39,7 @@ public class StartFragment extends Fragment implements View.OnClickListener {
     private Button btnEasy, btnMedium, btnHard;
     private AnimatorSet setRightOut, setLeftIn;
     private boolean isBackVisible = false;
+    Card card;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -74,7 +78,7 @@ public class StartFragment extends Fragment implements View.OnClickListener {
     private void loadUI() {
         if (!viewModel.flashcard.roundIsOver()) {
             loadCard();
-        }else {
+        } else {
             NavHostFragment.findNavController(StartFragment.this)
                     .navigate(R.id.action_startFragment_to_endFragment);
         }
@@ -99,16 +103,21 @@ public class StartFragment extends Fragment implements View.OnClickListener {
 
     /**
      * Check which button is clicked and sets the card to the specific difficulty.
+     *
      * @param v The view.
      */
     @Override
     public void onClick(View v) {
+
         switch (v.getId()) {
             case R.id.btn_easy:
                 viewModel.flashcard.addEasyCard(viewModel.flashcard.gameDeck.get(0));
+
                 break;
             case R.id.btn_medium:
                 viewModel.flashcard.addMediumCard(viewModel.flashcard.gameDeck.get(0));
+
+
                 break;
             case R.id.btn_hard:
                 viewModel.flashcard.addHardCard(viewModel.flashcard.gameDeck.get(0));
@@ -147,6 +156,7 @@ public class StartFragment extends Fragment implements View.OnClickListener {
 
     /**
      * Connects the fragments attributes with the views components.
+     *
      * @param view The view.
      */
     private void findViews(View view) {
@@ -179,4 +189,6 @@ public class StartFragment extends Fragment implements View.OnClickListener {
         cardFront.setCameraDistance(scale);
         cardBack.setCameraDistance(scale);
     }
+
+
 }

@@ -22,7 +22,7 @@ import java.util.Objects;
  * @author wendy
  * @version 2020-10-04
  */
-public class FlashcardActivity extends AppCompatActivity {
+public class  FlashcardActivity extends AppCompatActivity {
     private FlashcardViewModel viewModel;
     private ConstraintLayout quitView;
     private Toolbar toolbar;

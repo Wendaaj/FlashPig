@@ -37,7 +37,9 @@ public class Deck {
     public void addCard(Card card) {
         if(!deckContainsCard(card)){
             cards.add(card);
-        } //fix error message
+
+        }
+       //fix error message
     }
 
     /**

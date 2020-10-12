@@ -1,13 +1,14 @@
 package com.example.flashpig.Model;
 
+import android.os.CountDownTimer;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 /**
  * A flashcard game.
- *
- * @author wendy
+ *@author wendy
  * @version 2020-09-17
  */
 public class Flashcard extends GameLogic {
@@ -34,6 +35,11 @@ public class Flashcard extends GameLogic {
         }
     }
 
+    public void addCardToMain(Card card) {
+        gameDeck.add(gameDeck.size(),card);
+        //Timekeeper set to 10 hours
+    }
+
     /**
      * Sets the picked card to easy.
      * @param card The current card.
@@ -41,7 +47,20 @@ public class Flashcard extends GameLogic {
     public void addEasyCard(Card card) {
         card.setDifficulty(Difficulty.EASY);
         gameDeck.remove(card);
-        //Timekeeper set to 10 hours
+        new CountDownTimer(3600000, 1000) {
+
+            @Override
+            public void onTick(long l) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                addCardToMain(card);
+
+            }
+        }.start();
+
     }
 
     /**
@@ -51,8 +70,22 @@ public class Flashcard extends GameLogic {
     public void addMediumCard(Card card) {
         card.setDifficulty(Difficulty.MEDIUM);
         gameDeck.remove(card);
+        new CountDownTimer(600000, 1000) {
+
+
+            @Override
+            public void onTick(long l) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                addCardToMain(card);
+
+            }
+        }.start();
     }
-    //Timekeeper set to 10 min
+
 
     /**
      * Sets the picked card to hard.
