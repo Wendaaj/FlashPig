@@ -59,6 +59,7 @@ public class StartFragment extends Fragment implements View.OnClickListener {
         findViews(view);
         loadAnimations();
         changeCameraDistance();
+
         viewModel = new ViewModelProvider(getActivity()).get(FlashcardViewModel.class);
         viewModel.init();
         cardFront.setOnClickListener(new View.OnClickListener() {

@@ -7,7 +7,7 @@
     tools:context=".FirstFragment">
 
     <Spinner
-        android:id="@+id/chooseDeckSpinner3"
+        android:id="@+id/chooseDeckSpinner"
         android:layout_width="280dp"
         android:layout_height="35dp"
         android:layout_marginStart="35dp"

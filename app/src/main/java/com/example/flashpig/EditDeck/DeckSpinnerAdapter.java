@@ -51,6 +51,7 @@ public class DeckSpinnerAdapter extends ArrayAdapter<Deck> {
 
 
 
+
         editSpinnerItemBtn.setOnClickListener(v-> manageVisibility(constraintLayout, deckName, amountCards));
         removeSpinnerItemBtn.setOnClickListener(new View.OnClickListener() {
             @Override
