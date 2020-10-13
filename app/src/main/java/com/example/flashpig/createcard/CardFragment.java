@@ -37,6 +37,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 
+/**
+ * The controller that connects the card model with the views.
+ *
+ * @author Jesper
+ * @version 2020-10-12
+ */
+
 public class CardFragment extends Fragment {
     public static final int CAMERA_PERM_CODE = 101;
     public static final int CAMERA_REQUEST_CODE = 102;
@@ -76,7 +83,7 @@ public class CardFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.cardcreatefront, container, false);
     }
 
@@ -152,12 +159,19 @@ public class CardFragment extends Fragment {
 
     }
 
+    /**
+     * Sends indent to choose image from gallery.
+     */
+
     private void pickImageFromGallery() {
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
         startActivityForResult(intent, IMAGE_PICK_CODE);
     }
 
+    /**
+     * Ask permission to use camera if permission is not granted message about it will show.
+     */
     private void askCameraPermission() {
         if(ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA)
                 != PackageManager.PERMISSION_GRANTED){
@@ -168,10 +182,21 @@ public class CardFragment extends Fragment {
         }
     }
 
+    /**
+     * Opens camera if permission is granted to do so.
+     */
     private void openCamera() {
         Intent camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(camera, CAMERA_REQUEST_CODE);
     }
+
+    /**
+     * Check which button is clicked and sets the card to the specific difficulty.
+     *
+     * @param requestCode
+     * @param resultCode are matched to either convert picture from camera or gallery.
+     *
+     */
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -198,18 +223,7 @@ public class CardFragment extends Fragment {
             hideButtons();
 
         }
-        /*if(requestCode == CAMERA_REQUEST_CODE && !card.isFrontside()){
-            Bitmap image = (Bitmap) data.getExtras().get("data");
-            ccImageView.setImageBitmap(image);
 
-            hideButtons();
-
-        }
-        if(requestCode == IMAGE_PICK_CODE && !card.isFrontside()){
-            ccImageView.setImageURI(data.getData());
-            hideButtons();
-
-        } */
     }
 
 
@@ -218,7 +232,14 @@ public class CardFragment extends Fragment {
 
 
 
-
+    /**
+     * Check which button is clicked and sets the card to the specific difficulty.
+     *
+     * @param requestCode is checked to either give access to camera or gallery
+     * or show toast that permission failed.
+     *
+     *
+     */
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -242,6 +263,12 @@ public class CardFragment extends Fragment {
         }
     }
 
+    /**
+     * Connects the fragments attributes with the views components.
+     *
+     * @param view The respective view.
+     */
+
     private void findViews(View view){
         ccCardn = view.findViewById(R.id.cardNumber);
         ccTextTop = view.findViewById(R.id.textViewccfront2);
@@ -262,14 +289,16 @@ public class CardFragment extends Fragment {
 
     private  void loadUI(){
         enableFront(true);
-        ccCardn.setText("Add frontside nr" + currentCard);
+        ccCardn.setText("Add frontside nr: " + currentCard);
         ccTextTop.setText("Deck name");
     }
 
     private void loadCard(int i) {
 
     }
-
+    /**
+     * Setting visibility of components depending on side of card.
+     */
     private void enableFront(boolean bol) {
         if (bol) {
             ccButtonback2.setVisibility(View.INVISIBLE);
@@ -299,6 +328,9 @@ public class CardFragment extends Fragment {
 
         }
     }
+    /**
+     * Setting visibility of components depending on picture imported or not.
+     */
     private void hideButtons(){
         ccGalleryButton.setVisibility(View.INVISIBLE);
         ccCameraButton.setVisibility(View.INVISIBLE);
