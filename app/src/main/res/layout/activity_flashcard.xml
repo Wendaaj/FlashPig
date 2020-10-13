@@ -28,7 +28,7 @@
         app:navigationIcon="@drawable/back_button">
 
         <TextView
-            android:id="@+id/txt_title"
+            android:id="@+id/flashcardTitle"
             android:layout_width="260dp"
             android:layout_height="match_parent"
             android:fontFamily="@font/roboto_slab_bold"

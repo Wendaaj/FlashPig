@@ -19,7 +19,6 @@ public class MainActivity_memory extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_memory);
 
-
         toolbar = findViewById(R.id.toolbarMemory);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);

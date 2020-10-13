@@ -33,13 +33,15 @@ public class PairUp extends GameLogic implements MemoryPairUpLogic {
     /**
      * Method to check if it is end of game
      *
+     * @return
      */
 
     @Override
-    public void isEndOfGame(int deckSize) {
+    public boolean isEndOfGame(int deckSize) {
         if (deckSize == 0) {
-            gameWon(deck);
+            return true;
         }
+        return false;
     }
 }
 

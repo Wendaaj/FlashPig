@@ -10,8 +10,6 @@ import android.widget.TextView;
 
 import com.example.flashpig.R;
 
-import java.util.Objects;
-
 public class FlashcardActivity extends AppCompatActivity {
     FlashcardViewModel viewModel;
     Toolbar toolbar;
@@ -33,7 +31,7 @@ public class FlashcardActivity extends AppCompatActivity {
         });
 
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        title = findViewById(R.id.txt_title);
+        title = findViewById(R.id.flashcardTitle);
         title.setText(viewModel.flashcard.getDeck().getDeckName());
     }
 }

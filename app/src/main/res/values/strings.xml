@@ -21,4 +21,9 @@
     <string name="home">Home</string>
     <string name="play_again">Play again</string>
 
+    <!-- Strings used for Memory -->
+    <string name="Memory">Memory</string>
+
+
+
 </resources>

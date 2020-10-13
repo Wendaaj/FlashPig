@@ -19,9 +19,10 @@ public interface MemoryPairUpLogic {
     /**
      * Method to check if it is a match
      *
+     * @return
      */
 
-    void isEndOfGame(int deckSize);
+    boolean isEndOfGame(int deckSize);
     }
 
    

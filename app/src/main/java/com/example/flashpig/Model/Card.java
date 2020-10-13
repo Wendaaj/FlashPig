@@ -1,6 +1,14 @@
 package com.example.flashpig.Model;
 
 import android.media.Image;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+
 /**
  * Class for card.
  * @author Jesper
@@ -32,6 +40,38 @@ public class Card {
         setFrontside(true);
     }
 
+    /**
+     * copy constructor for deep copy
+     * @param copiedCard
+     * @return
+     */
+
+    /*public Card Card (Card copiedCard){
+        //create new instance
+        Card newCard = new Card(0, "hej", "då", null,
+                null);
+
+        //copy instance values
+        newCard.id = copiedCard.id;
+        newCard.frontsideStr = copiedCard.frontsideStr;
+        newCard.backsideStr = copiedCard.backsideStr;
+        newCard.frontImg = copiedCard.frontImg;
+        newCard.backImg = copiedCard.backImg;
+
+        //return copy
+        return newCard;
+    }
+
+    /*public Card makeClone() throws IOException, ClassNotFoundException {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        ObjectOutputStream out = new ObjectOutputStream(outputStream);
+        out.writeObject(this);
+
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(outputStream.toByteArray());
+        ObjectInputStream in = new ObjectInputStream(inputStream);
+        Card copied = (Card) in.readObject();
+        return copied;
+    }*/
 
 
     /**
@@ -47,9 +87,6 @@ public class Card {
         }
 
         this.frontImg = img;
-
-
-
 
 }
 
