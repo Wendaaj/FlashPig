@@ -128,6 +128,7 @@ public class MemoryFragmentStart extends Fragment implements memoryRecyclerViewA
                     endGame();
                 }else {
                     loadNewCards();
+
                 }
             }
             else {
