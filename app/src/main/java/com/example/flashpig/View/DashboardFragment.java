@@ -78,7 +78,6 @@ public class DashboardFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), MainActivity_memory.class);
                 startActivity(intent);
-
             }
         });
 
