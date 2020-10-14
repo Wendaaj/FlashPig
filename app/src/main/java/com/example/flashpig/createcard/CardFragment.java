@@ -94,6 +94,7 @@ public class CardFragment extends Fragment {
         findViews(view);
         loadUI();
         card = new Card(rand.nextInt(), null, null, null, null);
+        
 
 
         ccButtonfront.setOnClickListener(new View.OnClickListener(){
@@ -105,20 +106,22 @@ public class CardFragment extends Fragment {
                 enableFront(false);
                 ccImageView.setImageURI(null);
                 ccImageView.setImageBitmap(null);
-                ccCardn.setText("Add backside nr" + currentCard);
+                ccCardn.setText("Add backside nr: " + currentCard);
             }
         });
 
         ccButtonback2.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+
                 textBack = ccTextinput.getEditText().getText().toString();
                 ccTextinput.getEditText().getText().clear();
+                card = new Card(rand.nextInt(), null, null, null, null);
                 enableFront(true);
                 currentCard+=1;
                 ccImageView.setImageURI(null);
                 ccImageView.setImageBitmap(null);
-                ccCardn.setText("Add frontside nr" + currentCard);
+                ccCardn.setText("Add frontside nr: " + currentCard);
             }
         });
 
