@@ -6,6 +6,8 @@ import android.net.Uri;
 
 import com.example.flashpig.R;
 
+import org.parceler.Parcel;
+
 import java.util.Random;
 
 /**
@@ -13,16 +15,16 @@ import java.util.Random;
  * @author Jesper
  * @version 2020-09-14l
  */
-
+@Parcel
 public class Card {
-    private Random rand = new Random();
-    private int id;
-    private boolean isFrontside;
-    private String frontsideStr;
-    private String backsideStr;
-    private Bitmap frontImg;
-    private Bitmap backImg;
-    private Enum difficulty;
+    Random rand = new Random();
+    int id;
+    boolean isFrontside;
+    String frontsideStr;
+    String backsideStr;
+    Bitmap frontImg;
+    Bitmap backImg;
+    Enum difficulty;
 
 
     /**
@@ -32,18 +34,9 @@ public class Card {
 
     public Card() {
         this.id = rand.nextInt(); //check if already exist
-        /*
-        this.frontsideStr = frontsideStr;
-        this.backsideStr = backsideStr;
-        this.frontImg = frontImg;
-        this.backImg = backImg;
-         */
         setDifficulty(Difficulty.NOTHING);
         setFrontside(true);
     }
-
-
-
 
 
     public void setFrontsideStr(String frontsideStr) {

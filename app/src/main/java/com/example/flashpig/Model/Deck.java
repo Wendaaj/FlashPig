@@ -1,5 +1,7 @@
 package com.example.flashpig.Model;
 
+import org.parceler.Parcel;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -10,6 +12,7 @@ import java.util.Random;
  * @author Salvija Zelvyte.
  * @version 2020-09-17
  */
+@Parcel
 public class Deck {
     public List<Card> cards = new ArrayList<>();
     public int deckId;
