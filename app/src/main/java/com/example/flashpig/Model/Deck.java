@@ -14,13 +14,13 @@ import java.util.Random;
  */
 @Parcel
 public class Deck {
-    public int deckId;
+    int deckId;
     public List<Card> cards = new ArrayList<>();
-    private String deckName;
-    private int amountcards;
-    private boolean deckNotEmpty;
+    String deckName;
+    int amountcards;
+    boolean deckNotEmpty;
     public boolean isFrontside = true;
-    private Random rand = new Random();
+    Random rand = new Random();
 
     /**
      * Class constructor
@@ -28,6 +28,15 @@ public class Deck {
     public Deck() {
         this.deckId = rand.nextInt(); //Check if id already exist.
     }
+
+    public Deck(String deckName, int deckId) {
+        this.deckName = deckName;
+        this.deckId = deckId;
+
+    }
+
+
+
 
     public void setFrontside() {
         if (isFrontside) {

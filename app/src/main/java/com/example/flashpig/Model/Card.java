@@ -38,6 +38,17 @@ public class Card {
         setFrontside(true);
     }
 
+    public Card(int id, String frontsideStr, String backsideStr,
+                Bitmap frontImg, Bitmap backImg) {
+        this.id = id;
+        this.frontsideStr = frontsideStr;
+        this.backsideStr = backsideStr;
+        this.frontImg = frontImg;
+        this.backImg = backImg;
+        setDifficulty(Difficulty.NOTHING);
+        setFrontside(true);
+    }
+
 
     public void setFrontsideStr(String frontsideStr) {
         this.frontsideStr = frontsideStr;
