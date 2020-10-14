@@ -4,9 +4,6 @@ package com.example.flashpig;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
-import com.example.flashpig.Flashcard.FlashcardActivity;
 import com.example.flashpig.Model.Card;
 import com.example.flashpig.Model.Deck;
 import com.example.flashpig.Model.Difficulty;

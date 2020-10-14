@@ -1,4 +1,4 @@
-package com.example.flashpig.Flashcard;
+package com.example.flashpig.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -7,18 +7,15 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Parcel;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
-import com.example.flashpig.Model.Deck;
+import com.example.flashpig.ViewModel.FlashcardViewModel;
 import com.example.flashpig.R;
 
 import org.parceler.Parcels;
-
-import java.util.Objects;
 
 /**
  * The flashcard activity.

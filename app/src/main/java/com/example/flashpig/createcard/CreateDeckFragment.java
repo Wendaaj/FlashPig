@@ -1,8 +1,4 @@
 package com.example.flashpig.createcard;
-import com.example.flashpig.Model.Deck;
-import android.Manifest;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +13,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.flashpig.FirstFragment;
 import com.example.flashpig.R;
 import com.google.android.material.textfield.TextInputLayout;
 import java.util.Random;

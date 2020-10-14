@@ -1,8 +1,7 @@
-package com.example.flashpig;
+package com.example.flashpig.View;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcel;
 import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +15,8 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.flashpig.EditDeck.DeckSpinnerAdapter;
-import com.example.flashpig.Flashcard.FlashcardActivity;
+import com.example.flashpig.FakeDataBase;
+import com.example.flashpig.R;
 import com.example.flashpig.Model.Deck;
 import com.example.flashpig.memory.MainActivity_memory;
 import com.example.flashpig.pairup.activity_pairup;
@@ -24,7 +24,7 @@ import com.example.flashpig.pairup.activity_pairup;
 import org.parceler.Parcels;
 
 
-public class FirstFragment extends Fragment {
+public class DashboardFragment extends Fragment {
     private DeckSpinnerAdapter spinnerAdapter;
     private Spinner deckSpinner;
     private Deck choosenDeck;
@@ -87,7 +87,7 @@ public class FirstFragment extends Fragment {
         view.findViewById(R.id.editDeckBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(FirstFragment.this)
+                NavHostFragment.findNavController(DashboardFragment.this)
                         .navigate(R.id.action_FirstFragment_to_editDeckActivity2);
             }
         });
@@ -95,7 +95,7 @@ public class FirstFragment extends Fragment {
         view.findViewById(R.id.createCardButton11).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(FirstFragment.this)
+                NavHostFragment.findNavController(DashboardFragment.this)
                         .navigate(R.id.action_FirstFragment_to_createDeckFragment);
             }
         });

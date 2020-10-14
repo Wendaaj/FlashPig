@@ -1,4 +1,4 @@
-package com.example.flashpig.Flashcard;
+package com.example.flashpig.View;
 
 import android.animation.Animator;
 import android.animation.AnimatorInflater;
@@ -13,7 +13,6 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
-import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,8 +20,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import com.example.flashpig.Model.Card;
-import com.example.flashpig.Model.Deck;
+import com.example.flashpig.ViewModel.FlashcardViewModel;
 import com.example.flashpig.Model.Difficulty;
 import com.example.flashpig.R;
 
@@ -32,7 +30,7 @@ import com.example.flashpig.R;
  * @author wendy
  * @version 2020-10-04
  */
-public class StartFragment extends Fragment implements View.OnClickListener {
+public class FlashcardStartFragment extends Fragment implements View.OnClickListener {
 
     private FlashcardViewModel viewModel;
     private TextView txtBack, txtFront, easyAmount, mediumAmount, hardAmount;
@@ -116,7 +114,7 @@ public class StartFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onChanged(Boolean gameOver) {
                 if (gameOver){
-                    NavHostFragment.findNavController(StartFragment.this)
+                    NavHostFragment.findNavController(FlashcardStartFragment.this)
                             .navigate(R.id.action_startFragment_to_endFragment);
                 }
             }

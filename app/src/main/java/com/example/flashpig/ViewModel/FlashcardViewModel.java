@@ -1,4 +1,4 @@
-package com.example.flashpig.Flashcard;
+package com.example.flashpig.ViewModel;
 
 
 import androidx.lifecycle.LiveData;

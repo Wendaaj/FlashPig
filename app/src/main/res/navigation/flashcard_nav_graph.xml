@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/startFragment"
-        android:name="com.example.flashpig.Flashcard.StartFragment"
+        android:name="com.example.flashpig.View.FlashcardStartFragment"
         android:label="fragment_start"
         tools:layout="@layout/fragment_start" >
         <action
@@ -22,7 +22,7 @@
 
     <fragment
         android:id="@+id/endFragment"
-        android:name="com.example.flashpig.Flashcard.EndFragment"
+        android:name="com.example.flashpig.View.FlashcardEndFragment"
         android:label="fragment_end"
         tools:layout="@layout/fragment_end" >
         <action
@@ -38,7 +38,7 @@
     </fragment>
     <activity
         android:id="@+id/mainActivity"
-        android:name="com.example.flashpig.MainActivity"
+        android:name="com.example.flashpig.View.MainActivity"
         android:label="activity_main"
         tools:layout="@layout/activity_main" />
 </navigation>
