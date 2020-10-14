@@ -4,20 +4,27 @@ import android.graphics.Bitmap;
 import android.media.Image;
 import android.net.Uri;
 
+import com.example.flashpig.R;
+
+import org.parceler.Parcel;
+
+import java.util.Random;
+
 /**
  * Class for card.
  * @author Jesper
  * @version 2020-09-14l
  */
-
+@Parcel
 public class Card {
-    private int id;
-    private boolean isFrontside;
-    private String frontsideStr;
-    private String backsideStr;
-    private Bitmap frontImg;
-    private Bitmap backImg;
-    private Enum difficulty;
+    Random rand = new Random();
+    int id;
+    boolean isFrontside;
+    String frontsideStr;
+    String backsideStr;
+    Bitmap frontImg;
+    Bitmap backImg;
+    Enum difficulty;
 
 
     /**
@@ -25,19 +32,11 @@ public class Card {
      *
      */
 
-    public Card(int id, String frontsideStr, String backsideStr,
-                Bitmap frontImg, Bitmap backImg) {
-        this.id = id;
-        this.frontsideStr = frontsideStr;
-        this.backsideStr = backsideStr;
-        this.frontImg = frontImg;
-        this.backImg = backImg;
+    public Card() {
+        this.id = rand.nextInt(); //check if already exist
         setDifficulty(Difficulty.NOTHING);
         setFrontside(true);
     }
-
-
-
 
 
     public void setFrontsideStr(String frontsideStr) {

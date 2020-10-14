@@ -70,16 +70,12 @@ public class FlashcardViewModel extends ViewModel {
         update();
     }
 
-    private Deck fillDeck() {
-        Deck deck = new Deck("Madematik", rand.nextInt());
-        deck.addCard(new Card(rand.nextInt(),"Vad betyder bae på danska?",
-                "Madde",null,null));
-        deck.addCard(new Card(rand.nextInt(), "Efter vem uppkom namnet Madematik?",
-                "SMÄQ",null,null));
-        deck.addCard(new Card(rand.nextInt(), "Lever Smäq upp till sitt namn Madematik?",
-                "Man kan aldrig vara för smart.",null, null));
-        deck.addCard(new Card(rand.nextInt(), "Kommer Smäq slakta tentorna?",
-                "OM hon kommer", null,null));
+    private Deck fillDeck() {/*
+        Deck deck = new Deck();
+        deck.addCard(new Card());
+        deck.addCard(new Card();
+        deck.addCard(new Card();
+        deck.addCard(new Card();*/
         return deck;
     }
 

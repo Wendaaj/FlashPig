@@ -68,7 +68,11 @@
         android:id="@+id/cardFragment"
         android:name="com.example.flashpig.createcard.CardFragment"
         android:label="cardcreatefront"
-        tools:layout="@layout/cardcreatefront" />
+        tools:layout="@layout/cardcreatefront" >
+        <action
+            android:id="@+id/action_cardFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
+    </fragment>
     <fragment
         android:id="@+id/createDeckFragment"
         android:name="com.example.flashpig.createcard.CreateDeckFragment"

@@ -17,6 +17,8 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
+
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
@@ -36,6 +38,13 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
+
+/**
+ * The controller that connects the card model with the views.
+ *
+ * @author Jesper
+ * @version 2020-10-12
+ */
 
 public class CardFragment extends Fragment {
     public static final int CAMERA_PERM_CODE = 101;
@@ -58,10 +67,10 @@ public class CardFragment extends Fragment {
     private Button ccButtonback2;
     private ImageView ccImageView;
 
-    Random rand = new Random();
     private int currentCard = 1;
     private CardViewModel viewModel;
     public Card card;
+    private boolean isFront = true;
 
     private String textFront;
     private String textBack;
@@ -76,7 +85,7 @@ public class CardFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.cardcreatefront, container, false);
     }
 
@@ -84,34 +93,71 @@ public class CardFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         viewModel = new ViewModelProvider(getActivity()).get(CardViewModel.class);
+        viewModel.initCard();
         findViews(view);
         loadUI();
-        card = new Card(rand.nextInt(), null, null, null, null);
+        //card = new Card(rand.nextInt(), null, null, null, null);
+        //action_cardFragment_to_FirstFragment
 
 
         ccButtonfront.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                card.setFrontsideStr(ccTextinput.getEditText().getText().toString());
-                textFront = ccTextinput.getEditText().getText().toString();
-                ccTextinput.getEditText().getText().clear();
-                enableFront(false);
-                ccImageView.setImageURI(null);
-                ccImageView.setImageBitmap(null);
-                ccCardn.setText("Add backside nr" + currentCard);
+                String inputText = ccTextinput.getEditText().getText().toString();
+                if (!inputText.isEmpty()||ccImageView.getDrawable()!=null) {
+                    //card.setFrontsideStr(ccTextinput.getEditText().getText().toString());
+                    viewModel.setFrontStr(inputText);
+                    ccTextinput.getEditText().getText().clear();
+                    isFront = false;
+                    enableFront();
+                    ccImageView.setImageDrawable(null);
+                    ccCardn.setText("Add backside nr: " + currentCard);
+                }else{
+                    Toast.makeText(getActivity(), "Please fill that front with something! OINK! OINK!",
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         });
+
+        ccButtonback1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String inputText = ccTextinput.getEditText().getText().toString();
+                if (!inputText.isEmpty()||ccImageView.getDrawable()!=null){
+                    viewModel.setBackStr(inputText);
+                    ccTextinput.getEditText().getText().clear();
+                    ccImageView.setImageDrawable(null);
+                    ccCardn.setText("Add frontside nr: " + currentCard);
+                    NavHostFragment.findNavController(CardFragment.this)
+                            .navigate(R.id.action_cardFragment_to_FirstFragment);
+                }else{
+                    Toast.makeText(getActivity(), "Please fill that ham with something! OINK! OINK!",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
 
         ccButtonback2.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                textBack = ccTextinput.getEditText().getText().toString();
-                ccTextinput.getEditText().getText().clear();
-                enableFront(true);
-                currentCard+=1;
-                ccImageView.setImageURI(null);
-                ccImageView.setImageBitmap(null);
-                ccCardn.setText("Add frontside nr" + currentCard);
+                String inputText = ccTextinput.getEditText().getText().toString();
+
+                if (!inputText.isEmpty()||ccImageView.getDrawable()!=null){
+                    viewModel.setBackStr(inputText);
+                    //card.setBacksideStr(ccTextinput.getEditText().getText().toString());
+                    ccTextinput.getEditText().getText().clear();
+                    //card = new Card(rand.nextInt(), null, null, null, null);
+                    isFront = true;
+                    enableFront();
+                    currentCard += 1;
+                    ccImageView.setImageDrawable(null);
+                    ccCardn.setText("Add frontside nr: " + currentCard);
+                }else{
+                    Toast.makeText(getActivity(), "Please fill that ham with something! OINK! OINK!",
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -152,12 +198,19 @@ public class CardFragment extends Fragment {
 
     }
 
+    /**
+     * Sends indent to choose image from gallery.
+     */
+
     private void pickImageFromGallery() {
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
         startActivityForResult(intent, IMAGE_PICK_CODE);
     }
 
+    /**
+     * Ask permission to use camera if permission is not granted message about it will show.
+     */
     private void askCameraPermission() {
         if(ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA)
                 != PackageManager.PERMISSION_GRANTED){
@@ -168,19 +221,35 @@ public class CardFragment extends Fragment {
         }
     }
 
+    /**
+     * Opens camera if permission is granted to do so.
+     */
     private void openCamera() {
         Intent camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(camera, CAMERA_REQUEST_CODE);
     }
+
+    /**
+     * Check which button is clicked and sets the card to the specific difficulty.
+     *
+     * @param requestCode
+     * @param resultCode are matched to either convert picture from camera or gallery.
+     *
+     */
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if(requestCode == CAMERA_REQUEST_CODE){
             Bitmap image = (Bitmap) data.getExtras().get("data");
             ccImageView.setImageBitmap(image);
-            card.setFrontImg(image);
-
             hideButtons();
+            if(isFront){
+                viewModel.setFrontImg(image);
+            }
+            else{
+                viewModel.setBackImg(image);
+            }
+
 
         }
         if(requestCode == IMAGE_PICK_CODE){
@@ -189,7 +258,12 @@ public class CardFragment extends Fragment {
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imageUri);
                 ccImageView.setImageBitmap(bitmap);
-                card.setFrontImg(bitmap);
+                if(isFront){
+                    viewModel.setFrontImg(bitmap);
+                }
+                else{
+                    viewModel.setBackImg(bitmap);
+                }
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -198,18 +272,7 @@ public class CardFragment extends Fragment {
             hideButtons();
 
         }
-        /*if(requestCode == CAMERA_REQUEST_CODE && !card.isFrontside()){
-            Bitmap image = (Bitmap) data.getExtras().get("data");
-            ccImageView.setImageBitmap(image);
 
-            hideButtons();
-
-        }
-        if(requestCode == IMAGE_PICK_CODE && !card.isFrontside()){
-            ccImageView.setImageURI(data.getData());
-            hideButtons();
-
-        } */
     }
 
 
@@ -218,7 +281,14 @@ public class CardFragment extends Fragment {
 
 
 
-
+    /**
+     * Check which button is clicked and sets the card to the specific difficulty.
+     *
+     * @param requestCode is checked to either give access to camera or gallery
+     * or show toast that permission failed.
+     *
+     *
+     */
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -242,6 +312,12 @@ public class CardFragment extends Fragment {
         }
     }
 
+    /**
+     * Connects the fragments attributes with the views components.
+     *
+     * @param view The respective view.
+     */
+
     private void findViews(View view){
         ccCardn = view.findViewById(R.id.cardNumber);
         ccTextTop = view.findViewById(R.id.textViewccfront2);
@@ -261,17 +337,19 @@ public class CardFragment extends Fragment {
     }
 
     private  void loadUI(){
-        enableFront(true);
-        ccCardn.setText("Add frontside nr" + currentCard);
+        enableFront();
+        ccCardn.setText("Add frontside nr: " + currentCard);
         ccTextTop.setText("Deck name");
     }
 
     private void loadCard(int i) {
 
     }
-
-    private void enableFront(boolean bol) {
-        if (bol) {
+    /**
+     * Setting visibility of components depending on side of card.
+     */
+    private void enableFront() {
+        if (isFront) {
             ccButtonback2.setVisibility(View.INVISIBLE);
             ccButtonback1.setVisibility(View.INVISIBLE);
 
@@ -299,6 +377,9 @@ public class CardFragment extends Fragment {
 
         }
     }
+    /**
+     * Setting visibility of components depending on picture imported or not.
+     */
     private void hideButtons(){
         ccGalleryButton.setVisibility(View.INVISIBLE);
         ccCameraButton.setVisibility(View.INVISIBLE);
