@@ -4,6 +4,10 @@ import android.graphics.Bitmap;
 import android.media.Image;
 import android.net.Uri;
 
+import com.example.flashpig.R;
+
+import java.util.Random;
+
 /**
  * Class for card.
  * @author Jesper
@@ -11,6 +15,7 @@ import android.net.Uri;
  */
 
 public class Card {
+    private Random rand = new Random();
     private int id;
     private boolean isFrontside;
     private String frontsideStr;
@@ -25,13 +30,14 @@ public class Card {
      *
      */
 
-    public Card(int id, String frontsideStr, String backsideStr,
-                Bitmap frontImg, Bitmap backImg) {
-        this.id = id;
+    public Card() {
+        this.id = rand.nextInt(); //check if already exist
+        /*
         this.frontsideStr = frontsideStr;
         this.backsideStr = backsideStr;
         this.frontImg = frontImg;
         this.backImg = backImg;
+         */
         setDifficulty(Difficulty.NOTHING);
         setFrontside(true);
     }

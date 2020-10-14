@@ -113,6 +113,7 @@ public class FirstFragment extends Fragment {
 
     private void initSpinnerList() {
         deckArrayList = new ArrayList<>();
+        /*
         Deck deck1 = new Deck("matte", random.nextInt());
         Deck deck2 = new Deck("svenska", random.nextInt());
         Deck deck3 = new Deck("engelska", random.nextInt());
@@ -137,6 +138,7 @@ public class FirstFragment extends Fragment {
         deckArrayList.add(deck4);
         deckArrayList.add(deck5);
         deckArrayList.add(deck6);
+         */
     }
 
 

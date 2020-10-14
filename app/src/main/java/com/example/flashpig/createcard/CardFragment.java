@@ -65,10 +65,10 @@ public class CardFragment extends Fragment {
     private Button ccButtonback2;
     private ImageView ccImageView;
 
-    Random rand = new Random();
     private int currentCard = 1;
     private CardViewModel viewModel;
     public Card card;
+    private boolean isFront = true;
 
     private String textFront;
     private String textBack;
@@ -91,37 +91,51 @@ public class CardFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         viewModel = new ViewModelProvider(getActivity()).get(CardViewModel.class);
+        viewModel.initCard();
         findViews(view);
         loadUI();
-        card = new Card(rand.nextInt(), null, null, null, null);
+        //card = new Card(rand.nextInt(), null, null, null, null);
         
 
 
         ccButtonfront.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                card.setFrontsideStr(ccTextinput.getEditText().getText().toString());
-                textFront = ccTextinput.getEditText().getText().toString();
-                ccTextinput.getEditText().getText().clear();
-                enableFront(false);
-                ccImageView.setImageURI(null);
-                ccImageView.setImageBitmap(null);
-                ccCardn.setText("Add backside nr: " + currentCard);
+                String inputText = ccTextinput.getEditText().getText().toString();
+                if (!inputText.isEmpty()||ccImageView.getDrawable()!=null) {
+                    //card.setFrontsideStr(ccTextinput.getEditText().getText().toString());
+                    viewModel.setFrontStr(inputText);
+                    ccTextinput.getEditText().getText().clear();
+                    isFront = false;
+                    enableFront();
+                    ccImageView.setImageDrawable(null);
+                    ccCardn.setText("Add backside nr: " + currentCard);
+                }else{
+                    Toast.makeText(getActivity(), "Please fill that front with something! OINK! OINK!",
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
         ccButtonback2.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                String inputText = ccTextinput.getEditText().getText().toString();
 
-                textBack = ccTextinput.getEditText().getText().toString();
-                ccTextinput.getEditText().getText().clear();
-                card = new Card(rand.nextInt(), null, null, null, null);
-                enableFront(true);
-                currentCard+=1;
-                ccImageView.setImageURI(null);
-                ccImageView.setImageBitmap(null);
-                ccCardn.setText("Add frontside nr: " + currentCard);
+                if (!inputText.isEmpty()||ccImageView.getDrawable()!=null){
+                    viewModel.setBackStr(inputText);
+                    //card.setBacksideStr(ccTextinput.getEditText().getText().toString());
+                    ccTextinput.getEditText().getText().clear();
+                    //card = new Card(rand.nextInt(), null, null, null, null);
+                    isFront = true;
+                    enableFront();
+                    currentCard += 1;
+                    ccImageView.setImageDrawable(null);
+                    ccCardn.setText("Add frontside nr: " + currentCard);
+                }else{
+                    Toast.makeText(getActivity(), "Please fill that ham with something! OINK! OINK!",
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -206,9 +220,14 @@ public class CardFragment extends Fragment {
         if(requestCode == CAMERA_REQUEST_CODE){
             Bitmap image = (Bitmap) data.getExtras().get("data");
             ccImageView.setImageBitmap(image);
-            card.setFrontImg(image);
-
             hideButtons();
+            if(isFront){
+                viewModel.setFrontImg(image);
+            }
+            else{
+                viewModel.setBackImg(image);
+            }
+
 
         }
         if(requestCode == IMAGE_PICK_CODE){
@@ -217,7 +236,12 @@ public class CardFragment extends Fragment {
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imageUri);
                 ccImageView.setImageBitmap(bitmap);
-                card.setFrontImg(bitmap);
+                if(isFront){
+                    viewModel.setFrontImg(bitmap);
+                }
+                else{
+                    viewModel.setBackImg(bitmap);
+                }
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -291,7 +315,7 @@ public class CardFragment extends Fragment {
     }
 
     private  void loadUI(){
-        enableFront(true);
+        enableFront();
         ccCardn.setText("Add frontside nr: " + currentCard);
         ccTextTop.setText("Deck name");
     }
@@ -302,8 +326,8 @@ public class CardFragment extends Fragment {
     /**
      * Setting visibility of components depending on side of card.
      */
-    private void enableFront(boolean bol) {
-        if (bol) {
+    private void enableFront() {
+        if (isFront) {
             ccButtonback2.setVisibility(View.INVISIBLE);
             ccButtonback1.setVisibility(View.INVISIBLE);
 

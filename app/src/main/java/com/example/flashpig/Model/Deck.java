@@ -2,6 +2,7 @@ package com.example.flashpig.Model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Class for Deck.
@@ -16,6 +17,14 @@ public class Deck {
     private int amountcards;
     private boolean deckNotEmpty;
     public boolean isFrontside = true;
+    private Random rand = new Random();
+
+    /**
+     * Class constructor
+     */
+    public Deck() {
+        this.deckId = rand.nextInt(); //Check if id already exist.
+    }
 
     public void setFrontside() {
         if (isFrontside) {
@@ -27,18 +36,6 @@ public class Deck {
                         card.setFrontside(true);
                     }
                 }
-    }
-
-    /**
-     * Class constructor
-     *
-     * @param deckName name of deck
-     * @param deckId a unique id (in case some decks have the same name)
-     */
-    public Deck(String deckName, int deckId) {
-        this.deckName = deckName;
-        this.deckId = deckId;
-
     }
 
     /**
