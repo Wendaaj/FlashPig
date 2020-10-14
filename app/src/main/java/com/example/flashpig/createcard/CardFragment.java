@@ -96,16 +96,12 @@ public class CardFragment extends Fragment {
         viewModel.initCard();
         findViews(view);
         loadUI();
-        //card = new Card(rand.nextInt(), null, null, null, null);
-        //action_cardFragment_to_FirstFragment
-
 
         ccButtonfront.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 String inputText = ccTextinput.getEditText().getText().toString();
                 if (!inputText.isEmpty()||ccImageView.getDrawable()!=null) {
-                    //card.setFrontsideStr(ccTextinput.getEditText().getText().toString());
                     viewModel.setFrontStr(inputText);
                     ccTextinput.getEditText().getText().clear();
                     isFront = false;
@@ -128,6 +124,7 @@ public class CardFragment extends Fragment {
                     ccTextinput.getEditText().getText().clear();
                     ccImageView.setImageDrawable(null);
                     ccCardn.setText("Add frontside nr: " + currentCard);
+                    viewModel.saveDeck();
                     NavHostFragment.findNavController(CardFragment.this)
                             .navigate(R.id.action_cardFragment_to_FirstFragment);
                 }else{
@@ -136,8 +133,6 @@ public class CardFragment extends Fragment {
                 }
             }
         });
-
-
 
         ccButtonback2.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -177,24 +172,10 @@ public class CardFragment extends Fragment {
                             ==PackageManager.PERMISSION_DENIED){
                         String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
                         requestPermissions(permissions, PERMISSION_CODE);
-                    }
-                    else{
-                        pickImageFromGallery(); 
-
-                    }
-                }
-                else{
-                    pickImageFromGallery();
-
-                }
-
-
+                    }else{ pickImageFromGallery(); }
+                }else{ pickImageFromGallery(); }
             }
         });
-
-
-
-
     }
 
     /**
@@ -215,9 +196,7 @@ public class CardFragment extends Fragment {
                 != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.CAMERA},  CAMERA_PERM_CODE);
 
-        }else {
-            openCamera();
-        }
+        }else { openCamera(); }
     }
 
     /**
@@ -267,18 +246,10 @@ public class CardFragment extends Fragment {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
             hideButtons();
-
         }
 
     }
-
-
-
-
-
-
 
     /**
      * Check which button is clicked and sets the card to the specific difficulty.
@@ -341,9 +312,6 @@ public class CardFragment extends Fragment {
         ccTextTop.setText(viewModel.getDeckName());
     }
 
-    private void loadCard(int i) {
-
-    }
     /**
      * Setting visibility of components depending on side of card.
      */

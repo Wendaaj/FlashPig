@@ -7,12 +7,16 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Parcel;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import com.example.flashpig.Model.Deck;
 import com.example.flashpig.R;
+
+import org.parceler.Parcels;
 
 import java.util.Objects;
 
@@ -38,7 +42,7 @@ public class  FlashcardActivity extends AppCompatActivity {
         findViews();
         loadPreferences();
         viewModel = new ViewModelProvider(this).get(FlashcardViewModel.class);
-        viewModel.init();
+        viewModel.init(Parcels.unwrap(getIntent().getParcelableExtra("deck")));
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);

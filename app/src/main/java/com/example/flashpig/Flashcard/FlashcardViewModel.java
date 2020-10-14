@@ -33,8 +33,8 @@ public class FlashcardViewModel extends ViewModel {
     /**
      * Initialize the view model.
      */
-    public void init(){
-        deck = fillDeck();
+    public void init(Deck deck){
+        this.deck = deck;
         flashcard = new Flashcard(deck.getDeckName(), deck);
         deckName = deck.getDeckName();
         gameOver.setValue(false);
@@ -68,15 +68,6 @@ public class FlashcardViewModel extends ViewModel {
             case HARD: flashcard.addHardCard(flashcard.getCurrentCard()); break;
         }
         update();
-    }
-
-    private Deck fillDeck() {/*
-        Deck deck = new Deck();
-        deck.addCard(new Card());
-        deck.addCard(new Card();
-        deck.addCard(new Card();
-        deck.addCard(new Card();*/
-        return deck;
     }
 
     public LiveData<Boolean> getGameOver() { return gameOver; }

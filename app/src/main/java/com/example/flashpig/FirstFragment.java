@@ -2,6 +2,8 @@ package com.example.flashpig;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,12 +21,14 @@ import com.example.flashpig.Model.Deck;
 import com.example.flashpig.memory.MainActivity_memory;
 import com.example.flashpig.pairup.activity_pairup;
 
+import org.parceler.Parcels;
+
 
 public class FirstFragment extends Fragment {
     private DeckSpinnerAdapter spinnerAdapter;
     private Spinner deckSpinner;
     private Deck choosenDeck;
-    private FakeDataBase db;
+    private FakeDataBase db = FakeDataBase.getInstance();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -35,8 +39,6 @@ public class FirstFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         //initSpinnerList();
-
-        db = new FakeDataBase();
 
         deckSpinner = getActivity().findViewById(R.id.chooseDeckSpinner);
         spinnerAdapter = new DeckSpinnerAdapter(getActivity(), db.getDeckList());
@@ -58,7 +60,9 @@ public class FirstFragment extends Fragment {
         view.findViewById(R.id.flashcard1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Parcelable wrappedDeck = Parcels.wrap(choosenDeck);
                 Intent intent = new Intent(getActivity(), FlashcardActivity.class);
+                intent.putExtra("deck", wrappedDeck);
                 startActivity(intent);
             }
         });
