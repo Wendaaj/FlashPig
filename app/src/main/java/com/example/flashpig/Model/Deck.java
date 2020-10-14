@@ -1,5 +1,10 @@
 package com.example.flashpig.Model;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Embedded;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,9 +14,10 @@ import java.util.List;
  * @author Salvija Zelvyte.
  * @version 2020-09-17
  */
+@Entity
 public class Deck {
-    public List<Card> cards = new ArrayList<>();
     public int deckId;
+    public List<Card> cards = new ArrayList<>();
     private String deckName;
     private int amountcards;
     private boolean deckNotEmpty;

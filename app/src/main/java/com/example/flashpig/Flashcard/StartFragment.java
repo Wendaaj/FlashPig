@@ -41,7 +41,6 @@ public class StartFragment extends Fragment implements View.OnClickListener {
     private AnimatorSet setRightOut, setLeftIn;
     private boolean isBackVisible = false;
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

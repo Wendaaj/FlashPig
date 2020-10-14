@@ -31,7 +31,7 @@ public class FlashcardViewModel extends ViewModel {
     private MutableLiveData<Boolean> gameOver = new MutableLiveData<>();
 
     /**
-     * Initialize the viewmodel.
+     * Initialize the view model.
      */
     public void init(){
         deck = fillDeck();

@@ -30,6 +30,12 @@ public class FlashcardTest {
     Card card5 = new Card(rand.nextInt(), "hej", "hej", null,
             null);
 
+
+    @Test
+    public void ifFlash(){
+
+    }
+
     @Test
     public void canChooseDifficulty(){
         Flashcard flashcard = new Flashcard("Madematik", deck);
