@@ -338,7 +338,7 @@ public class CardFragment extends Fragment {
     private  void loadUI(){
         enableFront();
         ccCardn.setText("Add frontside nr: " + currentCard);
-        ccTextTop.setText("Deck name");
+        ccTextTop.setText(viewModel.getDeckName());
     }
 
     private void loadCard(int i) {

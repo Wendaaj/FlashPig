@@ -23,6 +23,8 @@ public class CardViewModel extends ViewModel {
         deck.addCard(card);
     }
 
+    public String getDeckName(){String deckname = deck.getDeckName(); return deckname;}
+
     public void setDeckName(String deckName) {
         deck.setDeckName(deckName);
     }
