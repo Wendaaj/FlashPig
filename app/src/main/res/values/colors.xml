@@ -3,6 +3,7 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+    <color name="mainColor">#EFF3FB</color>
 
     //Flashcard
     <color name="background">#EFF3FB</color>
@@ -14,5 +15,8 @@
 
     <color name="colorAccentorange">#FFB46F</color>
     <color name="colorAccentblue">#76ADFF</color>
+
+    <color name="spinner1">#E4F2FF</color>
+    <color name="spinner2">#D0E8FF</color>
 
 </resources>

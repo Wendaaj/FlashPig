@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/mainColor"
     tools:context=".View.DashboardFragment">
 
     <Spinner
@@ -12,6 +13,7 @@
         android:layout_height="35dp"
         android:layout_marginStart="35dp"
         android:layout_marginLeft="35dp"
+        android:background="#FFFFFF"
         android:descendantFocusability="blocksDescendants"
         android:orientation="vertical"
         android:overScrollMode="ifContentScrolls"
@@ -132,5 +134,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/editCardToolbar2" />
+
+    <TextView
+        android:id="@+id/ndeckstext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="292dp"
+        android:layout_marginLeft="292dp"
+        android:layout_marginTop="92dp"
+        android:fontFamily="@font/roboto_slab"
+        android:text="TextView"
+        android:textColor="@color/design_default_color_background"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

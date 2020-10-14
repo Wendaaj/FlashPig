@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#00BC6262"
-    tools:context=".createcard.CardFragment">
+    tools:context=".View.CardFragment">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar6"

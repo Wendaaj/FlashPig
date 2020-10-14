@@ -50,7 +50,7 @@
 
     <fragment
         android:id="@+id/cardFragment"
-        android:name="com.example.flashpig.createcard.CardFragment"
+        android:name="com.example.flashpig.View.CardFragment"
         android:label="cardcreatefront"
         tools:layout="@layout/cardcreatefront" >
         <action
@@ -59,7 +59,7 @@
     </fragment>
     <fragment
         android:id="@+id/createDeckFragment"
-        android:name="com.example.flashpig.createcard.CreateDeckFragment"
+        android:name="com.example.flashpig.View.CreateDeckFragment"
         android:label="deckcreate"
         tools:layout="@layout/deckcreate" >
         <action

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -29,6 +30,9 @@ public class DashboardFragment extends Fragment {
     private Spinner deckSpinner;
     private Deck choosenDeck;
     private FakeDataBase db = FakeDataBase.getInstance();
+    private TextView ndecks;
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -41,6 +45,7 @@ public class DashboardFragment extends Fragment {
         //initSpinnerList();
 
         deckSpinner = getActivity().findViewById(R.id.chooseDeckSpinner);
+        ndecks = getActivity().findViewById(R.id.ndeckstext);
         spinnerAdapter = new DeckSpinnerAdapter(getActivity(), db.getDeckList());
         deckSpinner.setAdapter(spinnerAdapter);
         deckSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -50,6 +55,7 @@ public class DashboardFragment extends Fragment {
                 String deckName = choosenDeck.getDeckName();
                 Toast.makeText(getActivity(), deckName + " selected", Toast.LENGTH_SHORT).show();
                 spinnerAdapter.setVisibility(view);
+                ndecks.setText(db.getDeckList().size()+" decks");
             }
 
             @Override
