@@ -146,9 +146,8 @@ public class CardFragment extends Fragment {
 
                 if (!inputText.isEmpty()||ccImageView.getDrawable()!=null){
                     viewModel.setBackStr(inputText);
-                    //card.setBacksideStr(ccTextinput.getEditText().getText().toString());
                     ccTextinput.getEditText().getText().clear();
-                    //card = new Card(rand.nextInt(), null, null, null, null);
+                    viewModel.initCard();
                     isFront = true;
                     enableFront();
                     currentCard += 1;

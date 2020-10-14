@@ -20,6 +20,7 @@ public class CardViewModel extends ViewModel {
 
     public void initCard(){
         card = new Card();
+        deck.addCard(card);
     }
 
     public void setDeckName(String deckName) {
