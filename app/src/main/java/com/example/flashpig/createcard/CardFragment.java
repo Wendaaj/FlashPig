@@ -17,6 +17,8 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
+
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
@@ -95,7 +97,7 @@ public class CardFragment extends Fragment {
         findViews(view);
         loadUI();
         //card = new Card(rand.nextInt(), null, null, null, null);
-        
+        //action_cardFragment_to_FirstFragment
 
 
         ccButtonfront.setOnClickListener(new View.OnClickListener(){
@@ -116,6 +118,26 @@ public class CardFragment extends Fragment {
                 }
             }
         });
+
+        ccButtonback1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String inputText = ccTextinput.getEditText().getText().toString();
+                if (!inputText.isEmpty()||ccImageView.getDrawable()!=null){
+                    viewModel.setBackStr(inputText);
+                    ccTextinput.getEditText().getText().clear();
+                    ccImageView.setImageDrawable(null);
+                    ccCardn.setText("Add frontside nr: " + currentCard);
+                    NavHostFragment.findNavController(CardFragment.this)
+                            .navigate(R.id.action_cardFragment_to_FirstFragment);
+                }else{
+                    Toast.makeText(getActivity(), "Please fill that ham with something! OINK! OINK!",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
 
         ccButtonback2.setOnClickListener(new View.OnClickListener(){
             @Override
