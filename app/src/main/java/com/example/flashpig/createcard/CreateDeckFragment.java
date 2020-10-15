@@ -16,7 +16,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.flashpig.FirstFragment;
 import com.example.flashpig.R;
 import com.google.android.material.textfield.TextInputLayout;
 import java.util.Random;

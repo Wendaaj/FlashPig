@@ -38,20 +38,6 @@ public class Flashcard extends GameLogic {
         }
     }
 
-    public boolean roundIsOver() {
-        if (gameDeck.isEmpty()) {
-            gameDeck.addAll(deck.cards);
-            return true;
-        }else {
-            return false;
-        }
-    }
-
-    public void addCardToMain(Card card) {
-        gameDeck.add(gameDeck.size(),card);
-        //Timekeeper set to 10 hours
-    }
-
     /**
      * Sets the picked card to easy.
      * @param card The current card.

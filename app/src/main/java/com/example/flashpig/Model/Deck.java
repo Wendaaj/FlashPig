@@ -22,18 +22,6 @@ public class Deck {
     public boolean isFrontside = true;
     Random rand = new Random();
 
-    public void setFrontside() {
-        if (isFrontside) {
-            for (Card card : cards) {
-                card.setFrontside(false);
-            }
-        } else {
-                    for (Card card : cards) {
-                        card.setFrontside(true);
-                    }
-                }
-    }
-
     /**
      * Class constructor
      */

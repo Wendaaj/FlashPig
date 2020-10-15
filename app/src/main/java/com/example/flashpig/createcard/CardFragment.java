@@ -28,7 +28,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.example.flashpig.MainActivity;
 import com.example.flashpig.R;
 import com.google.android.material.textfield.TextInputLayout;
 import java.io.File;

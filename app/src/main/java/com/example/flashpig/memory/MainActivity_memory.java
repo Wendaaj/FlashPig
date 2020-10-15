@@ -19,20 +19,6 @@ public class MainActivity_memory extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_memory);
 
-        // populate the RecyclerView with cards
-        List<Card> cardsList = new ArrayList<>();
-        cardsList.add(new Card());
-        cardsList.add(new Card());
-
-        // set up the RecyclerView
-        RecyclerView recyclerView = findViewById(R.id.memoryCardRecyclerView);
-
-        int numberOfColumns = 2;
-        recyclerView.setLayoutManager(new GridLayoutManager(this, numberOfColumns));
-        adapter = new memoryRecyclerViewAdapter(this, cardsList);
-        recyclerView.setAdapter(adapter);
-
-
         toolbar = findViewById(R.id.toolbarMemory);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);

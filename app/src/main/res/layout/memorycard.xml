@@ -25,7 +25,9 @@
             android:layout_marginTop="28dp"
             android:layout_marginEnd="35dp"
             android:layout_marginRight="35dp"
+            android:layout_marginBottom="72dp"
             android:contentDescription="back"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -34,17 +36,14 @@
         <TextView
             android:id="@+id/backCardTextView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="19dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginStart="76dp"
-            android:layout_marginLeft="76dp"
             android:layout_marginTop="124dp"
             android:layout_marginEnd="74dp"
             android:layout_marginRight="74dp"
             android:layout_marginBottom="57dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
