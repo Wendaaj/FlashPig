@@ -1,11 +1,10 @@
 package com.example.flashpig.Model;
 
-/**
- * Class for PairUp
- *
- * @author Madeleine
- * @version 2020-09-16
- */
+/* Class for PairUp
+        *
+        * @author Madeleine
+        * @version 2020-09-16
+        */
 
 public class PairUp extends GameLogic implements MemoryPairUpLogic {
 
@@ -14,9 +13,7 @@ public class PairUp extends GameLogic implements MemoryPairUpLogic {
     }
 
 
-    /**
-     * Method to compare two cards from a deck
-     */
+    /* Method to compare two cards from a deck*/
 
     @Override
     public boolean isMatched(Card chosenCard1, Card chosenCard2, Deck deck) {
@@ -33,14 +30,14 @@ public class PairUp extends GameLogic implements MemoryPairUpLogic {
     /**
      * Method to check if it is end of game
      *
+     * @return
      */
 
     @Override
-    public void isEndOfGame(int deckSize) {
+    public boolean isEndOfGame(int deckSize) {
         if (deckSize == 0) {
-            gameWon(deck);
+            return true;
         }
+        return false;
     }
 }
-
-

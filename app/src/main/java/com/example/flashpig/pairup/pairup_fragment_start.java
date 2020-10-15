@@ -33,14 +33,13 @@ public class pairup_fragment_start extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        onClick(view);
     }
 
-    public void onClick(View v) {
+    /*public void onClick(View v) {
         if (v.getId() == R.id.backbuttonpairup) {
             Intent intent = new Intent(getActivity(), MemoryFragmentStart.class);
             startActivity(intent);
         }
 
-    }
+    }*/
 }

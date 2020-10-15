@@ -85,7 +85,7 @@ public class  FlashcardActivity extends AppCompatActivity {
         quitView = findViewById(R.id.quit_view);
         checkBox = findViewById(R.id.checkBox);
         toolbar = findViewById(R.id.flashcardToolbar);
-        title = findViewById(R.id.txt_title);
+        //title = findViewById(R.id.txt_title);
         yesBtn = findViewById(R.id.btn_yes);
         noBtn = findViewById(R.id.btn_no);
     }
