@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.flashpig.Model.Deck;
 import com.example.flashpig.R;
 import com.example.flashpig.ViewModel.FlashcardViewModel;
 
