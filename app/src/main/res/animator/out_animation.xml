@@ -12,7 +12,7 @@
         android:valueTo="0.0"
         android:propertyName="alpha"
         android:startOffset="@integer/anim_length_half"
-        android:duration="0" />
+        android:duration="1" />
 
 
 </set>

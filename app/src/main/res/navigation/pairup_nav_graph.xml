@@ -35,7 +35,7 @@
     </fragment>
     <activity
         android:id="@+id/mainActivity"
-        android:name="com.example.flashpig.MainActivity"
+        android:name="com.example.flashpig.View.MainActivity"
         android:label="activity_main"
         tools:layout="@layout/activity_main" />
 </navigation>

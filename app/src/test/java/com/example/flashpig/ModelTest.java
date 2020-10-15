@@ -30,28 +30,8 @@ public class ModelTest {
             null);
     Card card5 = new Card(rand.nextInt(), "hej", "hej", null,
             null);
-    //Tests for Flashcard
-    @Test
-    public void canChooseDifficulty(){
-        Flashcard flashcard = new Flashcard("Madematik", deck);
-        flashcard.addEasyCard(card0);
-        Assert.assertEquals(card0.getDifficulty(), Difficulty.EASY);
 
-        flashcard.addMediumCard(card0);
-        Assert.assertEquals(card0.getDifficulty(), Difficulty.MEDIUM);
 
-        flashcard.addHardCard(card0);
-        Assert.assertEquals(card0.getDifficulty(), Difficulty.HARD);
-    }
-
-    @Test
-    public void canTurnOverCard() {
-        Flashcard flashcard = new Flashcard("Madematik", deck);
-        flashcard.turnOver(card3);
-        Assert.assertEquals("OM hon kommer", card3.getBacksideStr());
-    }
-
-    //Tests for FlashcardProgess
     @Test
     public void canShowCardsAfterDifficulty() {
         deck.addCard(card1);
@@ -79,30 +59,6 @@ public class ModelTest {
 
 
 
-    @Test
-    public void canCreateCardFront(){
-        card4.EditFrontside(null, null);
-
-        card5.EditFrontside("hej", null);
-
-        Assert.assertEquals(card4.getFrontsideStr(),null);
-
-        Assert.assertEquals(card5.getFrontsideStr(),"hej");
-    }
-
-    @Test
-    public void canCreateCardBack(){
-        card4.setFrontside(false);
-        card5.setFrontside(false);
-
-        card4.EditBackside(null, null);
-
-        card5.EditBackside("Hej", null);
-
-        Assert.assertEquals(card4.getBacksideStr(),null);
-
-        Assert.assertEquals(card5.getBacksideStr(),"Hej");
-    }
 
 //Test Deck
     @Test

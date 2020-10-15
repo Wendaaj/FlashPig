@@ -3,7 +3,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/editCardCardView"
+    android:id="@+id/editDeckCardView"
     android:layout_width="150dp"
     android:layout_height="200dp"
     android:maxWidth="148dp"
@@ -25,44 +25,30 @@
             android:layout_marginLeft="55dp"
             android:layout_marginEnd="55dp"
             android:layout_marginRight="55dp"
-            android:background="@android:drawable/ic_menu_edit"
+            android:background="@drawable/ic_baseline_edit_24"
             android:clickable="true"
             android:foregroundGravity="center|center_horizontal"
             android:scaleType="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/frontCardTextView"
+            app:layout_constraintTop_toBottomOf="@+id/cardTextView"
             app:layout_constraintVertical_bias="0.27"
             app:srcCompat="@android:drawable/ic_menu_edit" />
 
         <TextView
-            android:id="@+id/frontCardTextView"
+            android:id="@+id/cardTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toEndOf="@+id/backCardTextView"
-            app:layout_constraintStart_toStartOf="@+id/backCardTextView"
-            app:layout_constraintTop_toBottomOf="@+id/backCardImageView" />
-
-        <TextView
-            android:id="@+id/backCardTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginStart="46dp"
-            android:layout_marginLeft="46dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="46dp"
-            android:layout_marginRight="46dp"
+            android:layout_marginTop="132dp"
+            android:layout_marginEnd="64dp"
+            android:layout_marginRight="64dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.518"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/frontCardImageView" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/frontCardImageView"
+            android:id="@+id/cardImageView"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginTop="28dp"
@@ -72,21 +58,17 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/pig" />
 
-        <ImageView
-            android:id="@+id/backCardImageView"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginStart="35dp"
-            android:layout_marginLeft="35dp"
-            android:layout_marginTop="28dp"
-            android:layout_marginEnd="35dp"
-            android:layout_marginRight="35dp"
-            android:contentDescription="@string/back_side_image"
+        <Button
+            android:id="@+id/deleteCardBtn"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginRight="4dp"
+            android:background="@drawable/ic_baseline_close_24"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/pig" />
+            app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

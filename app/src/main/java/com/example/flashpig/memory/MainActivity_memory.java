@@ -27,10 +27,8 @@ public class MainActivity_memory extends AppCompatActivity {
 
         // populate the RecyclerView with cards
         List<Card> cardsList = new ArrayList<>();
-        cardsList.add(new Card(1,"hello","bye", null,
-                null));
-        cardsList.add(new Card(2, "hello", "bye", null,
-                null));
+        cardsList.add(new Card());
+        cardsList.add(new Card());
 
         // set up the RecyclerView
         RecyclerView recyclerView = findViewById(R.id.memoryCardRecyclerView);

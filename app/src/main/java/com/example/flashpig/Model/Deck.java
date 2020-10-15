@@ -1,7 +1,10 @@
 package com.example.flashpig.Model;
 
+import org.parceler.Parcel;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Class for Deck.
@@ -9,24 +12,42 @@ import java.util.List;
  * @author Salvija Zelvyte.
  * @version 2020-09-17
  */
+@Parcel
 public class Deck {
+    int deckId;
     public List<Card> cards = new ArrayList<>();
-    public int deckId;
-    private String deckName;
-    private int amountcards;
-    private boolean deckNotEmpty;
-
+    String deckName;
+    int amountcards;
+    boolean deckNotEmpty;
+    public boolean isFrontside = true;
+    Random rand = new Random();
 
     /**
      * Class constructor
-     *
-     * @param deckName name of deck
-     * @param deckId a unique id (in case some decks have the same name)
      */
+    public Deck() {
+        this.deckId = rand.nextInt(); //Check if id already exist.
+    }
+
     public Deck(String deckName, int deckId) {
         this.deckName = deckName;
         this.deckId = deckId;
 
+    }
+
+
+
+
+    public void setFrontside() {
+        if (isFrontside) {
+            for (Card card : cards) {
+                card.setFrontside(false);
+            }
+        } else {
+                    for (Card card : cards) {
+                        card.setFrontside(true);
+                    }
+                }
     }
 
     /**
@@ -37,7 +58,9 @@ public class Deck {
     public void addCard(Card card) {
         if(!deckContainsCard(card)){
             cards.add(card);
-        } //fix error message
+
+        }
+       //fix error message
     }
 
     /**
@@ -63,7 +86,6 @@ public class Deck {
         } else {
             deckNotEmpty = false;
         }
-
     }
 
     /**
@@ -96,4 +118,8 @@ public class Deck {
         this.deckName = deckName;
     }
 
+    public void setIsFrontside(boolean frontside) {
+        setFrontside();
+        isFrontside = frontside;
+    }
 }

@@ -1,28 +1,45 @@
 package com.example.flashpig.Model;
 
+import android.graphics.Bitmap;
 import android.media.Image;
+import android.net.Uri;
+
+import com.example.flashpig.R;
+
+import org.parceler.Parcel;
+
+import java.util.Random;
+
 /**
  * Class for card.
  * @author Jesper
  * @version 2020-09-14l
  */
-
+@Parcel
 public class Card {
-    private int id;
-    private boolean isFrontside;
-    private String frontsideStr;
-    private String backsideStr;
-    private Image frontImg;
-    private Image backImg;
-    private Enum difficulty;
+    Random rand = new Random();
+    int id;
+    boolean isFrontside;
+    String frontsideStr;
+    String backsideStr;
+    Bitmap frontImg;
+    Bitmap backImg;
+    Enum difficulty;
+
 
     /**
      * Card constructor
      *
      */
 
+    public Card() {
+        this.id = rand.nextInt(); //check if already exist
+        setDifficulty(Difficulty.NOTHING);
+        setFrontside(true);
+    }
+
     public Card(int id, String frontsideStr, String backsideStr,
-                Image frontImg, Image backImg) {
+                Bitmap frontImg, Bitmap backImg) {
         this.id = id;
         this.frontsideStr = frontsideStr;
         this.backsideStr = backsideStr;
@@ -33,40 +50,19 @@ public class Card {
     }
 
 
+    public void setFrontsideStr(String frontsideStr) {
+        this.frontsideStr = frontsideStr;
+    }
 
-    /**
-     * Method to create frontside of card
-     * @param str the tect or numbers to use
-     * //@param img the picture to use
-     *
-     */
-    public void EditFrontside(String str, Image img) {
+    public void setBacksideStr(String backsideStr) {
+        this.backsideStr = backsideStr;
+    }
 
-        if (this.isFrontside && str != null && !str.equals("")){
-            this.frontsideStr = str;
-        }
+    public void setFrontImg(Bitmap frontImg) { this.frontImg = frontImg; }
 
-        this.frontImg = img;
-
-
-
-
-}
-
-    /**
-     * Method to create backside of card
-     * @param str the tect or numbers to use
-     * //@param img the picture to use
-     *
-     */
-    public void EditBackside(String str, Image img){
-        if (!this.isFrontside && str != null && !str.equals("")){
-            this.backsideStr = str;
-        }
-
-        this.backImg = img;
-
-}
+    public void setBackImg(Bitmap backImg) {
+        this.backImg = backImg;
+    }
 
     public int getId() {
         return id;
@@ -91,11 +87,11 @@ public class Card {
         return backsideStr;
     }
 
-    public Image getFrontImg() {
+    public Bitmap getFrontImg() {
         return frontImg;
     }
 
-    public Image getBackImg() {
+    public Bitmap getBackImg() {
         return backImg;
     }
 
@@ -106,5 +102,7 @@ public class Card {
     public void setDifficulty(Enum difficulty) {
         this.difficulty = difficulty;
     }
+
+
 
 }
