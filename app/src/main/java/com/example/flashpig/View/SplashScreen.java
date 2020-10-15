@@ -50,6 +50,6 @@ public class SplashScreen extends Fragment {
                 NavHostFragment.findNavController(SplashScreen.this)
                         .navigate(R.id.action_splashScreen_to_FirstFragment);
             }
-        }, 8000);
+        }, 4000);
     }
 }

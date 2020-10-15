@@ -5,4 +5,3 @@ import androidx.lifecycle.ViewModel;
 public class MemoryViewModel extends ViewModel {
 
 }
-
