@@ -23,10 +23,10 @@ public class Flashcard extends GameLogic {
         gameDeck.addAll(deck.cards);
     }
 
-    public Deck getDeck() {
-        return deck;
-    }
-
+    /**
+     * Check if the round is over.
+     * @return Returns true if round is over.
+     */
     public boolean roundIsOver() {
         if (gameDeck.isEmpty()) {
             gameDeck.addAll(deck.cards);
@@ -36,34 +36,14 @@ public class Flashcard extends GameLogic {
         }
     }
 
-    public void addCardToMain(Card card) {
-        gameDeck.add(gameDeck.size(),card);
-        //Timekeeper set to 10 hours
-    }
-
     /**
      * Sets the picked card to easy.
      * @param card The current card.
      */
     public void addEasyCard(Card card) {
         card.setDifficulty(Difficulty.EASY);
-
-       gameDeck.remove(card);
-
-        new CountDownTimer(3600000, 1000) {
-
-            @Override
-            public void onTick(long l) {
-
-            }
-
-            @Override
-            public void onFinish() {
-                addCardToMain(card);
-
-            }
-        }.start();
-
+        gameDeck.remove(card);
+        startTimer(card, 3600000);
     }
 
     /**
@@ -74,22 +54,8 @@ public class Flashcard extends GameLogic {
         card.setDifficulty(Difficulty.MEDIUM);
 
         gameDeck.remove(card);
-        new CountDownTimer(600000, 1000) {
-
-
-            @Override
-            public void onTick(long l) {
-
-            }
-
-            @Override
-            public void onFinish() {
-                addCardToMain(card);
-
-            }
-        }.start();
+        startTimer(card, 600000);
     }
-
 
     /**
      * Sets the picked card to hard.
@@ -100,7 +66,32 @@ public class Flashcard extends GameLogic {
         gameDeck.remove(card);
         gameDeck.add(gameDeck.size(), card);
     }
-    //Timekeeper er to 1 min
+
+    /**
+     * Set a countdown timer on the card and when the time is up, add the card back to the game deck.
+     * @param card The card to set the timer on.
+     * @param i How many millisec to delay.
+     */
+    private void startTimer(Card card, long i){
+        CountDownTimer countDownTimer = new CountDownTimer(i, 1000) {
+            @Override
+            public void onTick(long l) {}
+
+            @Override
+            public void onFinish() {
+                addCardToMain(card);
+            }
+        }.start();
+    }
+
+    /**
+     * Add the card back to the game deck.
+     * @param card The card to add back to the game deck.
+     */
+    public void addCardToMain(Card card) {
+        gameDeck.add(gameDeck.size(),card);
+        //Timekeeper set to 10 hours
+    }
 
     /**
      * Flips the card and show the information of the cards backside.
@@ -109,7 +100,6 @@ public class Flashcard extends GameLogic {
     public void turnOver(Card card) {
         card.setFrontside(false);
     }
-
 
     //Move to Deck class later.
     /**
@@ -143,4 +133,6 @@ public class Flashcard extends GameLogic {
     public Card getCurrentCard() {
         return currentCard = gameDeck.get(0);
     }
+
+    public Deck getDeck() { return deck; }
 }
