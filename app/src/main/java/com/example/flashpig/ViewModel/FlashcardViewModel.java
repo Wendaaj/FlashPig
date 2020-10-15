@@ -49,6 +49,10 @@ public class FlashcardViewModel extends ViewModel {
      * Load the next cards values until game is over.
      */
     private void update(){
+        easyAmount.setValue(Integer.toString(flashcard.getAmountCards(Difficulty.EASY)));
+        mediumAmount.setValue(Integer.toString(flashcard.getAmountCards(Difficulty.MEDIUM)));
+        hardAmount.setValue(Integer.toString(flashcard.getAmountCards(Difficulty.HARD)));
+
         if (!flashcard.roundIsOver()){
             checkHasFrontTxtAndImg();
             checkHasBackTxtAndImg();
@@ -56,9 +60,6 @@ public class FlashcardViewModel extends ViewModel {
             frontTxt.setValue(flashcard.getCurrentCard().getFrontsideStr());
             backImg.setValue(flashcard.getCurrentCard().getBackImg());
             frontImg.setValue(flashcard.getCurrentCard().getFrontImg());
-            easyAmount.setValue(Integer.toString(flashcard.getAmountCards(Difficulty.EASY)));
-            mediumAmount.setValue(Integer.toString(flashcard.getAmountCards(Difficulty.MEDIUM)));
-            hardAmount.setValue(Integer.toString(flashcard.getAmountCards(Difficulty.HARD)));
         }
         else {
             gameOver.setValue(true);
