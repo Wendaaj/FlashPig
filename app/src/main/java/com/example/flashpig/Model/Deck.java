@@ -15,6 +15,19 @@ public class Deck {
     private String deckName;
     private int amountcards;
     private boolean deckNotEmpty;
+    public boolean isFrontside = true;
+
+    public void setFrontside() {
+        if (isFrontside) {
+            for (Card card : cards) {
+                card.setFrontside(false);
+            }
+        } else {
+                    for (Card card : cards) {
+                        card.setFrontside(true);
+                    }
+                }
+    }
 
     /**
      * Class constructor
@@ -29,30 +42,31 @@ public class Deck {
     }
 
     /**
-     * Method for adding a new card to a deck.
+     * Adds a new card to a deck.
      *
      * @param card the card you want to add
      */
     public void addCard(Card card) {
-        if(cards.contains(card)){
+        if(!deckContainsCard(card)){
+            cards.add(card);
 
         }
-        cards.add(card);
+       //fix error message
     }
 
     /**
-     * Method for deleting a card from a deck.
+     * Deletes a card from a deck.
      *
      * @param card the specific card you want to delete.
      */
     public void deleteCard(Card card) {
         if (deckContainsCard(card)) {
             cards.remove(card);
-        }
+        }  //fix error message
     }
 
     /**
-     * Method for deleting all cards in a deck.
+     * Deletes all cards in a deck.
      *
      * @param cards the list of cards in the deck.
      */
@@ -63,11 +77,10 @@ public class Deck {
         } else {
             deckNotEmpty = false;
         }
-
     }
 
     /**
-     * This method checks if a specific card exists in a deck.
+     * Checks if a specific card exists in a deck.
      * @param card the specific card.
      * @return true if the card exists and false if not.
      */
@@ -80,7 +93,7 @@ public class Deck {
     }
 
     /**
-     * Method returns the amount of cards in a deck.
+     * Returns the amount of cards in a deck.
      *
      * @return the card amount.
      */
@@ -96,4 +109,8 @@ public class Deck {
         this.deckName = deckName;
     }
 
+    public void setIsFrontside(boolean frontside) {
+        setFrontside();
+        isFrontside = frontside;
+    }
 }

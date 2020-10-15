@@ -1,39 +1,46 @@
 package com.example.flashpig.Flashcard;
 
+import android.animation.Animator;
 import android.animation.AnimatorInflater;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.flashpig.FirstFragment;
+import com.example.flashpig.Model.Card;
+import com.example.flashpig.Model.Deck;
+import com.example.flashpig.Model.Difficulty;
 import com.example.flashpig.R;
 
+/**
+ * The controller that connects the Flashcard model with the views.
+ *
+ * @author wendy
+ * @version 2020-10-04
+ */
 public class StartFragment extends Fragment implements View.OnClickListener {
 
     private FlashcardViewModel viewModel;
-    private TextView titleCard, txtBack, txtFront;
-    private ProgressBar progressBar;
+    private TextView txtBack, txtFront, easyAmount, mediumAmount, hardAmount;
     private FrameLayout cardFront, cardBack;
     private Button btnEasy, btnMedium, btnHard;
-    private int currentQuestion = 0;
-    private AnimatorSet setRightOut;
-    private AnimatorSet setLeftIn;
+    private AnimatorSet setRightOut, setLeftIn;
     private boolean isBackVisible = false;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,86 +56,98 @@ public class StartFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        viewModel = new ViewModelProvider(getActivity()).get(FlashcardViewModel.class);
         findViews(view);
-        loadUI();
         loadAnimations();
         changeCameraDistance();
+
+        viewModel = new ViewModelProvider(getActivity()).get(FlashcardViewModel.class);
+        viewModel.init();
         cardFront.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 flipCard();
             }
         });
+
+        viewModel.getBackTxt().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                setLeftIn.addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        super.onAnimationEnd(animation);
+                        txtBack.setText(s);
+                    }
+                });
+            }
+        });
+
+        viewModel.getFrontTxt().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                txtFront.setText(s);
+            }
+        });
+
+        viewModel.getEasyAmount().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                easyAmount.setText(s);
+            }
+        });
+
+        viewModel.getMediumAmount().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                mediumAmount.setText(s);
+            }
+        });
+
+        viewModel.getHardAmount().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                hardAmount.setText(s);
+            }
+        });
+
         btnEasy.setOnClickListener(this);
         btnMedium.setOnClickListener(this);
         btnHard.setOnClickListener(this);
+
+        viewModel.getGameOver().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean gameOver) {
+                if (gameOver){
+                    NavHostFragment.findNavController(StartFragment.this)
+                            .navigate(R.id.action_startFragment_to_endFragment);
+                }
+            }
+        });
     }
 
-    private void findViews(View view) {
-        progressBar = view.findViewById(R.id.progressBar);
-        titleCard = view.findViewById(R.id.card_title);
-        txtFront = view.findViewById(R.id.front_txt);
-        txtBack = view.findViewById(R.id.back_txt);
-        btnEasy = view.findViewById(R.id.btn_easy);
-        btnMedium = view.findViewById(R.id.btn_medium);
-        btnHard = view.findViewById(R.id.btn_hard);
-        cardFront = view.findViewById(R.id.front_card);
-        cardBack = view.findViewById(R.id.back_card);
-    }
-
-    private void loadUI() {
-        updateProgressBar();
-        loadCard(currentQuestion);
-        currentQuestion += 1;
-        titleCard.setText("Card nr. " + currentQuestion);
-    }
-
-    private void loadCard(int i) {
-        txtFront.setText(viewModel.flashcard.getDeck().cards.get(i).getFrontsideStr());
-        txtBack.setText(viewModel.flashcard.getDeck().cards.get(i).getBacksideStr());
-    }
-
-    private void updateProgressBar() {
-        progressBar.setMax(viewModel.flashcard.getDeck().getAmountCards());
-        progressBar.setProgress(currentQuestion);
-    }
-
+    /**
+     * Check which button is clicked and sets the card to the specific difficulty.
+     *
+     * @param v The clicked button view.
+     */
     @Override
     public void onClick(View v) {
-        if (!(currentQuestion == viewModel.flashcard.getDeck().getAmountCards())) {
-            switch (v.getId()) {
-                case R.id.btn_easy:
-                    viewModel.flashcard.addEasyCard(viewModel.flashcard.getDeck().cards.get(currentQuestion));
-                case R.id.btn_medium:
-                    viewModel.flashcard.addMediumCard(viewModel.flashcard.getDeck().cards.get(currentQuestion));
-                case R.id.btn_hard:
-                    viewModel.flashcard.addHardCard(viewModel.flashcard.getDeck().cards.get(currentQuestion));
-            }
-            loadUI();
-            flipCard();
-        }else {
-            NavHostFragment.findNavController(StartFragment.this)
-                    .navigate(R.id.action_startFragment_to_endFragment);
+        switch (v.getId()) {
+            case R.id.btn_easy:
+                viewModel.setCardsDifficulty(Difficulty.EASY); break;
+            case R.id.btn_medium:
+                viewModel.setCardsDifficulty(Difficulty.MEDIUM); break;
+            case R.id.btn_hard:
+                viewModel.setCardsDifficulty(Difficulty.HARD); break;
         }
+        flipCard();
     }
 
-    private void loadAnimations() {
-        setRightOut = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.out_animation);
-        setLeftIn = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.in_animation);
-    }
-
-    private void changeCameraDistance() {
-        int distance = 8000;
-        float scale = getResources().getDisplayMetrics().density * distance;
-        cardFront.setCameraDistance(scale);
-        cardBack.setCameraDistance(scale);
-    }
-
-    public void flipCard() {
+    /**
+     * Flips the card.
+     */
+    private void flipCard() {
         if (!isBackVisible) {
-            cardBack.setVisibility(View.VISIBLE);
-            cardFront.setClickable(false);
             setRightOut.setTarget(cardFront);
             setLeftIn.setTarget(cardBack);
             setRightOut.start();
@@ -137,6 +156,7 @@ public class StartFragment extends Fragment implements View.OnClickListener {
             btnEasy.setVisibility(View.VISIBLE);
             btnMedium.setVisibility(View.VISIBLE);
             btnHard.setVisibility(View.VISIBLE);
+            cardFront.setClickable(false);
         } else {
             setRightOut.setTarget(cardBack);
             setLeftIn.setTarget(cardFront);
@@ -149,4 +169,43 @@ public class StartFragment extends Fragment implements View.OnClickListener {
             cardFront.setClickable(true);
         }
     }
+
+    /**
+     * Connects the fragments attributes with the views components.
+     *
+     * @param view The respective view.
+     */
+    private void findViews(View view) {
+        txtFront = view.findViewById(R.id.front_txt);
+        txtBack = view.findViewById(R.id.back_txt);
+        btnEasy = view.findViewById(R.id.btn_easy);
+        btnMedium = view.findViewById(R.id.btn_medium);
+        btnHard = view.findViewById(R.id.btn_hard);
+        cardFront = view.findViewById(R.id.front_card);
+        cardBack = view.findViewById(R.id.back_card);
+        easyAmount = view.findViewById(R.id.amountEasy);
+        mediumAmount = view.findViewById(R.id.amountMedium);
+        hardAmount = view.findViewById(R.id.amountHard);
+    }
+
+    /**
+     * Loads the animations for flip card.
+     */
+    private void loadAnimations() {
+        setRightOut = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.out_animation);
+        setLeftIn = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.in_animation);
+    }
+
+    /**
+     * Changes the camera distance.
+     */
+    private void changeCameraDistance() {
+        int distance = 8000;
+        float scale = getResources().getDisplayMetrics().density * distance;
+        cardFront.setCameraDistance(scale);
+        cardBack.setCameraDistance(scale);
+    }
+
+
+
 }

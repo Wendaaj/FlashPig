@@ -1,16 +1,14 @@
 package com.example.flashpig.Model;
 
-/**
- * Class for Memory Game
- *
- * @author Madeleine
- * @version 2020-09-16
- */
+/** Class for Memory Game
+        *
+        * @author Madeleine
+        * @version 2020-09-16
+        */
 
 public class Memory extends GameLogic implements MemoryPairUpLogic {
 
-    /**
-     * Constructor for Memory
+    /** Constructor for Memory
      */
 
     public Memory(String title, Deck deck) {
@@ -18,8 +16,7 @@ public class Memory extends GameLogic implements MemoryPairUpLogic {
         this.deck = deck;
     }
 
-    /**
-     * Method to compare two cards from a deck
+    /** Method to compare two cards from a deck
      */
 
     @Override
@@ -34,8 +31,7 @@ public class Memory extends GameLogic implements MemoryPairUpLogic {
         }
     }
 
-        /**
-         * Method to check if it is end of game
+        /** Method to check if it is end of game
          *
          * @return
          */
@@ -48,20 +44,17 @@ public class Memory extends GameLogic implements MemoryPairUpLogic {
             return false;
         }
 
-        /**
-         * Method to turn a card
-         * @param selectedCard the card to turn over
-         *
-         */
+    /**
+     * Method to turn a card
+     * @param selectedCard the card to turn over
+     *
+     */
 
-        public void flipCard (Card selectedCard){ //onFingerPressed
-            if (selectedCard.isFrontside()) {
-                selectedCard.setFrontside(false);
-            } else {
-                selectedCard.setFrontside(true);
-            }
+    public void flipCard (Card selectedCard){ //onFingerPressed
+        if (selectedCard.isFrontside()) {
+            selectedCard.setFrontside(false);
+        } else {
+            selectedCard.setFrontside(true);
         }
     }
-
-
-
+}

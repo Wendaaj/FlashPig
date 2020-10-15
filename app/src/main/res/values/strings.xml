@@ -17,10 +17,38 @@
     <string name="easy">Easy</string>
     <string name="medium">Medium</string>
     <string name="hard">Hard</string>
-    <string name="done">You´re done!</string>
+    <string name="done">You´re done for today!</string>
     <string name="home">Home</string>
     <string name="play_again">Play again</string>
+    <string name="card_nr">Card nr.</string>
+    <string name="quit">Are you sure that you want to quit?</string>
+    <string name="dont_show">Don´t show this again</string>
+    <string name="NA">-</string>
 
+    <!-- Strings used for CardCreate -->
+    <string name="finish">Finish</string>
+    <string name="newcard">New card</string>
+    <string name="takepic">Take a pic</string>
+    <string name="choosepicfromgallery">Choose from gallery</string>
+    <!-- Strings used for DeckCreate -->
+    <string name="enterdeckname">Enter deck name</string>
+    <string name="create">Create</string>
+    <string name="createflashcarddeck">Create flashcard deck</string>
+
+
+    <!--String used for editDeck-->
+    <string name="flashcard_nr">Flashcard nr</string>
+    <string name="Deck_name">Change Deck Name</string>
+    <string name="save_deck">Save Deck</string>
+    <string name="amount_cards">Amount Cards</string>
+    <string name="add_new_card">add new card</string>
+    <string name="front_side_image">Front side image</string>
+    <string name="back_side_image">Back side image</string>
+    <string name="front_to_back">To Backside</string>
+    <string name="back_to_front">To Frontside</string>
+    <string name="edit_spinner_item">Edit</string>
+    <string name="share_spinner_itemr">Share</string>
+    <string name="remove_spinner_item">Remove</string>
     <!-- Strings used for Memory -->
     <string name="Memory">Memory</string>
 

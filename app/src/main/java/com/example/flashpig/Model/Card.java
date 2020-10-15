@@ -1,5 +1,6 @@
 package com.example.flashpig.Model;
 
+import android.graphics.Bitmap;
 import android.media.Image;
 
 import java.io.ByteArrayInputStream;
@@ -8,6 +9,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+
+import android.net.Uri;
 
 /**
  * Class for card.
@@ -20,9 +23,10 @@ public class Card {
     private boolean isFrontside;
     private String frontsideStr;
     private String backsideStr;
-    private Image frontImg;
-    private Image backImg;
+    private Bitmap frontImg;
+    private Bitmap backImg;
     private Enum difficulty;
+
 
     /**
      * Card constructor
@@ -30,7 +34,7 @@ public class Card {
      */
 
     public Card(int id, String frontsideStr, String backsideStr,
-                Image frontImg, Image backImg) {
+                Bitmap frontImg, Bitmap backImg) {
         this.id = id;
         this.frontsideStr = frontsideStr;
         this.backsideStr = backsideStr;
@@ -41,40 +45,6 @@ public class Card {
     }
 
     /**
-     * copy constructor for deep copy
-     * @param copiedCard
-     * @return
-     */
-
-    /*public Card Card (Card copiedCard){
-        //create new instance
-        Card newCard = new Card(0, "hej", "då", null,
-                null);
-
-        //copy instance values
-        newCard.id = copiedCard.id;
-        newCard.frontsideStr = copiedCard.frontsideStr;
-        newCard.backsideStr = copiedCard.backsideStr;
-        newCard.frontImg = copiedCard.frontImg;
-        newCard.backImg = copiedCard.backImg;
-
-        //return copy
-        return newCard;
-    }
-
-    /*public Card makeClone() throws IOException, ClassNotFoundException {
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        ObjectOutputStream out = new ObjectOutputStream(outputStream);
-        out.writeObject(this);
-
-        ByteArrayInputStream inputStream = new ByteArrayInputStream(outputStream.toByteArray());
-        ObjectInputStream in = new ObjectInputStream(inputStream);
-        Card copied = (Card) in.readObject();
-        return copied;
-    }*/
-
-
-    /**
      * Method to create frontside of card
      * @param str the tect or numbers to use
      * //@param img the picture to use
@@ -82,13 +52,14 @@ public class Card {
      */
     public void EditFrontside(String str, Image img) {
 
-        if (this.isFrontside && str != null && !str.equals("")){
-            this.frontsideStr = str;
-        }
+    }
 
-        this.frontImg = img;
 
-}
+    public void setFrontsideStr(String frontsideStr) {
+        this.frontsideStr = frontsideStr;
+    }
+
+
 
     /**
      * Method to create backside of card
@@ -101,9 +72,21 @@ public class Card {
             this.backsideStr = str;
         }
 
-        this.backImg = img;
+       // this.backImg = img;
 
 }
+
+    public void setBacksideStr(String backsideStr) {
+        this.backsideStr = backsideStr;
+    }
+
+    public void setFrontImg(Bitmap frontImg) {
+        this.frontImg = frontImg;
+    }
+
+    public void setBackImg(Bitmap backImg) {
+        this.backImg = backImg;
+    }
 
     public int getId() {
         return id;
@@ -128,11 +111,11 @@ public class Card {
         return backsideStr;
     }
 
-    public Image getFrontImg() {
+    public Bitmap getFrontImg() {
         return frontImg;
     }
 
-    public Image getBackImg() {
+    public Bitmap getBackImg() {
         return backImg;
     }
 
@@ -143,5 +126,7 @@ public class Card {
     public void setDifficulty(Enum difficulty) {
         this.difficulty = difficulty;
     }
+
+
 
 }

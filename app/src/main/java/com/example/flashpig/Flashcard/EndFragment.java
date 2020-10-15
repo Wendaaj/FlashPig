@@ -14,6 +14,12 @@ import android.widget.Button;
 
 import com.example.flashpig.R;
 
+/**
+ * Checks if the player wants to return home or restart the game.
+ *
+ * @author wendy
+ * @version 2020-10-04
+ * */
 public class EndFragment extends Fragment {
 
     @Override
@@ -46,6 +52,5 @@ public class EndFragment extends Fragment {
                         .navigate(R.id.action_endFragment_to_startFragment);
             }
         });
-
     }
 }

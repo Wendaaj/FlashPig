@@ -25,7 +25,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:navigationIcon="@drawable/back_button">
+        app:navigationIcon="@drawable/ic_baseline_arrow_back_24">
 
         <TextView
             android:id="@+id/flashcardTitle"
@@ -37,5 +37,69 @@
             android:textSize="20sp" />
 
     </androidx.appcompat.widget.Toolbar>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/quit_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#81DCD7D7"
+        android:visibility="invisible">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/exit_view"
+            android:layout_width="250dp"
+            android:layout_height="145dp"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|left"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/roboto_slab"
+                android:text="@string/dont_show"
+                android:textColor="#8A8787"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|top"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/roboto_slab"
+                android:gravity="center"
+                android:text="@string/quit"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/btn_no"
+                android:layout_width="125dp"
+                android:layout_height="40dp"
+                android:layout_gravity="bottom|left"
+                android:background="@drawable/no_button"
+                android:fontFamily="@font/roboto_slab_bold"
+                android:text="No!"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/btn_yes"
+                android:layout_width="125dp"
+                android:layout_height="40dp"
+                android:layout_gravity="bottom|right"
+                android:background="@drawable/yes_button"
+                android:fontFamily="@font/roboto_slab_bold"
+                android:text="Yes"
+                android:textColor="#FFFFFF" />
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

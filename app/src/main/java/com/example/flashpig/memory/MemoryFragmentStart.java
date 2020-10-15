@@ -23,6 +23,8 @@ import com.example.flashpig.Model.Deck;
 import com.example.flashpig.Model.PairUp;
 import com.example.flashpig.R;
 
+import java.util.Collections;
+
 public class MemoryFragmentStart extends Fragment implements memoryRecyclerViewAdapter.ItemClickListener {
 
     private AnimatorSet setRightOut, setLeftIn;
@@ -31,11 +33,11 @@ public class MemoryFragmentStart extends Fragment implements memoryRecyclerViewA
     private memoryRecyclerViewAdapter adapter = new memoryRecyclerViewAdapter(getContext(), deck.cards);
     private memoryRecyclerViewAdapter2 adapter2 = new memoryRecyclerViewAdapter2(getContext(), deck.cards);
     PairUp pairup = new PairUp("Zorris", this.deck);
-    int position1, position2;
+    int position1;
     private RecyclerView recyclerView, recyclerView2;
-    int cardsCount;
     int deckSize;
     int showingCards = adapter.getItemCount() * 2;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -98,51 +100,76 @@ public class MemoryFragmentStart extends Fragment implements memoryRecyclerViewA
         setRightOut = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.out_animation);
         setLeftIn = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.in_animation);
     }
-    //TODO notify second column, last row is wierd
+
+    // TODO Randomize
 
     @Override
     public void onItemClick(View view, int position) throws InterruptedException {
-        if (card1 == null) {
+
+        boolean isGameDone = pairup.isEndOfGame(deckSize);
+
+        if (card1 == null) { //Select first card
+
             card1 = adapter.getItem(position);
-            view.setClickable(false);
+
             position1 = position;
-            // adapter.flip(view, position); //set frontside on card1
-            adapter2.setClickable(true);
-        } else {
+
+            view.setClickable(false);
+
+        } else { //Select second card
+
             card2 = adapter2.getItem(position);
 
-            // adapter2.flip2(view, position); //set backside on card2
-            if (pairup.isMatched(card1, card2, deck) && showingCards != 2) {
-                showingCards -= 2;
-                deckSize--;
-                view.setClickable(false);
-                view.setBackgroundResource(R.drawable.frame_correct); //CARD 2
-                recyclerView.findViewHolderForAdapterPosition(position1).itemView.setBackgroundResource(R.drawable.frame_correct); //CARD 1
-                //adapter.getItemCount() -= 1;
-            } else if (showingCards == 2) {
-                recyclerView.findViewHolderForAdapterPosition(position1).itemView.setBackgroundResource(R.drawable.frame_correct);
-                view.setBackgroundResource(R.drawable.frame_correct);
-                deckSize--;
-                delay(view);
-                if (pairup.isEndOfGame(deckSize)) {
-                    endGame();
-                }else {
-                    loadNewCards();
+            if (pairup.isMatched(card1, card2, deck) && showingCards != 2) { //If pair and not the last pair
 
+                updateAmountCards();
+
+                view.setClickable(true); //edited
+
+                setCorrectFrame(view);
+
+            } else if (showingCards == 2) { //If it is last pair
+
+                setCorrectFrame(view);
+
+                deckSize--;
+
+                if (isGameDone) { //If it's game done
+
+                    endGame();
+
+                }else { //Load next cards
+
+                    delay(view);
+
+                    loadNewCards();
                 }
             }
-            else {
-                //adapter2.flip2(view.findViewById(position), position);
-                //adapter.flip(view.findViewById(position1), position1);
+            else { //If not a pair
 
                 recyclerView.findViewHolderForAdapterPosition(position1).itemView.setClickable(true);
-                recyclerView.findViewHolderForAdapterPosition(position1).itemView.setBackgroundResource(R.drawable.frame_incorrect);
-                view.setBackgroundResource(R.drawable.frame_incorrect);
+
+                setIncorrectFrame(view);
+
                 delay(view);
             }
-            card1 = null;
-            adapter2.setClickable(false);
+            card1 = null; //Reset first card
         }
+    }
+
+    private void setIncorrectFrame(View view){
+        recyclerView.findViewHolderForAdapterPosition(position1).itemView.setBackgroundResource(R.drawable.frame_incorrect);
+        view.setBackgroundResource(R.drawable.frame_incorrect);
+    }
+
+    private void setCorrectFrame(View view){
+        view.setBackgroundResource(R.drawable.frame_correct);
+        recyclerView.findViewHolderForAdapterPosition(position1).itemView.setBackgroundResource(R.drawable.frame_correct);
+    }
+
+    private void updateAmountCards(){
+        showingCards -= 2;
+        deckSize--;
     }
 
     private void loadNewCards() {
@@ -151,8 +178,8 @@ public class MemoryFragmentStart extends Fragment implements memoryRecyclerViewA
             deck.cards.remove(0);
             i--;
         }
-        adapter2.setReload(true);
         adapter.notifyDataSetChanged();
+        adapter2.setReload(true);
         showingCards = 6;
     }
 
@@ -183,12 +210,15 @@ public class MemoryFragmentStart extends Fragment implements memoryRecyclerViewA
             Card card = adapter.getItem(i);
             card.setFrontside(false);
             adapter.notifyDataSetChanged();
+            Collections.shuffle(deck.cards);  //NEW
+
         }
 
         for (int j = 0; j < deckSize; j++) {
             Card card = adapter2.getItem(j);
             card.setFrontside(true);
             adapter2.notifyDataSetChanged();
+            Collections.shuffle(deck.cards);  //NEW
         }
     }
 
@@ -197,4 +227,3 @@ public class MemoryFragmentStart extends Fragment implements memoryRecyclerViewA
                 .navigate(R.id.action_startFragmentMemory_to_endFragmentMemory);
     }
 }
-
