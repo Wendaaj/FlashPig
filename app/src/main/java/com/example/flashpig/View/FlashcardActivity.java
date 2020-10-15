@@ -81,6 +81,15 @@ public class  FlashcardActivity extends AppCompatActivity {
         checkBox.setChecked(state);
     }
 
+    private void findViews() {
+        quitView = findViewById(R.id.quit_view);
+        checkBox = findViewById(R.id.checkBox);
+        toolbar = findViewById(R.id.flashcardToolbar);
+        //title = findViewById(R.id.txt_title);
+        yesBtn = findViewById(R.id.btn_yes);
+        noBtn = findViewById(R.id.btn_no);
+    }
+
     /**
      * An "are you sure that you want to quit?" view that pops up and navigates the user where it wants.
      */
@@ -100,14 +109,5 @@ public class  FlashcardActivity extends AppCompatActivity {
                 findViewById(R.id.fragment_container).setVisibility(View.VISIBLE);
             }
         });
-    }
-
-    private void findViews() {
-        quitView = findViewById(R.id.quit_view);
-        checkBox = findViewById(R.id.checkBox);
-        toolbar = findViewById(R.id.flashcardToolbar);
-        title = findViewById(R.id.flashcardTitle);
-        yesBtn = findViewById(R.id.btn_yes);
-        noBtn = findViewById(R.id.btn_no);
     }
 }
