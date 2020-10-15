@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FirstFragment">
+    android:background="@color/mainColor"
+    tools:context=".View.DashboardFragment">
 
     <Spinner
         android:id="@+id/chooseDeckSpinner"
@@ -12,6 +13,7 @@
         android:layout_height="35dp"
         android:layout_marginStart="35dp"
         android:layout_marginLeft="35dp"
+        android:background="#FFFFFF"
         android:descendantFocusability="blocksDescendants"
         android:orientation="vertical"
         android:overScrollMode="ifContentScrolls"
@@ -26,7 +28,7 @@
         android:id="@+id/editCardToolbar2"
         android:layout_width="0dp"
         android:layout_height="120dp"
-        android:background="@drawable/radius_corner"
+        android:background="@drawable/header"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
 
@@ -125,11 +127,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:fontFamily="@font/roboto_slab_bold"
         android:text="@string/app_name"
         android:textColor="@color/background"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/editCardToolbar2" />
+
+    <TextView
+        android:id="@+id/ndeckstext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="292dp"
+        android:layout_marginLeft="292dp"
+        android:layout_marginTop="92dp"
+        android:fontFamily="@font/roboto_slab"
+        android:text="TextView"
+        android:textColor="@color/design_default_color_background"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

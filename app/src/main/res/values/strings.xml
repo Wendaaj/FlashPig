@@ -49,9 +49,12 @@
     <string name="edit_spinner_item">Edit</string>
     <string name="share_spinner_itemr">Share</string>
     <string name="remove_spinner_item">Remove</string>
-    <!-- Strings used for Memory -->
+
+    <string name="choose_deck">Choose Deck</string>
+
+
+
+
     <string name="Memory">Memory</string>
-
-
-
+    <!-- Strings used for Memory -->
 </resources>

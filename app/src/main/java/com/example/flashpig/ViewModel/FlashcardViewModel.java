@@ -1,5 +1,8 @@
-package com.example.flashpig.Flashcard;
+package com.example.flashpig.ViewModel;
 
+
+import android.graphics.Bitmap;
+import android.telephony.CellSignalStrength;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -19,22 +22,23 @@ import java.util.Random;
  * @version 2020-10-12
  */
 public class FlashcardViewModel extends ViewModel {
-    private Random rand = new Random();
-    private Deck deck;
     private Flashcard flashcard;
     private String deckName;
+    private boolean hasFrontTxtAndImg;
+    private boolean hasBackTxtAndImg;
     private MutableLiveData<String> backTxt = new MutableLiveData<>();
     private MutableLiveData<String> frontTxt = new MutableLiveData<>();
+    private MutableLiveData<Bitmap> backImg = new MutableLiveData<>();
+    private MutableLiveData<Bitmap> frontImg = new MutableLiveData<>();
     private MutableLiveData<String> easyAmount = new MutableLiveData<>();
     private MutableLiveData<String> mediumAmount = new MutableLiveData<>();
     private MutableLiveData<String> hardAmount = new MutableLiveData<>();
     private MutableLiveData<Boolean> gameOver = new MutableLiveData<>();
 
     /**
-     * Initialize the viewmodel.
+     * Initialize the view model.
      */
-    public void init(){
-        deck = fillDeck();
+    public void init(Deck deck){
         flashcard = new Flashcard(deck.getDeckName(), deck);
         deckName = deck.getDeckName();
         gameOver.setValue(false);
@@ -45,12 +49,17 @@ public class FlashcardViewModel extends ViewModel {
      * Load the next cards values until game is over.
      */
     private void update(){
+        easyAmount.setValue(Integer.toString(flashcard.getAmountCards(Difficulty.EASY)));
+        mediumAmount.setValue(Integer.toString(flashcard.getAmountCards(Difficulty.MEDIUM)));
+        hardAmount.setValue(Integer.toString(flashcard.getAmountCards(Difficulty.HARD)));
+
         if (!flashcard.roundIsOver()){
+            checkHasFrontTxtAndImg();
+            checkHasBackTxtAndImg();
             backTxt.setValue(flashcard.getCurrentCard().getBacksideStr());
             frontTxt.setValue(flashcard.getCurrentCard().getFrontsideStr());
-            easyAmount.setValue(Integer.toString(flashcard.getAmountCards(Difficulty.EASY)));
-            mediumAmount.setValue(Integer.toString(flashcard.getAmountCards(Difficulty.MEDIUM)));
-            hardAmount.setValue(Integer.toString(flashcard.getAmountCards(Difficulty.HARD)));
+            backImg.setValue(flashcard.getCurrentCard().getBackImg());
+            frontImg.setValue(flashcard.getCurrentCard().getFrontImg());
         }
         else {
             gameOver.setValue(true);
@@ -70,24 +79,33 @@ public class FlashcardViewModel extends ViewModel {
         update();
     }
 
-    private Deck fillDeck() {
-        Deck deck = new Deck("Madematik", rand.nextInt());
-        deck.addCard(new Card(rand.nextInt(),"Vad betyder bae på danska?",
-                "Madde",null,null));
-        deck.addCard(new Card(rand.nextInt(), "Efter vem uppkom namnet Madematik?",
-                "SMÄQ",null,null));
-        deck.addCard(new Card(rand.nextInt(), "Lever Smäq upp till sitt namn Madematik?",
-                "Man kan aldrig vara för smart.",null, null));
-        deck.addCard(new Card(rand.nextInt(), "Kommer Smäq slakta tentorna?",
-                "OM hon kommer", null,null));
-        return deck;
+    /**
+     * Checks if card has both front text and front image.
+     */
+    private void checkHasFrontTxtAndImg() {
+        hasFrontTxtAndImg = flashcard.getCurrentCard().getFrontImg() != null && !flashcard.getCurrentCard().getFrontsideStr().isEmpty();
     }
 
-    public LiveData<Boolean> getGameOver() { return gameOver; }
+    /**
+     * Checks if card has both front text and front image.
+     */
+    private void checkHasBackTxtAndImg() {
+        hasBackTxtAndImg = flashcard.getCurrentCard().getBackImg() != null && !flashcard.getCurrentCard().getBacksideStr().isEmpty();
+    }
+
+    public boolean hasFrontTxtAndImg() { return hasFrontTxtAndImg; }
+
+    public boolean hasBackTxtAndImg() { return hasBackTxtAndImg; }
+
+    public MutableLiveData<Boolean> getGameOver() { return gameOver; }
 
     public LiveData<String> getBackTxt() { return backTxt; }
 
     public LiveData<String> getFrontTxt() { return frontTxt; }
+
+    public LiveData<Bitmap> getBackImg() { return backImg; }
+
+    public LiveData<Bitmap> getFrontImg() { return frontImg; }
 
     public LiveData<String> getEasyAmount() { return easyAmount; }
 

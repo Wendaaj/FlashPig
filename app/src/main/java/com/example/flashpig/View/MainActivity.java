@@ -1,8 +1,8 @@
-package com.example.flashpig;
+package com.example.flashpig.View;
 
 import android.os.Bundle;
 
-import com.example.flashpig.memory.memoryRecyclerViewAdapter;
+import com.example.flashpig.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -20,10 +20,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-
+        //Toolbar toolbar = findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
     }
 
     @Override
@@ -49,7 +47,4 @@ public class MainActivity extends AppCompatActivity {
     }
 
     static final int REQUEST_TAKE_PHOTO = 1;
-
-
-
 }

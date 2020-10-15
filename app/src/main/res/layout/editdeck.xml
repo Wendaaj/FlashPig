@@ -102,19 +102,24 @@
 
     <Spinner
         android:id="@+id/chooseDeckSpinner"
-        android:layout_width="280dp"
-        android:layout_height="35dp"
+        style="@style/Widget.AppCompat.Spinner.DropDown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="35dp"
         android:layout_marginLeft="35dp"
+        android:background="@color/background"
+        android:descendantFocusability="blocksDescendants"
+        android:dropDownWidth="fill_parent"
+        android:foregroundGravity="center_vertical|center_horizontal"
         android:orientation="vertical"
         android:overScrollMode="ifContentScrolls"
         android:scrollbars="vertical"
+        android:theme="@style/ThemeOverlay.AppCompat.Light"
         app:layout_constraintBottom_toBottomOf="@+id/addButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/addButton"
         app:layout_constraintVertical_bias="0.625"
-        android:descendantFocusability="blocksDescendants"
-        tools:listitem="@layout/editdeck_spinner_item" />
+        tools:listitem="@layout/editdeck_spinner_item"/>
 
     <ImageButton
         android:id="@+id/addButton"

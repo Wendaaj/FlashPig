@@ -1,4 +1,4 @@
-package com.example.flashpig.Flashcard;
+package com.example.flashpig.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -12,9 +12,10 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import com.example.flashpig.ViewModel.FlashcardViewModel;
 import com.example.flashpig.R;
 
-import java.util.Objects;
+import org.parceler.Parcels;
 
 /**
  * The flashcard activity.
@@ -38,11 +39,11 @@ public class  FlashcardActivity extends AppCompatActivity {
         findViews();
         loadPreferences();
         viewModel = new ViewModelProvider(this).get(FlashcardViewModel.class);
-        viewModel.init();
+        viewModel.init(Parcels.unwrap(getIntent().getParcelableExtra("deck")));
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-//        title.setText(viewModel.getDeckName());
+        title.setText(viewModel.getDeckName());
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,7 +85,7 @@ public class  FlashcardActivity extends AppCompatActivity {
         quitView = findViewById(R.id.quit_view);
         checkBox = findViewById(R.id.checkBox);
         toolbar = findViewById(R.id.flashcardToolbar);
-        //title = findViewById(R.id.txt_title);
+        title = findViewById(R.id.txt_title);
         yesBtn = findViewById(R.id.btn_yes);
         noBtn = findViewById(R.id.btn_no);
     }

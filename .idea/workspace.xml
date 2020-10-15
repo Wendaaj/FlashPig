@@ -1,0 +1,797 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
+  <component name="ChangeListManager">
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+    <list default="true" id="41bec473-6a4e-4a8e-94e1-1bd4cc9332d3" name="Default Changelist" comment="">
+=======
+    <list default="true" id="a10b5362-38af-4b38-a15e-312ddc3e47db" name="Default Changelist" comment="Updated methods in Flashcard. to make countdownlogic.">
+>>>>>>> Stashed changes
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< Updated upstream
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/flashpig/Flashcard/FlashcardActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/flashpig/Flashcard/FlashcardActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/flashpig/Flashcard/StartFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/flashpig/Flashcard/StartFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/flashpig/Model/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/flashpig/Model/Card.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/flashpig/Model/Flashcard.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/flashpig/Model/Flashcard.java" afterDir="false" />
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
+=======
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/com/example/flashpig/ModelTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/com/example/flashpig/ModelTest.java" afterDir="false" />
+>>>>>>> Stashed changes
+=======
+    <list default="true" id="41bec473-6a4e-4a8e-94e1-1bd4cc9332d3" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_close_24.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_delete_24.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_share_24.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/flashpig/EditDeck/DeckSpinnerAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/flashpig/EditDeck/DeckSpinnerAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/flashpig/EditDeck/EditDeckActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/flashpig/EditDeck/EditDeckActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/flashpig/EditDeck/RecyclerViewAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/flashpig/EditDeck/RecyclerViewAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_edit_24.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_edit_24.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/card.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/card.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/editdeck.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/editdeck.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/editdeck_spinner_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/editdeck_spinner_item.xml" afterDir="false" />
+>>>>>>> EditCard
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_3_API_30" />
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="layoutResourceFile" />
+        <option value="Class" />
+        <option value="resourceFile" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="PUSH_AUTO_UPDATE" value="true" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1hUbIgYkbWuJA3g7uLkw2lAlXLm" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Pixel_3_API_30" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-09-14T18:28:28.238Z" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable-v24" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Chalmers\oopproject\FlashPig" />
+    </key>
+    <key name="android.template.105109513">
+      <recent name="com.example.flashpig.EditDeck" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Chalmers\oopproject\FlashPig\app\src\main\res\drawable-v24" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Android App.app">
+    <configuration name="ModelTest.testClearDeck" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+      <module name="app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.flashpig.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.flashpig" />
+      <option name="MAIN_CLASS_NAME" value="com.example.flashpig.ModelTest" />
+      <option name="METHOD_NAME" value="testClearDeck" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ModelTest.testClearDeckNegative" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+      <module name="app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.flashpig.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.flashpig" />
+      <option name="MAIN_CLASS_NAME" value="com.example.flashpig.ModelTest" />
+      <option name="METHOD_NAME" value="testClearDeckNegative" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ModelTest.testDeckContainsCard" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+      <module name="app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.flashpig.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.flashpig" />
+      <option name="MAIN_CLASS_NAME" value="com.example.flashpig.ModelTest" />
+      <option name="METHOD_NAME" value="testDeckContainsCard" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ModelTest.testDeckContainsCardNegative" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+      <module name="app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.flashpig.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.flashpig" />
+      <option name="MAIN_CLASS_NAME" value="com.example.flashpig.ModelTest" />
+      <option name="METHOD_NAME" value="testDeckContainsCardNegative" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ModelTest.testGetAmountCards" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+      <module name="app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.flashpig.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.flashpig" />
+      <option name="MAIN_CLASS_NAME" value="com.example.flashpig.ModelTest" />
+      <option name="METHOD_NAME" value="testGetAmountCards" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
+      <module name="app" />
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Hybrid>
+      <Java />
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Sample Java Methods" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Android JUnit.ModelTest.testGetAmountCards" />
+        <item itemvalue="Android JUnit.ModelTest.testDeckContainsCardNegative" />
+        <item itemvalue="Android JUnit.ModelTest.testDeckContainsCard" />
+        <item itemvalue="Android JUnit.ModelTest.testClearDeckNegative" />
+        <item itemvalue="Android JUnit.ModelTest.testClearDeck" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="41bec473-6a4e-4a8e-94e1-1bd4cc9332d3" name="Default Changelist" comment="" />
+      <created>1600068540575</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1600068540575</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Added class (sage)">
+      <created>1600070887308</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1600070887308</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Model package">
+      <created>1600072012328</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1600072012328</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Deck class">
+      <created>1600072606457</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1600072606457</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Implemented some methods in Deck">
+      <created>1600103259566</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1600103259566</updated>
+    </task>
+    <task id="LOCAL-00005" summary="fixed some errors in deck">
+      <created>1600179083068</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1600179083068</updated>
+    </task>
+    <task id="LOCAL-00006" summary="deleted stashed thing in card">
+      <created>1600348711554</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1600348711554</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Fixed comments and methods in Deck">
+      <created>1600350601600</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1600350601600</updated>
+    </task>
+    <task id="LOCAL-00008" summary="created a getter for deckName">
+      <created>1600418776103</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1600418776103</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Deck: cards list and system.out.print">
+      <created>1600513521890</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1600513521890</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Added some methods and comments in Deck. Tests.">
+      <created>1600707376186</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1600707376186</updated>
+    </task>
+    <task id="LOCAL-00011" summary="moved travis to flashpig">
+      <created>1601281876317</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1601281876317</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Removed .idea">
+      <created>1601285013757</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1601285013757</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Removed .idea2.0">
+      <created>1601285199011</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1601285199011</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Added idea to gitignore">
+      <created>1601285345501</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1601285345501</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Removed idea">
+      <created>1601285610604</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1601285610604</updated>
+    </task>
+    <task id="LOCAL-00016" summary="gitignore idea">
+      <created>1601285653322</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1601285653322</updated>
+    </task>
+    <task id="LOCAL-00017" summary="did some edits on editdeck.xml">
+      <created>1601314028592</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1601314028592</updated>
+    </task>
+    <task id="LOCAL-00018" summary="fixed scrollview and spinner editdeck.xml">
+      <created>1601385436394</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1601385436394</updated>
+    </task>
+    <task id="LOCAL-00019" summary="created recyclerView and adapter">
+      <created>1601404947749</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1601404947749</updated>
+    </task>
+    <task id="LOCAL-00020" summary="EditDeckActivity and editDeckFragment, updated editdeck.xml">
+      <created>1601495899206</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1601495899206</updated>
+    </task>
+    <task id="LOCAL-00021" summary="removed a getter test. updated editdeck.xml, editDeckFragment, EditDeckActivity, card.xml">
+      <created>1601628804119</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1601628804119</updated>
+    </task>
+    <task id="LOCAL-00022" summary="push to master">
+      <created>1601650595572</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1601650595573</updated>
+    </task>
+    <task id="LOCAL-00023" summary="merge with master">
+      <created>1601651774678</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1601651774678</updated>
+    </task>
+    <task id="LOCAL-00024" summary="front to back button and GridSpacingCardDecoration">
+      <created>1601662159206</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1601662159206</updated>
+    </task>
+    <task id="LOCAL-00025" summary="DeckSpinnerAdapter">
+      <created>1602227669113</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1602227669113</updated>
+    </task>
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+    <task id="LOCAL-00026" summary="Updated methods in Flashcard. to make countdownlogic.">
+      <created>1602496517087</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1602496517087</updated>
+=======
+    <task id="LOCAL-00026" summary="Moved the game logic in fragment to FlashcardViewModel">
+      <created>1602519093473</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1602519093474</updated>
+>>>>>>> Stashed changes
+    </task>
+<<<<<<< Updated upstream
+    <option name="localTasksCounter" value="27" />
+=======
+    <task id="LOCAL-00027" summary="Deleted ModelTest for editCard.">
+      <created>1602519842659</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1602519842659</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
+>>>>>>> Stashed changes
+=======
+    <task id="LOCAL-00026" summary="Idea deleted">
+      <created>1602228080660</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1602228080660</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Idea deleted">
+      <created>1602228116258</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1602228116258</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
+>>>>>>> EditCard
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+    <MESSAGE value="Implemented some methods in Deck" />
+=======
+>>>>>>> Stashed changes
+=======
+    <MESSAGE value="Implemented some methods in Deck" />
+>>>>>>> EditCard
+    <MESSAGE value="fixed some errors in deck" />
+    <MESSAGE value="deleted stashed thing in card 2.0" />
+    <MESSAGE value="deleted stashed thing in card" />
+    <MESSAGE value="Fixed comments and methods in Deck" />
+    <MESSAGE value="created a getter for deckName" />
+    <MESSAGE value="fixed problems with gitkraken" />
+    <MESSAGE value="Deck: cards list and system.out.print" />
+    <MESSAGE value="Added some methods and comments in Deck. Tests." />
+    <MESSAGE value="moved travis to flashpig" />
+    <MESSAGE value="Removed .idea" />
+    <MESSAGE value="Removed .idea2.0" />
+    <MESSAGE value="Added idea to gitignore" />
+    <MESSAGE value="Removed idea" />
+    <MESSAGE value="gitignore idea" />
+    <MESSAGE value="did some edits on editdeck.xml" />
+    <MESSAGE value="fixed scrollview and spinner editdeck.xml" />
+    <MESSAGE value="created recyclerView and adapter" />
+    <MESSAGE value="EditDeckActivity and editDeckFragment, updated editdeck.xml" />
+    <MESSAGE value="removed a getter test. updated editdeck.xml, editDeckFragment, EditDeckActivity, card.xml" />
+    <MESSAGE value="push to master" />
+    <MESSAGE value="merge with master" />
+    <MESSAGE value="front to back button and GridSpacingCardDecoration" />
+    <MESSAGE value="DeckSpinnerAdapter" />
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+    <MESSAGE value="Updated methods in Flashcard. to make countdownlogic." />
+<<<<<<< Updated upstream
+    <option name="LAST_COMMIT_MESSAGE" value="Updated methods in Flashcard. to make countdownlogic." />
+=======
+<<<<<<< Updated upstream
+    <MESSAGE value="Moved the game logic in fragment to FlashcardViewModel" />
+    <option name="LAST_COMMIT_MESSAGE" value="Moved the game logic in fragment to FlashcardViewModel" />
+=======
+    <MESSAGE value="Deleted ModelTest for editCard." />
+    <option name="LAST_COMMIT_MESSAGE" value="Deleted ModelTest for editCard." />
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
+=======
+    <MESSAGE value="Idea deleted" />
+    <option name="LAST_COMMIT_MESSAGE" value="Idea deleted" />
+>>>>>>> EditCard
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="158" y="73" key="#PSD" timestamp="1600068796130">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="158" y="73" key="#PSD/0.0.1280.680@0.0.1280.680" timestamp="1600068796130" />
+<<<<<<< HEAD
+    <state x="125" y="70" key="#com.intellij.ide.util.MemberChooser" timestamp="1602508244740">
+      <screen x="0" y="0" width="1280" height="800" />
+    </state>
+    <state x="125" y="60" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1601728480750" />
+    <state x="125" y="70" key="#com.intellij.ide.util.MemberChooser/0.0.1280.800@0.0.1280.800" timestamp="1602508244740" />
+    <state x="125" y="83" key="#com.intellij.ide.util.MemberChooser/0.23.1280.683@0.23.1280.683" timestamp="1602490349355" />
+=======
+    <state x="125" y="60" key="#com.intellij.ide.util.MemberChooser" timestamp="1602493010378">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="125" y="60" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1602493010378" />
+>>>>>>> EditCard
+    <state x="338" y="266" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1600071912993">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="338" y="266" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1280.680@0.0.1280.680" timestamp="1600071912993" />
+    <state x="438" y="221" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1600071919200">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="438" y="221" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1280.680@0.0.1280.680" timestamp="1600071919200" />
+    <state x="371" y="88" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1601484820569">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="371" y="88" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" timestamp="1601484820569" />
+    <state x="221" y="95" key="AndroidCreateResourceFileDialog" timestamp="1601890521249">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="221" y="95" key="AndroidCreateResourceFileDialog/0.0.1280.680@0.0.1280.680" timestamp="1601890521249" />
+    <state x="498" y="153" key="AndroidCreateXmlResourceDialog" timestamp="1601365204786">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="498" y="153" key="AndroidCreateXmlResourceDialog/0.0.1280.680@0.0.1280.680" timestamp="1601365204786" />
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+    <state x="306" y="23" key="CommitChangelistDialog2" timestamp="1602519758527">
+      <screen x="0" y="23" width="1280" height="674" />
+    </state>
+    <state x="306" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1602228079498" />
+    <state x="306" y="23" key="CommitChangelistDialog2/0.23.1280.674@0.23.1280.674" timestamp="1602519758527" />
+=======
+    <state x="306" y="23" key="CommitChangelistDialog2" timestamp="1602519842253">
+      <screen x="0" y="23" width="1280" height="674" />
+    </state>
+    <state x="306" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1602228079498" />
+    <state x="306" y="23" key="CommitChangelistDialog2/0.23.1280.674@0.23.1280.674" timestamp="1602519842253" />
+>>>>>>> Stashed changes
+    <state x="306" y="23" key="CommitChangelistDialog2/0.23.1280.678@0.23.1280.678" timestamp="1602496516611" />
+=======
+    <state x="306" y="0" key="CommitChangelistDialog2" timestamp="1602228115329">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="306" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1602228115329" />
+>>>>>>> EditCard
+    <state x="421" y="96" key="FileChooserDialogImpl" timestamp="1601651290520">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1601651290520" />
+<<<<<<< HEAD
+    <state width="1236" height="218" key="GridCell.Tab.0.bottom" timestamp="1602511056735">
+      <screen x="0" y="23" width="1280" height="674" />
+    </state>
+    <state width="1236" height="161" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1602161263120" />
+    <state width="1236" height="218" key="GridCell.Tab.0.bottom/0.23.1280.674@0.23.1280.674" timestamp="1602511056735" />
+    <state width="1236" height="218" key="GridCell.Tab.0.bottom/0.23.1280.678@0.23.1280.678" timestamp="1602510900472" />
+    <state width="1236" height="204" key="GridCell.Tab.0.bottom/0.23.1280.683@0.23.1280.683" timestamp="1602493608027" />
+    <state width="1236" height="218" key="GridCell.Tab.0.center" timestamp="1602511056735">
+      <screen x="0" y="23" width="1280" height="674" />
+    </state>
+    <state width="1236" height="161" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1602161263120" />
+    <state width="1236" height="218" key="GridCell.Tab.0.center/0.23.1280.674@0.23.1280.674" timestamp="1602511056735" />
+    <state width="1236" height="218" key="GridCell.Tab.0.center/0.23.1280.678@0.23.1280.678" timestamp="1602510900471" />
+    <state width="1236" height="204" key="GridCell.Tab.0.center/0.23.1280.683@0.23.1280.683" timestamp="1602493608026" />
+    <state width="1236" height="218" key="GridCell.Tab.0.left" timestamp="1602511056734">
+      <screen x="0" y="23" width="1280" height="674" />
+    </state>
+    <state width="1236" height="161" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1602161263120" />
+    <state width="1236" height="218" key="GridCell.Tab.0.left/0.23.1280.674@0.23.1280.674" timestamp="1602511056734" />
+    <state width="1236" height="218" key="GridCell.Tab.0.left/0.23.1280.678@0.23.1280.678" timestamp="1602510900471" />
+    <state width="1236" height="204" key="GridCell.Tab.0.left/0.23.1280.683@0.23.1280.683" timestamp="1602493608026" />
+    <state width="1236" height="218" key="GridCell.Tab.0.right" timestamp="1602511056735">
+      <screen x="0" y="23" width="1280" height="674" />
+    </state>
+    <state width="1236" height="161" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1602161263120" />
+    <state width="1236" height="218" key="GridCell.Tab.0.right/0.23.1280.674@0.23.1280.674" timestamp="1602511056735" />
+    <state width="1236" height="218" key="GridCell.Tab.0.right/0.23.1280.678@0.23.1280.678" timestamp="1602510900472" />
+    <state width="1236" height="204" key="GridCell.Tab.0.right/0.23.1280.683@0.23.1280.683" timestamp="1602493608027" />
+    <state width="1491" height="192" key="GridCell.Tab.1.bottom" timestamp="1602518931497">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1236" height="256" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1602155178035" />
+    <state width="1491" height="192" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1602518931497" />
+    <state width="1236" height="204" key="GridCell.Tab.1.bottom/0.23.1280.683@0.23.1280.683" timestamp="1602493608028" />
+    <state width="1491" height="192" key="GridCell.Tab.1.center" timestamp="1602518931497">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1236" height="256" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1602155178035" />
+    <state width="1491" height="192" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1602518931497" />
+    <state width="1236" height="204" key="GridCell.Tab.1.center/0.23.1280.683@0.23.1280.683" timestamp="1602493608027" />
+    <state width="1491" height="192" key="GridCell.Tab.1.left" timestamp="1602518931496">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1236" height="256" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1602155178035" />
+    <state width="1491" height="192" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1602518931496" />
+    <state width="1236" height="204" key="GridCell.Tab.1.left/0.23.1280.683@0.23.1280.683" timestamp="1602493608027" />
+    <state width="1491" height="192" key="GridCell.Tab.1.right" timestamp="1602518931497">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1236" height="256" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1602155178035" />
+    <state width="1491" height="192" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1602518931497" />
+    <state width="1236" height="204" key="GridCell.Tab.1.right/0.23.1280.683@0.23.1280.683" timestamp="1602493608028" />
+    <state x="349" y="155" key="IDE.errors.dialog" timestamp="1602509088700">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="349" y="155" key="IDE.errors.dialog/0.0.1536.824@0.0.1536.824" timestamp="1602509088700" />
+=======
+    <state width="1236" height="77" key="GridCell.Tab.0.bottom" timestamp="1602521209322">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1236" height="77" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1602521209322" />
+    <state width="1236" height="77" key="GridCell.Tab.0.center" timestamp="1602521209322">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1236" height="77" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1602521209322" />
+    <state width="1236" height="77" key="GridCell.Tab.0.left" timestamp="1602521209322">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1236" height="77" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1602521209322" />
+    <state width="1236" height="77" key="GridCell.Tab.0.right" timestamp="1602521209322">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1236" height="77" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1602521209322" />
+    <state width="1236" height="261" key="GridCell.Tab.1.bottom" timestamp="1602518287558">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1236" height="261" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1602518287558" />
+    <state width="1236" height="261" key="GridCell.Tab.1.center" timestamp="1602518287558">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1236" height="261" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1602518287558" />
+    <state width="1236" height="261" key="GridCell.Tab.1.left" timestamp="1602518287558">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1236" height="261" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1602518287558" />
+    <state width="1236" height="261" key="GridCell.Tab.1.right" timestamp="1602518287558">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1236" height="261" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1602518287558" />
+>>>>>>> EditCard
+    <state x="122" y="50" key="MergeDialog" timestamp="1601364727203">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="122" y="50" key="MergeDialog/0.0.1280.680@0.0.1280.680" timestamp="1601364727203" />
+<<<<<<< HEAD
+    <state x="354" y="56" key="MultipleFileMergeDialog" timestamp="1601364727217">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="354" y="56" key="MultipleFileMergeDialog/0.0.1280.680@0.0.1280.680" timestamp="1601364727217" />
+=======
+    <state x="354" y="56" key="MultipleFileMergeDialog" timestamp="1602487665350">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="354" y="56" key="MultipleFileMergeDialog/0.0.1280.680@0.0.1280.680" timestamp="1602487665350" />
+>>>>>>> EditCard
+    <state x="103" y="0" key="SettingsEditor" timestamp="1601659297863">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="103" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1601659297863" />
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+    <state x="233" y="97" key="Vcs.Push.Dialog.v2" timestamp="1602496519102">
+      <screen x="0" y="23" width="1280" height="678" />
+    </state>
+    <state x="233" y="74" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1602227671738" />
+=======
+    <state x="233" y="97" key="Vcs.Push.Dialog.v2" timestamp="1602519844717">
+      <screen x="0" y="23" width="1280" height="674" />
+    </state>
+    <state x="233" y="74" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1602227671738" />
+    <state x="233" y="97" key="Vcs.Push.Dialog.v2/0.23.1280.674@0.23.1280.674" timestamp="1602519844717" />
+>>>>>>> Stashed changes
+    <state x="233" y="97" key="Vcs.Push.Dialog.v2/0.23.1280.678@0.23.1280.678" timestamp="1602496519102" />
+=======
+    <state x="233" y="74" key="Vcs.Push.Dialog.v2" timestamp="1602228119442">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="233" y="74" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1602228119442" />
+>>>>>>> EditCard
+    <state x="452" y="119" key="chooseDestDirectoryDialog" timestamp="1601621130740">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="452" y="119" key="chooseDestDirectoryDialog/0.0.1280.680@0.0.1280.680" timestamp="1601621130740" />
+    <state x="93" y="93" width="1095" height="495" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1600070327622">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="93" y="93" width="1095" height="495" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1280.680@0.0.1280.680" timestamp="1600070327622" />
+<<<<<<< HEAD
+    <state x="336" y="164" width="561" height="351" key="com.intellij.ide.util.TipDialog" timestamp="1602144715369">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="336" y="164" width="561" height="351" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1602144715369" />
+    <state x="450" y="258" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1602523218585">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="450" y="258" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.680@0.0.1280.680" timestamp="1602523218585" />
+    <state x="418" y="53" key="git4idea.branch.GitSmartOperationDialog" timestamp="1601364643296">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="418" y="53" key="git4idea.branch.GitSmartOperationDialog/0.0.1280.680@0.0.1280.680" timestamp="1601364643296" />
+    <state x="364" y="1" width="807" height="823" key="search.everywhere.popup" timestamp="1602513392780">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1601884460999" />
+    <state x="364" y="1" width="807" height="823" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1602513392780" />
+    <state x="303" y="24" width="672" height="673" key="search.everywhere.popup/0.23.1280.674@0.23.1280.674" timestamp="1602489558808" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="app">
+        <watch expression="flashcard.gameDeck.get(0).difficulty" />
+        <watch expression="flashcard.gameDeck.get(1).difficulty" />
+        <watch expression="flashcard.gameDeck.get(2).difficulty" />
+        <watch expression="flashcard.gameDeck.get(3).difficulty" />
+      </configuration>
+    </watches-manager>
+=======
+    <state x="336" y="164" width="561" height="351" key="com.intellij.ide.util.TipDialog" timestamp="1602507724284">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="336" y="164" width="561" height="351" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1602507724284" />
+    <state x="418" y="53" key="git4idea.branch.GitSmartOperationDialog" timestamp="1602487571662">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="418" y="53" key="git4idea.branch.GitSmartOperationDialog/0.0.1280.680@0.0.1280.680" timestamp="1602487571662" />
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1602514463601">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1602514463601" />
+>>>>>>> EditCard
+  </component>
+</project>

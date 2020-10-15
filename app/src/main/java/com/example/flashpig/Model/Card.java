@@ -2,36 +2,41 @@ package com.example.flashpig.Model;
 
 import android.graphics.Bitmap;
 import android.media.Image;
-
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
-
 import android.net.Uri;
+
+import com.example.flashpig.R;
+
+import org.parceler.Parcel;
+
+import java.util.Random;
 
 /**
  * Class for card.
  * @author Jesper
  * @version 2020-09-14l
  */
-
+@Parcel
 public class Card {
-    private int id;
-    private boolean isFrontside;
-    private String frontsideStr;
-    private String backsideStr;
-    private Bitmap frontImg;
-    private Bitmap backImg;
-    private Enum difficulty;
+    Random rand = new Random();
+    int id;
+    boolean isFrontside;
+    String frontsideStr;
+    String backsideStr;
+    Bitmap frontImg;
+    Bitmap backImg;
+    Enum difficulty;
 
 
     /**
      * Card constructor
      *
      */
+
+    public Card() {
+        this.id = rand.nextInt(); //check if already exist
+        setDifficulty(Difficulty.NOTHING);
+        setFrontside(true);
+    }
 
     public Card(int id, String frontsideStr, String backsideStr,
                 Bitmap frontImg, Bitmap backImg) {
@@ -44,45 +49,16 @@ public class Card {
         setFrontside(true);
     }
 
-    /**
-     * Method to create frontside of card
-     * @param str the tect or numbers to use
-     * //@param img the picture to use
-     *
-     */
-    public void EditFrontside(String str, Image img) {
-
-    }
-
 
     public void setFrontsideStr(String frontsideStr) {
         this.frontsideStr = frontsideStr;
     }
 
-
-
-    /**
-     * Method to create backside of card
-     * @param str the tect or numbers to use
-     * //@param img the picture to use
-     *
-     */
-    public void EditBackside(String str, Image img){
-        if (!this.isFrontside && str != null && !str.equals("")){
-            this.backsideStr = str;
-        }
-
-       // this.backImg = img;
-
-}
-
     public void setBacksideStr(String backsideStr) {
         this.backsideStr = backsideStr;
     }
 
-    public void setFrontImg(Bitmap frontImg) {
-        this.frontImg = frontImg;
-    }
+    public void setFrontImg(Bitmap frontImg) { this.frontImg = frontImg; }
 
     public void setBackImg(Bitmap backImg) {
         this.backImg = backImg;

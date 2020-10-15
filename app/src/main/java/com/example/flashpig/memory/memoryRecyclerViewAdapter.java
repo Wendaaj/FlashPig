@@ -30,6 +30,10 @@ public class memoryRecyclerViewAdapter extends
     public Context mContext;
     int amountRows = 3;
 
+    public List<Card> getCardsList() {
+        return cardsList;
+    }
+
     public memoryRecyclerViewAdapter(Context context, List<Card> cardsList) {
         this.mContext = context;
         this.cardsList = cardsList;

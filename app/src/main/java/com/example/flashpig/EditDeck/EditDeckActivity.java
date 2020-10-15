@@ -69,6 +69,7 @@ public class EditDeckActivity extends AppCompatActivity implements RecyclerViewA
 
     private void initSpinnerList(){
         deckArrayList = new ArrayList<>();
+        /*
         Deck deck1 = new Deck("matte", random.nextInt());
         Deck deck2 = new Deck("svenska", random.nextInt());
         Deck deck3 = new Deck("engelska", random.nextInt());
@@ -93,6 +94,7 @@ public class EditDeckActivity extends AppCompatActivity implements RecyclerViewA
         deckArrayList.add(deck4);
         deckArrayList.add(deck5);
         deckArrayList.add(deck6);
+         */
     }
 
     private void cardListGrid(Deck deck){

@@ -43,6 +43,7 @@ public class Memory extends GameLogic implements MemoryPairUpLogic {
             }
             return false;
         }
+    }
 
     /**
      * Method to turn a card
