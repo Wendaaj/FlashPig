@@ -68,7 +68,7 @@ public class FirstFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(FirstFragment.this)
-                        .navigate(R.id.action_FirstFragment_to_editDeckActivity2);
+                        .navigate(R.id.action_FirstFragment_to_editDeckActivity);
             }
         });
         view.findViewById(R.id.createCardButton).setOnClickListener(new View.OnClickListener() {

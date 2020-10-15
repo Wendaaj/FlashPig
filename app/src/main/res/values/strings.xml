@@ -49,4 +49,7 @@
     <string name="edit_spinner_item">Edit</string>
     <string name="share_spinner_itemr">Share</string>
     <string name="remove_spinner_item">Remove</string>
+    <string name="choose_deck">Choose Deck</string>
+    <string name="delete_card">Are you sure you want to delete this card?</string>
+    <string name="delete_deck">Are you sure you want to delete this deck?</string>
 </resources>

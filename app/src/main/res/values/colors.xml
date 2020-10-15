@@ -15,4 +15,8 @@
     <color name="colorAccentorange">#FFB46F</color>
     <color name="colorAccentblue">#76ADFF</color>
 
+    <color name="spinner1">#E4F2FF</color>
+    <color name="spinner2">#D0E8FF</color>
+    <color name="lightGrey">#D3D3D3</color>
+
 </resources>

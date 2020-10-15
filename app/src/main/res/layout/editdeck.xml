@@ -80,7 +80,6 @@
         android:layout_marginTop="15dp"
         android:layout_marginBottom="15dp"
         android:fontFamily="@font/roboto_slab_bold"
-        android:text="@string/amount_cards"
         android:textColor="#86889E"
         android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@+id/cardRecyclerView"
@@ -102,29 +101,35 @@
 
     <Spinner
         android:id="@+id/chooseDeckSpinner"
-        android:layout_width="280dp"
-        android:layout_height="35dp"
+        style="@style/Widget.AppCompat.Spinner.DropDown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="35dp"
         android:layout_marginLeft="35dp"
+        android:background="@color/background"
+        android:descendantFocusability="blocksDescendants"
+        android:dropDownWidth="fill_parent"
+        android:foregroundGravity="center_vertical|center_horizontal"
         android:orientation="vertical"
         android:overScrollMode="ifContentScrolls"
         android:scrollbars="vertical"
+        android:theme="@style/ThemeOverlay.AppCompat.Light"
         app:layout_constraintBottom_toBottomOf="@+id/addButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/addButton"
         app:layout_constraintVertical_bias="0.625"
-        android:descendantFocusability="blocksDescendants"
         tools:listitem="@layout/editdeck_spinner_item" />
 
     <ImageButton
         android:id="@+id/addButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
         android:layout_marginStart="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="35dp"
         android:layout_marginRight="35dp"
+        android:background="#FFB46F"
         android:contentDescription="@string/add_new_card"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.615"
@@ -149,6 +154,71 @@
         app:layout_constraintTop_toBottomOf="@+id/chooseDeckSpinner"
         app:layout_constraintVertical_bias="1.0"
         app:layout_optimizationLevel="graph_wrap" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/deleteCard"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#81DCD7D7"
+        android:visibility="invisible">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/removeCard"
+            android:layout_width="250dp"
+            android:layout_height="145dp"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <CheckBox
+                android:id="@+id/checkBox1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|left"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/roboto_slab"
+                android:text="@string/dont_show"
+                android:textColor="#8A8787"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|top"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/roboto_slab"
+                android:gravity="center"
+                android:text="@string/delete_card"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/noBtn"
+                android:layout_width="125dp"
+                android:layout_height="40dp"
+                android:layout_gravity="bottom|left"
+                android:background="@drawable/no_button"
+                android:fontFamily="@font/roboto_slab_bold"
+                android:text="No!"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/yesBtn"
+                android:layout_width="125dp"
+                android:layout_height="40dp"
+                android:layout_gravity="bottom|right"
+                android:background="@drawable/yes_button"
+                android:fontFamily="@font/roboto_slab_bold"
+                android:text="Yes"
+                android:textColor="#FFFFFF" />
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
