@@ -1,19 +1,17 @@
 package com.example.flashpig.memory;
 
-        import android.os.Bundle;
+import android.os.Bundle;
 
-        import androidx.annotation.NonNull;
-        import androidx.annotation.Nullable;
-        import androidx.fragment.app.Fragment;
-        import androidx.navigation.fragment.NavHostFragment;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
-        import com.example.flashpig.R;
-
-//EFTER SPELET ÄR KLART
+import com.example.flashpig.R;
 
 public class MemoryFragmentEnd extends Fragment {
 

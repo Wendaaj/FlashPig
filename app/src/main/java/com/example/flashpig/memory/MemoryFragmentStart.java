@@ -106,8 +106,6 @@ public class MemoryFragmentStart extends Fragment implements memoryRecyclerViewA
     @Override
     public void onItemClick(View view, int position) throws InterruptedException {
 
-        boolean isGameDone = pairup.isEndOfGame(deckSize);
-
         if (card1 == null) { //Select first card
 
             card1 = adapter.getItem(position);
@@ -124,7 +122,7 @@ public class MemoryFragmentStart extends Fragment implements memoryRecyclerViewA
 
                 updateAmountCards();
 
-                view.setClickable(true); //edited
+                view.setClickable(false); //this
 
                 setCorrectFrame(view);
 
@@ -134,7 +132,7 @@ public class MemoryFragmentStart extends Fragment implements memoryRecyclerViewA
 
                 deckSize--;
 
-                if (isGameDone) { //If it's game done
+                if (pairup.isEndOfGame(deckSize)) { //If it's game done
 
                     endGame();
 
@@ -210,7 +208,7 @@ public class MemoryFragmentStart extends Fragment implements memoryRecyclerViewA
             Card card = adapter.getItem(i);
             card.setFrontside(false);
             adapter.notifyDataSetChanged();
-            Collections.shuffle(deck.cards);  //NEW
+            //Collections.shuffle(deck.cards);  //NEW
 
         }
 
@@ -218,7 +216,7 @@ public class MemoryFragmentStart extends Fragment implements memoryRecyclerViewA
             Card card = adapter2.getItem(j);
             card.setFrontside(true);
             adapter2.notifyDataSetChanged();
-            Collections.shuffle(deck.cards);  //NEW
+            //Collections.shuffle(deck.cards);  //NEW
         }
     }
 

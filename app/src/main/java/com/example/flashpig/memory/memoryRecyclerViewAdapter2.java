@@ -35,8 +35,8 @@ public class memoryRecyclerViewAdapter2 extends
     private ItemClickListener mClickListener;
     public Context mContext;
     Card card1, card2;
-    boolean isClickable = false;
     boolean reload = false;
+    int reloadCounter = 3;
 
     public memoryRecyclerViewAdapter2(Context context, List<Card> cardsList2) {
         this.mContext = context;
@@ -72,16 +72,13 @@ public class memoryRecyclerViewAdapter2 extends
         holder.frontSideTextView.setText(card.getFrontsideStr());
         holder.frontSideTextView.setTag(position);
         holder.backSideTextView.setText(card.getBacksideStr());
+        holder.itemView.setClickable(true);
 
-        if (reload) {
+        if (reload && reloadCounter != 0) {
             holder.itemView.setBackgroundResource(R.drawable.frame_default);
-            reload = false;
-        }
-
-        if(!isClickable){
-            holder.memorycard.setClickable(false);
+            reloadCounter--;
         }else {
-            holder.memorycard.setClickable(true);
+            reload = false;
         }
 
         if(card.isFrontside()){
@@ -104,11 +101,6 @@ public class memoryRecyclerViewAdapter2 extends
     @Override
     public int getItemCount() {
         return 3;
-    }
-
-    public void setClickable(boolean clickable) {
-        isClickable = clickable;
-        notifyDataSetChanged();
     }
 
     public void setReload(boolean reload) {
