@@ -80,7 +80,7 @@ public class MemoryFragmentStart extends Fragment implements View.OnClickListene
     }
 
     private void findViews(View view) {
-        titleCard = view.findViewById(R.id.card_title);
+        //titleCard = view.findViewById(R.id.card_title);
         txtFront = view.findViewById(R.id.front_txt);
         txtBack = view.findViewById(R.id.back_txt);
         cardFront = view.findViewById(R.id.front_card);
