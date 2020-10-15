@@ -58,9 +58,7 @@ public class Card {
         this.backsideStr = backsideStr;
     }
 
-    public void setFrontImg(Bitmap frontImg) {
-        this.frontImg = frontImg;
-    }
+    public void setFrontImg(Bitmap frontImg) { this.frontImg = frontImg; }
 
     public void setBackImg(Bitmap backImg) {
         this.backImg = backImg;

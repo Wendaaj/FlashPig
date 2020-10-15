@@ -41,15 +41,15 @@ public class SplashScreen extends Fragment {
         anim = (AnimationDrawable) imageView.getBackground();
         anim.start();
 
-        //Delay 1 sec before changing back.
+        //Show the animation 3 times before going to dashboard.
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                // Do something after 1s = 1000ms
+                // Do something after 8s = 8000ms
                 NavHostFragment.findNavController(SplashScreen.this)
                         .navigate(R.id.action_splashScreen_to_FirstFragment);
             }
-        }, 500);
+        }, 8000);
     }
 }

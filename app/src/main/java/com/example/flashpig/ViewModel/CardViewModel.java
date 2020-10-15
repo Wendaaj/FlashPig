@@ -47,6 +47,6 @@ public class CardViewModel extends ViewModel {
         card.setFrontImg(frontImg);
     }
     public void setBackImg(Bitmap backImg) {
-        card.setFrontImg(backImg);
+        card.setBackImg(backImg);
     }
 }
