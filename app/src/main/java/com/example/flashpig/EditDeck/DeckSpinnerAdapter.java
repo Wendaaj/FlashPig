@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Build;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -15,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.flashpig.Model.Deck;
@@ -26,13 +28,13 @@ import java.util.ArrayList;
 public class DeckSpinnerAdapter extends ArrayAdapter<Deck> {
     ArrayList<Deck> deckArrayList;
     Context context;
-    EditDeckActivity fragment;
+    private OnEditItemsClickListener onEditItemClickListener;
 
-    public DeckSpinnerAdapter(Context context, ArrayList<Deck> deckArrayList, EditDeckActivity fragment){
+    public DeckSpinnerAdapter(Context context, ArrayList<Deck> deckArrayList, OnEditItemsClickListener onEditItemClickListener){
         super(context, 0, deckArrayList);
         this.deckArrayList = deckArrayList;
         this.context = context;
-        this.fragment = fragment;
+        this.onEditItemClickListener = onEditItemClickListener;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -64,25 +66,11 @@ public class DeckSpinnerAdapter extends ArrayAdapter<Deck> {
 
         editSpinnerItemBtn.setOnClickListener(v->
                 manageVisibility(constraintLayout, deckName, amountCards));
+
         removeSpinnerItemBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fragment.getDeleteCard().setVisibility(View.VISIBLE);
-                if(!fragment.getCheckBox().isChecked()){
-                    hideSpinnerDropDown(fragment.getDeckSpinner());
-                    manageVisibility(constraintLayout, deckName, amountCards);
-                    setYesNoBtn(position);
-                }else{
-                    removeDeck(position);
-                    manageVisibility(constraintLayout, deckName, amountCards);
-                    fragment.savePreferences();
-                    fragment.loadPreferences();
-                    fragment.getDeleteCard().setVisibility(View.INVISIBLE);
-                }
-                if(deckArrayList.isEmpty()){
-                    NavHostFragment.findNavController(fragment)
-                            .navigate(R.id.action_editDeckActivity_to_FirstFragment);
-                }
+                onEditItemClickListener.onRemoveBtnClick(constraintLayout, deckName, amountCards, position);
             }
         });
 
@@ -104,38 +92,6 @@ public class DeckSpinnerAdapter extends ArrayAdapter<Deck> {
         return convertView;
     }
 
-    private void setYesNoBtn(int position) {
-        fragment.getYesBtn().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               removeDeck(position);
-               fragment.getDeleteCard().setVisibility(View.INVISIBLE);
-
-            }
-        });
-        fragment.getNoBtn().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                fragment.getDeleteCard().setVisibility(View.INVISIBLE);
-            }
-        });
-    }
-    public static void hideSpinnerDropDown(Spinner spinner) {
-        try {
-            Method method = Spinner.class.getDeclaredMethod("onDetachedFromWindow");
-            method.setAccessible(true);
-            method.invoke(spinner);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void removeDeck(int position){
-        deckArrayList.remove(position);
-        notifyDataSetChanged();
-    }
-
-
     public void setVisibility(View view){ //Sets edit items invisible in spinner
         Button editSpinnerItemBtn = view.findViewById(R.id.spinnerEditButton);
         TextView amountCard = view.findViewById(R.id.amountCardsSpinner);
@@ -153,5 +109,10 @@ public class DeckSpinnerAdapter extends ArrayAdapter<Deck> {
             deckName.setVisibility(View.VISIBLE);
             amountCards.setVisibility(View.VISIBLE);
         }
+    }
+
+    public interface OnEditItemsClickListener
+    {
+        void onRemoveBtnClick(ConstraintLayout c, TextView t1, TextView t2, int pos);
     }
 }

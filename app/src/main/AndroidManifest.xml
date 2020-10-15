@@ -14,7 +14,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
-        <activity android:name=".EditDeck.EditDeckActivity"/>
         <activity android:name=".pairup.activity_pairup" />
         <activity android:name=".memory.MainActivity_memory" />
         <activity android:name=".View.FlashcardActivity" />

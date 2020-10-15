@@ -2,7 +2,6 @@ package com.example.flashpig.EditDeck;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,16 +10,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.flashpig.FirstFragment;
-import com.example.flashpig.MainActivity;
 import com.example.flashpig.Model.Card;
 import com.example.flashpig.R;
-import com.example.flashpig.createcard.CardFragment;
-import com.example.flashpig.pairup.activity_pairup;
 
 import java.util.List;
 
@@ -30,11 +24,9 @@ import java.util.List;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.EditCardViewHolder> {
     private List<Card> cardsList;
     private ItemClickListener clickListener;
-    private EditDeckActivity fragment;
 
-    public RecyclerViewAdapter(Context context, EditDeckActivity fragment, List<Card> cardsList) {
+    public RecyclerViewAdapter(Context context, List<Card> cardsList) {
         this.cardsList = cardsList;
-        this.fragment = fragment;
     }
 
     //public Card getCard(int position) { return cardsList.get(position); }
@@ -73,47 +65,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.deleteCardBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fragment.getDeleteCard().setVisibility(View.VISIBLE);
-                if(!fragment.getCheckBox().isChecked()){
-                    setYesNoBtn(card);
-                }else{
-                    removeCard(card);
-                    fragment.savePreferences();
-                    fragment.loadPreferences();
-                    fragment.getDeleteCard().setVisibility(View.INVISIBLE);
-                }
+                clickListener.onRemoveCardClick(card, cardsList);
             }
         });
 
         holder.editCardBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavHostFragment.findNavController(fragment)
-                        .navigate(R.id.action_editDeckActivity_to_cardFragment);
+               clickListener.onEditItemBtnClick();
             }
         });
         //set the back and front imageviews also.
     }
-        private void removeCard(Card card){
-            cardsList.remove(card);
-            notifyDataSetChanged();
-            fragment.setAmountTxt();
-        }
-        private void setYesNoBtn(Card card){
-            fragment.getYesBtn().setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    removeCard(card);
-                    fragment.getDeleteCard().setVisibility(View.INVISIBLE);
-                }
-            });
-            fragment.getNoBtn().setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    fragment.getDeleteCard().setVisibility(View.INVISIBLE);
-                }
-            });
-        }
+
+
 
     @Override
     public int getItemCount() {
@@ -162,7 +127,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         // parent activity will implement this method to respond to click events
         public interface ItemClickListener {
             void onItemClick(View view, int position);
+            void onRemoveCardClick(Card card, List<Card> cardsList);
+            void onEditItemBtnClick();
+
         }
+
 }
 
 

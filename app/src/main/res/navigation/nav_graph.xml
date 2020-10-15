@@ -21,8 +21,8 @@
             android:id="@+id/action_FirstFragment_to_createDeckFragment"
             app:destination="@id/createDeckFragment" />
         <action
-            android:id="@+id/action_FirstFragment_to_editDeckActivity"
-            app:destination="@id/editDeckActivity" />
+            android:id="@+id/action_FirstFragment_to_editDeckFragment"
+            app:destination="@id/editDeckFragment" />
     </fragment>
     <activity
         android:id="@+id/flashcardActivity"
@@ -62,18 +62,6 @@
             app:destination="@id/cardFragment" />
     </fragment>
     <fragment
-        android:id="@+id/editDeckActivity"
-        android:name="com.example.flashpig.EditDeck.EditDeckActivity"
-        android:label="editdeck"
-        tools:layout="@layout/editdeck" >
-        <action
-            android:id="@+id/action_editDeckActivity_to_cardFragment"
-            app:destination="@id/cardFragment" />
-        <action
-            android:id="@+id/action_editDeckActivity_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/splashScreen"
         android:name="com.example.flashpig.View.SplashScreen"
         android:label="fragment_splash_screen"
@@ -81,5 +69,17 @@
         <action
             android:id="@+id/action_splashScreen_to_FirstFragment"
             app:destination="@id/FirstFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editDeckFragment"
+        android:name="com.example.flashpig.EditDeck.EditDeckFragment"
+        android:label="editdeck"
+        tools:layout="@layout/editdeck" >
+        <action
+            android:id="@+id/action_editDeckFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
+        <action
+            android:id="@+id/action_editDeckFragment_to_cardFragment"
+            app:destination="@id/cardFragment" />
     </fragment>
 </navigation>
