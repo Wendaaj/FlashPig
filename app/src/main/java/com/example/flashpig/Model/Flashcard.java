@@ -2,6 +2,8 @@ package com.example.flashpig.Model;
 
 import android.os.CountDownTimer;
 
+import org.parceler.Parcel;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -11,18 +13,20 @@ import java.util.List;
  *@author wendy
  * @version 2020-09-17
  */
+@Parcel
 public class Flashcard extends GameLogic {
 
-    private Deck deck;
-    public List<Card> gameDeck = new ArrayList<>();
-    private Card currentCard;
-
-
+    Deck deck;
+    List<Card> gameDeck = new ArrayList<>();
+    Card currentCard;
 
     public Flashcard(String title, Deck deck) {
         super(title, deck);
         this.deck = super.deck;
         gameDeck.addAll(deck.cards);
+    }
+
+    public Flashcard() {
     }
 
     /**

@@ -28,7 +28,11 @@
         android:id="@+id/flashcardActivity"
         android:name="com.example.flashpig.View.FlashcardActivity"
         android:label="activity_flashcard"
-        tools:layout="@layout/activity_flashcard" />
+        tools:layout="@layout/activity_flashcard" >
+        <argument
+            android:name="deckArg"
+            app:argType="com.example.flashpig.Model.Deck$$Parcelable" />
+    </activity>
 
     <fragment
         android:id="@+id/memory_fragment_start"

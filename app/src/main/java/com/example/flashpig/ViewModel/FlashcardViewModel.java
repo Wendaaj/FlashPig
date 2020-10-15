@@ -2,16 +2,23 @@ package com.example.flashpig.ViewModel;
 
 
 import android.graphics.Bitmap;
+import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.telephony.CellSignalStrength;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.SavedStateHandle;
 import androidx.lifecycle.ViewModel;
 
+import com.example.flashpig.FakeDataBase;
 import com.example.flashpig.Model.Card;
 import com.example.flashpig.Model.Deck;
 import com.example.flashpig.Model.Difficulty;
 import com.example.flashpig.Model.Flashcard;
+
+import org.parceler.Parcels;
 
 import java.util.Random;
 

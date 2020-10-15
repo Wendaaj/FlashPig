@@ -17,6 +17,9 @@
         <action
             android:id="@+id/action_flashcardStartFragment_to_mainActivity2"
             app:destination="@id/mainActivity2" />
+        <argument
+            android:name="deckArg"
+            app:argType="com.example.flashpig.Model.Deck$$Parcelable" />
     </fragment>
 
     <fragment
@@ -30,11 +33,18 @@
         <action
             android:id="@+id/action_flashcardEndFragment_to_mainActivity2"
             app:destination="@id/mainActivity2" />
+        <argument
+            android:name="deckArg"
+            app:argType="com.example.flashpig.Model.Deck$$Parcelable" />
     </fragment>
 
     <activity
         android:id="@+id/mainActivity2"
         android:name="com.example.flashpig.View.MainActivity"
-        android:label="MainActivity" />
+        android:label="MainActivity" >
+        <argument
+            android:name="deckArg"
+            app:argType="com.example.flashpig.Model.Deck$$Parcelable" />
+    </activity>
 
 </navigation>
