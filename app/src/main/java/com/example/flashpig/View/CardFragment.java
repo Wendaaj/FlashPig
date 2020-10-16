@@ -64,12 +64,8 @@ public class CardFragment extends Fragment {
 
     private int currentCard = 1;
     private CardViewModel viewModel;
-    public Card card;
     private boolean isFront = true;
 
-    private String textFront;
-    private String textBack;
-    private String textOn; 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
