@@ -24,9 +24,6 @@ public class CreateDeckFragment extends Fragment {
     private TextInputLayout dcTextInputLayout;
     private Button dcButton;
     private CardViewModel viewModel;
-
-
-
     private String inputText;
 
     @Override
