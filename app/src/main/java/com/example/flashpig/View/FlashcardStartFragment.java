@@ -15,6 +15,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.os.Parcel;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +28,8 @@ import android.widget.TextView;
 import com.example.flashpig.ViewModel.FlashcardViewModel;
 import com.example.flashpig.Model.Difficulty;
 import com.example.flashpig.R;
+
+import org.parceler.Parcels;
 
 /**
  * The controller that connects the Flashcard model with the views.

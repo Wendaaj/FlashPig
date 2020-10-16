@@ -114,4 +114,6 @@ public class FlashcardViewModel extends ViewModel {
     public LiveData<String> getHardAmount() { return hardAmount; }
 
     public String getDeckName() { return deckName; }
+
+    public Deck getDeck() {return flashcard.getDeck();}
 }

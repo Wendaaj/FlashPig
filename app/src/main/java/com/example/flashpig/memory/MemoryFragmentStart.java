@@ -182,7 +182,7 @@ public class MemoryFragmentStart extends Fragment implements memoryRecyclerViewA
         showingCards = 6;
     }
 
-    void delay(View view) {
+    private void delay(View view) {
         //Delay 1 sec before changing back.
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {

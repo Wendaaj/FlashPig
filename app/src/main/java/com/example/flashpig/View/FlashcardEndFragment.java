@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.os.Parcel;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,8 @@ import android.view.ViewGroup;
 import com.example.flashpig.Model.Deck;
 import com.example.flashpig.R;
 import com.example.flashpig.ViewModel.FlashcardViewModel;
+
+import org.parceler.Parcels;
 
 /**
  * Checks if the player wants to return home or restart the game.
@@ -44,7 +47,7 @@ public class FlashcardEndFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 NavHostFragment.findNavController(FlashcardEndFragment.this)
-                        .navigate(R.id.action_flashcardEndFragment_to_mainActivity2);
+                        .navigate(R.id.action_flashcardEndFragment_to_mainActivity2, getArguments());
             }
         });
 

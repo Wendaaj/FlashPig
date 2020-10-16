@@ -49,7 +49,6 @@ public class Card {
         setFrontside(true);
     }
 
-
     public void setFrontsideStr(String frontsideStr) {
         this.frontsideStr = frontsideStr;
     }
@@ -67,7 +66,6 @@ public class Card {
     public int getId() {
         return id;
     }
-
 
     public void setId(int id) {
         this.id = id;

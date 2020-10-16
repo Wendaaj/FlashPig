@@ -12,8 +12,6 @@ import java.util.List;
 public abstract class GameLogic {
     String gameTitle;
     Deck deck;
-    Card chosenCard1, chosenCard2;
-    List<Card> frontsideCards, backsideCards;
 
     /**
      * Constructor for GameLogic.
