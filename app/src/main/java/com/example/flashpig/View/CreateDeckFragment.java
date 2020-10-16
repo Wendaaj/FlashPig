@@ -24,9 +24,6 @@ public class CreateDeckFragment extends Fragment {
     private TextInputLayout dcTextInputLayout;
     private Button dcButton;
     private CardViewModel viewModel;
-    Random rand = new Random();
-    //public Deck deck;
-
     private String inputText;
 
     @Override
@@ -47,8 +44,8 @@ public class CreateDeckFragment extends Fragment {
         viewModel = new ViewModelProvider(getActivity()).get(CardViewModel.class);
         findViews(view);
         viewModel.initDeck();
-        loadUI();
-        //deck = new Deck(null, rand.nextInt() );
+
+
 
         dcButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,7 +53,6 @@ public class CreateDeckFragment extends Fragment {
                 inputText = dcTextInputLayout.getEditText().getText().toString();
                 if (!inputText.isEmpty()) {
                     viewModel.setDeckName(dcTextInputLayout.getEditText().getText().toString());
-                    //deck.setDeckName(dcTextInputLayout.getEditText().getText().toString());
                     dcTextInputLayout.getEditText().getText().clear();
                     NavHostFragment.findNavController(CreateDeckFragment.this)
                             .navigate(R.id.action_createDeckFragment_to_cardFragment);
@@ -67,8 +63,7 @@ public class CreateDeckFragment extends Fragment {
             }
         });
     }
-    private  void loadUI() {
-    }
+
     private void findViews(View view){
         dcTextView = view.findViewById(R.id.dcTextView);
         dcTextInputLayout = view.findViewById(R.id.dcTextInputLayout);
