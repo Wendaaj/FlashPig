@@ -12,7 +12,7 @@
         tools:layout="@layout/activity_main" />
     <fragment
         android:id="@+id/pairUpFragmentStart"
-        android:name="com.example.flashpig.PairUp.PairUpFragmentStart"
+        android:name="com.example.flashpig.View.PairUpFragmentStart"
         android:label="pairup_fragment_start"
         tools:layout="@layout/pairup_fragment_start" >
         <action
@@ -24,7 +24,7 @@
     </fragment>
     <fragment
         android:id="@+id/pairUpFragmentEnd"
-        android:name="com.example.flashpig.PairUp.PairUpFragmentEnd"
+        android:name="com.example.flashpig.View.PairUpFragmentEnd"
         android:label="pairup_fragment_end"
         tools:layout="@layout/pairup_fragment_end" >
         <action

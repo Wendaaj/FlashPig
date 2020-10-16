@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
-        <activity android:name=".PairUp.PairUpActivity" />
+        <activity android:name=".View.PairUpActivity" />
         <activity android:name=".View.FlashcardActivity" />
         <activity
             android:name=".View.MainActivity"

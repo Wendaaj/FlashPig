@@ -1,6 +1,5 @@
 package com.example.flashpig.View;
 import android.Manifest;
-import com.example.flashpig.Model.Card;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -29,7 +28,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.flashpig.R;
-import com.example.flashpig.ViewModel.CardViewModel;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.io.IOException;

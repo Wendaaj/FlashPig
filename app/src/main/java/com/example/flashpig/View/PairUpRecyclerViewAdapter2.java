@@ -1,4 +1,4 @@
-package com.example.flashpig.PairUp;
+package com.example.flashpig.View;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -19,8 +19,13 @@ import java.util.List;
 
 
 /**
- * An adapter class for the recyclerView
+ * Displays the cards in Pair Up game as a list with a RecyclerView
+ *
+ * @author Madeleine
+ * @version 2020-10-16
  */
+
+
 public class PairUpRecyclerViewAdapter2 extends
         RecyclerView.Adapter<PairUpRecyclerViewAdapter2.ViewHolder> implements Serializable {
 
@@ -31,6 +36,13 @@ public class PairUpRecyclerViewAdapter2 extends
     boolean reload = false;
     int reloadCounter = 3;
 
+    /**
+     * The Pair Up RecyclerViewAdapter constructor
+     * @param context the current context
+     * @param cardsList2 the list of cards
+     */
+
+
     public PairUpRecyclerViewAdapter2(Context context, List<Card> cardsList2) {
         this.mContext = context;
         this.cardsList2 = cardsList2;
@@ -39,10 +51,11 @@ public class PairUpRecyclerViewAdapter2 extends
     /**
      * Used when a new card is added to the recyclerView.
      *
-     * @param parent
-     * @param viewType
+     * @param parent the parent
+     * @param viewType the viewType
      * @return
      */
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -56,9 +69,10 @@ public class PairUpRecyclerViewAdapter2 extends
      * Adds the content we want to show on each card.
      * The method checks also if the front or backside of the cards is showing.
      *
-     * @param holder
-     * @param position
+     * @param holder the current viewHolder
+     * @param position the current position
      */
+
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Card card = cardsList2.get(position);
@@ -87,26 +101,55 @@ public class PairUpRecyclerViewAdapter2 extends
         }
     }
 
+   /**
+     * Gets the items current id
+     *
+     * @param position the items position
+     * @return the items id
+     */
+
     @Override
     public long getItemId(int position) {
         return position;
     }
+
+    /**
+     * Gives the amount of rows the recycler view should have
+     *
+     * @return the amount of rows on the game board
+     */
+
     @Override
     public int getItemCount() {
         return 3;
     }
+
+    /**
+     * Decides if a card is reloaded
+     * @param reload tells if a card has been reloaded
+     */
 
     public void setReload(boolean reload) {
         this.reload = reload;
         notifyDataSetChanged();
     }
 
-    // stores and recycles views as they are scrolled off screen
+    /**
+     * Viewholder class that stores and recycles views as they are scrolled off screen
+     */
+
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView frontSideTextView, backSideTextView;
         ImageView frontImageView, backImageView;
         private ItemClickListener mClickListener;
         CardView memorycard;
+
+        /**
+         * ViewHolder constructor
+         *
+         * @param itemView the current itemView
+         * @param mClickListener a listener to clicks from the user
+         */
 
         ViewHolder(View itemView, ItemClickListener mClickListener) {
             super(itemView);
@@ -118,6 +161,12 @@ public class PairUpRecyclerViewAdapter2 extends
             this.mClickListener = mClickListener;
             itemView.setOnClickListener(this);
         }
+
+        /**
+         * Handles to click events
+         *
+         * @param view the clicked view
+         */
 
         @Override
         public void onClick(View view) {
@@ -131,42 +180,56 @@ public class PairUpRecyclerViewAdapter2 extends
         }
     }
 
-    public void flip2(View view, int position) {
-        if(!cardsList2.get(position).isFrontside()){ //set frontside
-            view.findViewById(R.id.frontCardTextView).setVisibility(View.INVISIBLE);
-            view.findViewById(R.id.frontCardImageView).setVisibility(View.INVISIBLE);
-            view.findViewById(R.id.backCardTextView).setVisibility(View.VISIBLE);
-            view.findViewById(R.id.backCardImageView).setVisibility(View.VISIBLE);
-        }
-        else { //sets backside
-            view.findViewById(R.id.frontCardTextView).setVisibility(View.VISIBLE);
-            view.findViewById(R.id.frontCardImageView).setVisibility(View.VISIBLE);
-            view.findViewById(R.id.backCardTextView).setVisibility(View.INVISIBLE);
-            view.findViewById(R.id.backCardImageView).setVisibility(View.INVISIBLE);
-        }
-    }
+    /**
+     * Gets the item viewType
+     *
+     * @param position the position of the view
+     *
+     * @return the position of the view
+     */
 
     @Override
     public int getItemViewType(int position) {
         return position;
     }
 
+    /**
+     * Decides if the item should remain the same after a notifyDataSetchanged() call
+     *
+     * @param hasStableIds boolean is is should remain the same
+     */
+
     @Override
     public void setHasStableIds(boolean hasStableIds) {
         super.setHasStableIds(hasStableIds);
     }
 
-    // convenience method for getting data at click position
+    /**
+     * Getting data at click position
+     *
+     * @param position the position of the view
+     * @return a card on the specific position
+     */
+
     public Card getItem(int position) {
         return cardsList2.get(position);
     }
 
-    // allows clicks events to be caught
+    /**
+     * Allows clicks events to be caught
+     *
+     * @param itemClickListener a listener to clicks from the user
+     */
+
     void setClickListener(ItemClickListener itemClickListener) {
         this.mClickListener = itemClickListener;
     }
 
-    // parent activity will implement this method to respond to click events
+    /**
+     * Parent activity will implement this method to respond to click events
+     *
+     */
+
     public interface ItemClickListener {
         void onItemClick(View view, int position) throws InterruptedException;
     }

@@ -6,6 +6,9 @@ package com.example.flashpig.Model;
         * @version 2020-09-16
         */
 
+//TA BORT??
+
+
 public class Memory extends GameLogic implements MemoryPairUpLogic {
 
     /** Constructor for Memory
@@ -16,8 +19,13 @@ public class Memory extends GameLogic implements MemoryPairUpLogic {
         this.deck = deck;
     }
 
-    /** Method to compare two cards from a deck
+    /**
+     *  Compare two cards from a deck
+     *  @param chosenCard1 The card first selected
+     *  @param chosenCard2 The card second selected
+     *  @return Returns true if it the chosen card are a pair
      */
+
 
     @Override
     public boolean isMatched(Card chosenCard1, Card chosenCard2, Deck deck) {
@@ -31,10 +39,11 @@ public class Memory extends GameLogic implements MemoryPairUpLogic {
         }
     }
 
-        /** Method to check if it is end of game
-         *
-         * @return
-         */
+    /**
+     * Check if it is end of game
+     * @param deckSize Amount of cards in a deck
+     * @return Returns true if a game is done
+     */
 
         @Override
         public boolean isEndOfGame(int deckSize) {
@@ -58,3 +67,5 @@ public class Memory extends GameLogic implements MemoryPairUpLogic {
         }
     }
 }
+
+

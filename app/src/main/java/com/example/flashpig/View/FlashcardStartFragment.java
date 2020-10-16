@@ -215,7 +215,7 @@ public class FlashcardStartFragment extends Fragment implements View.OnClickList
     }
 
     /**
-     * Connects the fragments attributes with the views components.
+     * Connects the fragment's attributes with the view's components.
      *
      * @param view The respective view.
      */

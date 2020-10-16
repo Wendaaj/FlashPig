@@ -1,7 +1,4 @@
-package com.example.flashpig.PairUp;
-
-import android.animation.AnimatorInflater;
-import android.animation.AnimatorSet;
+package com.example.flashpig.View;
 
 import android.os.Bundle;
 
@@ -23,9 +20,18 @@ import com.example.flashpig.Model.Deck;
 import com.example.flashpig.Model.PairUp;
 import com.example.flashpig.R;
 
+import java.util.Collections;
+
+/**
+ * Represents the start screen of a Pair Up game
+ *
+ * @author Madeleine
+ * @version 2020-10-16
+ */
+
+
 public class PairUpFragmentStart extends Fragment implements PairUpRecyclerViewAdapter.ItemClickListener {
 
-    private AnimatorSet setRightOut, setLeftIn;
     Card card1, card2;
     Deck deck = new Deck("Hej", 0);
     private PairUpRecyclerViewAdapter adapter = new PairUpRecyclerViewAdapter(getContext(), deck.cards);
@@ -35,6 +41,12 @@ public class PairUpFragmentStart extends Fragment implements PairUpRecyclerViewA
     private RecyclerView recyclerView, recyclerView2;
     int deckSize;
     int showingCards = adapter.getItemCount() * 2;
+
+    /**
+     * Does initial creations of the fragment
+     *
+     * @param savedInstanceState
+     */
 
 
     @Override
@@ -57,6 +69,15 @@ public class PairUpFragmentStart extends Fragment implements PairUpRecyclerViewA
         deckSize = deck.getAmountCards();
     }
 
+    /**
+     * Creates and returns the fragment's view hierarchy
+     *
+     * @param inflater Used to inflate views in the fragment
+     * @param container Generates the LayoutParams of the view
+     * @param savedInstanceState Save instance state
+     * @return The view which represents the end of a Pair Up game
+     */
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -64,12 +85,18 @@ public class PairUpFragmentStart extends Fragment implements PairUpRecyclerViewA
         return view;
     }
 
+    /**
+     *  Subclasses initialize themselves after their view hierarchy has been created
+     *
+     * @param view The view returned by onCreateView(LayoutInflater, ViewGroup, bundle)
+     * @param savedInstanceState Saved instance state
+     */
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         findViews(view);
-        loadAnimations();
 
         int numberOfColumns = 1;
 
@@ -94,12 +121,13 @@ public class PairUpFragmentStart extends Fragment implements PairUpRecyclerViewA
         setFirstViews();
     }
 
-    private void loadAnimations() {
-        setRightOut = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.out_animation);
-        setLeftIn = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.in_animation);
-    }
-
-    // TODO Randomize
+    /**
+     * Compares the chosen cards and checks if it is a match and updates the UI according to the results
+     *
+     * @param view the view of the card chosen by the user
+     * @param position the position of the card that the user chooses
+     * @throws InterruptedException
+     */
 
     @Override
     public void onItemClick(View view, int position) throws InterruptedException {
@@ -153,20 +181,40 @@ public class PairUpFragmentStart extends Fragment implements PairUpRecyclerViewA
         }
     }
 
+    /**
+     * Sets the incorrect frame on the view
+     *
+     * @param view the view chosen by the user
+     */
+
     private void setIncorrectFrame(View view){
         recyclerView.findViewHolderForAdapterPosition(position1).itemView.setBackgroundResource(R.drawable.frame_incorrect);
         view.setBackgroundResource(R.drawable.frame_incorrect);
     }
+
+    /**
+     * Sets the correct frame on the view
+     *
+     * @param view the view chosen by the user
+     */
 
     private void setCorrectFrame(View view){
         view.setBackgroundResource(R.drawable.frame_correct);
         recyclerView.findViewHolderForAdapterPosition(position1).itemView.setBackgroundResource(R.drawable.frame_correct);
     }
 
+    /**
+     * Updates the amount of cards showing on the game board and the amount of car in the deck
+     */
+
     private void updateAmountCards(){
         showingCards -= 2;
         deckSize--;
     }
+
+    /**
+     * Updates the game board with new cards
+     */
 
     private void loadNewCards() {
         int i = 3;
@@ -178,6 +226,11 @@ public class PairUpFragmentStart extends Fragment implements PairUpRecyclerViewA
         adapter2.setReload(true);
         showingCards = 6;
     }
+
+    /**
+     * Sets a 1 second delay before setting the default frame on the view
+     * @param view the view chosen by the user
+     */
 
     private void delay(View view) {
         //Delay 1 sec before changing back.
@@ -192,11 +245,21 @@ public class PairUpFragmentStart extends Fragment implements PairUpRecyclerViewA
         }, 500);
     }
 
+    /**
+     * Connects the fragment's attributes with the view's components
+     *
+     * @param view the view chosen by the user
+     */
+
     private void findViews(View view) {
 
         recyclerView = view.findViewById(R.id.memoryCardRecyclerView);
         recyclerView2 = view.findViewById(R.id.memoryCardRecyclerView2);
     }
+
+    /**
+     * Loads the cards to game board and shuffles the order of cards in the deck
+     */
 
     private void setFirstViews() {
 
@@ -206,7 +269,7 @@ public class PairUpFragmentStart extends Fragment implements PairUpRecyclerViewA
             Card card = adapter.getItem(i);
             card.setFrontside(false);
             adapter.notifyDataSetChanged();
-            //Collections.shuffle(deck.cards);  //NEW
+            Collections.shuffle(deck.cards);
 
         }
 
@@ -214,9 +277,12 @@ public class PairUpFragmentStart extends Fragment implements PairUpRecyclerViewA
             Card card = adapter2.getItem(j);
             card.setFrontside(true);
             adapter2.notifyDataSetChanged();
-            //Collections.shuffle(deck.cards);  //NEW
         }
     }
+
+    /**
+     * Uploads the end fragment of the Pair Up game
+     */
 
     private void endGame() {
         NavHostFragment.findNavController(PairUpFragmentStart.this)

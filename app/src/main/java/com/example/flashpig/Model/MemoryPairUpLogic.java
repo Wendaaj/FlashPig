@@ -7,6 +7,8 @@ package com.example.flashpig.Model;
  * @version 2020-09-16
  */
 
+    //TA BORT?
+
 public interface MemoryPairUpLogic {
 
     /**
@@ -25,4 +27,4 @@ public interface MemoryPairUpLogic {
     boolean isEndOfGame(int deckSize);
     }
 
-   
+

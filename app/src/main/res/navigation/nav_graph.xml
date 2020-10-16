@@ -72,7 +72,7 @@
     </fragment>
     <activity
         android:id="@+id/pairUpActivity"
-        android:name="com.example.flashpig.PairUp.PairUpActivity"
+        android:name="com.example.flashpig.View.PairUpActivity"
         android:label="activity_pairup"
         tools:layout="@layout/activity_pairup" />
 </navigation>

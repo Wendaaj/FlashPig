@@ -1,4 +1,4 @@
-package com.example.flashpig.ViewModel;
+package com.example.flashpig.View;
 
 import android.graphics.Bitmap;
 import androidx.lifecycle.LiveData;

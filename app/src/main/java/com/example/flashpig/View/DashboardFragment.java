@@ -20,7 +20,6 @@ import com.example.flashpig.EditDeck.DeckSpinnerAdapter;
 import com.example.flashpig.FakeDataBase;
 import com.example.flashpig.R;
 import com.example.flashpig.Model.Deck;
-import com.example.flashpig.PairUp.PairUpActivity;
 
 import org.parceler.Parcels;
 

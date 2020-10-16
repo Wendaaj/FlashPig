@@ -1,4 +1,4 @@
-package com.example.flashpig.PairUp;
+package com.example.flashpig.View;
 
 import android.graphics.Rect;
 import android.view.View;
