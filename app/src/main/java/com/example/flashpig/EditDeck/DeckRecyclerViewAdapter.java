@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.flashpig.Model.Card;
@@ -21,11 +20,11 @@ import java.util.List;
 /**
  * An adapter class for the recyclerView
  */
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.EditCardViewHolder> {
+public class DeckRecyclerViewAdapter extends RecyclerView.Adapter<DeckRecyclerViewAdapter.EditCardViewHolder> {
     private List<Card> cardsList;
     private ItemClickListener clickListener;
 
-    public RecyclerViewAdapter(Context context, List<Card> cardsList) {
+    public DeckRecyclerViewAdapter(Context context, List<Card> cardsList) {
         this.cardsList = cardsList;
     }
 

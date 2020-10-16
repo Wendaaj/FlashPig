@@ -153,14 +153,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/chooseDeckSpinner"
         app:layout_constraintVertical_bias="1.0"
-        app:layout_optimizationLevel="graph_wrap" />
+        app:layout_optimizationLevel="graph_wrap" >
+
+    </androidx.recyclerview.widget.RecyclerView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/deleteCard"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#81DCD7D7"
-        android:visibility="invisible">
+        android:visibility="invisible"
+        tools:layout_editor_absoluteX="35dp"
+        tools:layout_editor_absoluteY="224dp">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/removeCard"
@@ -216,6 +220,71 @@
                 android:fontFamily="@font/roboto_slab_bold"
                 android:text="Yes"
                 android:textColor="#FFFFFF" />
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/deleteDeck"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#81DCD7D7"
+        android:visibility="invisible">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/removeDeck"
+            android:layout_width="250dp"
+            android:layout_height="145dp"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <CheckBox
+                android:id="@+id/checkBoxDeck"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|left"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/roboto_slab"
+                android:text="@string/dont_show"
+                android:textColor="#8A8787"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|top"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/roboto_slab"
+                android:gravity="center"
+                android:text="@string/delete_deck"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/noBtnDeck"
+                android:layout_width="125dp"
+                android:layout_height="40dp"
+                android:layout_gravity="bottom|left"
+                android:background="@drawable/no_button"
+                android:fontFamily="@font/roboto_slab_bold"
+                android:text="No!"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/yesBtnDeck"
+                android:layout_width="125dp"
+                android:layout_height="40dp"
+                android:layout_gravity="bottom|right"
+                android:background="@drawable/yes_button"
+                android:fontFamily="@font/roboto_slab_bold"
+                android:text="Yes"
+                android:textColor="#FFFFFF" />
+
         </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 

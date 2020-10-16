@@ -2,39 +2,35 @@ package com.example.flashpig.EditDeck;
 
 import android.content.Context;
 import android.os.Build;
-import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.flashpig.Model.Deck;
 import com.example.flashpig.R;
 
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 public class DeckSpinnerAdapter extends ArrayAdapter<Deck> {
     ArrayList<Deck> deckArrayList;
     Context context;
     private OnEditItemsClickListener onEditItemClickListener;
+    private Deck deck;
 
-    public DeckSpinnerAdapter(Context context, ArrayList<Deck> deckArrayList, OnEditItemsClickListener onEditItemClickListener){
+    public DeckSpinnerAdapter(Context context, ArrayList<Deck> deckArrayList, OnEditItemsClickListener onEditItemClickListener, Deck deck){
         super(context, 0, deckArrayList);
         this.deckArrayList = deckArrayList;
         this.context = context;
         this.onEditItemClickListener = onEditItemClickListener;
+        this.deck = deck;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -70,13 +66,12 @@ public class DeckSpinnerAdapter extends ArrayAdapter<Deck> {
         removeSpinnerItemBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onEditItemClickListener.onRemoveBtnClick(constraintLayout, deckName, amountCards, position);
+                onEditItemClickListener.onRemoveDeckBtnClick(constraintLayout, deckName, amountCards, position);
             }
         });
 
-        int defaultPosition = 0;
         Deck currentDeck = getItem(position);
-        if(currentDeck != null && position != defaultPosition){
+        if(currentDeck != null){//item selected deck
             deckName.setText(currentDeck.getDeckName());
             amountCards.setText(Integer.toString(currentDeck.getAmountCards()));
             if (position % 2 == 0) { // we're on an even row
@@ -84,15 +79,11 @@ public class DeckSpinnerAdapter extends ArrayAdapter<Deck> {
             } else {
                 convertView.setBackgroundColor(context.getResources().getColor(R.color.spinner2));
             }
-        }else{
-            deckName.setText(context.getResources().getText(R.string.choose_deck));
-            convertView.setFocusable(View.NOT_FOCUSABLE);
-            editSpinnerItemBtn.setVisibility(View.INVISIBLE);
         }
         return convertView;
     }
 
-    public void setVisibility(View view){ //Sets edit items invisible in spinner
+    public void setEditBtnVisibility(View view){ //Sets edit items invisible in spinner
         Button editSpinnerItemBtn = view.findViewById(R.id.spinnerEditButton);
         TextView amountCard = view.findViewById(R.id.amountCardsSpinner);
         editSpinnerItemBtn.setVisibility(View.INVISIBLE);
@@ -113,6 +104,6 @@ public class DeckSpinnerAdapter extends ArrayAdapter<Deck> {
 
     public interface OnEditItemsClickListener
     {
-        void onRemoveBtnClick(ConstraintLayout c, TextView t1, TextView t2, int pos);
+        void onRemoveDeckBtnClick(ConstraintLayout c, TextView t1, TextView t2, int pos);
     }
 }

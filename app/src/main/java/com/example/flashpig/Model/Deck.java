@@ -34,20 +34,16 @@ public class Deck {
         this.deckId = deckId;
 
     }
-
-
-
-
     public void setFrontside() {
         if (isFrontside) {
             for (Card card : cards) {
                 card.setFrontside(false);
             }
         } else {
-                    for (Card card : cards) {
-                        card.setFrontside(true);
-                    }
-                }
+            for (Card card : cards) {
+                card.setFrontside(true);
+            }
+        }
     }
 
     /**
@@ -58,9 +54,7 @@ public class Deck {
     public void addCard(Card card) {
         if(!deckContainsCard(card)){
             cards.add(card);
-
         }
-       //fix error message
     }
 
     /**
@@ -71,7 +65,7 @@ public class Deck {
     public void deleteCard(Card card) {
         if (deckContainsCard(card)) {
             cards.remove(card);
-        }  //fix error message
+        }
     }
 
     /**

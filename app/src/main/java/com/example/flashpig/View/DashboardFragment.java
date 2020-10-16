@@ -45,7 +45,7 @@ public class DashboardFragment extends Fragment implements DeckSpinnerAdapter.On
 
         deckSpinner = getActivity().findViewById(R.id.chooseDeckSpinner);
         ndecks = getActivity().findViewById(R.id.ndeckstext);
-        spinnerAdapter = new DeckSpinnerAdapter(getActivity(), db.getDeckList(), this);
+        spinnerAdapter = new DeckSpinnerAdapter(getActivity(), db.getDeckList(), this, choosenDeck);
         deckSpinner.setAdapter(spinnerAdapter);
         deckSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -53,7 +53,7 @@ public class DashboardFragment extends Fragment implements DeckSpinnerAdapter.On
                 choosenDeck = (Deck) parent.getItemAtPosition(position);
                 String deckName = choosenDeck.getDeckName();
                 Toast.makeText(getActivity(), deckName + " selected", Toast.LENGTH_SHORT).show();
-                spinnerAdapter.setVisibility(view);
+                spinnerAdapter.setEditBtnVisibility(view);
                 ndecks.setText(db.getDeckList().size()+" decks");
             }
 
@@ -91,8 +91,10 @@ public class DashboardFragment extends Fragment implements DeckSpinnerAdapter.On
         view.findViewById(R.id.editDeckBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putParcelable("deck", Parcels.wrap(choosenDeck));
                 NavHostFragment.findNavController(DashboardFragment.this)
-                        .navigate(R.id.action_FirstFragment_to_editDeckFragment);
+                        .navigate(R.id.action_FirstFragment_to_editDeckFragment, bundle);
             }
         });
 
@@ -106,7 +108,7 @@ public class DashboardFragment extends Fragment implements DeckSpinnerAdapter.On
     }
 
     @Override
-    public void onRemoveBtnClick(ConstraintLayout c, TextView t1, TextView t2, int pos) {
+    public void onRemoveDeckBtnClick(ConstraintLayout c, TextView t1, TextView t2, int pos) {
 
     }
 }
