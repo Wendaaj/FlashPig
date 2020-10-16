@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.flashpig.Model.Card;
@@ -24,16 +25,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private List<Card> cardsList;
     private ItemClickListener clickListener;
 
-
-
     public RecyclerViewAdapter(Context context, List<Card> cardsList) {
         this.cardsList = cardsList;
-
     }
 
-    public Card getCard(int position) {
-        return cardsList.get(position);
-    }
+    //public Card getCard(int position) { return cardsList.get(position); }
 
     /**
      * Used when a new card is added to the recyclerView.
@@ -58,22 +54,30 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
      */
     @Override
     public void onBindViewHolder(@NonNull EditCardViewHolder holder, int position) {
+
         Card card = cardsList.get(position);
         if (card.isFrontside()) {
             holder.cardTextView.setText(card.getFrontsideStr());
         } else {
             holder.cardTextView.setText(card.getBacksideStr());
         }
+
         holder.deleteCardBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cardsList.remove(card);
-                notifyDataSetChanged();
+                clickListener.onRemoveCardClick(card, cardsList);
+            }
+        });
+
+        holder.editCardBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               clickListener.onEditItemBtnClick();
             }
         });
         //set the back and front imageviews also.
-
     }
+
 
 
     @Override
@@ -87,7 +91,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public class EditCardViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView cardTextView;
         ImageView cardImageView;
-        Button deleteCardBtn;
+        Button deleteCardBtn, editCardBtn;
+
 
         /**
          * Class constructor.
@@ -100,6 +105,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             cardTextView = itemView.findViewById(R.id.cardTextView);
             cardImageView = itemView.findViewById(R.id.cardImageView);
             deleteCardBtn = itemView.findViewById(R.id.deleteCardBtn);
+            editCardBtn = itemView.findViewById(R.id.editCardBtn);
         }
 
 
@@ -121,7 +127,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         // parent activity will implement this method to respond to click events
         public interface ItemClickListener {
             void onItemClick(View view, int position);
+            void onRemoveCardClick(Card card, List<Card> cardsList);
+            void onEditItemBtnClick();
+
         }
+
 }
 
 

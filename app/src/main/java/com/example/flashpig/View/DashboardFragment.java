@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
@@ -25,14 +26,12 @@ import com.example.flashpig.pairup.activity_pairup;
 import org.parceler.Parcels;
 
 
-public class DashboardFragment extends Fragment {
+public class DashboardFragment extends Fragment implements DeckSpinnerAdapter.OnEditItemsClickListener {
     private DeckSpinnerAdapter spinnerAdapter;
     private Spinner deckSpinner;
     private Deck choosenDeck;
     private FakeDataBase db = FakeDataBase.getInstance();
     private TextView ndecks;
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -46,7 +45,7 @@ public class DashboardFragment extends Fragment {
 
         deckSpinner = getActivity().findViewById(R.id.chooseDeckSpinner);
         ndecks = getActivity().findViewById(R.id.ndeckstext);
-        spinnerAdapter = new DeckSpinnerAdapter(getActivity(), db.getDeckList());
+        spinnerAdapter = new DeckSpinnerAdapter(getActivity(), db.getDeckList(), this);
         deckSpinner.setAdapter(spinnerAdapter);
         deckSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -93,7 +92,7 @@ public class DashboardFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(DashboardFragment.this)
-                        .navigate(R.id.action_FirstFragment_to_editDeckActivity2);
+                        .navigate(R.id.action_FirstFragment_to_editDeckFragment);
             }
         });
 
@@ -104,5 +103,10 @@ public class DashboardFragment extends Fragment {
                         .navigate(R.id.action_FirstFragment_to_createDeckFragment);
             }
         });
+    }
+
+    @Override
+    public void onRemoveBtnClick(ConstraintLayout c, TextView t1, TextView t2, int pos) {
+
     }
 }

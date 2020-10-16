@@ -17,6 +17,8 @@ public class Flashcard extends GameLogic {
     public List<Card> gameDeck = new ArrayList<>();
     private Card currentCard;
 
+
+
     public Flashcard(String title, Deck deck) {
         super(title, deck);
         this.deck = super.deck;
@@ -56,6 +58,7 @@ public class Flashcard extends GameLogic {
         gameDeck.remove(card);
         startTimer(card, 600000);
     }
+
 
     /**
      * Sets the picked card to hard.

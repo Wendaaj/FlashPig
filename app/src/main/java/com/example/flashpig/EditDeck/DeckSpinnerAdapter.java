@@ -2,38 +2,45 @@ package com.example.flashpig.EditDeck;
 
 import android.content.Context;
 import android.os.Build;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.flashpig.Model.Deck;
 import com.example.flashpig.R;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 public class DeckSpinnerAdapter extends ArrayAdapter<Deck> {
     ArrayList<Deck> deckArrayList;
-    public Context context;
+    Context context;
+    private OnEditItemsClickListener onEditItemClickListener;
 
-    public DeckSpinnerAdapter(Context context, ArrayList<Deck> deckArrayList){
+    public DeckSpinnerAdapter(Context context, ArrayList<Deck> deckArrayList, OnEditItemsClickListener onEditItemClickListener){
         super(context, 0, deckArrayList);
         this.deckArrayList = deckArrayList;
         this.context = context;
+        this.onEditItemClickListener = onEditItemClickListener;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-
         return initView(position, convertView, parent);
     }
 
@@ -59,10 +66,12 @@ public class DeckSpinnerAdapter extends ArrayAdapter<Deck> {
 
         editSpinnerItemBtn.setOnClickListener(v->
                 manageVisibility(constraintLayout, deckName, amountCards));
-        removeSpinnerItemBtn.setOnClickListener(v -> {
-            deckArrayList.remove(position);
-            notifyDataSetChanged();
-            manageVisibility(constraintLayout, deckName, amountCards);
+
+        removeSpinnerItemBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onEditItemClickListener.onRemoveBtnClick(constraintLayout, deckName, amountCards, position);
+            }
         });
 
         int defaultPosition = 0;
@@ -82,13 +91,14 @@ public class DeckSpinnerAdapter extends ArrayAdapter<Deck> {
         }
         return convertView;
     }
-    public void setVisibility(View view){
+
+    public void setVisibility(View view){ //Sets edit items invisible in spinner
         Button editSpinnerItemBtn = view.findViewById(R.id.spinnerEditButton);
         TextView amountCard = view.findViewById(R.id.amountCardsSpinner);
         editSpinnerItemBtn.setVisibility(View.INVISIBLE);
         amountCard.setVisibility(View.INVISIBLE);
-
     }
+
     public void manageVisibility(View constraintLayout, View deckName, View amountCards){
         if(constraintLayout.getVisibility() == View.INVISIBLE){
             constraintLayout.setVisibility(View.VISIBLE);
@@ -99,9 +109,10 @@ public class DeckSpinnerAdapter extends ArrayAdapter<Deck> {
             deckName.setVisibility(View.VISIBLE);
             amountCards.setVisibility(View.VISIBLE);
         }
-
     }
-    public void update(){
 
+    public interface OnEditItemsClickListener
+    {
+        void onRemoveBtnClick(ConstraintLayout c, TextView t1, TextView t2, int pos);
     }
 }

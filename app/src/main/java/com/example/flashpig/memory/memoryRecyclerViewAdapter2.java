@@ -10,29 +10,37 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.flashpig.Model.Card;
 import com.example.flashpig.R;
 
 import java.io.Serializable;
+import java.net.HttpCookie;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.SimpleTimeZone;
+
 
 /**
  * An adapter class for the recyclerView
  */
-public class memoryRecyclerViewAdapter extends
-        RecyclerView.Adapter<memoryRecyclerViewAdapter.ViewHolder>  {
+public class memoryRecyclerViewAdapter2 extends
+        RecyclerView.Adapter<memoryRecyclerViewAdapter2.ViewHolder> implements Serializable {
 
-    private List<Card> cardsList;
+    private List<Card> cardsList2;
     private ItemClickListener mClickListener;
     public Context mContext;
-    int amountRows = 3;
+    Card card1, card2;
+    boolean reload = false;
+    int reloadCounter = 3;
 
-    public memoryRecyclerViewAdapter(Context context, List<Card> cardsList) {
+    public memoryRecyclerViewAdapter2(Context context, List<Card> cardsList2) {
         this.mContext = context;
-        this.cardsList = cardsList;
+        this.cardsList2 = cardsList2;
     }
 
     /**
@@ -60,23 +68,29 @@ public class memoryRecyclerViewAdapter extends
      */
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Card card = cardsList.get(position);
+        Card card = cardsList2.get(position);
         holder.frontSideTextView.setText(card.getFrontsideStr());
         holder.frontSideTextView.setTag(position);
         holder.backSideTextView.setText(card.getBacksideStr());
-        holder.itemView.setBackgroundResource(R.drawable.frame_default);
         holder.itemView.setClickable(true);
 
-        if(!card.isFrontside()){
-               holder.frontSideTextView.setVisibility(View.INVISIBLE);
-               holder.frontImageView.setVisibility(View.INVISIBLE);
-               holder.backImageView.setVisibility(View.VISIBLE);
-               holder.backSideTextView.setVisibility(View.VISIBLE);
+        if (reload && reloadCounter != 0) {
+            holder.itemView.setBackgroundResource(R.drawable.frame_default);
+            reloadCounter--;
+        }else {
+            reload = false;
+        }
+
+        if(card.isFrontside()){
+            holder.frontSideTextView.setVisibility(View.INVISIBLE);
+            holder.frontImageView.setVisibility(View.INVISIBLE);
+            holder.backImageView.setVisibility(View.VISIBLE);
+            holder.backSideTextView.setVisibility(View.VISIBLE);
         } else {
-                holder.frontSideTextView.setVisibility(View.VISIBLE);
-                holder.frontImageView.setVisibility(View.VISIBLE);
-                holder.backImageView.setVisibility(View.INVISIBLE);
-                holder.backSideTextView.setVisibility(View.INVISIBLE);
+            holder.frontSideTextView.setVisibility(View.VISIBLE);
+            holder.frontImageView.setVisibility(View.VISIBLE);
+            holder.backImageView.setVisibility(View.INVISIBLE);
+            holder.backSideTextView.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -84,15 +98,22 @@ public class memoryRecyclerViewAdapter extends
     public long getItemId(int position) {
         return position;
     }
-
     @Override
-    public int getItemCount() { return amountRows; }
+    public int getItemCount() {
+        return 3;
+    }
+
+    public void setReload(boolean reload) {
+        this.reload = reload;
+        notifyDataSetChanged();
+    }
 
     // stores and recycles views as they are scrolled off screen
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView frontSideTextView, backSideTextView;
         ImageView frontImageView, backImageView;
         private ItemClickListener mClickListener;
+        CardView memorycard;
 
         ViewHolder(View itemView, ItemClickListener mClickListener) {
             super(itemView);
@@ -100,14 +121,14 @@ public class memoryRecyclerViewAdapter extends
             backSideTextView = itemView.findViewById(R.id.backCardTextView);
             frontImageView = itemView.findViewById(R.id.frontCardImageView);
             backImageView = itemView.findViewById(R.id.backCardImageView);
+            memorycard = itemView.findViewById(R.id.memorycard);
             this.mClickListener = mClickListener;
             itemView.setOnClickListener(this);
         }
 
-
         @Override
         public void onClick(View view) {
-             if (mClickListener != null){
+            if (mClickListener != null){
                 try {
                     mClickListener.onItemClick(view, getAdapterPosition());
                 } catch (InterruptedException e) {
@@ -117,8 +138,8 @@ public class memoryRecyclerViewAdapter extends
         }
     }
 
-    public void flip(View view, int position) {
-        if(!cardsList.get(position).isFrontside()){ //set frontside
+    public void flip2(View view, int position) {
+        if(!cardsList2.get(position).isFrontside()){ //set frontside
             view.findViewById(R.id.frontCardTextView).setVisibility(View.INVISIBLE);
             view.findViewById(R.id.frontCardImageView).setVisibility(View.INVISIBLE);
             view.findViewById(R.id.backCardTextView).setVisibility(View.VISIBLE);
@@ -144,7 +165,7 @@ public class memoryRecyclerViewAdapter extends
 
     // convenience method for getting data at click position
     public Card getItem(int position) {
-        return cardsList.get(position);
+        return cardsList2.get(position);
     }
 
     // allows clicks events to be caught

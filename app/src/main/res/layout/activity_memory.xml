@@ -13,6 +13,32 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:defaultNavHost="true"
-        app:navGraph="@navigation/memory_nav_graph"/>
+        app:navGraph="@navigation/memory_nav_graph" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarMemory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/memory_bar"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/back_button">
+
+        <TextView
+            android:id="@+id/memoryTitle"
+            android:layout_width="260dp"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/roboto_slab_bold"
+            android:gravity="center"
+            android:text="@string/Memory"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+
+    </androidx.appcompat.widget.Toolbar>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
