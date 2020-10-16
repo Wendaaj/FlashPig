@@ -1,4 +1,4 @@
-package com.example.flashpig.memory;
+package com.example.flashpig.PairUp;
 
 import android.graphics.Rect;
 import android.view.View;

@@ -1,4 +1,4 @@
-package com.example.flashpig.memory;
+package com.example.flashpig.PairUp;
 
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
@@ -18,21 +18,18 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.flashpig.memory.MemoryViewModel;
 import com.example.flashpig.Model.Card;
 import com.example.flashpig.Model.Deck;
 import com.example.flashpig.Model.PairUp;
 import com.example.flashpig.R;
 
-import java.util.Collections;
-
-public class MemoryFragmentStart extends Fragment implements memoryRecyclerViewAdapter.ItemClickListener {
+public class PairUpFragmentStart extends Fragment implements PairUpRecyclerViewAdapter.ItemClickListener {
 
     private AnimatorSet setRightOut, setLeftIn;
     Card card1, card2;
     Deck deck = new Deck("Hej", 0);
-    private memoryRecyclerViewAdapter adapter = new memoryRecyclerViewAdapter(getContext(), deck.cards);
-    private memoryRecyclerViewAdapter2 adapter2 = new memoryRecyclerViewAdapter2(getContext(), deck.cards);
+    private PairUpRecyclerViewAdapter adapter = new PairUpRecyclerViewAdapter(getContext(), deck.cards);
+    private PairUpRecyclerViewAdapter2 adapter2 = new PairUpRecyclerViewAdapter2(getContext(), deck.cards);
     PairUp pairup = new PairUp("Zorris", this.deck);
     int position1;
     private RecyclerView recyclerView, recyclerView2;
@@ -63,7 +60,7 @@ public class MemoryFragmentStart extends Fragment implements memoryRecyclerViewA
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.memory_fragment_start, container, false);
+        View view = inflater.inflate(R.layout.pairup_fragment_start, container, false);
         return view;
     }
 
@@ -78,7 +75,7 @@ public class MemoryFragmentStart extends Fragment implements memoryRecyclerViewA
 
         //first rv
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), numberOfColumns));
-        adapter = new memoryRecyclerViewAdapter(getActivity(), deck.cards);
+        adapter = new PairUpRecyclerViewAdapter(getActivity(), deck.cards);
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
 
@@ -87,7 +84,7 @@ public class MemoryFragmentStart extends Fragment implements memoryRecyclerViewA
 
         //second rv
         recyclerView2.setLayoutManager(new GridLayoutManager(getActivity(), numberOfColumns));
-        adapter2 = new memoryRecyclerViewAdapter2(getActivity(), deck.cards);
+        adapter2 = new PairUpRecyclerViewAdapter2(getActivity(), deck.cards);
         adapter2.setClickListener(this::onItemClick);
         recyclerView2.setAdapter(adapter2);
 
@@ -222,7 +219,7 @@ public class MemoryFragmentStart extends Fragment implements memoryRecyclerViewA
     }
 
     private void endGame() {
-        NavHostFragment.findNavController(MemoryFragmentStart.this)
-                .navigate(R.id.action_startFragmentMemory_to_endFragmentMemory);
+        NavHostFragment.findNavController(PairUpFragmentStart.this)
+                .navigate(R.id.action_pairUpFragmentStart_to_pairUpFragmentEnd);
     }
 }

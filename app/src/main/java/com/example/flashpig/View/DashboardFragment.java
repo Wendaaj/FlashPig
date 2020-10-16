@@ -20,8 +20,7 @@ import com.example.flashpig.EditDeck.DeckSpinnerAdapter;
 import com.example.flashpig.FakeDataBase;
 import com.example.flashpig.R;
 import com.example.flashpig.Model.Deck;
-import com.example.flashpig.memory.MainActivity_memory;
-import com.example.flashpig.pairup.activity_pairup;
+import com.example.flashpig.PairUp.PairUpActivity;
 
 import org.parceler.Parcels;
 
@@ -41,7 +40,6 @@ public class DashboardFragment extends Fragment implements DeckSpinnerAdapter.On
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //initSpinnerList();
 
         deckSpinner = getActivity().findViewById(R.id.chooseDeckSpinner);
         ndecks = getActivity().findViewById(R.id.ndeckstext);
@@ -72,18 +70,10 @@ public class DashboardFragment extends Fragment implements DeckSpinnerAdapter.On
             }
         });
 
-        view.findViewById(R.id.memory1).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), MainActivity_memory.class);
-                startActivity(intent);
-            }
-        });
-
         view.findViewById(R.id.pairup1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), activity_pairup.class);
+                Intent intent = new Intent(getActivity(), PairUpActivity.class);
                 startActivity(intent);
             }
         });

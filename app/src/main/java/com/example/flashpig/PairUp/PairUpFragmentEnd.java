@@ -1,4 +1,4 @@
-package com.example.flashpig.pairup;
+package com.example.flashpig.PairUp;
 
 import android.os.Bundle;
 
@@ -13,9 +13,7 @@ import android.view.ViewGroup;
 
 import com.example.flashpig.R;
 
-//EFTER SPELET ÄR KLART
-
-public class pairup_fragment_end extends Fragment {
+public class PairUpFragmentEnd extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -26,7 +24,7 @@ public class pairup_fragment_end extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.memory_fragment_end, container, false);
+        return inflater.inflate(R.layout.pairup_fragment_end, container, false);
     }
 
     @Override
@@ -35,16 +33,16 @@ public class pairup_fragment_end extends Fragment {
         view.findViewById(R.id.btn_home).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavHostFragment.findNavController(pairup_fragment_end.this)
-                        .navigate(R.id.action_endFragment_to_mainActivity);
+                NavHostFragment.findNavController(PairUpFragmentEnd.this)
+                        .navigate(R.id.action_pairUpFragmentEnd_to_mainActivity);
             }
         });
 
         view.findViewById(R.id.btn_play_again).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavHostFragment.findNavController(pairup_fragment_end.this)
-                        .navigate(R.id.action_endFragment_to_startFragment);
+                NavHostFragment.findNavController(PairUpFragmentEnd.this)
+                        .navigate(R.id.action_pairUpFragmentEnd_to_pairUpFragmentStart);
             }
         });
 

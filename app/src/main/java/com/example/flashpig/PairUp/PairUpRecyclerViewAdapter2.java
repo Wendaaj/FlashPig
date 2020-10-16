@@ -1,7 +1,6 @@
-package com.example.flashpig.memory;
+package com.example.flashpig.PairUp;
 
 import android.content.Context;
-import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +8,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,19 +15,14 @@ import com.example.flashpig.Model.Card;
 import com.example.flashpig.R;
 
 import java.io.Serializable;
-import java.net.HttpCookie;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.SimpleTimeZone;
 
 
 /**
  * An adapter class for the recyclerView
  */
-public class memoryRecyclerViewAdapter2 extends
-        RecyclerView.Adapter<memoryRecyclerViewAdapter2.ViewHolder> implements Serializable {
+public class PairUpRecyclerViewAdapter2 extends
+        RecyclerView.Adapter<PairUpRecyclerViewAdapter2.ViewHolder> implements Serializable {
 
     private List<Card> cardsList2;
     private ItemClickListener mClickListener;
@@ -38,7 +31,7 @@ public class memoryRecyclerViewAdapter2 extends
     boolean reload = false;
     int reloadCounter = 3;
 
-    public memoryRecyclerViewAdapter2(Context context, List<Card> cardsList2) {
+    public PairUpRecyclerViewAdapter2(Context context, List<Card> cardsList2) {
         this.mContext = context;
         this.cardsList2 = cardsList2;
     }
@@ -55,7 +48,7 @@ public class memoryRecyclerViewAdapter2 extends
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.
                 from(parent.getContext()).
-                inflate(R.layout.memorycard, parent, false);
+                inflate(R.layout.pairup_card, parent, false);
         return new ViewHolder(itemView, mClickListener);
     }
 

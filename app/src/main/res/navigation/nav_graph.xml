@@ -15,32 +15,20 @@
             android:id="@+id/action_FirstFragment_to_flashcardActivity"
             app:destination="@id/flashcardActivity" />
         <action
-            android:id="@+id/action_FirstFragment_to_pairupActivity"
-            app:destination="@id/pairupActivity" />
-        <action
             android:id="@+id/action_FirstFragment_to_createDeckFragment"
             app:destination="@id/createDeckFragment" />
         <action
             android:id="@+id/action_FirstFragment_to_editDeckFragment"
             app:destination="@id/editDeckFragment" />
+        <action
+            android:id="@+id/action_FirstFragment_to_pairUpActivity"
+            app:destination="@id/pairUpActivity" />
     </fragment>
     <activity
         android:id="@+id/flashcardActivity"
         android:name="com.example.flashpig.View.FlashcardActivity"
         android:label="activity_flashcard"
         tools:layout="@layout/activity_flashcard" />
-
-    <fragment
-        android:id="@+id/memory_fragment_start"
-        android:name="com.example.flashpig.memory.MainActivity_memory"
-        android:label="activity_memory"
-        tools:layout="@layout/activity_memory" />
-
-    <activity
-        android:id="@+id/pairupActivity"
-        android:name="com.example.flashpig.pairup.activity_pairup"
-        android:label="pairup_activity"
-        tools:layout="@layout/activity_pairup" />
 
 
     <fragment
@@ -82,4 +70,9 @@
             android:id="@+id/action_editDeckFragment_to_cardFragment"
             app:destination="@id/cardFragment" />
     </fragment>
+    <activity
+        android:id="@+id/pairUpActivity"
+        android:name="com.example.flashpig.PairUp.PairUpActivity"
+        android:label="activity_pairup"
+        tools:layout="@layout/activity_pairup" />
 </navigation>
