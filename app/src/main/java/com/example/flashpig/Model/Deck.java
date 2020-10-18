@@ -96,8 +96,7 @@ public class Deck {
     }
 
     /**
-     * Returns the amount of cards in a deck.
-     *
+     * Returns the amount of cards in a deck.     *
      * @return the card amount.
      */
     public int getAmountCards() {
@@ -116,4 +115,6 @@ public class Deck {
         setFrontside();
         isFrontside = frontside;
     }
+
+    public int getId() { return deckId; }
 }

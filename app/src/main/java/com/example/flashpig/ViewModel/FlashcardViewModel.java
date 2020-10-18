@@ -8,6 +8,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.flashpig.DataBase.FakeDataBase;
+import com.example.flashpig.DataBase.Repository;
 import com.example.flashpig.Model.Card;
 import com.example.flashpig.Model.Deck;
 import com.example.flashpig.Model.Difficulty;
@@ -22,7 +24,9 @@ import java.util.Random;
  * @version 2020-10-12
  */
 public class FlashcardViewModel extends ViewModel {
+    private Repository repo = Repository.getInstance();
     private Flashcard flashcard;
+    private Deck deck;
     private String deckName;
     private boolean hasFrontTxtAndImg;
     private boolean hasBackTxtAndImg;
@@ -39,7 +43,8 @@ public class FlashcardViewModel extends ViewModel {
      * Initialize the view model.
      */
     public void init(Deck deck){
-        flashcard = new Flashcard(deck.getDeckName(), deck);
+        this.deck = repo.getDeck(deck);
+        flashcard = new Flashcard(this.deck.getDeckName(), this.deck);
         deckName = deck.getDeckName();
         gameOver.setValue(false);
         update();

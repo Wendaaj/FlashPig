@@ -21,7 +21,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.flashpig.FakeDataBase;
+import com.example.flashpig.DataBase.FakeDataBase;
 import com.example.flashpig.Model.Card;
 import com.example.flashpig.Model.Deck;
 import com.example.flashpig.R;
@@ -44,7 +44,7 @@ public class EditDeckFragment extends Fragment implements DeckRecyclerViewAdapte
     private ImageButton addCardButton;
     private ConstraintLayout deleteCard, deleteDeck;
     private CheckBox checkBox, checkBoxDeck;
-    private FakeDataBase db = FakeDataBase.getInstance();
+    private FakeDataBase db = new FakeDataBase();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -63,7 +63,7 @@ public class EditDeckFragment extends Fragment implements DeckRecyclerViewAdapte
 
         findViews(view);
         deck = Parcels.unwrap(getArguments().getParcelable("deck"));
-        spinnerAdapter = new DeckSpinnerAdapter(getContext(), db.getDeckList(), this, deck);
+        spinnerAdapter = new DeckSpinnerAdapter(getContext(), db.getDeckList(), this);
         deckSpinner.setAdapter(spinnerAdapter);
         deckSpinner.setSelection(db.getDeckList().indexOf(deck));
         deckSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
