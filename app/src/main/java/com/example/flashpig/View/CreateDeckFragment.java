@@ -25,6 +25,7 @@ public class CreateDeckFragment extends Fragment {
     private CardViewModel viewModel;
     private String inputText;
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
