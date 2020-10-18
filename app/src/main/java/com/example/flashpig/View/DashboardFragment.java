@@ -51,7 +51,12 @@ public class DashboardFragment extends Fragment implements DeckSpinnerAdapter.On
                 String deckName = choosenDeck.getDeckName();
                 Toast.makeText(getActivity(), deckName + " selected", Toast.LENGTH_SHORT).show();
                 spinnerAdapter.setEditBtnVisibility(view);
-                ndecks.setText(db.getDeckList().size()+" decks");
+
+                if(!db.getDeckList().isEmpty()){
+                    ndecks.setText(db.getDeckList().size()+" decks");
+                }else{
+                    ndecks.setText("No decks oink!");
+                }
             }
 
             @Override
@@ -95,6 +100,8 @@ public class DashboardFragment extends Fragment implements DeckSpinnerAdapter.On
             }
         });
     }
+
+
 
     @Override
     public void onRemoveDeckBtnClick(ConstraintLayout c, TextView t1, TextView t2, int pos) {

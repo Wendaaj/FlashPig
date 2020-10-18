@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.flashpig.R;
+import com.example.flashpig.ViewModel.CardViewModel;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class CreateDeckFragment extends Fragment {
