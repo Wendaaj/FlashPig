@@ -36,7 +36,7 @@ public class PairUpFragmentStart extends Fragment implements PairUpRecyclerViewA
     Deck deck = new Deck("Hej", 0);
     private PairUpRecyclerViewAdapter adapter = new PairUpRecyclerViewAdapter(getContext(), deck.cards);
     private PairUpRecyclerViewAdapter2 adapter2 = new PairUpRecyclerViewAdapter2(getContext(), deck.cards);
-    PairUp pairup = new PairUp("Zorris", this.deck);
+    PairUp pairup = new PairUp(this.deck);
     int position1;
     private RecyclerView recyclerView, recyclerView2;
     int deckSize;

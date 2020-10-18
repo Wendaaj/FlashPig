@@ -6,6 +6,12 @@ import com.example.flashpig.Model.Deck;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * A fake database that is replaceable when ready.
+ *
+ * @author wendy
+ * @version 2020-10-18
+ */
 public class FakeDataBase implements DataBase{
 
     public FakeDataBase() {

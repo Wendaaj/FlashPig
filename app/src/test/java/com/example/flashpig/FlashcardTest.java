@@ -39,7 +39,7 @@ public class FlashcardTest {
         deck.addCard(card3);
         deck.addCard(card4);
         deck.addCard(card5);
-        flashcard = new Flashcard("Madematik", deck);
+        flashcard = new Flashcard(deck);
     }
 
     @Test

@@ -1,21 +1,18 @@
 package com.example.flashpig.ViewModel;
 
 
-import android.graphics.Bitmap;
-import android.telephony.CellSignalStrength;
+import android.os.CountDownTimer;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.flashpig.DataBase.FakeDataBase;
 import com.example.flashpig.DataBase.Repository;
 import com.example.flashpig.Model.Card;
 import com.example.flashpig.Model.Deck;
 import com.example.flashpig.Model.Difficulty;
 import com.example.flashpig.Model.Flashcard;
 
-import java.util.Random;
 
 /**
  * The viewmodel for the Flashcard game.
@@ -38,7 +35,7 @@ public class FlashcardViewModel extends ViewModel {
      */
     public void init(Deck deck){
         Deck deck1 = repo.getDeck(deck);
-        flashcard.setValue(new Flashcard(deck1.getDeckName(), deck1));
+        flashcard.setValue(new Flashcard(deck1));
         currentCard.setValue(flashcard.getValue().getCurrentCard());
         gameOver.setValue(false);
         update();
@@ -65,11 +62,34 @@ public class FlashcardViewModel extends ViewModel {
      */
     public void setCardsDifficulty(Difficulty difficulty){
         switch (difficulty) {
-            case EASY: flashcard.getValue().addEasyCard(currentCard.getValue()); break;
-            case MEDIUM: flashcard.getValue().addMediumCard(currentCard.getValue()); break;
+            case EASY:
+                flashcard.getValue().addEasyCard(currentCard.getValue());
+                startTimer(currentCard.getValue(), 3600000);
+                break;
+            case MEDIUM:
+                flashcard.getValue().addMediumCard(currentCard.getValue());
+                startTimer(currentCard.getValue(), 600000);
+                break;
             case HARD: flashcard.getValue().addHardCard(currentCard.getValue()); break;
         }
         update();
+    }
+
+    /**
+     * Set a countdown timer on the card and when the time is up, add the card back to the game deck.
+     * @param card The card to set the timer on.
+     * @param i How many millisec to delay.
+     */
+    private void startTimer(Card card, long i){
+        CountDownTimer countDownTimer = new CountDownTimer(i, 1000) {
+            @Override
+            public void onTick(long l) {}
+
+            @Override
+            public void onFinish() {
+                flashcard.getValue().addCardToMain(card);
+            }
+        }.start();
     }
 
     /**

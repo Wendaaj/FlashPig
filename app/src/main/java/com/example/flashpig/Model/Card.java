@@ -1,10 +1,6 @@
 package com.example.flashpig.Model;
 
 import android.graphics.Bitmap;
-import android.media.Image;
-import android.net.Uri;
-
-import com.example.flashpig.R;
 
 import org.parceler.Parcel;
 

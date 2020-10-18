@@ -1,7 +1,6 @@
 package com.example.flashpig.Model;
 
 
-import java.util.List;
 
 /**
  * An abstract class that holds the common game logic.
@@ -10,16 +9,13 @@ import java.util.List;
  * @version 2020-09-17
  */
 public abstract class GameLogic {
-    String gameTitle;
     Deck deck;
 
     /**
      * Constructor for GameLogic.
-     * @param title The games name.
      * @param deck The deck chosen to play the game.
      */
-    public GameLogic(String title, Deck deck) {
-        this.gameTitle = title;
+    public GameLogic(Deck deck) {
         this.deck = deck;
     }
 

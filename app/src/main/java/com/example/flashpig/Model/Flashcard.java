@@ -1,9 +1,7 @@
 package com.example.flashpig.Model;
 
-import android.os.CountDownTimer;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -17,8 +15,8 @@ public class Flashcard extends GameLogic {
     public List<Card> gameDeck = new ArrayList<>();
     private int easyAmount, mediumAmount, hardAmount;
 
-    public Flashcard(String title, Deck deck) {
-        super(title, deck);
+    public Flashcard(Deck deck) {
+        super(deck);
         this.deck = super.deck;
         gameDeck.addAll(deck.cards);
         updateDifficultyAmount();
@@ -45,7 +43,6 @@ public class Flashcard extends GameLogic {
         card.setDifficulty(Difficulty.EASY);
         updateDifficultyAmount();
         gameDeck.remove(card);
-        startTimer(card, 3600000);
     }
 
     /**
@@ -56,7 +53,6 @@ public class Flashcard extends GameLogic {
         card.setDifficulty(Difficulty.MEDIUM);
         updateDifficultyAmount();
         gameDeck.remove(card);
-        startTimer(card, 600000);
     }
 
     /**
@@ -71,23 +67,6 @@ public class Flashcard extends GameLogic {
     }
 
     /**
-     * Set a countdown timer on the card and when the time is up, add the card back to the game deck.
-     * @param card The card to set the timer on.
-     * @param i How many millisec to delay.
-     */
-    private void startTimer(Card card, long i){
-        CountDownTimer countDownTimer = new CountDownTimer(i, 1000) {
-            @Override
-            public void onTick(long l) {}
-
-            @Override
-            public void onFinish() {
-                addCardToMain(card);
-            }
-        }.start();
-    }
-
-    /**
      * Add the card back to the game deck.
      * @param card The card to add back to the game deck.
      */
@@ -96,6 +75,9 @@ public class Flashcard extends GameLogic {
         //Timekeeper set to 10 hours
     }
 
+    /**
+     * Updates the amount of cards with a specific difficulty.
+     */
     private void updateDifficultyAmount(){
         easyAmount = deck.getAmountDifficultyCards(Difficulty.EASY);
         mediumAmount = deck.getAmountDifficultyCards(Difficulty.MEDIUM);

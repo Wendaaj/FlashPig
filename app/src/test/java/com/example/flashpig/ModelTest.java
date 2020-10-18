@@ -3,10 +3,7 @@ package com.example.flashpig;
 import com.example.flashpig.Model.Card;
 import com.example.flashpig.Model.Deck;
 import com.example.flashpig.Model.Difficulty;
-import com.example.flashpig.Model.Flashcard;
 import com.example.flashpig.Model.FlashcardProgress;
-import com.example.flashpig.Model.Memory;
-import com.example.flashpig.Model.PairUp;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -56,9 +53,6 @@ public class ModelTest {
         Assert.assertEquals(card1.getDifficulty(), Difficulty.NOTHING);
         Assert.assertEquals(card2.getDifficulty(), Difficulty.MEDIUM);
     }
-
-
-
 
 //Test Deck
     @Test

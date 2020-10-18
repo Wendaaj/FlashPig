@@ -18,9 +18,9 @@ public class ModelMemoryPairUpTest {
 
     Deck deck = new Deck("Legender", 2);
 
-    Memory memory = new Memory("GameOfTheGame", deck);
+    Memory memory = new Memory(deck);
 
-    PairUp pairUp = new PairUp("FunGame", deck);
+    PairUp pairUp = new PairUp(deck);
 
 
     @Test
