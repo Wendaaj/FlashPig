@@ -72,23 +72,6 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/editSpinnerItemBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
-            android:background="#00FFFFFF"
-            android:drawableLeft="@android:drawable/ic_menu_edit"
-            android:text="@string/edit_spinner_item"
-            android:textColor="@color/design_default_color_on_secondary"
-            app:layout_constraintEnd_toStartOf="@+id/removeSpinnerItemBtn"
-            app:layout_constraintStart_toEndOf="@+id/shareSpinnerItemBtn"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
             android:id="@+id/removeSpinnerItemBtn"
             android:layout_width="wrap_content"
             android:layout_height="35dp"

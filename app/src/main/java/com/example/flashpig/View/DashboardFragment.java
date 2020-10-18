@@ -39,7 +39,6 @@ public class DashboardFragment extends Fragment implements DeckSpinnerAdapter.On
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         deckSpinner = getActivity().findViewById(R.id.chooseDeckSpinner);
         ndecks = getActivity().findViewById(R.id.ndeckstext);
         spinnerAdapter = new DeckSpinnerAdapter(getActivity(), db.getDeckList(), this, choosenDeck);
@@ -51,11 +50,10 @@ public class DashboardFragment extends Fragment implements DeckSpinnerAdapter.On
                 String deckName = choosenDeck.getDeckName();
                 Toast.makeText(getActivity(), deckName + " selected", Toast.LENGTH_SHORT).show();
                 spinnerAdapter.setEditBtnVisibility(view);
-
-                if(!db.getDeckList().isEmpty()){
-                    ndecks.setText(db.getDeckList().size()+" decks");
-                }else{
+                if(db.getDeckList().size()==0){
                     ndecks.setText("No decks oink!");
+                }else{
+                    ndecks.setText(db.getDeckList().size()+" decks");
                 }
             }
 

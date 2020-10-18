@@ -95,7 +95,7 @@ public class EditDeckFragment extends Fragment implements DeckRecyclerViewAdapte
 
     public void setAmountTxt() {
         if(deck.getAmountCards() == 0){
-            amountCards.setText("Deck is empty");
+            amountCards.setText("No cards oink!");
         }else if(deck.getAmountCards()>1){
             amountCards.setText(Integer.toString(deck.getAmountCards()) + " cards");
         }else{
