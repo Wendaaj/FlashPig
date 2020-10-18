@@ -34,5 +34,4 @@ public class Repository {
         }
         return db.getDeckList().get(pos);
     }
-
 }

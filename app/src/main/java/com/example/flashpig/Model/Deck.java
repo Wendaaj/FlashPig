@@ -3,6 +3,7 @@ package com.example.flashpig.Model;
 import org.parceler.Parcel;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -96,9 +97,33 @@ public class Deck {
     }
 
     /**
-     * Returns the amount of cards in a deck.     *
-     * @return the card amount.
+     * Get a list of cards with a specific difficulty.
+     * @param difficulty The wanted difficulty.
+     * @return Returns a list with cards with a specific difficulty.
      */
+    public List<Card> getCards(Difficulty difficulty) {
+        ArrayList<Card> result = new ArrayList();
+        Iterator var3 = cards.iterator();
+
+        while(var3.hasNext()) {
+            Card c = (Card) var3.next();
+            if (c.getDifficulty().equals(difficulty)) {
+                result.add(c);
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Gets the amount of cards with a specific difficulty in a deck.
+     * @param difficulty The wanted difficulty.
+     * @return Returns the amount of cards with a specific difficulty.
+     */
+    public int getAmountDifficultyCards(Difficulty difficulty){
+        List<Card> cards = getCards(difficulty);
+        return cards.size();
+    }
+
     public int getAmountCards() {
         return cards.size();
     }

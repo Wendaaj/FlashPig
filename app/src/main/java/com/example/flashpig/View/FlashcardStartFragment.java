@@ -25,6 +25,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.flashpig.Model.Card;
+import com.example.flashpig.Model.Flashcard;
 import com.example.flashpig.ViewModel.FlashcardViewModel;
 import com.example.flashpig.Model.Difficulty;
 import com.example.flashpig.R;
@@ -46,6 +48,7 @@ public class FlashcardStartFragment extends Fragment implements View.OnClickList
     private Button btnEasy, btnMedium, btnHard;
     private AnimatorSet setRightOut, setLeftIn;
     private boolean isBackVisible = false;
+    private int width;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -65,7 +68,7 @@ public class FlashcardStartFragment extends Fragment implements View.OnClickList
         loadAnimations();
         changeCameraDistance();
         viewModel = new ViewModelProvider(getActivity()).get(FlashcardViewModel.class);
-        int width = (int) getResources().getDimension(R.dimen.flashcard_width);
+        width = (int) getResources().getDimension(R.dimen.flashcard_width);
 
         cardFront.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,82 +77,22 @@ public class FlashcardStartFragment extends Fragment implements View.OnClickList
             }
         });
 
-        viewModel.getBackTxt().observe(getViewLifecycleOwner(), new Observer<String>() {
+        viewModel.getFlashcard().observe(getViewLifecycleOwner(), new Observer<Flashcard>() {
             @Override
-            public void onChanged(String s) {
-                setLeftIn.addListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        super.onAnimationEnd(animation);
-                        if (viewModel.hasBackTxtAndImg()){
-                            imgBack.setLayoutParams(new FrameLayout.LayoutParams(width, ViewGroup.LayoutParams.MATCH_PARENT));
-                            FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(width, ViewGroup.LayoutParams.MATCH_PARENT);
-                            params.gravity = Gravity.END;
-                            txtBack.setLayoutParams(params);
-                        }else {
-                            imgBack.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-                            txtBack.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-                        }
-                        txtBack.setText(s);
-                    }
-                });
+            public void onChanged(Flashcard flashcard) {
+                easyAmount.setText(Integer.toString(flashcard.getEasyAmount()));
+                mediumAmount.setText(Integer.toString(flashcard.getMediumAmount()));
+                hardAmount.setText(Integer.toString(flashcard.getHardAmount()));
             }
         });
 
-        viewModel.getFrontTxt().observe(getViewLifecycleOwner(), new Observer<String>() {
+        viewModel.getCurrentCard().observe(getViewLifecycleOwner(), new Observer<Card>() {
             @Override
-            public void onChanged(String s) {
-                if (viewModel.hasFrontTxtAndImg()){
-                    imgFront.setLayoutParams(new FrameLayout.LayoutParams(width, ViewGroup.LayoutParams.MATCH_PARENT));
-                    FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(width, ViewGroup.LayoutParams.MATCH_PARENT);
-                    params.gravity = Gravity.END;
-                    txtFront.setLayoutParams(params);
-                }else {
-                    imgFront.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-                    txtFront.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-                }
-                txtFront.setText(s);
-            }
-        });
-
-        viewModel.getBackImg().observe(getViewLifecycleOwner(), new Observer<Bitmap>() {
-            @Override
-            public void onChanged(Bitmap bitmap) {
-                setLeftIn.addListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animation) {
-                        super.onAnimationEnd(animation);
-                        imgBack.setImageBitmap(bitmap);
-                    }
-                });
-            }
-        });
-
-        viewModel.getFrontImg().observe(getViewLifecycleOwner(), new Observer<Bitmap>() {
-            @Override
-            public void onChanged(Bitmap bitmap) {
-                imgFront.setImageBitmap(bitmap);
-            }
-        });
-
-        viewModel.getEasyAmount().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(String s) {
-                easyAmount.setText(s);
-            }
-        });
-
-        viewModel.getMediumAmount().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(String s) {
-                mediumAmount.setText(s);
-            }
-        });
-
-        viewModel.getHardAmount().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(String s) {
-                hardAmount.setText(s);
+            public void onChanged(Card card) {
+                setBackTxt(card.getBacksideStr());
+                setFrontTxt(card.getFrontsideStr());
+                setBackImg(card.getBackImg());
+                setFrontImg(card.getBackImg());
             }
         });
 
@@ -165,6 +108,64 @@ public class FlashcardStartFragment extends Fragment implements View.OnClickList
                     NavHostFragment.findNavController(FlashcardStartFragment.this)
                             .navigate(R.id.action_flashcardStartFragment_to_flashcardEndFragment);
                 }
+            }
+        });
+    }
+
+    private void setFrontImg(Bitmap bitmap){
+        imgFront.setImageBitmap(bitmap);
+    }
+
+    /**
+     * Waits until card is flipped before setting the cards back image.
+     * @param bitmap
+     */
+    private void setBackImg(Bitmap bitmap){
+        setLeftIn.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                imgBack.setImageBitmap(bitmap);
+            }
+        });
+    }
+
+    /**
+     * Checks if the cards frontside contains both text and image. If the card contains both it will change the presentation of the text and image,
+     * @param s The text to be set.
+     */
+    private void setFrontTxt(String s){
+        if (viewModel.hasFrontTxtAndImg()){
+            imgFront.setLayoutParams(new FrameLayout.LayoutParams(width, ViewGroup.LayoutParams.MATCH_PARENT));
+            FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(width, ViewGroup.LayoutParams.MATCH_PARENT);
+            params.gravity = Gravity.END;
+            txtFront.setLayoutParams(params);
+        }else {
+            imgFront.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+            txtFront.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        }
+        txtFront.setText(s);
+    }
+
+    /**
+     * Checks if the cards backside contains both text and image. If the card contains both it will change the presentation of the text and image,
+     * @param s The text to be set.
+     */
+    private void setBackTxt(String s){
+        setLeftIn.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                if (viewModel.hasBackTxtAndImg()){
+                    imgBack.setLayoutParams(new FrameLayout.LayoutParams(width, ViewGroup.LayoutParams.MATCH_PARENT));
+                    FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(width, ViewGroup.LayoutParams.MATCH_PARENT);
+                    params.gravity = Gravity.END;
+                    txtBack.setLayoutParams(params);
+                }else {
+                    imgBack.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+                    txtBack.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+                }
+                txtBack.setText(s);
             }
         });
     }
@@ -251,7 +252,4 @@ public class FlashcardStartFragment extends Fragment implements View.OnClickList
         cardFront.setCameraDistance(scale);
         cardBack.setCameraDistance(scale);
     }
-
-
-
 }

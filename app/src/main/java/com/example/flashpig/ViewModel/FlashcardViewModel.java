@@ -25,27 +25,21 @@ import java.util.Random;
  */
 public class FlashcardViewModel extends ViewModel {
     private Repository repo = Repository.getInstance();
-    private Flashcard flashcard;
-    private Deck deck;
-    private String deckName;
+
+    private MutableLiveData<Flashcard> flashcard = new MutableLiveData<>();
+    private MutableLiveData<Card> currentCard = new MutableLiveData<>();
+    private MutableLiveData<Boolean> gameOver = new MutableLiveData<>();
+
     private boolean hasFrontTxtAndImg;
     private boolean hasBackTxtAndImg;
-    private MutableLiveData<String> backTxt = new MutableLiveData<>();
-    private MutableLiveData<String> frontTxt = new MutableLiveData<>();
-    private MutableLiveData<Bitmap> backImg = new MutableLiveData<>();
-    private MutableLiveData<Bitmap> frontImg = new MutableLiveData<>();
-    private MutableLiveData<String> easyAmount = new MutableLiveData<>();
-    private MutableLiveData<String> mediumAmount = new MutableLiveData<>();
-    private MutableLiveData<String> hardAmount = new MutableLiveData<>();
-    private MutableLiveData<Boolean> gameOver = new MutableLiveData<>();
 
     /**
      * Initialize the view model.
      */
     public void init(Deck deck){
-        this.deck = repo.getDeck(deck);
-        flashcard = new Flashcard(this.deck.getDeckName(), this.deck);
-        deckName = deck.getDeckName();
+        Deck deck1 = repo.getDeck(deck);
+        flashcard.setValue(new Flashcard(deck1.getDeckName(), deck1));
+        currentCard.setValue(flashcard.getValue().getCurrentCard());
         gameOver.setValue(false);
         update();
     }
@@ -54,17 +48,11 @@ public class FlashcardViewModel extends ViewModel {
      * Load the next cards values until game is over.
      */
     private void update(){
-        easyAmount.setValue(Integer.toString(flashcard.getAmountCards(Difficulty.EASY)));
-        mediumAmount.setValue(Integer.toString(flashcard.getAmountCards(Difficulty.MEDIUM)));
-        hardAmount.setValue(Integer.toString(flashcard.getAmountCards(Difficulty.HARD)));
-
-        if (!flashcard.roundIsOver()){
+        flashcard.setValue(flashcard.getValue());
+        if (!flashcard.getValue().roundIsOver()){
+            currentCard.setValue(flashcard.getValue().getCurrentCard());
             checkHasFrontTxtAndImg();
             checkHasBackTxtAndImg();
-            backTxt.setValue(flashcard.getCurrentCard().getBacksideStr());
-            frontTxt.setValue(flashcard.getCurrentCard().getFrontsideStr());
-            backImg.setValue(flashcard.getCurrentCard().getBackImg());
-            frontImg.setValue(flashcard.getCurrentCard().getFrontImg());
         }
         else {
             gameOver.setValue(true);
@@ -77,9 +65,9 @@ public class FlashcardViewModel extends ViewModel {
      */
     public void setCardsDifficulty(Difficulty difficulty){
         switch (difficulty) {
-            case EASY: flashcard.addEasyCard(flashcard.getCurrentCard()); break;
-            case MEDIUM: flashcard.addMediumCard(flashcard.getCurrentCard()); break;
-            case HARD: flashcard.addHardCard(flashcard.getCurrentCard()); break;
+            case EASY: flashcard.getValue().addEasyCard(currentCard.getValue()); break;
+            case MEDIUM: flashcard.getValue().addMediumCard(currentCard.getValue()); break;
+            case HARD: flashcard.getValue().addHardCard(currentCard.getValue()); break;
         }
         update();
     }
@@ -88,14 +76,14 @@ public class FlashcardViewModel extends ViewModel {
      * Checks if card has both front text and front image.
      */
     private void checkHasFrontTxtAndImg() {
-        hasFrontTxtAndImg = flashcard.getCurrentCard().getFrontImg() != null && !flashcard.getCurrentCard().getFrontsideStr().isEmpty();
+        hasFrontTxtAndImg = currentCard.getValue().getFrontImg() != null && !currentCard.getValue().getFrontsideStr().isEmpty();
     }
 
     /**
      * Checks if card has both front text and front image.
      */
     private void checkHasBackTxtAndImg() {
-        hasBackTxtAndImg = flashcard.getCurrentCard().getBackImg() != null && !flashcard.getCurrentCard().getBacksideStr().isEmpty();
+        hasBackTxtAndImg = currentCard.getValue().getBackImg() != null && !currentCard.getValue().getBacksideStr().isEmpty();
     }
 
     public boolean hasFrontTxtAndImg() { return hasFrontTxtAndImg; }
@@ -104,21 +92,7 @@ public class FlashcardViewModel extends ViewModel {
 
     public MutableLiveData<Boolean> getGameOver() { return gameOver; }
 
-    public LiveData<String> getBackTxt() { return backTxt; }
+    public LiveData<Flashcard> getFlashcard() { return flashcard; }
 
-    public LiveData<String> getFrontTxt() { return frontTxt; }
-
-    public LiveData<Bitmap> getBackImg() { return backImg; }
-
-    public LiveData<Bitmap> getFrontImg() { return frontImg; }
-
-    public LiveData<String> getEasyAmount() { return easyAmount; }
-
-    public LiveData<String> getMediumAmount() { return mediumAmount; }
-
-    public LiveData<String> getHardAmount() { return hardAmount; }
-
-    public String getDeckName() { return deckName; }
-
-    public Deck getDeck() {return flashcard.getDeck();}
+    public LiveData<Card> getCurrentCard() { return currentCard; }
 }

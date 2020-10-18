@@ -15,12 +15,13 @@ public class Flashcard extends GameLogic {
 
     private Deck deck;
     public List<Card> gameDeck = new ArrayList<>();
-    private Card currentCard;
+    private int easyAmount, mediumAmount, hardAmount;
 
     public Flashcard(String title, Deck deck) {
         super(title, deck);
         this.deck = super.deck;
         gameDeck.addAll(deck.cards);
+        updateDifficultyAmount();
     }
 
     /**
@@ -42,6 +43,7 @@ public class Flashcard extends GameLogic {
      */
     public void addEasyCard(Card card) {
         card.setDifficulty(Difficulty.EASY);
+        updateDifficultyAmount();
         gameDeck.remove(card);
         startTimer(card, 3600000);
     }
@@ -52,11 +54,10 @@ public class Flashcard extends GameLogic {
      */
     public void addMediumCard(Card card) {
         card.setDifficulty(Difficulty.MEDIUM);
-
+        updateDifficultyAmount();
         gameDeck.remove(card);
         startTimer(card, 600000);
     }
-
 
     /**
      * Sets the picked card to hard.
@@ -64,6 +65,7 @@ public class Flashcard extends GameLogic {
      */
     public void addHardCard(Card card) {
         card.setDifficulty(Difficulty.HARD);
+        updateDifficultyAmount();
         gameDeck.remove(card);
         gameDeck.add(gameDeck.size(), card);
     }
@@ -94,6 +96,13 @@ public class Flashcard extends GameLogic {
         //Timekeeper set to 10 hours
     }
 
+    private void updateDifficultyAmount(){
+        easyAmount = deck.getAmountDifficultyCards(Difficulty.EASY);
+        mediumAmount = deck.getAmountDifficultyCards(Difficulty.MEDIUM);
+        hardAmount = deck.getAmountDifficultyCards(Difficulty.HARD);
+    }
+
+
     /**
      * Flips the card and show the information of the cards backside.
      * @param card The current card.
@@ -102,38 +111,16 @@ public class Flashcard extends GameLogic {
         card.setFrontside(false);
     }
 
-    //Move to Deck class later.
-    /**
-     * Get a list of cards with a specific difficulty.
-     * @param difficulty The wanted difficulty.
-     * @return Returns a list with cards with a specific difficulty.
-     */
-    public List<Card> getProducts(Difficulty difficulty) {
-        ArrayList<Card> result = new ArrayList();
-        Iterator var3 = this.deck.cards.iterator();
-
-        while(var3.hasNext()) {
-            Card c = (Card) var3.next();
-            if (c.getDifficulty().equals(difficulty)) {
-                result.add(c);
-            }
-        }
-        return result;
-    }
-
-    /**
-     * Gets the amount of cards with a specific difficulty in a deck.
-     * @param difficulty The wanted difficulty.
-     * @return Returns the amount of cards with a specific difficulty.
-     */
-    public int getAmountCards(Difficulty difficulty){
-        List<Card> cards = getProducts(difficulty);
-        return  cards.size();
-    }
-
     public Card getCurrentCard() {
+        Card currentCard;
         return currentCard = gameDeck.get(0);
     }
 
     public Deck getDeck() { return deck; }
+
+    public int getEasyAmount() { return easyAmount; }
+
+    public int getMediumAmount() { return mediumAmount; }
+
+    public int getHardAmount() { return hardAmount; }
 }
