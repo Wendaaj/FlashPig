@@ -3,15 +3,19 @@ package com.example.flashpig.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Parcel;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import com.example.flashpig.Model.Flashcard;
 import com.example.flashpig.ViewModel.FlashcardViewModel;
 import com.example.flashpig.R;
 
@@ -43,7 +47,13 @@ public class  FlashcardActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        title.setText(viewModel.getDeckName());
+        viewModel.getFlashcard().observe(this, new Observer<Flashcard>() {
+            @Override
+            public void onChanged(Flashcard flashcard) {
+                title.setText(flashcard.getDeck().getDeckName());
+            }
+        });
+
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

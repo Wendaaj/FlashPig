@@ -20,17 +20,13 @@ import com.example.flashpig.R;
 import java.util.ArrayList;
 
 public class DeckSpinnerAdapter extends ArrayAdapter<Deck> {
-    ArrayList<Deck> deckArrayList;
-    Context context;
+    private Context context;
     private OnEditItemsClickListener onEditItemClickListener;
-    private Deck deck;
 
-    public DeckSpinnerAdapter(Context context, ArrayList<Deck> deckArrayList, OnEditItemsClickListener onEditItemClickListener, Deck deck){
+    public DeckSpinnerAdapter(Context context, ArrayList<Deck> deckArrayList, OnEditItemsClickListener onEditItemClickListener){
         super(context, 0, deckArrayList);
-        this.deckArrayList = deckArrayList;
         this.context = context;
         this.onEditItemClickListener = onEditItemClickListener;
-        this.deck = deck;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -59,7 +55,6 @@ public class DeckSpinnerAdapter extends ArrayAdapter<Deck> {
         Button editSpinnerItemBtn = convertView.findViewById(R.id.spinnerEditButton);
         ConstraintLayout constraintLayout = convertView.findViewById(R.id.spinnerConstraintLayout);
         Button removeSpinnerItemBtn = convertView.findViewById(R.id.removeSpinnerItemBtn);
-
         editSpinnerItemBtn.setOnClickListener(v->
                 manageVisibility(constraintLayout, deckName, amountCards));
 

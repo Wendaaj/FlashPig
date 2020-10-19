@@ -1,19 +1,18 @@
 package com.example.flashpig.ViewModel;
 
 
-import android.graphics.Bitmap;
-import android.telephony.CellSignalStrength;
+import android.os.CountDownTimer;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.flashpig.DataBase.Repository;
 import com.example.flashpig.Model.Card;
 import com.example.flashpig.Model.Deck;
 import com.example.flashpig.Model.Difficulty;
 import com.example.flashpig.Model.Flashcard;
 
-import java.util.Random;
 
 /**
  * The viewmodel for the Flashcard game.
@@ -22,25 +21,22 @@ import java.util.Random;
  * @version 2020-10-12
  */
 public class FlashcardViewModel extends ViewModel {
-    private Flashcard flashcard;
-    private String deckName;
+    private Repository repo = Repository.getInstance();
+
+    private MutableLiveData<Flashcard> flashcard = new MutableLiveData<>();
+    private MutableLiveData<Card> currentCard = new MutableLiveData<>();
+    private MutableLiveData<Boolean> gameOver = new MutableLiveData<>();
+
     private boolean hasFrontTxtAndImg;
     private boolean hasBackTxtAndImg;
-    private MutableLiveData<String> backTxt = new MutableLiveData<>();
-    private MutableLiveData<String> frontTxt = new MutableLiveData<>();
-    private MutableLiveData<Bitmap> backImg = new MutableLiveData<>();
-    private MutableLiveData<Bitmap> frontImg = new MutableLiveData<>();
-    private MutableLiveData<String> easyAmount = new MutableLiveData<>();
-    private MutableLiveData<String> mediumAmount = new MutableLiveData<>();
-    private MutableLiveData<String> hardAmount = new MutableLiveData<>();
-    private MutableLiveData<Boolean> gameOver = new MutableLiveData<>();
 
     /**
      * Initialize the view model.
      */
     public void init(Deck deck){
-        flashcard = new Flashcard(deck.getDeckName(), deck);
-        deckName = deck.getDeckName();
+        Deck deck1 = repo.getDeck(deck);
+        flashcard.setValue(new Flashcard(deck1));
+        currentCard.setValue(flashcard.getValue().getCurrentCard());
         gameOver.setValue(false);
         update();
     }
@@ -49,17 +45,11 @@ public class FlashcardViewModel extends ViewModel {
      * Load the next cards values until game is over.
      */
     private void update(){
-        easyAmount.setValue(Integer.toString(flashcard.getAmountCards(Difficulty.EASY)));
-        mediumAmount.setValue(Integer.toString(flashcard.getAmountCards(Difficulty.MEDIUM)));
-        hardAmount.setValue(Integer.toString(flashcard.getAmountCards(Difficulty.HARD)));
-
-        if (!flashcard.roundIsOver()){
+        flashcard.setValue(flashcard.getValue());
+        if (!flashcard.getValue().roundIsOver()){
+            currentCard.setValue(flashcard.getValue().getCurrentCard());
             checkHasFrontTxtAndImg();
             checkHasBackTxtAndImg();
-            backTxt.setValue(flashcard.getCurrentCard().getBacksideStr());
-            frontTxt.setValue(flashcard.getCurrentCard().getFrontsideStr());
-            backImg.setValue(flashcard.getCurrentCard().getBackImg());
-            frontImg.setValue(flashcard.getCurrentCard().getFrontImg());
         }
         else {
             gameOver.setValue(true);
@@ -72,25 +62,48 @@ public class FlashcardViewModel extends ViewModel {
      */
     public void setCardsDifficulty(Difficulty difficulty){
         switch (difficulty) {
-            case EASY: flashcard.addEasyCard(flashcard.getCurrentCard()); break;
-            case MEDIUM: flashcard.addMediumCard(flashcard.getCurrentCard()); break;
-            case HARD: flashcard.addHardCard(flashcard.getCurrentCard()); break;
+            case EASY:
+                flashcard.getValue().addEasyCard(currentCard.getValue());
+                startTimer(currentCard.getValue(), 3600000);
+                break;
+            case MEDIUM:
+                flashcard.getValue().addMediumCard(currentCard.getValue());
+                startTimer(currentCard.getValue(), 600000);
+                break;
+            case HARD: flashcard.getValue().addHardCard(currentCard.getValue()); break;
         }
         update();
+    }
+
+    /**
+     * Set a countdown timer on the card and when the time is up, add the card back to the game deck.
+     * @param card The card to set the timer on.
+     * @param i How many millisec to delay.
+     */
+    private void startTimer(Card card, long i){
+        CountDownTimer countDownTimer = new CountDownTimer(i, 1000) {
+            @Override
+            public void onTick(long l) {}
+
+            @Override
+            public void onFinish() {
+                flashcard.getValue().addCardToMain(card);
+            }
+        }.start();
     }
 
     /**
      * Checks if card has both front text and front image.
      */
     private void checkHasFrontTxtAndImg() {
-        hasFrontTxtAndImg = flashcard.getCurrentCard().getFrontImg() != null && !flashcard.getCurrentCard().getFrontsideStr().isEmpty();
+        hasFrontTxtAndImg = currentCard.getValue().getFrontImg() != null && !currentCard.getValue().getFrontsideStr().isEmpty();
     }
 
     /**
      * Checks if card has both front text and front image.
      */
     private void checkHasBackTxtAndImg() {
-        hasBackTxtAndImg = flashcard.getCurrentCard().getBackImg() != null && !flashcard.getCurrentCard().getBacksideStr().isEmpty();
+        hasBackTxtAndImg = currentCard.getValue().getBackImg() != null && !currentCard.getValue().getBacksideStr().isEmpty();
     }
 
     public boolean hasFrontTxtAndImg() { return hasFrontTxtAndImg; }
@@ -99,21 +112,7 @@ public class FlashcardViewModel extends ViewModel {
 
     public MutableLiveData<Boolean> getGameOver() { return gameOver; }
 
-    public LiveData<String> getBackTxt() { return backTxt; }
+    public LiveData<Flashcard> getFlashcard() { return flashcard; }
 
-    public LiveData<String> getFrontTxt() { return frontTxt; }
-
-    public LiveData<Bitmap> getBackImg() { return backImg; }
-
-    public LiveData<Bitmap> getFrontImg() { return frontImg; }
-
-    public LiveData<String> getEasyAmount() { return easyAmount; }
-
-    public LiveData<String> getMediumAmount() { return mediumAmount; }
-
-    public LiveData<String> getHardAmount() { return hardAmount; }
-
-    public String getDeckName() { return deckName; }
-
-    public Deck getDeck() {return flashcard.getDeck();}
+    public LiveData<Card> getCurrentCard() { return currentCard; }
 }

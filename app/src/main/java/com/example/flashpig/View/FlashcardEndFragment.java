@@ -27,6 +27,7 @@ import org.parceler.Parcels;
  * @version 2020-10-04
  * */
 public class FlashcardEndFragment extends Fragment {
+    private FlashcardViewModel vm;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,7 +48,7 @@ public class FlashcardEndFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 NavHostFragment.findNavController(FlashcardEndFragment.this)
-                        .navigate(R.id.action_flashcardEndFragment_to_mainActivity2, getArguments());
+                        .navigate(R.id.action_flashcardEndFragment_to_mainActivity2);
             }
         });
 

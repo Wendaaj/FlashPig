@@ -9,8 +9,8 @@ package com.example.flashpig.Model;
 
 public class PairUp extends GameLogic {
 
-    public PairUp(String title, Deck deck) {
-        super(title, deck);
+    public PairUp(Deck deck) {
+        super(deck);
     }
 
 

@@ -39,6 +39,9 @@
         <action
             android:id="@+id/action_cardFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
+        <action
+            android:id="@+id/action_cardFragment_to_createDeckFragment"
+            app:destination="@id/createDeckFragment" />
     </fragment>
     <fragment
         android:id="@+id/createDeckFragment"
@@ -48,6 +51,9 @@
         <action
             android:id="@+id/action_createDeckFragment_to_cardFragment"
             app:destination="@id/cardFragment" />
+        <action
+            android:id="@+id/action_createDeckFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
     </fragment>
     <fragment
         android:id="@+id/splashScreen"
@@ -64,15 +70,20 @@
         android:label="editdeck"
         tools:layout="@layout/editdeck" >
         <action
-            android:id="@+id/action_editDeckFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
-        <action
             android:id="@+id/action_editDeckFragment_to_cardFragment"
             app:destination="@id/cardFragment" />
+        <action
+            android:id="@+id/action_editDeckFragment_to_mainActivity3"
+            app:destination="@id/mainActivity3" />
     </fragment>
     <activity
         android:id="@+id/pairUpActivity"
         android:name="com.example.flashpig.View.PairUpActivity"
         android:label="activity_pairup"
         tools:layout="@layout/activity_pairup" />
+    <activity
+        android:id="@+id/mainActivity3"
+        android:name="com.example.flashpig.View.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
 </navigation>

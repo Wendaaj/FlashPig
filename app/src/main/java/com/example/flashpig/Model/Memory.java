@@ -14,8 +14,8 @@ public class Memory extends GameLogic implements MemoryPairUpLogic {
     /** Constructor for Memory
      */
 
-    public Memory(String title, Deck deck) {
-        super(title, deck);  //don't change OG deck
+    public Memory(Deck deck) {
+        super(deck);  //don't change OG deck
         this.deck = deck;
     }
 

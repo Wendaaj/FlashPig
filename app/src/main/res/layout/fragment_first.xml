@@ -33,16 +33,18 @@
         android:theme="?attr/actionBarTheme"
 
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/pigImageView2"
-        android:layout_width="146dp"
-        android:layout_height="61dp"
+        android:layout_width="154dp"
+        android:layout_height="59dp"
         android:layout_marginTop="65dp"
         android:contentDescription="@string/pig_img"
         android:rotationX="180"
+        app:layout_constraintBottom_toBottomOf="@+id/editCardToolbar2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -71,10 +73,13 @@
         android:id="@+id/editDeckBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="284dp"
-        android:layout_marginLeft="284dp"
-        android:layout_marginTop="464dp"
-        android:text="editDeck"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="84dp"
+        android:background="#00FF0000"
+        android:text="Edit deck"
+        android:textColor="@color/mainColor"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -139,14 +144,14 @@
         android:id="@+id/ndeckstext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="292dp"
-        android:layout_marginLeft="292dp"
         android:layout_marginTop="92dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginRight="52dp"
         android:fontFamily="@font/roboto_slab"
         android:text="TextView"
         android:textColor="@color/design_default_color_background"
         android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
