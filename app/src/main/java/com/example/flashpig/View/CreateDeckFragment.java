@@ -177,8 +177,6 @@ public class CreateDeckFragment extends Fragment {
         SharedPreferences sharedPreferences = getActivity().getPreferences(MODE_PRIVATE);
         boolean state = sharedPreferences.getBoolean("state", false);
         cccheckBox.setChecked(state);
-        cccheckBox.setChecked(false);
-
     }
     public void savePreferences(){
         SharedPreferences sharedPreferences =  getActivity().getPreferences(MODE_PRIVATE);
