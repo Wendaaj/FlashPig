@@ -2,8 +2,10 @@ package com.example.flashpig.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.flashpig.R;
+import com.example.flashpig.ViewModel.PairUpViewModel;
 
 import android.os.Bundle;
 import android.view.View;
@@ -40,6 +42,12 @@ public class PairUpActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
+
+        PairUpViewModel model = new ViewModelProvider(this).get(PairUpViewModel.class);
+        model.getUsers().observe(this, users -> {
+            // update UI
+        });
+
     }
 
 }

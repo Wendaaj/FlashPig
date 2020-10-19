@@ -7,7 +7,7 @@ package com.example.flashpig.Model;
  * @version 2020-10-16
  */
 
-public class PairUp extends GameLogic implements MemoryPairUpLogic {
+public class PairUp extends GameLogic {
 
     public PairUp(String title, Deck deck) {
         super(title, deck);
@@ -21,7 +21,6 @@ public class PairUp extends GameLogic implements MemoryPairUpLogic {
      *  @return Returns true if it the chosen card are a pair
      */
 
-    @Override
     public boolean isMatched(Card chosenCard1, Card chosenCard2, Deck deck) {
         int deckSize;
         if (chosenCard1.getId() == chosenCard2.getId()) {
@@ -39,7 +38,6 @@ public class PairUp extends GameLogic implements MemoryPairUpLogic {
      * @return Returns true if a game is done
      */
 
-    @Override
     public boolean isEndOfGame(int deckSize) {
         if (deckSize == 0) {
             return true;

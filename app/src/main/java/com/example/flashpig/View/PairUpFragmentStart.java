@@ -19,6 +19,7 @@ import com.example.flashpig.Model.Card;
 import com.example.flashpig.Model.Deck;
 import com.example.flashpig.Model.PairUp;
 import com.example.flashpig.R;
+import com.example.flashpig.ViewModel.PairUpViewModel;
 
 import java.util.Collections;
 
@@ -42,12 +43,14 @@ public class PairUpFragmentStart extends Fragment implements PairUpRecyclerViewA
     int deckSize;
     int showingCards = adapter.getItemCount() * 2;
 
+    PairUpViewModel pairUpViewModel = new PairUpViewModel();
+
+
     /**
      * Does initial creations of the fragment
      *
      * @param savedInstanceState
      */
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
