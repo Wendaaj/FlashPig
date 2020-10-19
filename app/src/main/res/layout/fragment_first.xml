@@ -7,23 +7,6 @@
     android:background="@color/mainColor"
     tools:context=".View.DashboardFragment">
 
-    <Spinner
-        android:id="@+id/chooseDeckSpinner"
-        android:layout_width="280dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="35dp"
-        android:layout_marginLeft="35dp"
-        android:background="#FFFFFF"
-        android:descendantFocusability="blocksDescendants"
-        android:orientation="vertical"
-        android:overScrollMode="ifContentScrolls"
-        android:scrollbars="vertical"
-        app:layout_constraintBottom_toBottomOf="@+id/createCardButton11"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/createCardButton11"
-        app:layout_constraintVertical_bias="0.625"
-        tools:listitem="@layout/editdeck_spinner_item" />
-
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/editCardToolbar2"
         android:layout_width="0dp"
@@ -37,51 +20,55 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/pigImageView2"
-        android:layout_width="154dp"
-        android:layout_height="59dp"
-        android:layout_marginTop="65dp"
-        android:contentDescription="@string/pig_img"
-        android:rotationX="180"
-        app:layout_constraintBottom_toBottomOf="@+id/editCardToolbar2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/pig" />
-
-    <ImageButton
-        android:id="@+id/createCardButton11"
-        android:layout_width="43dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="48dp"
-        android:layout_marginRight="48dp"
-        android:background="@color/colorAccentorange"
-        android:contentDescription="@string/add_new_card"
-        android:tint="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.615"
-        app:layout_constraintStart_toEndOf="@+id/chooseDeckSpinner"
-        app:layout_constraintTop_toBottomOf="@+id/pigImageView2"
-        app:srcCompat="@android:drawable/ic_menu_add" />
-
-    <Button
-        android:id="@+id/editDeckBtn"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginLeft="40dp"
-        android:layout_marginTop="84dp"
-        android:background="#00FF0000"
-        android:text="Edit deck"
-        android:textColor="@color/mainColor"
-        android:textSize="18sp"
+        android:background="@drawable/card_background"
+        app:layout_constraintBottom_toBottomOf="@+id/createCardButton11"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/createCardButton11">
+
+        <Spinner
+            android:id="@+id/chooseDeckSpinner"
+            android:layout_width="260dp"
+            android:layout_height="40dp"
+            android:descendantFocusability="blocksDescendants"
+            android:dropDownWidth="260dp"
+            android:orientation="vertical"
+            android:overScrollMode="ifContentScrolls"
+            android:scrollbars="vertical"
+            android:spinnerMode="dropdown"
+            tools:layout_editor_absoluteX="40dp"
+            tools:listitem="@layout/editdeck_spinner_item" />
+    </RelativeLayout>
+
+    <ImageButton
+        android:id="@+id/createCardButton11"
+        android:layout_width="43dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:background="@drawable/add_btn"
+        android:contentDescription="@string/add_new_card"
+        android:tint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editCardToolbar2" />
+
+    <ImageView
+        android:id="@+id/pigImageView2"
+        android:layout_width="154dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="64dp"
+        android:contentDescription="@string/pig_img"
+        android:rotationX="180"
+        app:layout_constraintEnd_toEndOf="@+id/textView2"
+        app:layout_constraintHorizontal_bias="0.517"
+        app:layout_constraintStart_toStartOf="@+id/textView2"
+        app:layout_constraintTop_toTopOf="@+id/editCardToolbar2"
+        app:srcCompat="@drawable/pig" />
 
     <ImageButton
         android:id="@+id/flashcard1"
@@ -131,27 +118,43 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="2dp"
         android:fontFamily="@font/roboto_slab_bold"
         android:text="@string/app_name"
         android:textColor="@color/background"
         android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/pigImageView2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/editCardToolbar2" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/ndeckstext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="92dp"
-        android:layout_marginEnd="52dp"
-        android:layout_marginRight="52dp"
-        android:fontFamily="@font/roboto_slab"
-        android:text="TextView"
+        android:layout_marginTop="85dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:drawablePadding="5dp"
+        android:fontFamily="@font/roboto_slab_bold"
         android:textColor="@color/design_default_color_background"
         android:textSize="18sp"
+        app:drawableStartCompat="@drawable/ic_baseline_filter_none_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/editDeckBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:background="#00FF0000"
+        android:fontFamily="@font/roboto_slab_bold"
+        android:text="@string/edit_deck"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/ndeckstext"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ndeckstext" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
