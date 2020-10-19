@@ -22,25 +22,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/deckNameTextView"
-        android:layout_width="wrap_content"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/deckNameLayout"
+        android:layout_width="400dp"
         android:layout_height="wrap_content"
-
-        android:fontFamily="@font/roboto_slab_bold"
-        android:hint="@string/Deck_name"
-        android:inputType="text"
-        android:textColor="#FFFFFF"
-        android:textColorHighlight="#FFFFFF"
-        android:textColorLink="#F3ABAB"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textAlignment="center"
         android:gravity="center_horizontal"
         app:layout_constraintBottom_toTopOf="@+id/pigImageView"
-        app:layout_constraintEnd_toEndOf="@+id/editCardToolbar"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/editCardToolbar"
-         />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/deckNameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/Deck_name"
+            android:inputType="text"
+            android:textColorHint="#D3D3D3"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:gravity="center_horizontal"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <Button
         android:id="@+id/saveDeckButton"
