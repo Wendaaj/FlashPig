@@ -1,19 +1,13 @@
 package com.example.flashpig.ViewModel;
 
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.flashpig.FakeDataBase;
-import com.example.flashpig.Model.Card;
+import com.example.flashpig.DataBase.FakeDataBase;
 import com.example.flashpig.Model.Deck;
-
-import org.parceler.Parcels;
-
-import java.util.List;
 
 public class EditDeckViewModel extends ViewModel {
     private Deck deck;
-    private FakeDataBase db = FakeDataBase.getInstance();
+    private FakeDataBase db = new FakeDataBase();
 
     public void initDeck() {
         deck = new Deck();

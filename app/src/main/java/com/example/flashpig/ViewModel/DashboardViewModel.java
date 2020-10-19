@@ -19,7 +19,20 @@ public class DashboardViewModel extends ViewModel {
         decks.setValue(repo.getDecks());
     }
 
+    public void saveDeck(Deck deck) {
+        repo.saveDeck(deck);
+    }
+
+    public void removeDeck(Deck deck) {
+        repo.removeDeck(deck);
+    }
+
     public LiveData<ArrayList<Deck>> getDecks() { return decks; }
+
+    public int getChosenDeckPos(){
+        int pos = decks.getValue().indexOf(repo.getDeck(chosenDeck.getValue()));
+        return pos;
+    }
 
     public LiveData<Deck> getChosenDeck() {
         return chosenDeck;

@@ -54,6 +54,14 @@ public class DashboardFragment extends Fragment implements DeckSpinnerAdapter.On
         ndecks = getActivity().findViewById(R.id.ndeckstext);
         spinnerAdapter = new DeckSpinnerAdapter(getActivity(), vm.getDecks().getValue(), this);
         deckSpinner.setAdapter(spinnerAdapter);
+        vm.getChosenDeck().observe(getViewLifecycleOwner(), new Observer<Deck>() {
+            @Override
+            public void onChanged(Deck deck) {
+                if (deck != null){
+                    deckSpinner.setSelection(vm.getChosenDeckPos());
+                }
+            }
+        });
         deckSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

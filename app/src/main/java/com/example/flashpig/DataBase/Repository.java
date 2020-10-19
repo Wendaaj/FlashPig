@@ -27,6 +27,12 @@ public class Repository {
         return instance;
     }
 
+    public void saveDeck(Deck deck){
+        db.addDeck(deck);
+    }
+
+    public void removeDeck(Deck deck) {db.addDeck(deck);}
+
     /**
      * Gets the databases' list of decks.
      * @return
