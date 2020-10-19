@@ -12,6 +12,8 @@ import androidx.lifecycle.ViewModelProvider;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import org.parceler.Parcels;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -20,6 +22,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         //Toolbar toolbar = findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
+
+        if (getIntent().getExtras() != null) {
+            DashboardViewModel vm = new ViewModelProvider(this).get(DashboardViewModel.class);
+            vm.setChosenDeck(Parcels.unwrap(getIntent().getExtras().getParcelable("deck")));
+        }
     }
 
     @Override
