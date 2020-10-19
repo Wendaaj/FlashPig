@@ -39,6 +39,9 @@
         <action
             android:id="@+id/action_cardFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
+        <action
+            android:id="@+id/action_cardFragment_to_createDeckFragment"
+            app:destination="@id/createDeckFragment" />
     </fragment>
     <fragment
         android:id="@+id/createDeckFragment"
@@ -48,6 +51,9 @@
         <action
             android:id="@+id/action_createDeckFragment_to_cardFragment"
             app:destination="@id/cardFragment" />
+        <action
+            android:id="@+id/action_createDeckFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
     </fragment>
     <fragment
         android:id="@+id/splashScreen"
