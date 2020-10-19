@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
@@ -83,6 +84,16 @@ public class CardFragment extends Fragment {
         viewModel.initCard();
         findViews(view);
         loadUI();
+
+        ((AppCompatActivity) getActivity()).setSupportActionBar(ccToolbar);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
+        ccToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavHostFragment.findNavController(CardFragment.this)
+                        .navigate(R.id.action_cardFragment_to_createDeckFragment);
+            }
+        });
 
         ccButtonfront.setOnClickListener(new View.OnClickListener(){
             @Override

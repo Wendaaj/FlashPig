@@ -9,6 +9,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
@@ -24,6 +26,7 @@ public class CreateDeckFragment extends Fragment {
     private Button dcButton;
     private CardViewModel viewModel;
     private String inputText;
+    private Toolbar toolbar;
 
 
     @Override
@@ -45,8 +48,6 @@ public class CreateDeckFragment extends Fragment {
         findViews(view);
         viewModel.initDeck();
 
-
-
         dcButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,12 +63,23 @@ public class CreateDeckFragment extends Fragment {
                 }
             }
         });
+
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavHostFragment.findNavController(CreateDeckFragment.this)
+                        .navigate(R.id.action_createDeckFragment_to_FirstFragment);
+            }
+        });
     }
 
     private void findViews(View view){
         dcTextView = view.findViewById(R.id.dcTextView);
         dcTextInputLayout = view.findViewById(R.id.dcTextInputLayout);
         dcButton = view.findViewById(R.id.dcButton);
+        toolbar = view.findViewById(R.id.toolbar2);
     }
 
 
