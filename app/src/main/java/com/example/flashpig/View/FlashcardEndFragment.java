@@ -48,7 +48,7 @@ public class FlashcardEndFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 NavHostFragment.findNavController(FlashcardEndFragment.this)
-                        .navigate(R.id.action_flashcardEndFragment_to_mainActivity2, getArguments());
+                        .navigate(R.id.action_flashcardEndFragment_to_mainActivity2);
             }
         });
 

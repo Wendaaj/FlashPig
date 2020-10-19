@@ -39,6 +39,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import org.parceler.Parcels;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.List;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -101,8 +102,11 @@ public class EditDeckFragment extends Fragment implements DeckRecyclerViewAdapte
                             Toast.LENGTH_SHORT).show();
                 }
                 Toast.makeText(getContext(), viewModel.getChosenDeck().getValue().getDeckName() + " is saved", Toast.LENGTH_SHORT).show();
+
+                Bundle bundle = new Bundle();
+                bundle.putParcelable("deck", Parcels.wrap(viewModel.getChosenDeck().getValue()));
                 NavHostFragment.findNavController(EditDeckFragment.this)
-                        .navigate(R.id.action_editDeckFragment_to_FirstFragment);
+                        .navigate(R.id.action_editDeckFragment_to_mainActivity3, bundle);
             }
         });
     }
@@ -225,47 +229,37 @@ public class EditDeckFragment extends Fragment implements DeckRecyclerViewAdapte
 
     @Override
     public void onRemoveDeckBtnClick(ConstraintLayout constraintLayout, TextView deckName, TextView amountCards, int position) {
-        if (viewModel.getDecks().getValue().size() != 0) {
+        if (viewModel.getDecks().getValue().size() != 1){ //If not the last deck
             removeDeckCheckboxHandler(constraintLayout, deckName, amountCards, position);
+            setSpinnerSelection(position);
         }else {
+            viewModel.removeDeck(viewModel.getDecks().getValue().get(position)); //Remove the last deck
             NavHostFragment.findNavController(this)
-                    .navigate(R.id.action_editDeckFragment_to_FirstFragment);
-        }
-        setNextDeckInSpinner(position);
-    }
-
-    private void setNextDeckInSpinner(int position){
-        if((viewModel.getDecks().getValue().size()-1)==position){//size is 1 bigger because position 0 is included
-            deckSpinner.setSelection(0);
-        }else if(position == 0){
-            deckSpinner.setSelection(position+1);
-        }
-        else{
-            deckSpinner.setSelection(position-1);
+                    .navigate(R.id.action_editDeckFragment_to_mainActivity3);
         }
     }
 
     private void removeDeckCheckboxHandler(ConstraintLayout constraintLayout, TextView deckName, TextView amountCards, int position){
-        deleteDeck.setVisibility(View.VISIBLE);
         loadPreferencesDeck();
         if (!checkBoxDeck.isChecked()) {
-            hideSpinnerDropDown(deckSpinner);
+            deleteDeck.setVisibility(View.VISIBLE);
             spinnerAdapter.manageVisibility(constraintLayout, deckName, amountCards);
+            hideSpinnerDropDown(deckSpinner);
             setYesNoDeckBtn(position);
             cardListGrid(viewModel.getChosenDeck().getValue());
         } else {
-            removeDeck(position);
             spinnerAdapter.manageVisibility(constraintLayout, deckName, amountCards);
+            viewModel.removeDeck(viewModel.getDecks().getValue().get(position));
             deleteDeck.setVisibility(View.INVISIBLE);
-            savePreferencesDeck();
         }
+        savePreferencesDeck();
     }
 
     private void setYesNoDeckBtn(int position) {
-            yesBtnDeck.setOnClickListener(new View.OnClickListener() {
+        yesBtnDeck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                removeDeck(position);
+                viewModel.removeDeck(viewModel.getDecks().getValue().get(position));
                 deleteDeck.setVisibility(View.INVISIBLE);
             }
         });
@@ -276,6 +270,18 @@ public class EditDeckFragment extends Fragment implements DeckRecyclerViewAdapte
             }
         });
     }
+
+    private void setSpinnerSelection(int position){
+        if((viewModel.getDecks().getValue().size()-1)==position){//size is 1 bigger because position 0 is included
+            deckSpinner.setSelection(0);
+        }else if(position == 0){
+            deckSpinner.setSelection(position+1);
+        }
+        else{
+            deckSpinner.setSelection(position-1);
+        }
+    }
+
     private void setYesNoBtn(Card card, List<Card> cardsList){
         yesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -291,15 +297,11 @@ public class EditDeckFragment extends Fragment implements DeckRecyclerViewAdapte
             }
         });
     }
+
     private void removeCard(Card card, List<Card> cardsList){
         cardsList.remove(card);
         deckRecyclerViewAdapter.notifyDataSetChanged();
         setAmountTxt();
-    }
-    private void removeDeck(int position){
-        deckSpinner.setSelection(position);
-        viewModel.getDecks().getValue().remove(deckSpinner.getSelectedItem());
-        spinnerAdapter.notifyDataSetChanged();
     }
 
     @Override

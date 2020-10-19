@@ -31,7 +31,7 @@ public class Repository {
         db.addDeck(deck);
     }
 
-    public void removeDeck(Deck deck) {db.addDeck(deck);}
+    public void removeDeck(Deck deck) {db.removeDeck(deck);}
 
     /**
      * Gets the databases' list of decks.

@@ -54,14 +54,6 @@ public class DashboardFragment extends Fragment implements DeckSpinnerAdapter.On
         ndecks = getActivity().findViewById(R.id.ndeckstext);
         spinnerAdapter = new DeckSpinnerAdapter(getActivity(), vm.getDecks().getValue(), this);
         deckSpinner.setAdapter(spinnerAdapter);
-        vm.getChosenDeck().observe(getViewLifecycleOwner(), new Observer<Deck>() {
-            @Override
-            public void onChanged(Deck deck) {
-                if (deck != null){
-                    deckSpinner.setSelection(vm.getChosenDeckPos());
-                }
-            }
-        });
         deckSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -109,10 +101,14 @@ public class DashboardFragment extends Fragment implements DeckSpinnerAdapter.On
         view.findViewById(R.id.editDeckBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Bundle bundle = new Bundle();
-                bundle.putParcelable("deck", Parcels.wrap(vm.getChosenDeck().getValue()));
-                NavHostFragment.findNavController(DashboardFragment.this)
-                        .navigate(R.id.action_FirstFragment_to_editDeckFragment, bundle);
+                if (!vm.getDecks().getValue().isEmpty()) {
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelable("deck", Parcels.wrap(vm.getChosenDeck().getValue()));
+                    NavHostFragment.findNavController(DashboardFragment.this)
+                            .navigate(R.id.action_FirstFragment_to_editDeckFragment, bundle);
+                }else {
+                    //Add toast
+                }
             }
         });
 
