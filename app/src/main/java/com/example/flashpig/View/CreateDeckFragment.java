@@ -48,12 +48,10 @@ public class CreateDeckFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
-
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.deckcreate, container, false);
     }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -63,7 +61,7 @@ public class CreateDeckFragment extends Fragment {
         goBack.setVisibility(View.INVISIBLE);
         loadPreferences();
 
-        if(viewModel.deckIsSet()){
+        if (viewModel.getDeck1().getValue() != null){
             dcTextInputLayout.getEditText().setText(viewModel.getDeckName());
         }
 
@@ -72,7 +70,7 @@ public class CreateDeckFragment extends Fragment {
             public void onClick(View view) {
                 inputText = dcTextInputLayout.getEditText().getText().toString();
                 if (!inputText.isEmpty()) {
-                    if(viewModel.deckIsSet()){
+                    if(viewModel.getDeck1().getValue() != null){
                         viewModel.setDeckName(dcTextInputLayout.getEditText().getText().toString());
                     }else{
                         viewModel.initDeck();
@@ -95,7 +93,7 @@ public class CreateDeckFragment extends Fragment {
             public void onClick(View v) {
                 goBackCheckboxHandler();
                 dcTextInputLayout.getEditText().getText().clear();
-               viewModel.resetVievModel();
+                viewModel.resetViewModel();
             }
         });
     }
@@ -123,7 +121,7 @@ public class CreateDeckFragment extends Fragment {
             goBack.setVisibility(View.INVISIBLE);
             savePreferences();
             dcTextInputLayout.getEditText().getText().clear();
-            viewModel.resetVievModel();
+            viewModel.resetViewModel();
             NavHostFragment.findNavController(CreateDeckFragment.this)
                     .navigate(R.id.action_createDeckFragment_to_FirstFragment);
 
@@ -158,7 +156,7 @@ public class CreateDeckFragment extends Fragment {
             public void onClick(View v) {
                 savePreferences();
                 dcTextInputLayout.getEditText().getText().clear();
-                viewModel.resetVievModel();
+                viewModel.resetViewModel();
                 goBack.setVisibility(View.INVISIBLE);
                 NavHostFragment.findNavController(CreateDeckFragment.this)
                         .navigate(R.id.action_createDeckFragment_to_FirstFragment);
@@ -173,18 +171,17 @@ public class CreateDeckFragment extends Fragment {
             }
         });
     }
+
     public void loadPreferences(){
         SharedPreferences sharedPreferences = getActivity().getPreferences(MODE_PRIVATE);
         boolean state = sharedPreferences.getBoolean("state", false);
         cccheckBox.setChecked(state);
     }
+
     public void savePreferences(){
         SharedPreferences sharedPreferences =  getActivity().getPreferences(MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean("state", cccheckBox.isChecked());
         editor.apply();
     }
-
-
-
 }

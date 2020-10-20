@@ -2,6 +2,7 @@ package com.example.flashpig.ViewModel;
 
 import android.graphics.Bitmap;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -13,76 +14,40 @@ import com.example.flashpig.Model.Difficulty;
 
 public class CardViewModel extends ViewModel {
     private Repository repo = Repository.getInstance();
-    private Deck deck;
-    private Card card;
+    private MutableLiveData<Card> card1 = new MutableLiveData<>();
+    private MutableLiveData<Deck> deck1 = new MutableLiveData<>();
 
-    public void initDeck() {
-        deck = new Deck();
-    }
+    public void initDeck() { deck1.setValue(new Deck()); }
 
     public void initCard(){
-        card = new Card();
-        deck.addCard(card);
-    }
-    public boolean deckIsSet(){
-        if(this.deck==null){
-            return false;
-        }
-        else {
-            return true;
-        }
-    }
-    public boolean cardIsSet(){
-        if(this.card==null){
-            return false;
-        }
-        else {
-            return true;
-        }
+        card1.setValue(new Card());
+        deck1.getValue().addCard(card1.getValue());
     }
 
-    public void eraseCards(){
-        this.deck.clearDeck(this.deck.getCards(Difficulty.NOTHING));
-    }
+    public LiveData<Card> getCard1() { return card1; }
+
+    public void setCard1(Card card1) { this.card1.setValue(card1); }
+
+    public LiveData<Deck> getDeck1() { return deck1; }
+
+    public void setDeck1(Deck deck1) { this.deck1.setValue(deck1); }
 
     public void saveDeck() {
-        repo.saveDeck(deck);
+        repo.saveDeck(deck1.getValue());
     }
 
-    public void resetVievModel(){
-        this.deck = null;
-        this.card = null;
+    public void resetViewModel(){
+        deck1.setValue(null);
+        card1.setValue(null);
     }
 
-    public Deck getChosenDeck() {
-        return this.deck;
-    }
-
-    public String getDeckName(){String deckname = deck.getDeckName(); return deckname;}
+    public String getDeckName(){return deck1.getValue().getDeckName();}
 
     public void setDeckName(String deckName) {
-        deck.setDeckName(deckName);
-    }
-
-    public Card getCard() {
-        return card;
+        deck1.getValue().setDeckName(deckName);
     }
 
     public int getCardPos(Card card){
-        return deck.cards.indexOf(card) + 1;
-    }
-
-    public void setFrontStr(String frontStr) {
-        card.setFrontsideStr(frontStr);
-    }
-
-    public void setBackStr(String backStr) {
-        card.setBacksideStr(backStr);
-    }
-    public void setFrontImg(Bitmap frontImg) {
-        card.setFrontImg(frontImg);
-    }
-    public void setBackImg(Bitmap backImg) {
-        card.setBackImg(backImg);
+        return (deck1.getValue().cards.indexOf(card) + 1);
     }
 }

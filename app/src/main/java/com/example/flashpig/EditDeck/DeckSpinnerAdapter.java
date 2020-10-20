@@ -55,6 +55,7 @@ public class DeckSpinnerAdapter extends ArrayAdapter<Deck> {
         Button editSpinnerItemBtn = convertView.findViewById(R.id.spinnerEditButton);
         ConstraintLayout constraintLayout = convertView.findViewById(R.id.spinnerConstraintLayout);
         Button removeSpinnerItemBtn = convertView.findViewById(R.id.removeSpinnerItemBtn);
+
         editSpinnerItemBtn.setOnClickListener(v->
                 manageVisibility(constraintLayout, deckName, amountCards));
 

@@ -85,8 +85,10 @@ public class EditDeckFragment extends Fragment implements DeckRecyclerViewAdapte
         addCardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putParcelable("deck", Parcels.wrap(viewModel.getChosenDeck().getValue()));
                 NavHostFragment.findNavController(EditDeckFragment.this)
-                        .navigate(R.id.action_editDeckFragment_to_cardFragment);
+                        .navigate(R.id.action_editDeckFragment_to_cardFragment2, bundle);
             }
         });
 
@@ -305,11 +307,15 @@ public class EditDeckFragment extends Fragment implements DeckRecyclerViewAdapte
     }
 
     @Override
-    public void onEditItemBtnClick() {
-        NavHostFragment.findNavController(this)
-                .navigate(R.id.action_editDeckFragment_to_cardFragment);
+    public void onEditItemBtnClick(Card card) {
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("deck", Parcels.wrap(viewModel.getChosenDeck().getValue()));
+        bundle.putParcelable("card", Parcels.wrap(card));
+        NavHostFragment.findNavController(EditDeckFragment.this)
+                .navigate(R.id.action_editDeckFragment_to_cardFragment2, bundle);
 
     }
+
     public static void hideSpinnerDropDown(Spinner spinner) {
         try {
             Method method = Spinner.class.getDeclaredMethod("onDetachedFromWindow");

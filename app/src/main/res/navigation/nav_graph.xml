@@ -73,11 +73,11 @@
         android:label="editdeck"
         tools:layout="@layout/editdeck" >
         <action
-            android:id="@+id/action_editDeckFragment_to_cardFragment"
-            app:destination="@id/cardFragment" />
-        <action
             android:id="@+id/action_editDeckFragment_to_mainActivity3"
             app:destination="@id/mainActivity3" />
+        <action
+            android:id="@+id/action_editDeckFragment_to_cardFragment2"
+            app:destination="@id/cardFragment" />
     </fragment>
     <activity
         android:id="@+id/pairUpActivity"

@@ -2,7 +2,6 @@ package com.example.flashpig.View;
 import android.Manifest;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -13,7 +12,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -25,7 +23,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -33,13 +30,12 @@ import android.widget.Toast;
 
 import com.example.flashpig.R;
 import com.example.flashpig.ViewModel.CardViewModel;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import org.parceler.Parcels;
 
 import java.io.IOException;
-
-import static android.content.Context.MODE_PRIVATE;
 
 /**
  * The controller that connects the card model with the views.
@@ -64,11 +60,11 @@ public class CardFragment extends Fragment {
     private CardView ccPicCardview;
     private CardView ccTextCardview;
     private TextInputLayout ccTextinput;
+    private TextInputEditText ccTextEditTxt;
     private Button ccButtonfront;
     private Button ccButtonback1;
     private Button ccButtonback2;
     private ImageView ccImageView;
-
 
     private CardViewModel viewModel;
     private boolean isFront = true;
@@ -87,12 +83,23 @@ public class CardFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        viewModel = new ViewModelProvider(getActivity()).get(CardViewModel.class);
-        if(!viewModel.cardIsSet()){viewModel.initCard();}
+
         findViews(view);
 
-        loadUI();
+        viewModel = new ViewModelProvider(getActivity()).get(CardViewModel.class);
+        if (getArguments() != null){
+            viewModel.setDeck1(Parcels.unwrap(getArguments().getParcelable("deck")));
+            if (getArguments().containsKey("card")) {
+                viewModel.setCard1(Parcels.unwrap(getArguments().getParcelable("card")));
+                updateViews();
+            }
+        }
 
+        if (viewModel.getCard1().getValue() == null){
+            viewModel.initCard();
+        }
+
+        loadUI();
 
         ((AppCompatActivity) getActivity()).setSupportActionBar(ccToolbar);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -110,13 +117,13 @@ public class CardFragment extends Fragment {
             public void onClick(View v){
                 String inputText = ccTextinput.getEditText().getText().toString();
                 if (!inputText.isEmpty()||ccImageView.getDrawable()!=null) {
-                    viewModel.setFrontStr(inputText);
+                    viewModel.getCard1().getValue().setFrontsideStr(inputText);
                     ccTextinput.getEditText().getText().clear();
                     isFront = false;
                     enableFront();
                     ccImageView.setImageDrawable(null);
-                    ccCardn.setText("Add backside nr: " + viewModel.getCardPos(viewModel.getCard()));
-
+                    ccCardn.setText("Add backside nr: " + viewModel.getCardPos(viewModel.getCard1().getValue()));
+                    updateViews();
                 }else{
                     Toast.makeText(getActivity(), "Please fill that front with something! OINK! OINK!",
                             Toast.LENGTH_SHORT).show();
@@ -129,16 +136,16 @@ public class CardFragment extends Fragment {
             public void onClick(View view) {
                 String inputText = ccTextinput.getEditText().getText().toString();
                 if (!inputText.isEmpty()||ccImageView.getDrawable()!=null){
-                    viewModel.setBackStr(inputText);
+                    viewModel.getCard1().getValue().setBacksideStr(inputText);
                     ccTextinput.getEditText().getText().clear();
                     ccImageView.setImageDrawable(null);
-                    ccCardn.setText("Add backside nr: " + viewModel.getCardPos(viewModel.getCard()));
+                    ccCardn.setText("Add backside nr: " + viewModel.getCardPos(viewModel.getCard1().getValue()));
                     viewModel.saveDeck();
                     Bundle bundle = new Bundle();
-                    bundle.putParcelable("deck", Parcels.wrap(viewModel.getChosenDeck()));
-                    Toast.makeText(getContext(), viewModel.getChosenDeck().getDeckName() +
+                    bundle.putParcelable("deck", Parcels.wrap(viewModel.getDeck1().getValue()));
+                    Toast.makeText(getContext(), viewModel.getDeck1().getValue().getDeckName() +
                             " is saved! OINK! OINK!", Toast.LENGTH_SHORT).show();
-                    viewModel.resetVievModel();
+                    viewModel.resetViewModel();
                     NavHostFragment.findNavController(CardFragment.this)
                             .navigate(R.id.action_cardFragment_to_mainActivity3, bundle);
                 }else{
@@ -154,13 +161,14 @@ public class CardFragment extends Fragment {
                 String inputText = ccTextinput.getEditText().getText().toString();
 
                 if (!inputText.isEmpty()||ccImageView.getDrawable()!=null){
-                    viewModel.setBackStr(inputText);
+                    viewModel.getCard1().getValue().setBacksideStr(inputText);
                     ccTextinput.getEditText().getText().clear();
                     viewModel.initCard();
                     isFront = true;
                     enableFront();
                     ccImageView.setImageDrawable(null);
-                    ccCardn.setText("Add frontside nr: " + viewModel.getCardPos(viewModel.getCard()));
+                    ccCardn.setText("Add frontside nr: " + viewModel.getCardPos(viewModel.getCard1().getValue()));
+                    updateViews();
                 }else{
                     Toast.makeText(getActivity(), "Please fill that ham with something! OINK! OINK!",
                             Toast.LENGTH_SHORT).show();
@@ -171,9 +179,7 @@ public class CardFragment extends Fragment {
         ccCameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 askCameraPermission();
-
             }
         });
 
@@ -191,10 +197,20 @@ public class CardFragment extends Fragment {
         });
     }
 
+    private void updateViews(){
+        if (isFront) {
+            ccTextEditTxt.setText(viewModel.getCard1().getValue().getFrontsideStr());
+            ccImageView.setImageBitmap(viewModel.getCard1().getValue().getFrontImg());
+        }else {
+            hideButtons();
+            ccTextEditTxt.setText(viewModel.getCard1().getValue().getBacksideStr());
+            ccImageView.setImageBitmap(viewModel.getCard1().getValue().getBackImg());
+        }
+    }
+
     /**
      * Sends indent to choose image from gallery.
      */
-
     private void pickImageFromGallery() {
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
@@ -227,7 +243,6 @@ public class CardFragment extends Fragment {
      * @param resultCode are matched to either convert picture from camera or gallery.
      *
      */
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if(requestCode == CAMERA_REQUEST_CODE){
@@ -235,12 +250,11 @@ public class CardFragment extends Fragment {
             ccImageView.setImageBitmap(image);
             hideButtons();
             if(isFront){
-                viewModel.setFrontImg(image);
+                viewModel.getCard1().getValue().setFrontImg(image);
             }
             else{
-                viewModel.setBackImg(image);
+                viewModel.getCard1().getValue().setBackImg(image);
             }
-
 
         }
         if(requestCode == IMAGE_PICK_CODE){
@@ -250,10 +264,10 @@ public class CardFragment extends Fragment {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imageUri);
                 ccImageView.setImageBitmap(bitmap);
                 if(isFront){
-                    viewModel.setFrontImg(bitmap);
+                    viewModel.getCard1().getValue().setFrontImg(bitmap);
                 }
                 else{
-                    viewModel.setBackImg(bitmap);
+                    viewModel.getCard1().getValue().setBackImg(bitmap);
                 }
 
             } catch (IOException e) {
@@ -272,7 +286,6 @@ public class CardFragment extends Fragment {
      *
      *
      */
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if(requestCode == CAMERA_PERM_CODE){
@@ -300,7 +313,6 @@ public class CardFragment extends Fragment {
      *
      * @param view The respective view.
      */
-
     private void findViews(View view){
         ccCardn = view.findViewById(R.id.cardNumber);
         ccTextTop = view.findViewById(R.id.textViewccfront2);
@@ -316,13 +328,12 @@ public class CardFragment extends Fragment {
         ccImageView = view.findViewById(R.id.ccImageView);
         ccCameraText = view.findViewById(R.id.ccCameraText);
         ccGalleryText = view.findViewById(R.id.ccGalleryText);
-
-
+        ccTextEditTxt = view.findViewById(R.id.textinputccfront);
     }
 
     private  void loadUI(){
         enableFront();
-        ccCardn.setText("Add frontside nr: " + viewModel.getCardPos(viewModel.getCard()));
+        ccCardn.setText("Add frontside nr: " + viewModel.getCardPos(viewModel.getCard1().getValue()));
         ccTextTop.setText(viewModel.getDeckName());
     }
 
