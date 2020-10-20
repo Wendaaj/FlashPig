@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,6 +21,8 @@ import com.example.flashpig.Model.Card;
 import com.example.flashpig.Model.Deck;
 import com.example.flashpig.Model.PairUp;
 import com.example.flashpig.R;
+import com.example.flashpig.ViewModel.FlashcardViewModel;
+import com.example.flashpig.ViewModel.PairUpViewModel;
 
 import java.util.Collections;
 
@@ -32,15 +36,12 @@ import java.util.Collections;
 
 public class PairUpFragmentStart extends Fragment implements PairUpRecyclerViewAdapter.ItemClickListener {
 
-    Card card1, card2;
-    Deck deck = new Deck("Hej", 0);
-    private PairUpRecyclerViewAdapter adapter = new PairUpRecyclerViewAdapter(getContext(), deck.cards);
-    private PairUpRecyclerViewAdapter2 adapter2 = new PairUpRecyclerViewAdapter2(getContext(), deck.cards);
-    PairUp pairup = new PairUp(this.deck);
-    int position1;
+    private PairUpViewModel pairUpViewModel;
+    private PairUpRecyclerViewAdapter adapter;
+    private PairUpRecyclerViewAdapter2 adapter2;
+    int position1, position2;
     private RecyclerView recyclerView, recyclerView2;
-    int deckSize;
-    int showingCards = adapter.getItemCount() * 2;
+    private int decksize;
 
     /**
      * Does initial creations of the fragment
@@ -48,25 +49,9 @@ public class PairUpFragmentStart extends Fragment implements PairUpRecyclerViewA
      * @param savedInstanceState
      */
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // populate the RecyclerView with cards
-        deck.addCard(new Card(1, "front 1", "back 1", null,
-                null));
-        deck.addCard(new Card(2, "front 2", "back 2", null,
-                null));
-        deck.addCard(new Card(3, "front 3", "back 3", null,
-                null));
-        deck.addCard(new Card(4, "front 4", "back 4", null,
-                null));
-        deck.addCard(new Card(5, "front 5", "back 5", null,
-                null));
-        deck.addCard(new Card(6, "front 6", "back 6", null,
-                null));
-        deckSize = deck.getAmountCards();
     }
 
     /**
@@ -97,12 +82,17 @@ public class PairUpFragmentStart extends Fragment implements PairUpRecyclerViewA
         super.onViewCreated(view, savedInstanceState);
 
         findViews(view);
+        pairUpViewModel = new ViewModelProvider(getActivity()).get(PairUpViewModel.class);
+
+        adapter = new PairUpRecyclerViewAdapter(getContext(), pairUpViewModel.getChosenDeck().getValue().cards);
+        adapter2 = new PairUpRecyclerViewAdapter2(getContext(),pairUpViewModel.getChosenDeck().getValue().cards);
+        decksize = pairUpViewModel.getDeckSize();
 
         int numberOfColumns = 1;
 
         //first rv
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), numberOfColumns));
-        adapter = new PairUpRecyclerViewAdapter(getActivity(), deck.cards);
+        adapter = new PairUpRecyclerViewAdapter(getActivity(), pairUpViewModel.getChosenDeck().getValue().cards);
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
 
@@ -111,7 +101,7 @@ public class PairUpFragmentStart extends Fragment implements PairUpRecyclerViewA
 
         //second rv
         recyclerView2.setLayoutManager(new GridLayoutManager(getActivity(), numberOfColumns));
-        adapter2 = new PairUpRecyclerViewAdapter2(getActivity(), deck.cards);
+        adapter2 = new PairUpRecyclerViewAdapter2(getActivity(), pairUpViewModel.getChosenDeck().getValue().cards);
         adapter2.setClickListener(this::onItemClick);
         recyclerView2.setAdapter(adapter2);
 
@@ -119,6 +109,71 @@ public class PairUpFragmentStart extends Fragment implements PairUpRecyclerViewA
         recyclerView2.setLayoutManager(new GridLayoutManager(getContext(), 1));
 
         setFirstViews();
+
+        pairUpViewModel.getCard2().observe(getViewLifecycleOwner(), new Observer<Card>() {
+            @Override
+            public void onChanged(Card card) {
+                pairUpViewModel.isPair();
+            }
+        });
+
+        pairUpViewModel.getIsMatch().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean isMatch) {
+                View card2 = recyclerView2.findViewHolderForAdapterPosition(position2).itemView;
+                if(isMatch){
+                    setCorrectFrame(card2);
+                    pairUpViewModel.setIsMatch(false);
+                    card2.setClickable(false);
+                } else {
+                    recyclerView.findViewHolderForAdapterPosition(position1).itemView.setClickable(true);
+                    setIncorrectFrame(card2);
+                    delay(card2);
+                }
+            }
+        });
+
+        pairUpViewModel.getIfLastPair().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean lastPair) {
+                if(lastPair){
+                    setCorrectFrame(view);
+                    decksize--;
+                }
+            }
+        });
+
+        pairUpViewModel.getLoadNewCards().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean loadNewCards) {
+                if(loadNewCards){
+                    adapter.notifyDataSetChanged();
+                    adapter2.setReload(true);
+                }
+            }
+        });
+
+        pairUpViewModel.getSetFirstViews().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean setFirstView) {
+                if(setFirstView){
+
+                    adapter.notifyDataSetChanged();
+                    adapter.notifyDataSetChanged();
+
+                    adapter2.setReload(true);
+                }
+            }
+        });
+
+        pairUpViewModel.isEndOfGame().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean endOfGame) {
+                if(endOfGame){
+                    endGame();
+                }
+            }
+        });
     }
 
     /**
@@ -131,65 +186,33 @@ public class PairUpFragmentStart extends Fragment implements PairUpRecyclerViewA
 
     @Override
     public void onItemClick(View view, int position) throws InterruptedException {
-
-        if (card1 == null) { //Select first card
-
-            card1 = adapter.getItem(position);
-
+        if (pairUpViewModel.getCard1().getValue() == null) { //Select first card
+            pairUpViewModel.setCard1(adapter.getItem(position));
+            //card1 = adapter.getItem(position);
             position1 = position;
-
             view.setClickable(false);
 
         } else { //Select second card
-
-            card2 = adapter2.getItem(position);
-
-            if (pairup.isMatched(card1, card2, deck) && showingCards != 2) { //If pair and not the last pair
-
-                updateAmountCards();
-
-                view.setClickable(false); //this
-
-                setCorrectFrame(view);
-
-            } else if (showingCards == 2) { //If it is last pair
-
-                setCorrectFrame(view);
-
-                deckSize--;
-
-                if (pairup.isEndOfGame(deckSize)) { //If it's game done
-
-                    endGame();
-
-                }else { //Load next cards
-
-                    delay(view);
-
-                    loadNewCards();
-                }
-            }
-            else { //If not a pair
-
-                recyclerView.findViewHolderForAdapterPosition(position1).itemView.setClickable(true);
-
-                setIncorrectFrame(view);
-
-                delay(view);
-            }
-            card1 = null; //Reset first card
+            pairUpViewModel.setCard2(adapter.getItem(position));
+            position2 = position;
+            //card2 = adapter2.getItem(position);
         }
     }
 
     /**
-     * Sets the incorrect frame on the view
-     *
-     * @param view the view chosen by the user
+     * Loads the cards to game board and shuffles the order of cards in the deck
      */
+    private void setFirstViews() {
+        for (int i = 0; i < pairUpViewModel.getChosenDeck().getValue().cards.size(); i++) {
+            adapter.getItem(i).setFrontside(false);
+            //adapter.notifyDataSetChanged();
+            Collections.shuffle(pairUpViewModel.getChosenDeck().getValue().cards);
+        }
 
-    private void setIncorrectFrame(View view){
-        recyclerView.findViewHolderForAdapterPosition(position1).itemView.setBackgroundResource(R.drawable.frame_incorrect);
-        view.setBackgroundResource(R.drawable.frame_incorrect);
+        for (int j = 0; j < pairUpViewModel.getChosenDeck().getValue().cards.size(); j++) {
+            adapter.getItem(j).setFrontside(true);
+            //adapter2.notifyDataSetChanged();
+        }
     }
 
     /**
@@ -204,27 +227,14 @@ public class PairUpFragmentStart extends Fragment implements PairUpRecyclerViewA
     }
 
     /**
-     * Updates the amount of cards showing on the game board and the amount of car in the deck
+     * Sets the incorrect frame on the view
+     *
+     * @param view the view chosen by the user
      */
 
-    private void updateAmountCards(){
-        showingCards -= 2;
-        deckSize--;
-    }
-
-    /**
-     * Updates the game board with new cards
-     */
-
-    private void loadNewCards() {
-        int i = 3;
-        while (i != 0) {
-            deck.cards.remove(0);
-            i--;
-        }
-        adapter.notifyDataSetChanged();
-        adapter2.setReload(true);
-        showingCards = 6;
+    private void setIncorrectFrame(View view){
+        recyclerView.findViewHolderForAdapterPosition(position1).itemView.setBackgroundResource(R.drawable.frame_incorrect);
+        view.setBackgroundResource(R.drawable.frame_incorrect);
     }
 
     /**
@@ -252,32 +262,8 @@ public class PairUpFragmentStart extends Fragment implements PairUpRecyclerViewA
      */
 
     private void findViews(View view) {
-
         recyclerView = view.findViewById(R.id.memoryCardRecyclerView);
         recyclerView2 = view.findViewById(R.id.memoryCardRecyclerView2);
-    }
-
-    /**
-     * Loads the cards to game board and shuffles the order of cards in the deck
-     */
-
-    private void setFirstViews() {
-
-        int deckSize = deck.cards.size();
-
-        for (int i = 0; i < deckSize; i++) {
-            Card card = adapter.getItem(i);
-            card.setFrontside(false);
-            adapter.notifyDataSetChanged();
-            Collections.shuffle(deck.cards);
-
-        }
-
-        for (int j = 0; j < deckSize; j++) {
-            Card card = adapter2.getItem(j);
-            card.setFrontside(true);
-            adapter2.notifyDataSetChanged();
-        }
     }
 
     /**

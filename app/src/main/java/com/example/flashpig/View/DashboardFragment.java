@@ -109,7 +109,9 @@ public class DashboardFragment extends Fragment implements DeckSpinnerAdapter.On
         view.findViewById(R.id.pairup1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Parcelable wrappedDeck = Parcels.wrap(vm.getChosenDeck().getValue());
                 Intent intent = new Intent(getActivity(), PairUpActivity.class);
+                intent.putExtra("deck", wrappedDeck);
                 startActivity(intent);
             }
         });
