@@ -54,6 +54,9 @@ public class CardViewModel extends ViewModel {
         this.card = null;
     }
 
+    public Deck getChosenDeck() {
+        return this.deck;
+    }
 
     public String getDeckName(){String deckname = deck.getDeckName(); return deckname;}
 

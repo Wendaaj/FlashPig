@@ -42,6 +42,9 @@
         <action
             android:id="@+id/action_cardFragment_to_createDeckFragment"
             app:destination="@id/createDeckFragment" />
+        <action
+            android:id="@+id/action_cardFragment_to_mainActivity3"
+            app:destination="@id/mainActivity3" />
     </fragment>
     <fragment
         android:id="@+id/createDeckFragment"

@@ -35,6 +35,8 @@ import com.example.flashpig.R;
 import com.example.flashpig.ViewModel.CardViewModel;
 import com.google.android.material.textfield.TextInputLayout;
 
+import org.parceler.Parcels;
+
 import java.io.IOException;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -132,9 +134,13 @@ public class CardFragment extends Fragment {
                     ccImageView.setImageDrawable(null);
                     ccCardn.setText("Add backside nr: " + viewModel.getCardPos(viewModel.getCard()));
                     viewModel.saveDeck();
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelable("deck", Parcels.wrap(viewModel.getChosenDeck()));
+                    Toast.makeText(getContext(), viewModel.getChosenDeck().getDeckName() +
+                            " is saved! OINK! OINK!", Toast.LENGTH_SHORT).show();
                     viewModel.resetVievModel();
                     NavHostFragment.findNavController(CardFragment.this)
-                            .navigate(R.id.action_cardFragment_to_FirstFragment);
+                            .navigate(R.id.action_cardFragment_to_mainActivity3, bundle);
                 }else{
                     Toast.makeText(getActivity(), "Please fill that ham with something! OINK! OINK!",
                             Toast.LENGTH_SHORT).show();
