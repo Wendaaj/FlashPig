@@ -121,6 +121,7 @@ public class EditDeckFragment extends Fragment implements DeckRecyclerViewAdapte
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 viewModel.setChosenDeck((Deck) parent.getItemAtPosition(position));
+                view.setBackgroundResource(R.drawable.card_background);
                 notifySelected();
                 setAmountTxt();
                 deckNameEditText.setText(viewModel.getChosenDeck().getValue().getDeckName());
@@ -138,7 +139,9 @@ public class EditDeckFragment extends Fragment implements DeckRecyclerViewAdapte
         viewModel.getChosenDeck().observe(getViewLifecycleOwner(), new Observer<Deck>() {
             @Override
             public void onChanged(Deck deck) {
-                Toast.makeText(getActivity(), deck.getDeckName() + " selected", Toast.LENGTH_SHORT).show();
+                if (deck != null) {
+                    Toast.makeText(getActivity(), deck.getDeckName() + " selected", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -235,9 +238,10 @@ public class EditDeckFragment extends Fragment implements DeckRecyclerViewAdapte
             removeDeckCheckboxHandler(constraintLayout, deckName, amountCards, position);
             setSpinnerSelection(position);
         }else {
-            viewModel.removeDeck(viewModel.getDecks().getValue().get(position)); //Remove the last deck
-            NavHostFragment.findNavController(this)
-                    .navigate(R.id.action_editDeckFragment_to_mainActivity3);
+            viewModel.removeDeck(viewModel.getDecks().getValue().get(position)); //Remove the last deck before navigate to home page
+            viewModel.setChosenDeck(null);
+            NavHostFragment.findNavController(EditDeckFragment.this)
+                    .navigate(R.id.action_editDeckFragment_to_FirstFragment);
         }
     }
 

@@ -25,6 +25,8 @@ import com.example.flashpig.ViewModel.DashboardViewModel;
 
 import org.parceler.Parcels;
 
+import java.util.ArrayList;
+
 
 /**
  * Handles the view for the dashboard/home page and navigate the user to other views from here.
@@ -99,20 +101,28 @@ public class DashboardFragment extends Fragment implements DeckSpinnerAdapter.On
         view.findViewById(R.id.flashcard1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Parcelable wrappedDeck = Parcels.wrap(viewModel.getChosenDeck().getValue());
-                Intent intent = new Intent(getActivity(), FlashcardActivity.class);
-                intent.putExtra("deck", wrappedDeck);
-                startActivity(intent);
+                if (viewModel.getAmountDecks().getValue() != 0) {
+                    Parcelable wrappedDeck = Parcels.wrap(viewModel.getChosenDeck().getValue());
+                    Intent intent = new Intent(getActivity(), FlashcardActivity.class);
+                    intent.putExtra("deck", wrappedDeck);
+                    startActivity(intent);
+                }else {
+                    Toast.makeText(getActivity(), "Please create a deck first! OINK!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
         view.findViewById(R.id.pairup1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Parcelable wrappedDeck = Parcels.wrap(vm.getChosenDeck().getValue());
-                Intent intent = new Intent(getActivity(), PairUpActivity.class);
-                intent.putExtra("deck", wrappedDeck);
-                startActivity(intent);
+                if (viewModel.getAmountDecks().getValue() != 0) {
+                    Parcelable wrappedDeck = Parcels.wrap(viewModel.getChosenDeck().getValue());
+                    Intent intent = new Intent(getActivity(), PairUpActivity.class);
+                    intent.putExtra("deck", wrappedDeck);
+                    startActivity(intent);
+                }else {
+                    Toast.makeText(getActivity(), "Please create a deck first! OINK!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -133,8 +143,12 @@ public class DashboardFragment extends Fragment implements DeckSpinnerAdapter.On
         view.findViewById(R.id.createCardButton11).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(DashboardFragment.this)
-                        .navigate(R.id.action_FirstFragment_to_createDeckFragment);
+                if (viewModel.getAmountDecks().getValue() != 0) {
+                    NavHostFragment.findNavController(DashboardFragment.this)
+                            .navigate(R.id.action_FirstFragment_to_createDeckFragment);
+                }else {
+                    Toast.makeText(getActivity(), "Please create a deck first! OINK!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

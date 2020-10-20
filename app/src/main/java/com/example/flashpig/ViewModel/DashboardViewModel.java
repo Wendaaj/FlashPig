@@ -21,27 +21,27 @@ public class DashboardViewModel extends ViewModel {
         amountDecks.setValue(repo.getDecks().size());
     }
 
-    public void saveDeck(Deck deck) {
-        repo.saveDeck(deck);
-    }
-
     public void removeDeck(Deck deck) {
         repo.removeDeck(deck);
         amountDecks.setValue(decks.getValue().size());
     }
-
-    public LiveData<ArrayList<Deck>> getDecks() { return decks; }
 
     public int getChosenDeckPos(){
         int pos = decks.getValue().indexOf(repo.getDeck(chosenDeck.getValue()));
         return pos;
     }
 
-    public LiveData<Integer> getAmountDecks() { return amountDecks; }
-
-    public LiveData<Deck> getChosenDeck() {
-        return chosenDeck;
+    public void setChosenDeck(Deck chosenDeck) {
+        if (chosenDeck != null) {
+            this.chosenDeck.setValue(repo.getDeck(chosenDeck));
+        }else {
+            this.chosenDeck.setValue(chosenDeck);
+        }
     }
 
-    public void setChosenDeck(Deck chosenDeck) { this.chosenDeck.setValue(repo.getDeck(chosenDeck)); }
+    public LiveData<ArrayList<Deck>> getDecks() { return decks; }
+
+    public LiveData<Integer> getAmountDecks() { return amountDecks; }
+
+    public LiveData<Deck> getChosenDeck() { return chosenDeck; }
 }

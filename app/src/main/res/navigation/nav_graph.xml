@@ -78,6 +78,9 @@
         <action
             android:id="@+id/action_editDeckFragment_to_cardFragment2"
             app:destination="@id/cardFragment" />
+        <action
+            android:id="@+id/action_editDeckFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
     </fragment>
     <activity
         android:id="@+id/pairUpActivity"
