@@ -114,7 +114,7 @@ public class PairUpViewModel extends ViewModel {
 
     public void setCard2(Card card2) { this.card2.setValue(card2); }
 
-    public void setIsMatch(boolean isMatch) { this.isMatch.setValue(isMatch);}
+    public void setIsMatch(boolean isMatch) { this.isMatch.setValue(isMatch); }
 
     public int getDeckSize() {
         return deckSize;
