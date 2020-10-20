@@ -14,9 +14,11 @@ public class DashboardViewModel extends ViewModel {
     private Repository repo = Repository.getInstance();
     private MutableLiveData<ArrayList<Deck>> decks = new MutableLiveData<>();
     private MutableLiveData<Deck> chosenDeck = new MutableLiveData<>();
+    private MutableLiveData<Integer> amountDecks = new MutableLiveData<>();
 
     public DashboardViewModel() {
         decks.setValue(repo.getDecks());
+        amountDecks.setValue(repo.getDecks().size());
     }
 
     public void saveDeck(Deck deck) {
@@ -25,6 +27,7 @@ public class DashboardViewModel extends ViewModel {
 
     public void removeDeck(Deck deck) {
         repo.removeDeck(deck);
+        amountDecks.setValue(decks.getValue().size());
     }
 
     public LiveData<ArrayList<Deck>> getDecks() { return decks; }
@@ -34,11 +37,11 @@ public class DashboardViewModel extends ViewModel {
         return pos;
     }
 
+    public LiveData<Integer> getAmountDecks() { return amountDecks; }
+
     public LiveData<Deck> getChosenDeck() {
         return chosenDeck;
     }
 
-    public void setChosenDeck(Deck chosenDeck) {
-        this.chosenDeck.setValue(repo.getDeck(chosenDeck));
-    }
+    public void setChosenDeck(Deck chosenDeck) { this.chosenDeck.setValue(repo.getDeck(chosenDeck)); }
 }

@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,9 +25,13 @@ import com.example.flashpig.ViewModel.DashboardViewModel;
 
 import org.parceler.Parcels;
 
-import java.util.ArrayList;
 
-
+/**
+ * Handles the view for the dashboard/home page and navigate the user to other views from here.
+ *
+ * @author Jesper Bergquist, Wendy Pau.
+ * @version 2020-10-20
+ */
 public class DashboardFragment extends Fragment implements DeckSpinnerAdapter.OnEditItemsClickListener {
     private DeckSpinnerAdapter spinnerAdapter;
     private Spinner deckSpinner;
@@ -45,9 +48,13 @@ public class DashboardFragment extends Fragment implements DeckSpinnerAdapter.On
         super.onViewCreated(view, savedInstanceState);
         viewModel = new ViewModelProvider(getActivity()).get(DashboardViewModel.class);
         configSpinner();
+        updateViews();
         setBtnListeners(view);
     }
 
+    /**
+     * Sets the spinner and its selection to the last chosen deck.
+     */
     private void configSpinner(){
         deckSpinner = getActivity().findViewById(R.id.chooseDeckSpinner);
         ndecks = getActivity().findViewById(R.id.ndeckstext);
@@ -56,6 +63,19 @@ public class DashboardFragment extends Fragment implements DeckSpinnerAdapter.On
         if (viewModel.getChosenDeck().getValue()!= null){
             deckSpinner.setSelection(viewModel.getChosenDeckPos());
         }
+    }
+
+    /**
+     * Updates the dashboards view on changes.
+     */
+    private void updateViews(){
+        viewModel.getAmountDecks().observe(getViewLifecycleOwner(), new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer amountDecks) {
+                ndecks.setText(amountDecks + " decks");
+            }
+        });
+
         deckSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -69,19 +89,12 @@ public class DashboardFragment extends Fragment implements DeckSpinnerAdapter.On
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
-
-        viewModel.getDecks().observe(getViewLifecycleOwner(), new Observer<ArrayList<Deck>>() {
-            @Override
-            public void onChanged(ArrayList<Deck> decks) {
-                if(decks.size()==0){
-                    ndecks.setText("No decks oink!");
-                }else{
-                    ndecks.setText(decks.size()+" decks");
-                }
-            }
-        });
     }
 
+    /**
+     * Button listeners that will navigate the user to the respective thing.
+     * @param view The dashboards view.
+     */
     private void setBtnListeners(View view){
         view.findViewById(R.id.flashcard1).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,6 +144,9 @@ public class DashboardFragment extends Fragment implements DeckSpinnerAdapter.On
         });
     }
 
+    /**
+     * Sends a toast if the chosen deck is changed.
+     */
     private void notifySelected() {
         viewModel.getChosenDeck().observe(getViewLifecycleOwner(), new Observer<Deck>() {
             @Override
@@ -140,6 +156,13 @@ public class DashboardFragment extends Fragment implements DeckSpinnerAdapter.On
         });
     }
 
+    /**
+     * Handles what happens if the user wants to delete a deck.
+     * @param c
+     * @param deckName The view that shows the decks' name.
+     * @param amountCards The view that shows the amount of cards in the deck
+     * @param pos The decks position in the spinner.
+     */
     @Override
     public void onRemoveDeckBtnClick(ConstraintLayout c, TextView deckName, TextView amountCards, int pos) {
         if (viewModel.getDecks().getValue().size() != 1){ //If not the last deck
@@ -154,6 +177,10 @@ public class DashboardFragment extends Fragment implements DeckSpinnerAdapter.On
         }
     }
 
+    /**
+     * Sets the spinners selection when a deck is removed.
+     * @param position The removed decks' position in spinner.
+     */
     private void setSpinnerSelection(int position){
         if((viewModel.getDecks().getValue().size()-1)==position){//size is 1 bigger because position 0 is included
             deckSpinner.setSelection(0);
