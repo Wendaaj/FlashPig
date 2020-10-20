@@ -21,27 +21,16 @@ public class PairUp extends GameLogic {
      *  @return Returns true if it the chosen card are a pair
      */
 
-    public boolean isMatched(Card chosenCard1, Card chosenCard2, Deck deck) {
-        int deckSize;
-        if (chosenCard1.getId() == chosenCard2.getId()) {
-            deckSize = deck.getAmountCards() - 1;
-            isEndOfGame(deckSize);
-            return true;
-        } else {
-            return false;
-        }
+    public boolean isMatched(Card chosenCard1, Card chosenCard2) {
+        return chosenCard1.getId() == chosenCard2.getId();
     }
 
     /**
      * Check if it is end of game
-     * @param deckSize Amount of cards in a deck
      * @return Returns true if a game is done
      */
 
-    public boolean isEndOfGame(int deckSize) {
-        if (deckSize == 0) {
-            return true;
-        }
-        return false;
+    public boolean isEndOfGame() {
+        return deck.cards.size() == 0;
     }
 }

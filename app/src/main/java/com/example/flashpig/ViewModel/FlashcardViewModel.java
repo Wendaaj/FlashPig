@@ -1,6 +1,5 @@
 package com.example.flashpig.ViewModel;
 
-
 import android.os.CountDownTimer;
 
 import androidx.lifecycle.LiveData;

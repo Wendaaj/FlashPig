@@ -58,7 +58,6 @@ public class Memory extends GameLogic implements MemoryPairUpLogic {
      * @param selectedCard the card to turn over
      *
      */
-
     public void flipCard (Card selectedCard){ //onFingerPressed
         if (selectedCard.isFrontside()) {
             selectedCard.setFrontside(false);
