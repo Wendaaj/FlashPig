@@ -72,7 +72,6 @@ public class Flashcard extends GameLogic {
      */
     public void addCardToMain(Card card) {
         gameDeck.add(gameDeck.size(),card);
-        //Timekeeper set to 10 hours
     }
 
     /**
@@ -84,19 +83,7 @@ public class Flashcard extends GameLogic {
         hardAmount = deck.getAmountDifficultyCards(Difficulty.HARD);
     }
 
-
-    /**
-     * Flips the card and show the information of the cards backside.
-     * @param card The current card.
-     */
-    public void turnOver(Card card) {
-        card.setFrontside(false);
-    }
-
-    public Card getCurrentCard() {
-        Card currentCard;
-        return currentCard = gameDeck.get(0);
-    }
+    public Card getCurrentCard() { return gameDeck.get(0); }
 
     public Deck getDeck() { return deck; }
 

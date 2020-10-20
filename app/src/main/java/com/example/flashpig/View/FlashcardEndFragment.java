@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.os.Parcel;
@@ -27,7 +28,6 @@ import org.parceler.Parcels;
  * @version 2020-10-04
  * */
 public class FlashcardEndFragment extends Fragment {
-    private FlashcardViewModel vm;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,8 +47,11 @@ public class FlashcardEndFragment extends Fragment {
         view.findViewById(R.id.btn_home).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FlashcardViewModel viewModel = new ViewModelProvider(getActivity()).get(FlashcardViewModel.class);
+                Bundle bundle = new Bundle();
+                bundle.putParcelable("deck", Parcels.wrap(viewModel.getFlashcard().getValue().getDeck()));
                 NavHostFragment.findNavController(FlashcardEndFragment.this)
-                        .navigate(R.id.action_flashcardEndFragment_to_mainActivity2);
+                        .navigate(R.id.action_flashcardEndFragment_to_mainActivity2, bundle);
             }
         });
 

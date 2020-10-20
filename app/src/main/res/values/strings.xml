@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">FlashPig</string>
     <string name="action_settings">Settings</string>
+
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
@@ -30,13 +31,15 @@
     <string name="newcard">New card</string>
     <string name="takepic">Take a pic</string>
     <string name="choosepicfromgallery">Choose from gallery</string>
+
     <!-- Strings used for DeckCreate -->
     <string name="enterdeckname">Enter deck name</string>
     <string name="create">Create</string>
     <string name="createflashcarddeck">Create flashcard deck</string>
-
+    <string name="goBack">If you go back your deck will be deleted oink! Is that ok?</string>
 
     <!--String used for editDeck-->
+    <string name="edit_deck">Edit Deck</string>
     <string name="flashcard_nr">Flashcard nr</string>
     <string name="Deck_name">Change Deck Name</string>
     <string name="save_deck">Save Deck</string>
@@ -53,9 +56,7 @@
     <string name="delete_card">Are you sure you want to delete this card?</string>
     <string name="delete_deck">Are you sure you want to delete this deck?</string>
 
-
-
-
-    <string name="Memory">Memory</string>
     <!-- Strings used for Memory -->
+    <string name="Memory">Memory</string>
+
 </resources>

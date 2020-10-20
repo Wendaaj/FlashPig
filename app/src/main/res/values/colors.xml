@@ -3,7 +3,8 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
-    <color name="mainColor">#EFF3FB</color>
+    <color name="mainColor">#E5EEFF</color>
+    <color name="white">#FFFFFF</color>
 
     //Flashcard
     <color name="background">#EFF3FB</color>

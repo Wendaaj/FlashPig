@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/spinnerLayout"
-    android:layout_width="280dp"
-    android:layout_height="35dp"
+    android:layout_width="260dp"
+    android:layout_height="40dp"
     android:layout_gravity="center_horizontal"
-    app:layout_anchorGravity="center_horizontal">
+    app:layout_anchorGravity="center_horizontal"
+    app:layout_gravity="left">
 
     <TextView
         android:id="@+id/deckNameSpinner"
@@ -17,15 +17,14 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
         android:focusable="false"
         android:fontFamily="@font/roboto_slab_bold"
         android:foregroundGravity="center"
         android:gravity="center"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/amountCardsSpinner"
         app:layout_constraintStart_toStartOf="@+id/spinnerConstraintLayout"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -48,8 +47,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="12dp"
-        android:layout_marginRight="12dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
         android:layout_toStartOf="@+id/spinnerEditButton"
         android:layout_toLeftOf="@+id/spinnerEditButton"
         android:focusable="false"
@@ -63,8 +62,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/spinnerConstraintLayout"
-        android:layout_width="280dp"
-        android:layout_height="35dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -74,29 +73,30 @@
         <Button
             android:id="@+id/removeSpinnerItemBtn"
             android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:layout_marginEnd="53dp"
-            android:layout_marginRight="53dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
             android:background="#00FFFFFF"
+            android:drawableStart="@drawable/ic_baseline_delete_24"
             android:drawableLeft="@drawable/ic_baseline_delete_24"
             android:text="@string/remove_spinner_item"
             android:textColor="#F00000"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/shareSpinnerItemBtn"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/shareSpinnerItemBtn"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="40dp"
-            android:layout_marginRight="40dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
             android:background="#00FFFFFF"
             android:drawableLeft="@drawable/ic_baseline_share_24"
             android:text="@string/share_spinner_itemr"
             android:textColor="#0066FF"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/removeSpinnerItemBtn"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

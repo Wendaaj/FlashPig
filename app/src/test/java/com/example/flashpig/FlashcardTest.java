@@ -43,6 +43,13 @@ public class FlashcardTest {
     }
 
     @Test
+    public void checkIfRoundIsOver(){
+        Assert.assertFalse(flashcard.roundIsOver());
+        flashcard.gameDeck.clear();
+        Assert.assertTrue(flashcard.roundIsOver());
+    }
+
+    @Test
     public void canChooseDifficulty(){
         flashcard.addEasyCard(deck.cards.get(0));
         Assert.assertEquals(deck.cards.get(0).getDifficulty(), Difficulty.EASY);
@@ -55,8 +62,9 @@ public class FlashcardTest {
     }
 
     @Test
-    public void canTurnOverCard() {
-        flashcard.turnOver(deck.cards.get(3));
-        Assert.assertEquals("OM hon kommer", deck.cards.get(3).getBacksideStr());
+    public void cardIsAddedBacKToMain(){
+        Card card = new Card(rand.nextInt(), "front", "back", null, null);
+        flashcard.addCardToMain(card);
+        Assert.assertSame(card, flashcard.gameDeck.get(flashcard.gameDeck.indexOf(card)));
     }
 }

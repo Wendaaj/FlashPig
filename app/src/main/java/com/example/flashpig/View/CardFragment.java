@@ -2,6 +2,7 @@ package com.example.flashpig.View;
 import android.Manifest;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -12,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -23,6 +25,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -32,7 +35,11 @@ import com.example.flashpig.R;
 import com.example.flashpig.ViewModel.CardViewModel;
 import com.google.android.material.textfield.TextInputLayout;
 
+import org.parceler.Parcels;
+
 import java.io.IOException;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * The controller that connects the card model with the views.
@@ -62,7 +69,7 @@ public class CardFragment extends Fragment {
     private Button ccButtonback2;
     private ImageView ccImageView;
 
-    private int currentCard = 1;
+
     private CardViewModel viewModel;
     private boolean isFront = true;
 
@@ -81,9 +88,11 @@ public class CardFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         viewModel = new ViewModelProvider(getActivity()).get(CardViewModel.class);
-        viewModel.initCard();
+        if(!viewModel.cardIsSet()){viewModel.initCard();}
         findViews(view);
+
         loadUI();
+
 
         ((AppCompatActivity) getActivity()).setSupportActionBar(ccToolbar);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -92,6 +101,7 @@ public class CardFragment extends Fragment {
             public void onClick(View v) {
                 NavHostFragment.findNavController(CardFragment.this)
                         .navigate(R.id.action_cardFragment_to_createDeckFragment);
+
             }
         });
 
@@ -105,7 +115,8 @@ public class CardFragment extends Fragment {
                     isFront = false;
                     enableFront();
                     ccImageView.setImageDrawable(null);
-                    ccCardn.setText("Add backside nr: " + currentCard);
+                    ccCardn.setText("Add backside nr: " + viewModel.getCardPos(viewModel.getCard()));
+
                 }else{
                     Toast.makeText(getActivity(), "Please fill that front with something! OINK! OINK!",
                             Toast.LENGTH_SHORT).show();
@@ -121,10 +132,15 @@ public class CardFragment extends Fragment {
                     viewModel.setBackStr(inputText);
                     ccTextinput.getEditText().getText().clear();
                     ccImageView.setImageDrawable(null);
-                    ccCardn.setText("Add frontside nr: " + currentCard);
+                    ccCardn.setText("Add backside nr: " + viewModel.getCardPos(viewModel.getCard()));
                     viewModel.saveDeck();
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelable("deck", Parcels.wrap(viewModel.getChosenDeck()));
+                    Toast.makeText(getContext(), viewModel.getChosenDeck().getDeckName() +
+                            " is saved! OINK! OINK!", Toast.LENGTH_SHORT).show();
+                    viewModel.resetVievModel();
                     NavHostFragment.findNavController(CardFragment.this)
-                            .navigate(R.id.action_cardFragment_to_FirstFragment);
+                            .navigate(R.id.action_cardFragment_to_mainActivity3, bundle);
                 }else{
                     Toast.makeText(getActivity(), "Please fill that ham with something! OINK! OINK!",
                             Toast.LENGTH_SHORT).show();
@@ -143,9 +159,8 @@ public class CardFragment extends Fragment {
                     viewModel.initCard();
                     isFront = true;
                     enableFront();
-                    currentCard += 1;
                     ccImageView.setImageDrawable(null);
-                    ccCardn.setText("Add frontside nr: " + currentCard);
+                    ccCardn.setText("Add frontside nr: " + viewModel.getCardPos(viewModel.getCard()));
                 }else{
                     Toast.makeText(getActivity(), "Please fill that ham with something! OINK! OINK!",
                             Toast.LENGTH_SHORT).show();
@@ -302,11 +317,12 @@ public class CardFragment extends Fragment {
         ccCameraText = view.findViewById(R.id.ccCameraText);
         ccGalleryText = view.findViewById(R.id.ccGalleryText);
 
+
     }
 
     private  void loadUI(){
         enableFront();
-        ccCardn.setText("Add frontside nr: " + currentCard);
+        ccCardn.setText("Add frontside nr: " + viewModel.getCardPos(viewModel.getCard()));
         ccTextTop.setText(viewModel.getDeckName());
     }
 
@@ -351,4 +367,6 @@ public class CardFragment extends Fragment {
         ccCameraText.setVisibility(View.INVISIBLE);
         ccGalleryText.setVisibility(View.INVISIBLE);
     }
+
+
 }
