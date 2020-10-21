@@ -9,7 +9,7 @@
     android:background="@color/mainColor"
     android:contentDescription="@string/add_new_card"
     app:layout_anchorGravity="center_horizontal"
-    tools:context=".EditDeck.EditDeckFragment">
+    tools:context=".View.EditDeckFragment">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/editCardToolbar"

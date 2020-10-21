@@ -1,4 +1,4 @@
-package com.example.flashpig.View;
+package com.example.flashpig.View.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,12 +8,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.flashpig.Model.Card;
 import com.example.flashpig.R;
 
+import java.io.Serializable;
 import java.util.List;
+
 
 /**
  * Displays the cards in Pair Up game as a list with a RecyclerView
@@ -22,23 +25,27 @@ import java.util.List;
  * @version 2020-10-16
  */
 
-public class PairUpRecyclerViewAdapter extends
-        RecyclerView.Adapter<PairUpRecyclerViewAdapter.ViewHolder>  {
 
-    private List<Card> cardsList;
+public class PairUpRecyclerViewAdapter2 extends
+        RecyclerView.Adapter<PairUpRecyclerViewAdapter2.ViewHolder> implements Serializable {
+
+    private List<Card> cardsList2;
     private ItemClickListener mClickListener;
     public Context mContext;
-    int amountRows = 3;
+    Card card1, card2;
+    boolean reload = false;
+    int reloadCounter = 3;
 
     /**
      * The Pair Up RecyclerViewAdapter constructor
      * @param context the current context
-     * @param cardsList the list of cards
+     * @param cardsList2 the list of cards
      */
 
-    public PairUpRecyclerViewAdapter(Context context, List<Card> cardsList) {
+
+    public PairUpRecyclerViewAdapter2(Context context, List<Card> cardsList2) {
         this.mContext = context;
-        this.cardsList = cardsList;
+        this.cardsList2 = cardsList2;
     }
 
     /**
@@ -68,27 +75,33 @@ public class PairUpRecyclerViewAdapter extends
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Card card = cardsList.get(position);
+        Card card = cardsList2.get(position);
         holder.frontSideTextView.setText(card.getFrontsideStr());
         holder.frontSideTextView.setTag(position);
         holder.backSideTextView.setText(card.getBacksideStr());
-        holder.itemView.setBackgroundResource(R.drawable.frame_default);
         holder.itemView.setClickable(true);
 
-        if(!card.isFrontside()){
-               holder.frontSideTextView.setVisibility(View.INVISIBLE);
-               holder.frontImageView.setVisibility(View.INVISIBLE);
-               holder.backImageView.setVisibility(View.VISIBLE);
-               holder.backSideTextView.setVisibility(View.VISIBLE);
+        if (reload && reloadCounter != 0) {
+            holder.itemView.setBackgroundResource(R.drawable.frame_default);
+            reloadCounter--;
+        }else {
+            reload = false;
+        }
+
+        if(card.isFrontside()){
+            holder.frontSideTextView.setVisibility(View.INVISIBLE);
+            holder.frontImageView.setVisibility(View.INVISIBLE);
+            holder.backImageView.setVisibility(View.VISIBLE);
+            holder.backSideTextView.setVisibility(View.VISIBLE);
         } else {
-                holder.frontSideTextView.setVisibility(View.VISIBLE);
-                holder.frontImageView.setVisibility(View.VISIBLE);
-                holder.backImageView.setVisibility(View.INVISIBLE);
-                holder.backSideTextView.setVisibility(View.INVISIBLE);
+            holder.frontSideTextView.setVisibility(View.VISIBLE);
+            holder.frontImageView.setVisibility(View.VISIBLE);
+            holder.backImageView.setVisibility(View.INVISIBLE);
+            holder.backSideTextView.setVisibility(View.INVISIBLE);
         }
     }
 
-    /**
+   /**
      * Gets the items current id
      *
      * @param position the items position
@@ -107,7 +120,19 @@ public class PairUpRecyclerViewAdapter extends
      */
 
     @Override
-    public int getItemCount() { return amountRows; }
+    public int getItemCount() {
+        return 3;
+    }
+
+    /**
+     * Decides if a card is reloaded
+     * @param reload tells if a card has been reloaded
+     */
+
+    public void setReload(boolean reload) {
+        this.reload = reload;
+        notifyDataSetChanged();
+    }
 
     /**
      * Viewholder class that stores and recycles views as they are scrolled off screen
@@ -117,7 +142,7 @@ public class PairUpRecyclerViewAdapter extends
         TextView frontSideTextView, backSideTextView;
         ImageView frontImageView, backImageView;
         private ItemClickListener mClickListener;
-
+        CardView memorycard;
 
         /**
          * ViewHolder constructor
@@ -132,6 +157,7 @@ public class PairUpRecyclerViewAdapter extends
             backSideTextView = itemView.findViewById(R.id.backCardTextView);
             frontImageView = itemView.findViewById(R.id.frontCardImageView);
             backImageView = itemView.findViewById(R.id.backCardImageView);
+            memorycard = itemView.findViewById(R.id.memorycard);
             this.mClickListener = mClickListener;
             itemView.setOnClickListener(this);
         }
@@ -144,7 +170,7 @@ public class PairUpRecyclerViewAdapter extends
 
         @Override
         public void onClick(View view) {
-             if (mClickListener != null){
+            if (mClickListener != null){
                 try {
                     mClickListener.onItemClick(view, getAdapterPosition());
                 } catch (InterruptedException e) {
@@ -185,9 +211,8 @@ public class PairUpRecyclerViewAdapter extends
      * @return a card on the specific position
      */
 
-
     public Card getItem(int position) {
-        return cardsList.get(position);
+        return cardsList2.get(position);
     }
 
     /**
@@ -196,7 +221,7 @@ public class PairUpRecyclerViewAdapter extends
      * @param itemClickListener a listener to clicks from the user
      */
 
-    void setClickListener(ItemClickListener itemClickListener) {
+    public void setClickListener(ItemClickListener itemClickListener) {
         this.mClickListener = itemClickListener;
     }
 

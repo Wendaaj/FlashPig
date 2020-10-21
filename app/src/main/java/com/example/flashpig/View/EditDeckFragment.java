@@ -1,4 +1,4 @@
-package com.example.flashpig.EditDeck;
+package com.example.flashpig.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,6 +24,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.flashpig.View.Adapters.*;
 import com.example.flashpig.Model.Card;
 import com.example.flashpig.Model.Deck;
 import com.example.flashpig.R;
@@ -102,7 +103,7 @@ public class EditDeckFragment extends Fragment implements DeckRecyclerViewAdapte
                 Bundle bundle = new Bundle();
                 bundle.putParcelable("deck", Parcels.wrap(viewModel.getChosenDeck().getValue()));
                 NavHostFragment.findNavController(EditDeckFragment.this)
-                        .navigate(R.id.action_editDeckFragment_to_mainActivity3, bundle);
+                        .navigate(R.id.action_editDeckFragment_to_FirstFragment, bundle);
             }
         });
     }

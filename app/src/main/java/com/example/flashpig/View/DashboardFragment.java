@@ -18,14 +18,12 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.flashpig.EditDeck.DeckSpinnerAdapter;
 import com.example.flashpig.R;
 import com.example.flashpig.Model.Deck;
+import com.example.flashpig.View.Adapters.DeckSpinnerAdapter;
 import com.example.flashpig.ViewModel.DashboardViewModel;
 
 import org.parceler.Parcels;
-
-import java.util.ArrayList;
 
 
 /**
@@ -49,6 +47,9 @@ public class DashboardFragment extends Fragment implements DeckSpinnerAdapter.On
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         viewModel = new ViewModelProvider(getActivity()).get(DashboardViewModel.class);
+        if (getArguments() != null) {
+            viewModel.setChosenDeck(Parcels.unwrap(getArguments().getParcelable("deck")));
+        }
         configSpinner();
         updateViews();
         setBtnListeners(view);
@@ -62,9 +63,7 @@ public class DashboardFragment extends Fragment implements DeckSpinnerAdapter.On
         ndecks = getActivity().findViewById(R.id.ndeckstext);
         spinnerAdapter = new DeckSpinnerAdapter(getActivity(), viewModel.getDecks().getValue(), this);
         deckSpinner.setAdapter(spinnerAdapter);
-        if (viewModel.getChosenDeck().getValue()!= null){
-            deckSpinner.setSelection(viewModel.getChosenDeckPos());
-        }
+        deckSpinner.setSelection(viewModel.getChosenDeckPos());
     }
 
     /**

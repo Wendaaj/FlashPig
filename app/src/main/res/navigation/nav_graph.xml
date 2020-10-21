@@ -72,7 +72,7 @@
     </fragment>
     <fragment
         android:id="@+id/editDeckFragment"
-        android:name="com.example.flashpig.EditDeck.EditDeckFragment"
+        android:name="com.example.flashpig.View.EditDeckFragment"
         android:label="editdeck"
         tools:layout="@layout/editdeck" >
         <action

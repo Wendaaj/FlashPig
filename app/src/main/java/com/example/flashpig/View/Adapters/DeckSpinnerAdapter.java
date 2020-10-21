@@ -1,4 +1,4 @@
-package com.example.flashpig.EditDeck;
+package com.example.flashpig.View.Adapters;
 
 import android.content.Context;
 import android.os.Build;

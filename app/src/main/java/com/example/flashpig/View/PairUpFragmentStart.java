@@ -18,10 +18,10 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.flashpig.Model.Card;
-import com.example.flashpig.Model.Deck;
-import com.example.flashpig.Model.PairUp;
 import com.example.flashpig.R;
-import com.example.flashpig.ViewModel.FlashcardViewModel;
+import com.example.flashpig.View.Adapters.GridSpacingCardDecoration;
+import com.example.flashpig.View.Adapters.PairUpRecyclerViewAdapter;
+import com.example.flashpig.View.Adapters.PairUpRecyclerViewAdapter2;
 import com.example.flashpig.ViewModel.PairUpViewModel;
 
 import java.util.Collections;
