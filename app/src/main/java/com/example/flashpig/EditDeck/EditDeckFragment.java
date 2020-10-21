@@ -12,8 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,20 +24,15 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.flashpig.DataBase.FakeDataBase;
 import com.example.flashpig.Model.Card;
 import com.example.flashpig.Model.Deck;
 import com.example.flashpig.R;
-import com.example.flashpig.View.CreateDeckFragment;
-import com.example.flashpig.ViewModel.CardViewModel;
 import com.example.flashpig.ViewModel.DashboardViewModel;
-import com.example.flashpig.ViewModel.EditDeckViewModel;
 import com.google.android.material.textfield.TextInputLayout;
 
 import org.parceler.Parcels;
 
 import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.List;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -74,6 +67,7 @@ public class EditDeckFragment extends Fragment implements DeckRecyclerViewAdapte
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         findViews(view);
+
         viewModel = new ViewModelProvider(getActivity()).get(DashboardViewModel.class);
         viewModel.setChosenDeck(Parcels.unwrap(getArguments().getParcelable("deck")));
 
@@ -159,7 +153,7 @@ public class EditDeckFragment extends Fragment implements DeckRecyclerViewAdapte
     private void cardListGrid(Deck deck){
         cardList.addItemDecoration(new GridSpacingCardDecoration(2, 30));
         cardList.setLayoutManager(new GridLayoutManager(getContext(), 2));
-        deckRecyclerViewAdapter = new DeckRecyclerViewAdapter(getContext(), deck.cards);
+        deckRecyclerViewAdapter = new DeckRecyclerViewAdapter(getContext(), deck.cards, viewModel);
         cardList.setAdapter(deckRecyclerViewAdapter);
         deckRecyclerViewAdapter.setClickListener(this);
     }

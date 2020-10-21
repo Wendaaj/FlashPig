@@ -31,6 +31,7 @@
     <string name="newcard">New card</string>
     <string name="takepic">Take a pic</string>
     <string name="choosepicfromgallery">Choose from gallery</string>
+    <string name="save">Save</string>
 
     <!-- Strings used for DeckCreate -->
     <string name="enterdeckname">Enter deck name</string>

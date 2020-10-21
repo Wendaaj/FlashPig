@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.flashpig.DataBase.FakeDataBase;
 import com.example.flashpig.DataBase.Repository;
+import com.example.flashpig.Model.Card;
 import com.example.flashpig.Model.Deck;
 
 import java.util.ArrayList;
@@ -15,10 +16,39 @@ public class DashboardViewModel extends ViewModel {
     private MutableLiveData<ArrayList<Deck>> decks = new MutableLiveData<>();
     private MutableLiveData<Deck> chosenDeck = new MutableLiveData<>();
     private MutableLiveData<Integer> amountDecks = new MutableLiveData<>();
+    private MutableLiveData<Card> card = new MutableLiveData<>();
 
     public DashboardViewModel() {
         decks.setValue(repo.getDecks());
         amountDecks.setValue(repo.getDecks().size());
+    }
+
+    /**
+     * Checks if card has both front text and front image.
+     */
+    public boolean checkHasFrontTxtAndImg() {
+        return (card.getValue().getFrontImg() != null && !card.getValue().getFrontsideStr().isEmpty());
+    }
+
+    /**
+     * Checks if card has only front text.
+     */
+    public boolean checkHasFrontTxtOnly() {
+        return (card.getValue().getFrontImg() == null && !card.getValue().getFrontsideStr().isEmpty());
+    }
+
+    /**
+     * Checks if card has both front text and front image.
+     */
+    public boolean checkHasBackTxtAndImg() {
+        return (card.getValue().getBackImg() != null && !card.getValue().getBacksideStr().isEmpty());
+    }
+
+    /**
+     * Checks if card has only back text.
+     */
+    public boolean checkHasBackTxtOnly() {
+        return (card.getValue().getFrontImg() == null && !card.getValue().getFrontsideStr().isEmpty());
     }
 
     public void removeDeck(Deck deck) {
@@ -38,6 +68,10 @@ public class DashboardViewModel extends ViewModel {
             this.chosenDeck.setValue(chosenDeck);
         }
     }
+
+    public LiveData<Card> getCard() { return card; }
+
+    public void setCard(Card card) { this.card.setValue(card); }
 
     public LiveData<ArrayList<Deck>> getDecks() { return decks; }
 

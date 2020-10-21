@@ -34,7 +34,6 @@ public class CreateDeckFragment extends Fragment {
     private Button ccYesBtn;
     private Button ccNoBtn;
     private CardViewModel viewModel;
-    private CardView ccGoBackCardview;
     private String inputText;
     private Toolbar toolbar;
     private CheckBox cccheckBox;
@@ -58,11 +57,10 @@ public class CreateDeckFragment extends Fragment {
         viewModel = new ViewModelProvider(getActivity()).get(CardViewModel.class);
         findViews(view);
         setView();
-        goBack.setVisibility(View.INVISIBLE);
         loadPreferences();
 
-        if (viewModel.getDeck1().getValue() != null){
-            dcTextInputLayout.getEditText().setText(viewModel.getDeckName());
+        if (viewModel.getDeck().getValue() != null){
+            dcTextInputLayout.getEditText().setText(viewModel.getDeck().getValue().getDeckName());
         }
 
         dcButton.setOnClickListener(new View.OnClickListener() {
@@ -70,7 +68,7 @@ public class CreateDeckFragment extends Fragment {
             public void onClick(View view) {
                 inputText = dcTextInputLayout.getEditText().getText().toString();
                 if (!inputText.isEmpty()) {
-                    if(viewModel.getDeck1().getValue() != null){
+                    if(viewModel.getDeck().getValue() != null){
                         viewModel.setDeckName(dcTextInputLayout.getEditText().getText().toString());
                     }else{
                         viewModel.initDeck();
@@ -107,7 +105,6 @@ public class CreateDeckFragment extends Fragment {
         ccYesBtn = view.findViewById(R.id.yesBtn1);
         ccNoBtn = view.findViewById(R.id.noBtn1);
         goBack = view.findViewById(R.id.goBack);
-        ccGoBackCardview = view.findViewById(R.id.goBackCardView);
         pig = view.findViewById(R.id.imageView3);
     }
 
@@ -115,7 +112,6 @@ public class CreateDeckFragment extends Fragment {
         if (!cccheckBox.isChecked()) {
             setCheckboxView();
             goBack.setVisibility(View.VISIBLE);
-            ccGoBackCardview.setVisibility(View.VISIBLE);
             setYesNoDeckBtn();
         } else {
             goBack.setVisibility(View.INVISIBLE);
@@ -136,7 +132,6 @@ public class CreateDeckFragment extends Fragment {
         ccYesBtn.setVisibility(View.VISIBLE);
         ccNoBtn.setVisibility(View.VISIBLE);
         goBack.setVisibility(View.VISIBLE);
-        ccGoBackCardview.setVisibility(View.VISIBLE);
     }
     private void setView(){
         dcTextView.setVisibility(View.VISIBLE);
@@ -147,7 +142,6 @@ public class CreateDeckFragment extends Fragment {
         ccYesBtn.setVisibility(View.INVISIBLE);
         ccNoBtn.setVisibility(View.INVISIBLE);
         goBack.setVisibility(View.INVISIBLE);
-        ccGoBackCardview.setVisibility(View.INVISIBLE);
     }
 
     private void setYesNoDeckBtn() {

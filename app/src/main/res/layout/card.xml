@@ -1,32 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:editDeckCardView="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mainCardContainer"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:gravity="center"
-    android:minHeight="200dp"
-    android:minWidth="150dp">
+    android:layout_width="150dp"
+    android:layout_height="200dp"
+    android:gravity="center">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/editDeckCardView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         editDeckCardView:cardCornerRadius="10dp"
         editDeckCardView:cardElevation="5dp"
         editDeckCardView:cardPreventCornerOverlap="false"
-        editDeckCardView:cardUseCompatPadding="true"
-        editDeckCardView:layout_constraintBottom_toBottomOf="@id/mainCardContainer"
-        editDeckCardView:layout_constraintEnd_toEndOf="@id/mainCardContainer"
-        editDeckCardView:layout_constraintStart_toStartOf="@id/mainCardContainer"
-        editDeckCardView:layout_constraintTop_toTopOf="@id/mainCardContainer">
+        editDeckCardView:cardUseCompatPadding="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cardContainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/cardContainer"
             android:layout_gravity="center">
 
             <Button
@@ -34,42 +29,44 @@
                 android:layout_width="15dp"
                 android:layout_height="20dp"
                 android:layout_gravity="bottom|center"
-                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:background="@drawable/ic_baseline_edit_24"
                 android:clickable="true"
+                android:focusable="true"
                 android:foregroundGravity="center|center_horizontal"
+                android:paddingTop="20dp"
                 android:scaleType="center"
+                editDeckCardView:layout_constraintBottom_toBottomOf="parent"
                 editDeckCardView:layout_constraintEnd_toEndOf="parent"
                 editDeckCardView:layout_constraintStart_toStartOf="parent"
-                editDeckCardView:layout_constraintTop_toBottomOf="@+id/cardTextView"
                 editDeckCardView:srcCompat="@android:drawable/ic_menu_edit" />
 
             <TextView
                 android:id="@+id/cardTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"
-                editDeckCardView:layout_constraintEnd_toEndOf="parent"
-                editDeckCardView:layout_constraintStart_toStartOf="parent"
-                editDeckCardView:layout_constraintTop_toBottomOf="@+id/cardImageView" />
+                android:layout_marginEnd="70dp"
+                android:layout_marginRight="70dp"
+                android:layout_marginBottom="80dp"
+                android:fontFamily="@font/roboto_slab"
+                android:gravity="center"
+                android:padding="5dp"
+                android:textSize="12sp"
+                editDeckCardView:layout_constraintBottom_toBottomOf="parent"
+                editDeckCardView:layout_constraintEnd_toEndOf="parent" />
 
             <ImageView
                 android:id="@+id/cardImageView"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginBottom="80dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:contentDescription="@string/front_side_image"
-                editDeckCardView:layout_constraintBottom_toBottomOf="@id/cardContainer"
-                editDeckCardView:layout_constraintEnd_toEndOf="@id/cardContainer"
-                editDeckCardView:layout_constraintStart_toStartOf="@id/cardContainer"
-                editDeckCardView:layout_constraintTop_toTopOf="@id/cardContainer"
-                editDeckCardView:srcCompat="@drawable/pig" />
+                android:padding="5dp"
+                editDeckCardView:layout_constraintBottom_toBottomOf="parent"
+                editDeckCardView:layout_constraintEnd_toEndOf="parent"
+                editDeckCardView:layout_constraintHorizontal_bias="0.5"
+                editDeckCardView:layout_constraintStart_toStartOf="parent"
+                editDeckCardView:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/deleteCardBtn"
@@ -85,4 +82,4 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

@@ -2,18 +2,26 @@ package com.example.flashpig.EditDeck;
 
 
 import android.content.Context;
+import android.os.Build;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModel;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.flashpig.Model.Card;
 import com.example.flashpig.R;
+import com.example.flashpig.ViewModel.DashboardViewModel;
 
 import java.util.List;
 
@@ -23,12 +31,12 @@ import java.util.List;
 public class DeckRecyclerViewAdapter extends RecyclerView.Adapter<DeckRecyclerViewAdapter.EditCardViewHolder> {
     private List<Card> cardsList;
     private ItemClickListener clickListener;
+    private DashboardViewModel viewModel;
 
-    public DeckRecyclerViewAdapter(Context context, List<Card> cardsList) {
+    public DeckRecyclerViewAdapter(Context context, List<Card> cardsList, ViewModel viewmodel) {
         this.cardsList = cardsList;
+        this.viewModel = (DashboardViewModel) viewmodel;
     }
-
-    //public Card getCard(int position) { return cardsList.get(position); }
 
     /**
      * Used when a new card is added to the recyclerView.
@@ -51,33 +59,70 @@ public class DeckRecyclerViewAdapter extends RecyclerView.Adapter<DeckRecyclerVi
      * @param holder
      * @param position
      */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
     public void onBindViewHolder(@NonNull EditCardViewHolder holder, int position) {
-
-        Card card = cardsList.get(position);
-        if (card.isFrontside()) {
-            holder.cardTextView.setText(card.getFrontsideStr());
-        } else {
-            holder.cardTextView.setText(card.getBacksideStr());
-        }
+        viewModel.setCard(cardsList.get(position));
+        setCardsValues(holder);
 
         holder.deleteCardBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickListener.onRemoveCardClick(card, cardsList);
+                clickListener.onRemoveCardClick(viewModel.getCard().getValue(), cardsList);
             }
         });
 
         holder.editCardBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               clickListener.onEditItemBtnClick(card);
+               clickListener.onEditItemBtnClick(cardsList.get(position));
             }
         });
-        //set the back and front imageviews also.
     }
 
+    private void changeConstraints(EditCardViewHolder holder){
+        ConstraintLayout.LayoutParams txtParams = new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT/2);
+        ConstraintLayout.LayoutParams imgParams = new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT/2);
+        txtParams.bottomToTop = R.id.editCardBtn;
+        imgParams.bottomToTop = R.id.cardTextView;
+        holder.cardTextView.setLayoutParams(txtParams);
+        holder.cardImageView.setLayoutParams(imgParams);
+    }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+    private void setCardsValues(EditCardViewHolder holder){
+        if (viewModel.getCard().getValue().isFrontside()) {
+            if (viewModel.checkHasFrontTxtAndImg()) {
+                holder.cardTextView.setText(viewModel.getCard().getValue().getFrontsideStr());
+                holder.cardImageView.setImageBitmap(viewModel.getCard().getValue().getFrontImg());
+                changeConstraints(holder);
+            }
+            else if (viewModel.checkHasFrontTxtOnly()) {
+                holder.cardTextView.setText(viewModel.getCard().getValue().getFrontsideStr());
+                holder.cardTextView.setLayoutParams(new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+            }
+            else {
+                holder.cardImageView.setImageBitmap(viewModel.getCard().getValue().getFrontImg());
+                holder.cardImageView.setLayoutParams(new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+            }
+        }
+        else {
+            if (viewModel.checkHasBackTxtAndImg()) {
+                holder.cardTextView.setText(viewModel.getCard().getValue().getBacksideStr());
+                holder.cardImageView.setImageBitmap(viewModel.getCard().getValue().getBackImg());
+                changeConstraints(holder);
+            }
+            else if (viewModel.checkHasBackTxtOnly()) {
+                holder.cardTextView.setText(viewModel.getCard().getValue().getBacksideStr());
+                holder.cardTextView.setLayoutParams(new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+            }
+            else {
+                holder.cardImageView.setImageBitmap(viewModel.getCard().getValue().getBackImg());
+                holder.cardImageView.setLayoutParams(new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+
+            }
+        }
+    }
 
     @Override
     public int getItemCount() {
@@ -92,7 +137,6 @@ public class DeckRecyclerViewAdapter extends RecyclerView.Adapter<DeckRecyclerVi
         ImageView cardImageView;
         Button deleteCardBtn, editCardBtn;
 
-
         /**
          * Class constructor.
          * Adds all required content on the card, when a new viewHolder is created.
@@ -106,7 +150,6 @@ public class DeckRecyclerViewAdapter extends RecyclerView.Adapter<DeckRecyclerVi
             deleteCardBtn = itemView.findViewById(R.id.deleteCardBtn);
             editCardBtn = itemView.findViewById(R.id.editCardBtn);
         }
-
 
         //in progress...
 
@@ -130,7 +173,6 @@ public class DeckRecyclerViewAdapter extends RecyclerView.Adapter<DeckRecyclerVi
             void onEditItemBtnClick(Card card);
 
         }
-
 }
 
 

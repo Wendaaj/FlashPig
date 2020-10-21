@@ -4,25 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/mainColor"
     tools:context=".View.CreateDeckFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/goBack"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#81DCD7D7"
-        android:visibility="visible"
-        tools:layout_editor_absoluteX="35dp"
-        tools:layout_editor_absoluteY="224dp">
+        android:background="#40DCD7D7"
+        android:visibility="invisible"
+        tools:layout_editor_absoluteX="-5dp"
+        tools:layout_editor_absoluteY="-28dp">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/goBackCardView"
             android:layout_width="250dp"
             android:layout_height="145dp"
-            android:visibility="invisible"
+            android:layout_marginTop="264dp"
+            android:visibility="visible"
             app:cardCornerRadius="5dp"
             app:cardElevation="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -91,7 +92,7 @@
         android:id="@+id/imageView3"
         android:layout_width="384dp"
         android:layout_height="132dp"
-        android:layout_marginTop="204dp"
+        android:layout_marginTop="235dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/dcTextInputLayout"
@@ -101,19 +102,20 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/dcTextInputLayout"
-        android:layout_width="391dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="154dp"
+        android:layout_marginTop="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/imageView3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar2">
+        app:layout_constraintTop_toBottomOf="@+id/dcTextView">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/dcTextinput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_slab"
             android:hint="Enter name oink!" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -122,11 +124,12 @@
         android:layout_width="156dp"
         android:layout_height="55dp"
         android:layout_marginTop="151dp"
-        android:background="@color/colorAccentorange"
+        android:background="@drawable/play_again_button"
+        android:fontFamily="@font/roboto_slab_bold"
         android:text="@string/create"
         android:textAllCaps="false"
         android:textColor="@color/design_default_color_background"
-        android:textSize="16sp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -137,6 +140,7 @@
         android:layout_width="207dp"
         android:layout_height="43dp"
         android:layout_marginTop="85dp"
+        android:fontFamily="@font/roboto_slab_bold"
         android:text="@string/enterdeckname"
         android:textColor="@color/design_default_color_on_secondary"
         android:textSize="24sp"

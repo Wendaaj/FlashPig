@@ -112,24 +112,6 @@ public class FlashcardStartFragment extends Fragment implements View.OnClickList
         });
     }
 
-    private void setFrontImg(Bitmap bitmap){
-        imgFront.setImageBitmap(bitmap);
-    }
-
-    /**
-     * Waits until card is flipped before setting the cards back image.
-     * @param bitmap
-     */
-    private void setBackImg(Bitmap bitmap){
-        setLeftIn.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                super.onAnimationEnd(animation);
-                imgBack.setImageBitmap(bitmap);
-            }
-        });
-    }
-
     /**
      * Checks if the cards frontside contains both text and image. If the card contains both it will change the presentation of the text and image,
      * @param s The text to be set.
@@ -154,8 +136,7 @@ public class FlashcardStartFragment extends Fragment implements View.OnClickList
     private void setBackTxt(String s){
         setLeftIn.addListener(new AnimatorListenerAdapter() {
             @Override
-            public void onAnimationEnd(Animator animation) {
-                super.onAnimationEnd(animation);
+            public void onAnimationEnd(Animator animation) { super.onAnimationEnd(animation);
                 if (viewModel.hasBackTxtAndImg()){
                     imgBack.setLayoutParams(new FrameLayout.LayoutParams(width, ViewGroup.LayoutParams.MATCH_PARENT));
                     FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(width, ViewGroup.LayoutParams.MATCH_PARENT);
@@ -168,6 +149,24 @@ public class FlashcardStartFragment extends Fragment implements View.OnClickList
                 txtBack.setText(s);
             }
         });
+    }
+
+    /**
+     * Waits until card is flipped before setting the cards back image.
+     * @param bitmap
+     */
+    private void setBackImg(Bitmap bitmap){
+        setLeftIn.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                imgBack.setImageBitmap(bitmap);
+            }
+        });
+    }
+
+    private void setFrontImg(Bitmap bitmap){
+        imgFront.setImageBitmap(bitmap);
     }
 
     /**

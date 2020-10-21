@@ -45,6 +45,9 @@
         <action
             android:id="@+id/action_cardFragment_to_mainActivity3"
             app:destination="@id/mainActivity3" />
+        <action
+            android:id="@+id/action_cardFragment_to_editDeckFragment"
+            app:destination="@id/editDeckFragment" />
     </fragment>
     <fragment
         android:id="@+id/createDeckFragment"
