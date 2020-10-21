@@ -18,8 +18,8 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarMemory"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/memory_bar"
+        android:layout_height="53dp"
+        android:background="@drawable/pairup_pink"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
 
@@ -35,7 +35,7 @@
             android:layout_height="match_parent"
             android:fontFamily="@font/roboto_slab_bold"
             android:gravity="center"
-            android:text="@string/Memory"
+            android:text="@string/Pair_up"
             android:textColor="#FFFFFF"
             android:textSize="20sp" />
 

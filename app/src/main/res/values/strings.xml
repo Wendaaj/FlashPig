@@ -60,4 +60,9 @@
     <!-- Strings used for Memory -->
     <string name="Memory">Memory</string>
 
+    <!-- Strings used for Pair-up -->
+    <string name="Pair_up">Pair up</string>
+
+
+
 </resources>

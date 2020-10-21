@@ -24,17 +24,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/toolbarMemory" />
 
-        <TextView
-            android:id="@+id/memoryTime"
-            android:layout_width="39dp"
-            android:layout_height="21dp"
-            android:fontFamily="@font/roboto_slab_bold"
-            android:text="03:00"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/toolbarMemory"
-            app:layout_constraintEnd_toEndOf="parent" />
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/memoryCardRecyclerView"
             android:layout_width="180dp"
