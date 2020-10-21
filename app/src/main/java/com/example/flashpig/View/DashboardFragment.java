@@ -47,9 +47,6 @@ public class DashboardFragment extends Fragment implements DeckSpinnerAdapter.On
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         viewModel = new ViewModelProvider(getActivity()).get(DashboardViewModel.class);
-        if (getArguments() != null) {
-            viewModel.setChosenDeck(Parcels.unwrap(getArguments().getParcelable("deck")));
-        }
         configSpinner();
         updateViews();
         setBtnListeners(view);

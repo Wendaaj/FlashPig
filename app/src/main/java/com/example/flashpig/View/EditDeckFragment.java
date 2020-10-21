@@ -103,7 +103,7 @@ public class EditDeckFragment extends Fragment implements DeckRecyclerViewAdapte
                 Bundle bundle = new Bundle();
                 bundle.putParcelable("deck", Parcels.wrap(viewModel.getChosenDeck().getValue()));
                 NavHostFragment.findNavController(EditDeckFragment.this)
-                        .navigate(R.id.action_editDeckFragment_to_FirstFragment, bundle);
+                        .navigate(R.id.action_editDeckFragment_to_mainActivity3, bundle);
             }
         });
     }

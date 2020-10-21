@@ -77,13 +77,14 @@
 
     <TextView
         android:id="@+id/ammountCardsTextView"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
 
-        android:layout_height="0dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginLeft="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginLeft="35dp"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/roboto_slab_bold"
+        android:text="TextView"
         android:textColor="#86889E"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
