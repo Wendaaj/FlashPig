@@ -63,7 +63,6 @@ public class DashboardFragment extends Fragment implements DeckSpinnerAdapter.On
         ndecks = getActivity().findViewById(R.id.ndeckstext);
         spinnerAdapter = new DeckSpinnerAdapter(getActivity(), viewModel.getDecks().getValue(), this);
         deckSpinner.setAdapter(spinnerAdapter);
-        deckSpinner.setSelection(viewModel.getChosenDeckPos());
     }
 
     /**
