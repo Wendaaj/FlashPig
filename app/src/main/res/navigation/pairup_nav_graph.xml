@@ -5,11 +5,6 @@
     android:id="@+id/memory_nav_graph"
     app:startDestination="@id/pairUpFragmentStart">
 
-    <activity
-        android:id="@+id/mainActivity"
-        android:name="com.example.flashpig.View.MainActivity"
-        android:label="activity_main"
-        tools:layout="@layout/activity_main" />
     <fragment
         android:id="@+id/pairUpFragmentStart"
         android:name="com.example.flashpig.View.PairUpFragmentStart"
@@ -19,7 +14,7 @@
             android:id="@+id/action_pairUpFragmentStart_to_pairUpFragmentEnd"
             app:destination="@id/pairUpFragmentEnd" />
         <action
-            android:id="@+id/action_pairUpFragmentStart_to_mainActivity"
+            android:id="@+id/action_pairUpFragmentStart_to_mainActivity2"
             app:destination="@id/mainActivity" />
     </fragment>
     <fragment
@@ -28,10 +23,15 @@
         android:label="pairup_fragment_end"
         tools:layout="@layout/pairup_fragment_end" >
         <action
-            android:id="@+id/action_pairUpFragmentEnd_to_mainActivity"
+            android:id="@+id/action_pairUpFragmentEnd_to_mainActivity2"
             app:destination="@id/mainActivity" />
         <action
             android:id="@+id/action_pairUpFragmentEnd_to_pairUpFragmentStart"
             app:destination="@id/pairUpFragmentStart" />
     </fragment>
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.example.flashpig.View.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
 </navigation>

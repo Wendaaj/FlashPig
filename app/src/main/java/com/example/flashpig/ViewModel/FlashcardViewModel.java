@@ -30,7 +30,7 @@ public class FlashcardViewModel extends ViewModel {
     private boolean hasBackTxtAndImg;
 
     /**
-     * Initialize the view model.
+     *Initialize the view model.
      */
     public void init(Deck deck){
         Deck deck1 = repo.getDeck(deck);

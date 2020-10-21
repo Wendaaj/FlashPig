@@ -58,6 +58,7 @@ public class FlashcardEndFragment extends Fragment {
         view.findViewById(R.id.btn_play_again).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 NavHostFragment.findNavController(FlashcardEndFragment.this)
                         .navigate(R.id.action_flashcardEndFragment_to_flashcardStartFragment);
             }

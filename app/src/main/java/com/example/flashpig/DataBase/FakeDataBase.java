@@ -17,14 +17,18 @@ public class FakeDataBase implements DataBase{
     public FakeDataBase() {
         Random random = new Random();
         Deck deck0 = new Deck("Madematik", random.nextInt());
-        deck0.addCard(new Card(random.nextInt(),"Vad betyder bae på danska?",
-                "Madde",null,null));
-        deck0.addCard(new Card(random.nextInt(), "Efter vem uppkom namnet Madematik?",
-                "SMÄQ",null,null));
-        deck0.addCard(new Card(random.nextInt(), "Lever Smäq upp till sitt namn Madematik?",
-                "Man kan aldrig vara för smart.",null, null));
-        deck0.addCard(new Card(random.nextInt(), "Kommer Smäq slakta tentorna?",
-                "OM hon kommer", null,null));
+        deck0.addCard(new Card(random.nextInt(),"1",
+                "1",null,null));
+        deck0.addCard(new Card(random.nextInt(), "2",
+                "2",null,null));
+        deck0.addCard(new Card(random.nextInt(), "3",
+                "3",null, null));
+        deck0.addCard(new Card(random.nextInt(), "4",
+                "4", null,null));
+        deck0.addCard(new Card(random.nextInt(), "5",
+                "5", null,null));
+        deck0.addCard(new Card(random.nextInt(), "6",
+                "6", null,null));
 
         Deck deck1 = new Deck("matte", random.nextInt());
         deck1.cards.add(new Card(random.nextInt(), "hello", "bye", null, null));

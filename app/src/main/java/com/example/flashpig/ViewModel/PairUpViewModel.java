@@ -9,6 +9,7 @@ import com.example.flashpig.Model.Card;
 import com.example.flashpig.Model.Deck;
 import com.example.flashpig.Model.PairUp;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -35,51 +36,84 @@ public class PairUpViewModel extends ViewModel {
 
     private MutableLiveData<Boolean> setFirstViews = new MutableLiveData<>();
 
+    public void setIsEndOfGame(boolean isEndOfGame) {
+        this.isEndOfGame.setValue(isEndOfGame);
+    }
+
     int showingCards = 6;
     int deckSize;
+    List<Card> gameDeck = new ArrayList<>();
 
-    /**
-     * Initialize the view model.
-     */
-    public void init(Deck deck){
-        Deck chosenDeck = repo.getDeck(deck);
-        deckSize = chosenDeck.getAmountCards();
-        pairUp.setValue(new PairUp(chosenDeck));
-        this.chosenDeck.setValue(deck);
+    public PairUpViewModel() {
         card1.setValue(null);
         isEndOfGame.setValue(false);
         ifLastPair.setValue(false);
     }
 
+    /**
+     * Initialize the view model.
+     */
+    public void init(Deck deck){
+
+        Deck chosenDeck = repo.getDeck(deck);
+        gameDeck.addAll(chosenDeck.cards);
+        deckSize = chosenDeck.getAmountCards();
+        pairUp.setValue(new PairUp(chosenDeck));
+        this.chosenDeck.setValue(deck);
+    }
+
     public void isPair(){
-        if (pairUp.getValue().isMatched(card1.getValue(), card2.getValue()) && showingCards != 2){
-            isMatch.setValue(true);
-            updateAmountCards();
-        } else if (showingCards == 2 ){ //Is the last pair
-            ifLastPair.setValue(true);
-            if (pairUp.getValue().isEndOfGame()){
-                isEndOfGame.setValue(true);
-            } else {
-                //delay;
+        if (deckSize!=1){
+            if (pairUp.getValue().isMatched(card1.getValue(), card2.getValue()) && showingCards != 2){
+                isMatch.setValue(true);
+                updateAmountCards();
+            } else if (showingCards == 2 ){
+                ifLastPair.setValue(true);
+                updateAmountCards();
                 loadNewCards.setValue(true);
                 loadNewCards();
             }
-        } else {
-            isMatch.setValue(false);
+            else {
+                isMatch.setValue(false);
+            }
+            card1.setValue(null);
         }
-        card1.setValue(null);
+        else{
+            isEndOfGame.setValue(true);
+        }
     }
 
     /**
      * Updates the game board with new cards
      */
     private void loadNewCards() {
-        int i = 3;
-        while (i != 0) {
-            chosenDeck.getValue().cards.remove(0);
-            i--;
+        if (deckSize >= 3) {
+            int i = 3;
+            while (i != 0) {
+                chosenDeck.getValue().cards.remove(0);
+                i--;
+            }
+            showingCards = 6;
+
         }
-        showingCards = 6;
+        if(deckSize==2){
+            int i = 2;
+            while (i != 0) {
+                chosenDeck.getValue().cards.remove(0);
+                i--;
+            }
+            showingCards = 4;
+        }
+        if(deckSize==1){
+            int i = 1;
+            while (i != 0) {
+                chosenDeck.getValue().cards.remove(0);
+                i--;
+            }
+            showingCards = 2;
+
+        }
+
     }
 
     /**
@@ -88,6 +122,11 @@ public class PairUpViewModel extends ViewModel {
     private void updateAmountCards(){
         showingCards -= 2;
         deckSize--;
+    }
+
+    public void reloadDeck(){
+        getChosenDeck().getValue().cards.addAll(gameDeck);
+
     }
 
     public LiveData<Boolean> isEndOfGame(){ return isEndOfGame; }

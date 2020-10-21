@@ -123,8 +123,8 @@ public class PairUpFragmentStart extends Fragment implements PairUpRecyclerViewA
                 View card2 = recyclerView2.findViewHolderForAdapterPosition(position2).itemView;
                 if(isMatch){
                     setCorrectFrame(card2);
-                    pairUpViewModel.setIsMatch(false);
                     card2.setClickable(false);
+                    //pairUpViewModel.setIsMatch(false);
                 } else {
                     recyclerView.findViewHolderForAdapterPosition(position1).itemView.setClickable(true);
                     setIncorrectFrame(card2);
@@ -138,7 +138,7 @@ public class PairUpFragmentStart extends Fragment implements PairUpRecyclerViewA
             public void onChanged(Boolean lastPair) {
                 if(lastPair){
                     setCorrectFrame(view);
-                    decksize--;
+                    //decksize--;
                 }
             }
         });
@@ -191,10 +191,10 @@ public class PairUpFragmentStart extends Fragment implements PairUpRecyclerViewA
             //card1 = adapter.getItem(position);
             position1 = position;
             view.setClickable(false);
-
         } else { //Select second card
-            pairUpViewModel.setCard2(adapter.getItem(position));
             position2 = position;
+            pairUpViewModel.setCard2(adapter2.getItem(position));
+
             //card2 = adapter2.getItem(position);
         }
     }
@@ -210,7 +210,7 @@ public class PairUpFragmentStart extends Fragment implements PairUpRecyclerViewA
         }
 
         for (int j = 0; j < pairUpViewModel.getChosenDeck().getValue().cards.size(); j++) {
-            adapter.getItem(j).setFrontside(true);
+            adapter2.getItem(j).setFrontside(true);
             //adapter2.notifyDataSetChanged();
         }
     }
@@ -248,7 +248,7 @@ public class PairUpFragmentStart extends Fragment implements PairUpRecyclerViewA
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                // Do something after 1s = 1000ms
+                //Do something after 1s = 1000ms
                 recyclerView.findViewHolderForAdapterPosition(position1).itemView.setBackgroundResource(R.drawable.frame_default);
                 view.setBackgroundResource(R.drawable.frame_default);
             }

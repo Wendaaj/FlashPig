@@ -32,5 +32,6 @@ public class PairUp extends GameLogic {
 
     public boolean isEndOfGame() {
         return deck.cards.size() == 0;
+        //return true;
     }
 }
