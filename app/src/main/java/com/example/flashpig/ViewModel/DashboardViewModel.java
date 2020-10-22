@@ -49,7 +49,7 @@ public class DashboardViewModel extends ViewModel {
      * Checks if card has only back text.
      */
     public boolean checkHasBackTxtOnly() {
-        return (card.getValue().getFrontImg() == null && !card.getValue().getFrontsideStr().isEmpty());
+        return (card.getValue().getBackImg() == null && !card.getValue().getBacksideStr().isEmpty());
     }
 
     public void removeDeck(Deck deck) {
@@ -80,7 +80,7 @@ public class DashboardViewModel extends ViewModel {
         getAmountCards().setValue(deck.cards.size());
     }
 
-    //public void setCard(Card card) { this.card.setValue(card); }
+    public void setCard(Card card) { this.card.setValue(card); }
 
     public LiveData<ArrayList<Deck>> getDecks() { return decks; }
 

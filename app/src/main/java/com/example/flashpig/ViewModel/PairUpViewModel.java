@@ -80,7 +80,7 @@ public class PairUpViewModel extends ViewModel {
     /**
      * Updates the game board with new cards
      */
-    private void loadNewCards() {
+    void loadNewCards() {
         if (deckSize >= 3) {
             int i = 3;
             while (i != 0) {
@@ -152,6 +152,8 @@ public class PairUpViewModel extends ViewModel {
     public int getDeckSize() {
         return deckSize;
     }
+    public void setDeckSize(int i){this.deckSize=i;}
+    public void setShowingCards(int i){this.showingCards =i;}
 
     public MutableLiveData<Boolean> getSetFirstViews() { return setFirstViews; }
 
