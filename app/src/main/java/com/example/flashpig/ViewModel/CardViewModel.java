@@ -54,8 +54,8 @@ public class CardViewModel extends ViewModel {
 
     public void setDeckName(String deckName) { deck.getValue().setDeckName(deckName); }
 
-    public int getCardPos(Card card){
-        return (deck.getValue().cards.indexOf(card) + 1);
+    public int getCardPos(){
+        return (deck.getValue().cards.indexOf(this.card) + 1);
     }
 
     public MutableLiveData<String> getFrontTxt() { return frontTxt; }

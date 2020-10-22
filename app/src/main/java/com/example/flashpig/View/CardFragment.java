@@ -120,7 +120,7 @@ public class CardFragment extends Fragment {
                     isFront = false; //Set is backside
                     enableFront();
                     ccImageView.setImageDrawable(null); //Clear image for backside
-                    ccCardn.setText("Add backside nr: " + viewModel.getCardPos(viewModel.getCard().getValue()));
+                    ccCardn.setText("Add backside nr: " + viewModel.getCardPos());
                     if (viewModel.getBackImg() != null || viewModel.getBackStr() != null){
                         updateViews();
                     }
@@ -144,7 +144,7 @@ public class CardFragment extends Fragment {
                     isFront = true;
                     enableFront();
                     ccImageView.setImageDrawable(null);
-                    ccCardn.setText("Add frontside nr: " + viewModel.getCardPos(viewModel.getCard().getValue()));
+                    ccCardn.setText("Add frontside nr: " + viewModel.getCardPos());
                 }else{
                     Toast.makeText(getActivity(), "Please fill that ham with something! OINK! OINK!",
                             Toast.LENGTH_SHORT).show();
@@ -161,7 +161,7 @@ public class CardFragment extends Fragment {
                     viewModel.setBackStr(inputText);
                     ccTextinput.getEditText().getText().clear();
                     ccImageView.setImageDrawable(null);
-                    ccCardn.setText("Add backside nr: " + viewModel.getCardPos(viewModel.getCard().getValue()));
+                    ccCardn.setText("Add backside nr: " + viewModel.getCardPos());
                     viewModel.saveDeck();
                     Bundle bundle = new Bundle();
                     bundle.putParcelable("deck", Parcels.wrap(viewModel.getDeck().getValue()));
@@ -187,7 +187,7 @@ public class CardFragment extends Fragment {
                     viewModel.setBackStr(inputText);
                     ccTextinput.getEditText().getText().clear();
                     ccImageView.setImageDrawable(null);
-                    ccCardn.setText("Add backside nr: " + viewModel.getCardPos(viewModel.getCard().getValue()));
+                    ccCardn.setText("Add backside nr: " + viewModel.getCardPos());
                     viewModel.saveDeck();
                     Bundle bundle = new Bundle();
                     bundle.putParcelable("deck", Parcels.wrap(viewModel.getCurrentDeck()));
@@ -370,7 +370,7 @@ public class CardFragment extends Fragment {
     private  void loadUI(){
         enableFront();
         //ccCardn.setText("Add frontside nr: " + viewModel.getCardPos(viewModel.getCard().getValue()));
-        ccCardn.setText("Add frontside nr: " + viewModel.getCardPos(viewModel.getCurrentCard()));
+        ccCardn.setText("Add frontside nr: " + viewModel.getCardPos());
         //ccTextTop.setText(viewModel.getDeck().getValue().getDeckName());
         ccTextTop.setText(viewModel.getDeckName());
     }
