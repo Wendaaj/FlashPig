@@ -211,9 +211,7 @@ public class PairUpRecyclerViewAdapter2 extends
      * @return a card on the specific position
      */
 
-    public Card getItem(int position) {
-        return cardsList2.get(position);
-    }
+
 
     /**
      * Allows clicks events to be caught

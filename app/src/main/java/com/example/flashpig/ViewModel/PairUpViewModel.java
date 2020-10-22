@@ -154,6 +154,13 @@ public class PairUpViewModel extends ViewModel {
         return getCards().get(position);
     }
 
+    public void setFrontPosTrue(int position){
+        getItem(position).setFrontside(true);
+    }
+    public void setFrontPosFalse(int position){
+        getItem(position).setFrontside(true);
+    }
+
 
     public void setCard1(Card card1) {
         this.card1.setValue(card1);

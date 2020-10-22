@@ -207,13 +207,15 @@ public class PairUpFragmentStart extends Fragment implements PairUpRecyclerViewA
      */
     private void setFirstViews() {
         for (int i = 0; i < pairUpViewModel.getChosenDeck().getValue().cards.size(); i++) { //HÄR
-            adapter.getItem(i).setFrontside(false);
+            //adapter.getItem(i).setFrontside(false);
+            pairUpViewModel.setFrontPosFalse(i);
             //adapter.notifyDataSetChanged();
             Collections.shuffle(pairUpViewModel.getCards()); //HÄR
         }
 
         for (int j = 0; j < pairUpViewModel.getCards().size(); j++) { //HÄR
-            adapter2.getItem(j).setFrontside(true);
+            //adapter2.getItem(j).setFrontside(true);
+            pairUpViewModel.setFrontPosTrue(j);
             //adapter2.notifyDataSetChanged();
         }
     }

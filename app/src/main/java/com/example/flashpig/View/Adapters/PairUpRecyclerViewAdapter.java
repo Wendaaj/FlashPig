@@ -186,9 +186,6 @@ public class PairUpRecyclerViewAdapter extends
      */
 
 
-    public Card getItem(int position) {
-        return cardsList.get(position);
-    }
 
     /**
      * Allows clicks events to be caught
