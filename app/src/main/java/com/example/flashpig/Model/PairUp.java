@@ -1,9 +1,10 @@
 package com.example.flashpig.Model;
 
 /**
- * Class for Pair Up Game
+ *
  *
  * @author Madeleine
+ * @responsibility Class for Pair Up Game, hold the logic for Pair Up game
  * @version 2020-10-16
  */
 

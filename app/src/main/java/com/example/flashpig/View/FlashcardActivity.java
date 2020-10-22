@@ -22,10 +22,8 @@ import com.example.flashpig.R;
 import org.parceler.Parcels;
 
 /**
- * The flashcard activity.
- *
  * @author wendy
- *
+ * @responsibility The flashcard activity.
  * @version 2020-10-04
  */
 public class  FlashcardActivity extends AppCompatActivity {

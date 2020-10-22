@@ -19,9 +19,9 @@ import com.example.flashpig.ViewModel.PairUpViewModel;
 import org.parceler.Parcels;
 
 /**
- * Represents the end screen of a Pair Up game
  *
  * @author Madeleine
+ * @responsibility Represents the end screen of a Pair Up game
  * @version 2020-10-16
  */
 

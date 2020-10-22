@@ -1,9 +1,10 @@
 package com.example.flashpig.Model;
 
 /**
- * Class for MemoryPairUpLogic.
+ *
  *
  * @author Madeleine
+ * @responsibility Class for MemoryPairUpLogic, hold the common methods for Memory and Pair Up game.
  * @version 2020-09-16
  */
 

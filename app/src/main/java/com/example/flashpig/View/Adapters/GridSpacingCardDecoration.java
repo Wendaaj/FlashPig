@@ -5,6 +5,12 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+/**
+ * @author Salvija
+ * @responsibility Fixes the layout for the RecyclerView
+ * @version 22-10-20
+ */
+
 public class GridSpacingCardDecoration extends RecyclerView.ItemDecoration {
     private int col;
     private int spacing;

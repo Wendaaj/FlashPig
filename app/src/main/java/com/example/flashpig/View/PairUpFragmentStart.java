@@ -30,6 +30,7 @@ import java.util.Collections;
  * Represents the start screen of a Pair Up game
  *
  * @author Madeleine
+ * @responsibility Observes the changes of the PairUp model by the PairUpViewmodel's LiveData
  * @version 2020-10-16
  */
 

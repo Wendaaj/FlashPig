@@ -16,6 +16,12 @@ import android.widget.ImageView;
 
 import com.example.flashpig.R;
 
+/**
+ * @author wendy
+ * @responsibility Loads the splash screen
+ * @version 22-10-20
+ */
+
 public class SplashScreen extends Fragment {
     AnimationDrawable anim;
     ImageView imageView;

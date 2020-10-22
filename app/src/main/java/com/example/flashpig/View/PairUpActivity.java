@@ -18,9 +18,9 @@ import android.view.View;
 import org.parceler.Parcels;
 
 /**
- * The activity that provides the Pair Up game screen.
  *
  * @author Madeleine
+ * @responsibility The activity that provides the Pair Up game screen.
  * @version 2020-10-16
  */
 

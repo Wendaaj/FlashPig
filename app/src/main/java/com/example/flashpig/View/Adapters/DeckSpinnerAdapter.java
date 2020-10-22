@@ -19,6 +19,12 @@ import com.example.flashpig.R;
 
 import java.util.ArrayList;
 
+/**
+ * @author Salvija
+ * @responsibility An adapter class for the the DeckSpinnerAdapter
+ * @version 22-10-20
+ */
+
 public class DeckSpinnerAdapter extends ArrayAdapter<Deck> {
     private Context context;
     private OnEditItemsClickListener onEditItemClickListener;

@@ -38,6 +38,12 @@ import java.util.List;
 
 import static android.content.Context.MODE_PRIVATE;
 
+/**
+ * @author Salvija
+ * @responsibility Hold the logic for the clickable objects in EditDeck.xml
+ * @version 22-10-20
+ */
+
 public class EditDeckFragment extends Fragment implements DeckRecyclerViewAdapter.ItemClickListener, DeckSpinnerAdapter.OnEditItemsClickListener {
     private DeckRecyclerViewAdapter deckRecyclerViewAdapter;
     private DeckSpinnerAdapter spinnerAdapter;

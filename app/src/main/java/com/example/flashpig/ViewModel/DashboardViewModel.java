@@ -11,6 +11,12 @@ import com.example.flashpig.Model.Deck;
 
 import java.util.ArrayList;
 
+/**
+ * @author wendy
+ * @responsibility ViewModel class for the DashboardFragment and EditDeckFragment
+ * @version 22-10-20
+ */
+
 public class DashboardViewModel extends ViewModel {
     private Repository repo = Repository.getInstance();
     private MutableLiveData<ArrayList<Deck>> decks = new MutableLiveData<>();

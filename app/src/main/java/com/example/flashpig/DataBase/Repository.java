@@ -12,6 +12,8 @@ import java.util.ArrayList;
  * A repository that handles the database so that it's easier for other classes to make use of the database.
  *
  * @author wendy
+ * @responsibility Handles the data fronm the FakeDataBase and works as a wrapper.
+ * The wrapped data will be sent to whoever calls on it.
  * @version 2020-10-18
  */
 public class Repository {

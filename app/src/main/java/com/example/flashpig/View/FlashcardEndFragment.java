@@ -22,9 +22,9 @@ import com.example.flashpig.ViewModel.FlashcardViewModel;
 import org.parceler.Parcels;
 
 /**
- * Checks if the player wants to return home or restart the game.
  *
  * @author wendy
+ * @responsibility Updates whether the player wants to return home or restart the game.
  * @version 2020-10-04
  * */
 public class FlashcardEndFragment extends Fragment {
