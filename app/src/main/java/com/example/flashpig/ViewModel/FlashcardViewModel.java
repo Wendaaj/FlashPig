@@ -14,9 +14,10 @@ import com.example.flashpig.Model.Flashcard;
 
 
 /**
- * The viewmodel for the Flashcard game.
+ *
  *
  * @author wendy
+ * @responsibility The viewmodel for the Flashcard game.
  * @version 2020-10-12
  */
 public class FlashcardViewModel extends ViewModel {

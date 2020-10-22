@@ -7,6 +7,7 @@ import java.util.List;
 /**
  * A flashcard game.
  *@author wendy
+ * @responsibility Flashcard game logic
  * @version 2020-09-17
  */
 public class Flashcard extends GameLogic {

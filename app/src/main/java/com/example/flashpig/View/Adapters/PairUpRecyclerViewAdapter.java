@@ -16,9 +16,9 @@ import com.example.flashpig.R;
 import java.util.List;
 
 /**
- * Displays the cards in Pair Up game as a list with a RecyclerView
  *
  * @author Madeleine
+ * @responsibility Displays the cards in Pair Up game as a list with a RecyclerView
  * @version 2020-10-16
  */
 

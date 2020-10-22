@@ -26,6 +26,12 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import static android.content.Context.MODE_PRIVATE;
 
+/**
+ * @author Jepser
+ * @responsibility Fragment for Create deck
+ * @version 22-10-20
+ */
+
 public class CreateDeckFragment extends Fragment {
 
     private TextView dcTextView;

@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Shows cards after the difficulty that was chosen when playing the game Flashcard.
  *
  * @author Wendy
+ * @responsibility Shows cards after the difficulty that was chosen when playing the game Flashcard.
  * @version 2020-09-14
  */
 public class FlashcardProgress {

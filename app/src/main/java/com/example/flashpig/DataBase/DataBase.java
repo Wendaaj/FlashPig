@@ -6,8 +6,9 @@ import com.example.flashpig.Model.Deck;
 import java.util.ArrayList;
 
 /**
- * @author wendy
- * @version 2020-10-28
+ * @author Wendy
+ * @responsibility Holds list of Decks and Deck methods
+ * * @version 2020-10-28
  */
 public interface DataBase {
     ArrayList<Deck> deckList = new ArrayList<>();

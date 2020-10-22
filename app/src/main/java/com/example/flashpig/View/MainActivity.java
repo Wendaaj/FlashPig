@@ -14,6 +14,11 @@ import android.view.MenuItem;
 
 import org.parceler.Parcels;
 
+/**
+ *
+ * @responsibility Sets the initial screen
+ */
+
 public class MainActivity extends AppCompatActivity {
 
     @Override

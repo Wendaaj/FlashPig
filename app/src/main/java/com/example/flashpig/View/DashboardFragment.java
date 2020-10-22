@@ -27,9 +27,10 @@ import org.parceler.Parcels;
 
 
 /**
- * Handles the view for the dashboard/home page and navigate the user to other views from here.
  *
  * @author Jesper Bergquist, Wendy Pau.
+ * @responsibility Handles the view for the dashboard/home page and navigate the user to other
+ * views from here.
  * @version 2020-10-20
  */
 public class DashboardFragment extends Fragment implements DeckSpinnerAdapter.OnEditItemsClickListener {

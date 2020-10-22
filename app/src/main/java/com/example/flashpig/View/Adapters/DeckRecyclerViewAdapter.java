@@ -24,7 +24,10 @@ import com.example.flashpig.ViewModel.DashboardViewModel;
 import java.util.List;
 
 /**
- * An adapter class for the recyclerView
+ *
+ * @author Salvija
+ * @responsibility An adapter class for the recyclerView
+ * @version 22-10-20
  */
 public class DeckRecyclerViewAdapter extends RecyclerView.Adapter<DeckRecyclerViewAdapter.EditCardViewHolder> {
     private ItemClickListener clickListener;

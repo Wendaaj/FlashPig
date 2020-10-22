@@ -1,12 +1,11 @@
 package com.example.flashpig.Model;
 
 /** Class for Memory Game
-        *
-        * @author Madeleine
-        * @version 2020-09-16
-        */
-
-//TA BORT??
+ *
+ * @author Madeleine
+ * @responsibility hold the logic for Memory Game
+ * @version 2020-09-16
+ */
 
 
 public class Memory extends GameLogic implements MemoryPairUpLogic {

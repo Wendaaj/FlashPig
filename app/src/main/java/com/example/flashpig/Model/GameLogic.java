@@ -3,9 +3,9 @@ package com.example.flashpig.Model;
 
 
 /**
- * An abstract class that holds the common game logic.
  *
  * @author wendy
+ * @responsibility An abstract class that holds the common game logic.
  * @version 2020-09-17
  */
 public abstract class GameLogic {

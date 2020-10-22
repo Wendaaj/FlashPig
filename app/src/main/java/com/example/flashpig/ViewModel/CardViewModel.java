@@ -10,6 +10,12 @@ import com.example.flashpig.DataBase.Repository;
 import com.example.flashpig.Model.Card;
 import com.example.flashpig.Model.Deck;
 
+/**
+ * @author Jesper
+ * @responsibility ViewModel class for Card
+ * @version 22-10-20
+ */
+
 public class CardViewModel extends ViewModel {
     private Repository repo = Repository.getInstance();
     private MutableLiveData<Card> card = new MutableLiveData<>();

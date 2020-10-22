@@ -34,9 +34,9 @@ import com.example.flashpig.R;
 import org.parceler.Parcels;
 
 /**
- * The controller that connects the Flashcard model with the views.
  *
  * @author wendy
+ * @responsibility The controller that connects the Flashcard model with the views.
  * @version 2020-10-04
  */
 public class FlashcardStartFragment extends Fragment implements View.OnClickListener {

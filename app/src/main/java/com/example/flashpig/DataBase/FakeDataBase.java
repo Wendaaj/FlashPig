@@ -11,6 +11,7 @@ import java.util.Random;
  * A fake database that is replaceable when ready.
  *
  * @author wendy
+ * @responsibility Holds hard coded data of decks and cards
  * @version 2020-10-18
  */
 public class FakeDataBase implements DataBase{

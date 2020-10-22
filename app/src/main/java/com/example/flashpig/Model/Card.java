@@ -9,6 +9,7 @@ import java.util.Random;
 /**
  * Class for card.
  * @author Jesper
+ * @responsibilityHolds information that belongs to the card
  * @version 2020-09-14l
  */
 @Parcel

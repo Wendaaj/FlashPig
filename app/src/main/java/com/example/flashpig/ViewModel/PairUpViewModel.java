@@ -14,9 +14,10 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * The ViewModel for the Pair Up game.
+ *
  *
  * @author Madeleine
+ * @responsibility The ViewModel for the Pair Up game.
  * @version 2020-10-19
  */
 

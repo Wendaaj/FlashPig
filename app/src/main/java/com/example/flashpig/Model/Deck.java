@@ -11,6 +11,7 @@ import java.util.Random;
  * Class for Deck.
  *
  * @author Salvija Zelvyte.
+ * @responsibility
  * @version 2020-09-17
  */
 @Parcel
