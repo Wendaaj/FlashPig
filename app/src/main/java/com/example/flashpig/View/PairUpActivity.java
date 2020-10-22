@@ -52,7 +52,8 @@ public class PairUpActivity extends AppCompatActivity {
         });
 
         viewModel = new ViewModelProvider(this).get(PairUpViewModel.class);
-        viewModel.init(Parcels.unwrap(getIntent().getParcelableExtra("deck")));
+        viewModel.getChosenDeck().setValue(Parcels.unwrap(getIntent().getParcelableExtra("deck")));
+        viewModel.init();
     }
 
 }

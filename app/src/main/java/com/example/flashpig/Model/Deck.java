@@ -1,5 +1,7 @@
 package com.example.flashpig.Model;
 
+import com.example.flashpig.Difficulty;
+
 import org.parceler.Parcel;
 
 import java.util.ArrayList;

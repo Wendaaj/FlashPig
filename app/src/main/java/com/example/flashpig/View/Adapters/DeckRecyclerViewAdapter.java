@@ -16,12 +16,8 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.ViewModel;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.flashpig.Model.Card;
-import com.example.flashpig.Model.Deck;
 import com.example.flashpig.R;
 import com.example.flashpig.ViewModel.DashboardViewModel;
-
-import java.util.List;
 
 /**
  *
@@ -90,33 +86,33 @@ public class DeckRecyclerViewAdapter extends RecyclerView.Adapter<DeckRecyclerVi
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     private void setCardsValues(EditCardViewHolder holder){
-        if (viewModel.getCard().getValue().isFrontside()) {
+        if (viewModel.getIsFrontside().getValue()) {
             if (viewModel.checkHasFrontTxtAndImg()) {
-                holder.cardTextView.setText(viewModel.getCard().getValue().getFrontsideStr());
-                holder.cardImageView.setImageBitmap(viewModel.getCard().getValue().getFrontImg());
+                holder.cardTextView.setText(viewModel.getCardFrontTxt());
+                holder.cardImageView.setImageBitmap(viewModel.getCardFrontImg());
                 changeConstraints(holder);
             }
             else if (viewModel.checkHasFrontTxtOnly()) {
-                holder.cardTextView.setText(viewModel.getCard().getValue().getFrontsideStr());
+                holder.cardTextView.setText(viewModel.getCardFrontTxt());
                 holder.cardTextView.setLayoutParams(new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
             }
             else {
-                holder.cardImageView.setImageBitmap(viewModel.getCard().getValue().getFrontImg());
+                holder.cardImageView.setImageBitmap(viewModel.getCardFrontImg());
                 holder.cardImageView.setLayoutParams(new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
             }
         }
         else {
             if (viewModel.checkHasBackTxtAndImg()) {
-                holder.cardTextView.setText(viewModel.getCard().getValue().getBacksideStr());
-                holder.cardImageView.setImageBitmap(viewModel.getCard().getValue().getBackImg());
+                holder.cardTextView.setText(viewModel.getCardBackTxt());
+                holder.cardImageView.setImageBitmap(viewModel.getCardBackImg());
                 changeConstraints(holder);
             }
             else if (viewModel.checkHasBackTxtOnly()) {
-                holder.cardTextView.setText(viewModel.getCard().getValue().getBacksideStr());
+                holder.cardTextView.setText(viewModel.getCardBackTxt());
                 holder.cardTextView.setLayoutParams(new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
             }
             else {
-                holder.cardImageView.setImageBitmap(viewModel.getCard().getValue().getBackImg());
+                holder.cardImageView.setImageBitmap(viewModel.getCardBackImg());
                 holder.cardImageView.setLayoutParams(new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
             }

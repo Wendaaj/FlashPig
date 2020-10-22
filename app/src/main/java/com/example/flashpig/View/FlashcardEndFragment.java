@@ -49,7 +49,7 @@ public class FlashcardEndFragment extends Fragment {
             public void onClick(View v) {
                 FlashcardViewModel viewModel = new ViewModelProvider(getActivity()).get(FlashcardViewModel.class);
                 Bundle bundle = new Bundle();
-                bundle.putParcelable("deck", Parcels.wrap(viewModel.getFlashcard().getValue().getDeck()));
+                bundle.putParcelable("deck", Parcels.wrap(viewModel.getDeck().getValue()));
                 NavHostFragment.findNavController(FlashcardEndFragment.this)
                         .navigate(R.id.action_flashcardEndFragment_to_mainActivity2, bundle);
             }

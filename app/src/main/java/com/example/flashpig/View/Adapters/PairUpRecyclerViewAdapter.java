@@ -8,12 +8,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModel;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.flashpig.Model.Card;
 import com.example.flashpig.R;
+import com.example.flashpig.ViewModel.PairUpViewModel;
 
-import java.util.List;
 
 /**
  *
@@ -22,23 +22,20 @@ import java.util.List;
  * @version 2020-10-16
  */
 
-public class PairUpRecyclerViewAdapter extends
-        RecyclerView.Adapter<PairUpRecyclerViewAdapter.ViewHolder>  {
+public class PairUpRecyclerViewAdapter extends RecyclerView.Adapter<PairUpRecyclerViewAdapter.ViewHolder>  {
 
-    private List<Card> cardsList;
     private ItemClickListener mClickListener;
     public Context mContext;
-    int amountRows = 3;
+    private int amountRows = 3;
+    private PairUpViewModel viewModel;
 
     /**
      * The Pair Up RecyclerViewAdapter constructor
      * @param context the current context
-     * @param cardsList the list of cards
      */
-
-    public PairUpRecyclerViewAdapter(Context context, List<Card> cardsList) {
+    public PairUpRecyclerViewAdapter(Context context, ViewModel viewModel) {
         this.mContext = context;
-        this.cardsList = cardsList;
+        this.viewModel = (PairUpViewModel) viewModel;
     }
 
     /**
@@ -48,7 +45,6 @@ public class PairUpRecyclerViewAdapter extends
      * @param viewType the viewType
      * @return
      */
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -65,26 +61,24 @@ public class PairUpRecyclerViewAdapter extends
      * @param holder the current viewHolder
      * @param position the current position
      */
-
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Card card = cardsList.get(position);
-        holder.frontSideTextView.setText(card.getFrontsideStr());
+        holder.frontSideTextView.setText(viewModel.getItem(position).getFrontsideStr());
         holder.frontSideTextView.setTag(position);
-        holder.backSideTextView.setText(card.getBacksideStr());
+        holder.backSideTextView.setText(viewModel.getItem(position).getBacksideStr());
         holder.itemView.setBackgroundResource(R.drawable.frame_default);
         holder.itemView.setClickable(true);
 
-        if(!card.isFrontside()){
-               holder.frontSideTextView.setVisibility(View.INVISIBLE);
-               holder.frontImageView.setVisibility(View.INVISIBLE);
-               holder.backImageView.setVisibility(View.VISIBLE);
-               holder.backSideTextView.setVisibility(View.VISIBLE);
+        if(!viewModel.getItem(position).isFrontside()){
+            holder.frontSideTextView.setVisibility(View.INVISIBLE);
+            holder.frontImageView.setVisibility(View.INVISIBLE);
+            holder.backImageView.setVisibility(View.VISIBLE);
+            holder.backSideTextView.setVisibility(View.VISIBLE);
         } else {
-                holder.frontSideTextView.setVisibility(View.VISIBLE);
-                holder.frontImageView.setVisibility(View.VISIBLE);
-                holder.backImageView.setVisibility(View.INVISIBLE);
-                holder.backSideTextView.setVisibility(View.INVISIBLE);
+            holder.frontSideTextView.setVisibility(View.VISIBLE);
+            holder.frontImageView.setVisibility(View.VISIBLE);
+            holder.backImageView.setVisibility(View.INVISIBLE);
+            holder.backSideTextView.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -94,7 +88,6 @@ public class PairUpRecyclerViewAdapter extends
      * @param position the items position
      * @return the items id
      */
-
     @Override
     public long getItemId(int position) {
         return position;
@@ -105,14 +98,12 @@ public class PairUpRecyclerViewAdapter extends
      *
      * @return the amount of rows on the game board
      */
-
     @Override
     public int getItemCount() { return amountRows; }
 
     /**
      * Viewholder class that stores and recycles views as they are scrolled off screen
      */
-
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView frontSideTextView, backSideTextView;
         ImageView frontImageView, backImageView;
@@ -125,7 +116,6 @@ public class PairUpRecyclerViewAdapter extends
          * @param itemView the current itemView
          * @param mClickListener a listener to clicks from the user
          */
-
         ViewHolder(View itemView, ItemClickListener mClickListener) {
             super(itemView);
             frontSideTextView = itemView.findViewById(R.id.frontCardTextView);
@@ -141,7 +131,6 @@ public class PairUpRecyclerViewAdapter extends
          *
          * @param view the clicked view
          */
-
         @Override
         public void onClick(View view) {
              if (mClickListener != null){
@@ -161,7 +150,6 @@ public class PairUpRecyclerViewAdapter extends
      *
      * @return the position of the view
      */
-
     @Override
     public int getItemViewType(int position) {
         return position;
@@ -172,19 +160,10 @@ public class PairUpRecyclerViewAdapter extends
      *
      * @param hasStableIds boolean is is should remain the same
      */
-
     @Override
     public void setHasStableIds(boolean hasStableIds) {
         super.setHasStableIds(hasStableIds);
     }
-
-    /**
-     * Getting data at click position
-     *
-     * @param position the position of the view
-     * @return a card on the specific position
-     */
-
 
 
     /**
@@ -192,7 +171,6 @@ public class PairUpRecyclerViewAdapter extends
      *
      * @param itemClickListener a listener to clicks from the user
      */
-
     public void setClickListener(ItemClickListener itemClickListener) {
         this.mClickListener = itemClickListener;
     }
@@ -201,7 +179,6 @@ public class PairUpRecyclerViewAdapter extends
      * Parent activity will implement this method to respond to click events
      *
      */
-
     public interface ItemClickListener {
         void onItemClick(View view, int position) throws InterruptedException;
     }

@@ -77,7 +77,7 @@ public class DashboardFragment extends Fragment implements DeckSpinnerAdapter.On
         deckSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                viewModel.setChosenDeck((Deck) parent.getItemAtPosition(position));
+                viewModel.getChosenDeck().setValue((Deck) parent.getItemAtPosition(position));
                 view.setBackgroundResource(R.drawable.card_background);
                 notifySelected();
                 spinnerAdapter.setEditBtnVisibility(view);
@@ -163,7 +163,7 @@ public class DashboardFragment extends Fragment implements DeckSpinnerAdapter.On
         viewModel.getChosenDeck().observe(getViewLifecycleOwner(), new Observer<Deck>() {
             @Override
             public void onChanged(Deck deck) {
-                Toast.makeText(getActivity(), deck.getDeckName() + " selected", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), viewModel.getDeckName() + " selected", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -178,12 +178,12 @@ public class DashboardFragment extends Fragment implements DeckSpinnerAdapter.On
     @Override
     public void onRemoveDeckBtnClick(ConstraintLayout c, TextView deckName, TextView amountCards, int pos) {
         if (viewModel.getDecks().getValue().size() != 1){ //If not the last deck
-            viewModel.removeDeck(viewModel.getDecks().getValue().get(pos)); //Remove the last deck
+            viewModel.removeDeck(pos); //Remove the last deck
             spinnerAdapter.manageVisibility(c, deckName, amountCards);
             setSpinnerSelection(pos);
         }else {
             spinnerAdapter.manageVisibility(c, deckName, amountCards);
-            viewModel.removeDeck(viewModel.getDecks().getValue().get(pos)); //Remove the last deck
+            viewModel.removeDeck(pos); //Remove the last deck
             spinnerAdapter.notifyDataSetChanged();
             Toast.makeText(getActivity(), "OINK! You have no decks left!", Toast.LENGTH_SHORT).show();
         }

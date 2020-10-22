@@ -40,16 +40,14 @@ public class PairUpFragmentStart extends Fragment implements PairUpRecyclerViewA
     private PairUpViewModel pairUpViewModel;
     private PairUpRecyclerViewAdapter adapter;
     private PairUpRecyclerViewAdapter2 adapter2;
-    int position1, position2;
+    private int position1, position2;
     private RecyclerView recyclerView, recyclerView2;
-    private int decksize;
 
     /**
      * Does initial creations of the fragment
      *
      * @param savedInstanceState
      */
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,16 +82,11 @@ public class PairUpFragmentStart extends Fragment implements PairUpRecyclerViewA
 
         findViews(view);
         pairUpViewModel = new ViewModelProvider(getActivity()).get(PairUpViewModel.class);
-
-        adapter = new PairUpRecyclerViewAdapter(getContext(), pairUpViewModel.getCards());
-        adapter2 = new PairUpRecyclerViewAdapter2(getContext(),pairUpViewModel.getCards());
-        decksize = pairUpViewModel.getDeckSize();
-
         int numberOfColumns = 1;
 
         //first rv
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), numberOfColumns));
-        adapter = new PairUpRecyclerViewAdapter(getActivity(), pairUpViewModel.getCards());
+        adapter = new PairUpRecyclerViewAdapter(getActivity(), pairUpViewModel);
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
 
@@ -102,7 +95,7 @@ public class PairUpFragmentStart extends Fragment implements PairUpRecyclerViewA
 
         //second rv
         recyclerView2.setLayoutManager(new GridLayoutManager(getActivity(), numberOfColumns));
-        adapter2 = new PairUpRecyclerViewAdapter2(getActivity(), pairUpViewModel.getCards());
+        adapter2 = new PairUpRecyclerViewAdapter2(getActivity(), pairUpViewModel);
         adapter2.setClickListener(this::onItemClick);
         recyclerView2.setAdapter(adapter2);
 
@@ -110,13 +103,6 @@ public class PairUpFragmentStart extends Fragment implements PairUpRecyclerViewA
         recyclerView2.setLayoutManager(new GridLayoutManager(getContext(), 1));
 
         setFirstViews();
-
-        pairUpViewModel.getCard2().observe(getViewLifecycleOwner(), new Observer<Card>() {
-            @Override
-            public void onChanged(Card card) {
-                pairUpViewModel.isPair();
-            }
-        });
 
         pairUpViewModel.getIsMatch().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
@@ -182,7 +168,6 @@ public class PairUpFragmentStart extends Fragment implements PairUpRecyclerViewA
      * @param position the position of the card that the user chooses
      * @throws InterruptedException
      */
-
     @Override
     public void onItemClick(View view, int position) throws InterruptedException {
         if (pairUpViewModel.cardOneNull()) {
@@ -192,7 +177,7 @@ public class PairUpFragmentStart extends Fragment implements PairUpRecyclerViewA
         } else {
             position2 = position;
             pairUpViewModel.setCard2(pairUpViewModel.getItem(position));
-
+            pairUpViewModel.isPair();
         }
     }
 
@@ -215,7 +200,6 @@ public class PairUpFragmentStart extends Fragment implements PairUpRecyclerViewA
      *
      * @param view the view chosen by the user
      */
-
     private void setCorrectFrame(View view){
         view.setBackgroundResource(R.drawable.frame_correct);
         recyclerView.findViewHolderForAdapterPosition(position1).itemView.setBackgroundResource(R.drawable.frame_correct);
@@ -226,7 +210,6 @@ public class PairUpFragmentStart extends Fragment implements PairUpRecyclerViewA
      *
      * @param view the view chosen by the user
      */
-
     private void setIncorrectFrame(View view){
         recyclerView.findViewHolderForAdapterPosition(position1).itemView.setBackgroundResource(R.drawable.frame_incorrect);
         view.setBackgroundResource(R.drawable.frame_incorrect);
@@ -236,7 +219,6 @@ public class PairUpFragmentStart extends Fragment implements PairUpRecyclerViewA
      * Sets a 1 second delay before setting the default frame on the view
      * @param view the view chosen by the user
      */
-
     private void delay(View view) {
         //Delay 1 sec before changing back.
         final Handler handler = new Handler();
@@ -255,7 +237,6 @@ public class PairUpFragmentStart extends Fragment implements PairUpRecyclerViewA
      *
      * @param view the view chosen by the user
      */
-
     private void findViews(View view) {
         recyclerView = view.findViewById(R.id.memoryCardRecyclerView);
         recyclerView2 = view.findViewById(R.id.memoryCardRecyclerView2);
@@ -264,7 +245,6 @@ public class PairUpFragmentStart extends Fragment implements PairUpRecyclerViewA
     /**
      * Uploads the end fragment of the Pair Up game
      */
-
     private void endGame() {
         NavHostFragment.findNavController(PairUpFragmentStart.this)
                 .navigate(R.id.action_pairUpFragmentStart_to_pairUpFragmentEnd);

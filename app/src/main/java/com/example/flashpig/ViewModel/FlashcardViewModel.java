@@ -1,5 +1,6 @@
 package com.example.flashpig.ViewModel;
 
+import android.graphics.Bitmap;
 import android.os.CountDownTimer;
 
 import androidx.lifecycle.LiveData;
@@ -9,7 +10,7 @@ import androidx.lifecycle.ViewModel;
 import com.example.flashpig.DataBase.Repository;
 import com.example.flashpig.Model.Card;
 import com.example.flashpig.Model.Deck;
-import com.example.flashpig.Model.Difficulty;
+import com.example.flashpig.Difficulty;
 import com.example.flashpig.Model.Flashcard;
 
 
@@ -26,6 +27,11 @@ public class FlashcardViewModel extends ViewModel {
     private MutableLiveData<Flashcard> flashcard = new MutableLiveData<>();
     private MutableLiveData<Card> currentCard = new MutableLiveData<>();
     private MutableLiveData<Boolean> gameOver = new MutableLiveData<>();
+    private MutableLiveData<String> deckName = new MutableLiveData<>();
+    private MutableLiveData<Deck> deck = new MutableLiveData<>();
+    private MutableLiveData<Integer> easyAmount = new MutableLiveData<>();
+    private MutableLiveData<Integer> mediumAmount = new MutableLiveData<>();
+    private MutableLiveData<Integer> hardAmount = new MutableLiveData<>();
 
     private boolean hasFrontTxtAndImg;
     private boolean hasBackTxtAndImg;
@@ -33,10 +39,11 @@ public class FlashcardViewModel extends ViewModel {
     /**
      *Initialize the view model.
      */
-    public void init(Deck deck){
-        Deck deck1 = repo.getDeck(deck);
-        flashcard.setValue(new Flashcard(deck1));
+    public void init(){
+        flashcard.setValue(new Flashcard(deck.getValue()));
         currentCard.setValue(flashcard.getValue().getCurrentCard());
+        deckName.setValue(flashcard.getValue().getDeck().getDeckName());
+        updateDifficultyAmount();
         gameOver.setValue(false);
         update();
     }
@@ -45,7 +52,7 @@ public class FlashcardViewModel extends ViewModel {
      * Load the next cards values until game is over.
      */
     private void update(){
-        flashcard.setValue(flashcard.getValue());
+        updateDifficultyAmount();
         if (!flashcard.getValue().roundIsOver()){
             currentCard.setValue(flashcard.getValue().getCurrentCard());
             checkHasFrontTxtAndImg();
@@ -54,6 +61,12 @@ public class FlashcardViewModel extends ViewModel {
         else {
             gameOver.setValue(true);
         }
+    }
+
+    private void updateDifficultyAmount(){
+        easyAmount.setValue(flashcard.getValue().getEasyAmount());
+        mediumAmount.setValue(flashcard.getValue().getMediumAmount());
+        hardAmount.setValue(flashcard.getValue().getHardAmount());
     }
 
     /**
@@ -115,4 +128,22 @@ public class FlashcardViewModel extends ViewModel {
     public LiveData<Flashcard> getFlashcard() { return flashcard; }
 
     public LiveData<Card> getCurrentCard() { return currentCard; }
+
+    public LiveData<String> getDeckName() { return deckName; }
+
+    public String getCardFrontTxt(){ return currentCard.getValue().getFrontsideStr();}
+
+    public Bitmap getCardFrontImg(){ return currentCard.getValue().getFrontImg();}
+
+    public String getCardBackTxt(){ return currentCard.getValue().getBacksideStr();}
+
+    public Bitmap getCardBackImg(){ return currentCard.getValue().getBackImg();}
+
+    public MutableLiveData<Deck> getDeck() { return deck; }
+
+    public LiveData<Integer> getEasyAmount() { return easyAmount; }
+
+    public LiveData<Integer> getMediumAmount() { return mediumAmount; }
+
+    public LiveData<Integer> getHardAmount() { return hardAmount; }
 }

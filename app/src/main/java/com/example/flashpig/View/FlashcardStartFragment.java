@@ -9,13 +9,11 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
-import android.os.Parcel;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,12 +24,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.flashpig.Model.Card;
-import com.example.flashpig.Model.Flashcard;
 import com.example.flashpig.ViewModel.FlashcardViewModel;
-import com.example.flashpig.Model.Difficulty;
+import com.example.flashpig.Difficulty;
 import com.example.flashpig.R;
-
-import org.parceler.Parcels;
 
 /**
  *
@@ -70,6 +65,8 @@ public class FlashcardStartFragment extends Fragment implements View.OnClickList
         viewModel = new ViewModelProvider(getActivity()).get(FlashcardViewModel.class);
         width = (int) getResources().getDimension(R.dimen.flashcard_width);
 
+        setDifficultyAmountListeners();
+
         cardFront.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,22 +74,13 @@ public class FlashcardStartFragment extends Fragment implements View.OnClickList
             }
         });
 
-        viewModel.getFlashcard().observe(getViewLifecycleOwner(), new Observer<Flashcard>() {
-            @Override
-            public void onChanged(Flashcard flashcard) {
-                easyAmount.setText(Integer.toString(flashcard.getEasyAmount()));
-                mediumAmount.setText(Integer.toString(flashcard.getMediumAmount()));
-                hardAmount.setText(Integer.toString(flashcard.getHardAmount()));
-            }
-        });
-
         viewModel.getCurrentCard().observe(getViewLifecycleOwner(), new Observer<Card>() {
             @Override
             public void onChanged(Card card) {
-                setBackTxt(card.getBacksideStr());
-                setFrontTxt(card.getFrontsideStr());
-                setBackImg(card.getBackImg());
-                setFrontImg(card.getBackImg());
+                setBackTxt(viewModel.getCardBackTxt());
+                setFrontTxt(viewModel.getCardFrontTxt());
+                setBackImg(viewModel.getCardBackImg());
+                setFrontImg(viewModel.getCardFrontImg());
             }
         });
 
@@ -108,6 +96,29 @@ public class FlashcardStartFragment extends Fragment implements View.OnClickList
                     NavHostFragment.findNavController(FlashcardStartFragment.this)
                             .navigate(R.id.action_flashcardStartFragment_to_flashcardEndFragment);
                 }
+            }
+        });
+    }
+
+    private void setDifficultyAmountListeners(){
+        viewModel.getEasyAmount().observe(getViewLifecycleOwner(), new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer amount) {
+                easyAmount.setText(Integer.toString(amount));
+            }
+        });
+
+        viewModel.getMediumAmount().observe(getViewLifecycleOwner(), new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer amount) {
+                mediumAmount.setText(Integer.toString(amount));
+            }
+        });
+
+        viewModel.getHardAmount().observe(getViewLifecycleOwner(), new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer amount) {
+                hardAmount.setText(Integer.toString(amount));
             }
         });
     }

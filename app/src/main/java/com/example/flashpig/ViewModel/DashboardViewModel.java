@@ -1,10 +1,11 @@
 package com.example.flashpig.ViewModel;
 
+import android.graphics.Bitmap;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.flashpig.DataBase.FakeDataBase;
 import com.example.flashpig.DataBase.Repository;
 import com.example.flashpig.Model.Card;
 import com.example.flashpig.Model.Deck;
@@ -24,6 +25,7 @@ public class DashboardViewModel extends ViewModel {
     private MutableLiveData<Integer> amountDecks = new MutableLiveData<>();
     private MutableLiveData<Card> card = new MutableLiveData<>();
     private MutableLiveData<Integer> amountCards = new MutableLiveData<>();
+    private MutableLiveData<Boolean> isFrontside = new MutableLiveData<>();
 
     public DashboardViewModel() {
         decks.setValue(repo.getDecks());
@@ -58,8 +60,8 @@ public class DashboardViewModel extends ViewModel {
         return (card.getValue().getBackImg() == null && !card.getValue().getBacksideStr().isEmpty());
     }
 
-    public void removeDeck(Deck deck) {
-        repo.removeDeck(deck);
+    public void removeDeck(int pos) {
+        repo.removeDeck(pos);
         amountDecks.setValue(decks.getValue().size());
     }
 
@@ -68,36 +70,41 @@ public class DashboardViewModel extends ViewModel {
         return pos;
     }
 
-    public void setChosenDeck(Deck chosenDeck) {
-        if (chosenDeck != null) {
-            this.chosenDeck.setValue(repo.getDeck(chosenDeck));
-        }else {
-            this.chosenDeck.setValue(chosenDeck);
-        }
-        amountCards.setValue(chosenDeck.cards.size());
+    public void removeCard(int cardPos, int deckPos){
+        repo.removeCard(cardPos, deckPos);
+        getAmountCards().setValue(chosenDeck.getValue().cards.size());
     }
 
     public MutableLiveData<Card> getCard() { return card; }
 
     public void setCardAtPos(int pos){ card.setValue(chosenDeck.getValue().cards.get(pos));}
 
-    public void removeCard(int pos, Deck deck){
-        repo.removeCard(pos, deck);
-        getAmountCards().setValue(deck.cards.size());
-    }
+    public String getCardFrontTxt(){ return card.getValue().getFrontsideStr();}
+
+    public Bitmap getCardFrontImg(){ return card.getValue().getFrontImg();}
+
+    public String getCardBackTxt(){ return card.getValue().getBacksideStr();}
+
+    public Bitmap getCardBackImg(){ return card.getValue().getBackImg();}
 
     public LiveData<ArrayList<Deck>> getDecks() { return decks; }
 
     public LiveData<Integer> getAmountDecks() { return amountDecks; }
 
-    public LiveData<Deck> getChosenDeck() { return chosenDeck; }
+    public MutableLiveData<Deck> getChosenDeck() { return chosenDeck; }
+
     public Deck getDeck(){return chosenDeck.getValue();}
+
+    public Deck getDeckAtPos(int pos){ return decks.getValue().get(pos);}
+
+    public MutableLiveData<Boolean> getIsFrontside() { return isFrontside; }
 
     public void setDeckName(String deckName){ chosenDeck.getValue().setDeckName(deckName);}
 
     public String getDeckName(){ return chosenDeck.getValue().getDeckName();}
 
     public MutableLiveData<Integer> getAmountCards() { return amountCards; }
+
     public boolean decksEmpty(){
         return decks.getValue().isEmpty();
     }

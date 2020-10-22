@@ -1,4 +1,4 @@
-package com.example.flashpig.Model;
+package com.example.flashpig;
 
 /**
  * @author Wendy

@@ -30,13 +30,13 @@ public class Repository {
         return instance;
     }
 
-    public void removeCard(int postion, Deck deck){ db.removeCard(postion, deck);}
+    public void removeCard(int cardPos, int deckPos){ db.removeCard(cardPos, deckPos);}
 
     public void saveDeck(Deck deck){
         db.addDeck(deck);
     }
 
-    public void removeDeck(Deck deck) {db.removeDeck(deck);}
+    public void removeDeck(int pos) {db.removeDeck(pos);}
 
     /**
      * Gets the databases' list of decks.

@@ -1,6 +1,8 @@
 package com.example.flashpig.Model;
 
 
+import com.example.flashpig.Difficulty;
+
 import java.util.ArrayList;
 import java.util.List;
 

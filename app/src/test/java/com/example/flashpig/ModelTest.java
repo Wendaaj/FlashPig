@@ -2,7 +2,6 @@ package com.example.flashpig;
 
 import com.example.flashpig.Model.Card;
 import com.example.flashpig.Model.Deck;
-import com.example.flashpig.Model.Difficulty;
 import com.example.flashpig.Model.FlashcardProgress;
 
 import org.junit.Assert;

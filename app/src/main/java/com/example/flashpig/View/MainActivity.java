@@ -27,8 +27,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         if (getIntent().getExtras() != null) {
-            DashboardViewModel vm = new ViewModelProvider(this).get(DashboardViewModel.class);
-            vm.setChosenDeck(Parcels.unwrap(getIntent().getExtras().getParcelable("deck")));
+            DashboardViewModel viewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
+            viewModel.getChosenDeck().setValue(Parcels.unwrap(getIntent().getExtras().getParcelable("deck")));
         }
     }
 

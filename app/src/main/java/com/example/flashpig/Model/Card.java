@@ -2,6 +2,8 @@ package com.example.flashpig.Model;
 
 import android.graphics.Bitmap;
 
+import com.example.flashpig.Difficulty;
+
 import org.parceler.Parcel;
 
 import java.util.Random;

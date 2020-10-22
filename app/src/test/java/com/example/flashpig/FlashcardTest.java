@@ -8,7 +8,6 @@ import org.junit.Test;
 
 import com.example.flashpig.Model.Card;
 import com.example.flashpig.Model.Deck;
-import com.example.flashpig.Model.Difficulty;
 import com.example.flashpig.Model.Flashcard;
 
 import java.util.Random;

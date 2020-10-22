@@ -15,6 +15,6 @@ public interface DataBase {
 
     ArrayList<Deck> getDeckList();
     void addDeck(Deck deck);
-    void removeDeck(Deck deck);
-    void removeCard(int pos, Deck deck);
+    void removeDeck(int pos);
+    void removeCard(int cardPos, int deckPos );
 }

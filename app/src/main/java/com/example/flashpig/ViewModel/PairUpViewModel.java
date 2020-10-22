@@ -34,27 +34,19 @@ public class PairUpViewModel extends ViewModel {
     private MutableLiveData<Boolean> ifLastPair = new MutableLiveData<>();
     private MutableLiveData<Boolean> isEndOfGame = new MutableLiveData<>();
     private MutableLiveData<Boolean> loadNewCards = new MutableLiveData<>();
-
     private MutableLiveData<Boolean> setFirstViews = new MutableLiveData<>();
 
-    public void setIsEndOfGame(boolean isEndOfGame) {
-        this.isEndOfGame.setValue(isEndOfGame);
-    }
-
-    int showingCards = 6;
-    int deckSize;
-    List<Card> gameDeck = new ArrayList<>();
+    private int showingCards = 6;
+    private int deckSize;
+    private List<Card> gameDeck = new ArrayList<>();
 
     /**
      * Initialize the view model.
      */
-    public void init(Deck deck){
-
-        Deck chosenDeck = repo.getDeck(deck);
-        gameDeck.addAll(chosenDeck.cards);
-        deckSize = chosenDeck.getAmountCards();
-        pairUp.setValue(new PairUp(chosenDeck));
-        this.chosenDeck.setValue(deck);
+    public void init(){
+        gameDeck.addAll(chosenDeck.getValue().cards);
+        deckSize = chosenDeck.getValue().getAmountCards();
+        pairUp.setValue(new PairUp(chosenDeck.getValue()));
     }
 
     public void isPair(){
@@ -119,10 +111,18 @@ public class PairUpViewModel extends ViewModel {
         deckSize--;
     }
 
+    public boolean cardOneNull() {
+        if (card1.getValue() == null) {return true;
+        }else {return false;}
+    }
+
+    public void setIsEndOfGame(boolean isEndOfGame) {
+        this.isEndOfGame.setValue(isEndOfGame);
+    }
+
     public void reloadDeck(){
         getChosenDeck().getValue().cards.addAll(gameDeck);
     }
-
 
     public LiveData<Boolean> isEndOfGame(){ return isEndOfGame; }
 
@@ -130,13 +130,11 @@ public class PairUpViewModel extends ViewModel {
 
     public MutableLiveData<Boolean> getIfLastPair() { return ifLastPair; }
 
-    public LiveData<Card> getCard1() { return card1; }
-
     public LiveData<Card> getCard2() {
         return card2;
     }
 
-    public LiveData<Deck> getChosenDeck() {
+    public MutableLiveData<Deck> getChosenDeck() {
         return chosenDeck;
     }
 
@@ -145,11 +143,6 @@ public class PairUpViewModel extends ViewModel {
     public Deck getDeck(){return chosenDeck.getValue();}
 
     public List<Card> getCards(){return chosenDeck.getValue().cards;}
-
-    public boolean cardOneNull() {
-        if (card1.getValue() == null) {return true;
-        }else {return false;}
-    }
     public Card getItem(int position) {
         return getCards().get(position);
     }
@@ -157,11 +150,10 @@ public class PairUpViewModel extends ViewModel {
     public void setFrontPosTrue(int position){
         getItem(position).setFrontside(true);
     }
+
     public void setFrontPosFalse(int position){
         getItem(position).setFrontside(true);
     }
-
-
 
     public void setCard1(Card card1) {
         this.card1.setValue(card1);
@@ -169,15 +161,13 @@ public class PairUpViewModel extends ViewModel {
 
     public void setCard2(Card card2) { this.card2.setValue(card2); }
 
-    public void setIsMatch(boolean isMatch) { this.isMatch.setValue(isMatch);}
-
     public int getDeckSize() {
         return deckSize;
     }
+
     public void setDeckSize(int i){this.deckSize=i;}
+
     public void setShowingCards(int i){this.showingCards =i;}
 
     public MutableLiveData<Boolean> getSetFirstViews() { return setFirstViews; }
-
-
 }

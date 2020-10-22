@@ -67,8 +67,11 @@ public class FakeDataBase implements DataBase{
     public void addDeck(Deck deck) { deckList.add(deck); }
 
     @Override
-    public void removeDeck(Deck deck) { deckList.remove(deck); }
+    public void removeDeck(int pos) { deckList.remove(pos); }
 
     @Override
-    public void removeCard(int pos, Deck deck) { deckList.get(deckList.indexOf(deck)).deleteCard(deck.getCard(pos)); }
+    public void removeCard(int cardPos, int deckPos) {
+        Card card = deckList.get(deckPos).cards.get(cardPos);
+        deckList.get(deckPos).deleteCard(card);
+    }
 }

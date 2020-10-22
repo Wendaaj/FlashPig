@@ -33,7 +33,6 @@ import static android.content.Context.MODE_PRIVATE;
  */
 
 public class CreateDeckFragment extends Fragment {
-
     private TextView dcTextView;
     private TextInputLayout dcTextInputLayout;
     private Button dcButton;
@@ -45,7 +44,6 @@ public class CreateDeckFragment extends Fragment {
     private CheckBox cccheckBox;
     private ConstraintLayout goBack;
     private ImageView pig;
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

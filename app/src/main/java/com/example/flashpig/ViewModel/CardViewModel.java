@@ -2,7 +2,6 @@ package com.example.flashpig.ViewModel;
 
 import android.graphics.Bitmap;
 
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -53,16 +52,10 @@ public class CardViewModel extends ViewModel {
     public Bitmap getBackImg(){return card.getValue().getBackImg();}
 
     public Deck getCurrentDeck(){return deck.getValue();}
-    public Card getCurrentCard(){return card.getValue();}
-
 
     public MutableLiveData<Deck> getDeck() { return deck; }
 
     public void setDeckName(String deckName) { deck.getValue().setDeckName(deckName); }
 
-    public int getCardPos(){
-        return (deck.getValue().cards.indexOf(this.card) + 1);
-    }
-
-    public MutableLiveData<String> getFrontTxt() { return frontTxt; }
+    public int getCardPos(){ return (deck.getValue().cards.indexOf(card.getValue()) + 1); }
 }
