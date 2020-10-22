@@ -1,0 +1,379 @@
+@startuml
+
+title __VIEW's Class Diagram__\n
+
+  namespace com.example.flashpig {
+    namespace View {
+      class com.example.flashpig.View.CardFragment {
+          {static} + CAMERA_PERM_CODE : int
+          {static} + CAMERA_REQUEST_CODE : int
+          {static} + IMAGE_PICK_CODE : int
+          {static} + PERMISSION_CODE : int
+          - ccButtonback1 : Button
+          - ccButtonback2 : Button
+          - ccButtonfront : Button
+          - ccCameraButton : ImageButton
+          - ccCameraText : TextView
+          - ccCardn : TextView
+          - ccGalleryButton : ImageButton
+          - ccGalleryText : TextView
+          - ccImageView : ImageView
+          - ccPicCardview : CardView
+          - ccTextCardview : CardView
+          - ccTextTop : TextView
+          - ccTextinput : TextInputLayout
+          - ccToolbar : Toolbar
+          - isFront : boolean
+          + onActivityResult()
+          + onCreate()
+          + onCreateView()
+          + onRequestPermissionsResult()
+          + onViewCreated()
+          - askCameraPermission()
+          - enableFront()
+          - findViews()
+          - hideButtons()
+          - loadUI()
+          - openCamera()
+          - pickImageFromGallery()
+      }
+    }
+  }
+  
+
+  namespace com.example.flashpig {
+    namespace View {
+      class com.example.flashpig.View.CreateDeckFragment {
+          - ccGoBackCardview : CardView
+          - ccNoBtn : Button
+          - ccYesBtn : Button
+          - cccheckBox : CheckBox
+          - dcButton : Button
+          - dcTextInputLayout : TextInputLayout
+          - dcTextView : TextView
+          - goBack : ConstraintLayout
+          - inputText : String
+          - pig : ImageView
+          - toolbar : Toolbar
+          + loadPreferences()
+          + onCreate()
+          + onCreateView()
+          + onViewCreated()
+          + savePreferences()
+          - findViews()
+          - goBackCheckboxHandler()
+          - setCheckboxView()
+          - setView()
+          - setYesNoDeckBtn()
+      }
+    }
+  }
+  
+
+  namespace com.example.flashpig {
+    namespace View {
+      class com.example.flashpig.View.DashboardFragment {
+          - deckSpinner : Spinner
+          - ndecks : TextView
+          + onCreateView()
+          + onRemoveDeckBtnClick()
+          + onViewCreated()
+          - configSpinner()
+          - notifySelected()
+          - setBtnListeners()
+          - setSpinnerSelection()
+          - updateViews()
+      }
+    }
+  }
+  
+
+  namespace com.example.flashpig {
+    namespace View {
+      class com.example.flashpig.View.FlashcardActivity {
+          - checkBox : CheckBox
+          - noBtn : Button
+          - quitView : ConstraintLayout
+          - title : TextView
+          - toolbar : Toolbar
+          - yesBtn : Button
+          + onBackPressed()
+          # onCreate()
+          - findViews()
+          - loadPreferences()
+          - quit()
+          - savePreferences()
+      }
+    }
+  }
+  
+
+  namespace com.example.flashpig {
+    namespace View {
+      class com.example.flashpig.View.FlashcardEndFragment {
+          + onCreate()
+          + onCreateView()
+          + onViewCreated()
+      }
+    }
+  }
+  
+
+  namespace com.example.flashpig {
+    namespace View {
+      class com.example.flashpig.View.FlashcardStartFragment {
+          - btnEasy : Button
+          - btnHard : Button
+          - btnMedium : Button
+          - cardBack : FrameLayout
+          - cardFront : FrameLayout
+          - easyAmount : TextView
+          - hardAmount : TextView
+          - imgBack : ImageView
+          - imgFront : ImageView
+          - isBackVisible : boolean
+          - mediumAmount : TextView
+          - setLeftIn : AnimatorSet
+          - setRightOut : AnimatorSet
+          - txtBack : TextView
+          - txtFront : TextView
+          - width : int
+          + onClick()
+          + onCreate()
+          + onCreateView()
+          + onViewCreated()
+          - changeCameraDistance()
+          - findViews()
+          - flipCard()
+          - loadAnimations()
+          - setBackImg()
+          - setBackTxt()
+          - setFrontImg()
+          - setFrontTxt()
+      }
+    }
+  }
+  
+
+  namespace com.example.flashpig {
+    namespace View {
+      class com.example.flashpig.View.GridSpacingCardDecoration {
+          - col : int
+          - spacing : int
+          + GridSpacingCardDecoration()
+          + getItemOffsets()
+      }
+    }
+  }
+  
+
+  namespace com.example.flashpig {
+    namespace View {
+      class com.example.flashpig.View.MainActivity {
+          {static} ~ REQUEST_TAKE_PHOTO : int
+          + onCreateOptionsMenu()
+          + onOptionsItemSelected()
+          # onCreate()
+      }
+    }
+  }
+  
+
+  namespace com.example.flashpig {
+    namespace View {
+      class com.example.flashpig.View.PairUpActivity {
+          - toolbar : Toolbar
+          # onCreate()
+      }
+    }
+  }
+  
+
+  namespace com.example.flashpig {
+    namespace View {
+      class com.example.flashpig.View.PairUpFragmentEnd {
+          + onCreate()
+          + onCreateView()
+          + onViewCreated()
+      }
+    }
+  }
+  
+
+  namespace com.example.flashpig {
+    namespace View {
+      class com.example.flashpig.View.PairUpFragmentStart {
+          ~ position1 : int
+          ~ position2 : int
+          - decksize : int
+          - recyclerView : RecyclerView
+          - recyclerView2 : RecyclerView
+          + onCreate()
+          + onCreateView()
+          + onItemClick()
+          + onViewCreated()
+          - delay()
+          - endGame()
+          - findViews()
+          - setCorrectFrame()
+          - setFirstViews()
+          - setIncorrectFrame()
+      }
+    }
+  }
+  
+
+  namespace com.example.flashpig {
+    namespace View {
+      class com.example.flashpig.View.PairUpRecyclerViewAdapter {
+          + mContext : Context
+          ~ amountRows : int
+          - cardsList : List<Card>
+          + PairUpRecyclerViewAdapter()
+          + getItem()
+          + getItemCount()
+          + getItemId()
+          + getItemViewType()
+          + onBindViewHolder()
+          + onCreateViewHolder()
+          + setHasStableIds()
+          ~ setClickListener()
+      }
+    }
+  }
+  
+
+  namespace com.example.flashpig {
+    namespace View {
+      interface com.example.flashpig.View.PairUpRecyclerViewAdapter.ItemClickListener {
+          {abstract} + onItemClick()
+      }
+    }
+  }
+  
+
+  namespace com.example.flashpig {
+    namespace View {
+      class com.example.flashpig.View.PairUpRecyclerViewAdapter.ViewHolder {
+          ~ backImageView : ImageView
+          ~ backSideTextView : TextView
+          ~ frontImageView : ImageView
+          ~ frontSideTextView : TextView
+          + onClick()
+          ~ ViewHolder()
+      }
+    }
+  }
+  
+
+  namespace com.example.flashpig {
+    namespace View {
+      class com.example.flashpig.View.PairUpRecyclerViewAdapter2 {
+          + mContext : Context
+          ~ reload : boolean
+          ~ reloadCounter : int
+          - cardsList2 : List<Card>
+          + PairUpRecyclerViewAdapter2()
+          + getItem()
+          + getItemCount()
+          + getItemId()
+          + getItemViewType()
+          + onBindViewHolder()
+          + onCreateViewHolder()
+          + setHasStableIds()
+          + setReload()
+          ~ setClickListener()
+      }
+    }
+  }
+  
+
+  namespace com.example.flashpig {
+    namespace View {
+      interface com.example.flashpig.View.PairUpRecyclerViewAdapter2.ItemClickListener {
+          {abstract} + onItemClick()
+      }
+    }
+  }
+  
+
+  namespace com.example.flashpig {
+    namespace View {
+      class com.example.flashpig.View.PairUpRecyclerViewAdapter2.ViewHolder {
+          ~ backImageView : ImageView
+          ~ backSideTextView : TextView
+          ~ frontImageView : ImageView
+          ~ frontSideTextView : TextView
+          ~ memorycard : CardView
+          + onClick()
+          ~ ViewHolder()
+      }
+    }
+  }
+  
+
+  namespace com.example.flashpig {
+    namespace View {
+      class com.example.flashpig.View.SplashScreen {
+          ~ anim : AnimationDrawable
+          ~ imageView : ImageView
+          + onCreate()
+          + onCreateView()
+          + onViewCreated()
+      }
+    }
+  }
+  
+
+  com.example.flashpig.View.CardFragment -up-|> androidx.fragment.app.Fragment
+  com.example.flashpig.View.CardFragment o-- com.example.flashpig.ViewModel.CardViewModel : viewModel
+  com.example.flashpig.View.CreateDeckFragment -up-|> androidx.fragment.app.Fragment
+  com.example.flashpig.View.CreateDeckFragment o-- com.example.flashpig.ViewModel.CardViewModel : viewModel
+  com.example.flashpig.View.DashboardFragment .up.|> com.example.flashpig.EditDeck.DeckSpinnerAdapter.OnEditItemsClickListener
+  com.example.flashpig.View.DashboardFragment -up-|> androidx.fragment.app.Fragment
+  com.example.flashpig.View.DashboardFragment o-- com.example.flashpig.EditDeck.DeckSpinnerAdapter : spinnerAdapter
+  com.example.flashpig.View.DashboardFragment o-- com.example.flashpig.ViewModel.DashboardViewModel : viewModel
+  com.example.flashpig.View.FlashcardActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.flashpig.View.FlashcardActivity o-- com.example.flashpig.ViewModel.FlashcardViewModel : viewModel
+  com.example.flashpig.View.FlashcardEndFragment -up-|> androidx.fragment.app.Fragment
+  com.example.flashpig.View.FlashcardStartFragment .up.|> android.view.View.OnClickListener
+  com.example.flashpig.View.FlashcardStartFragment -up-|> androidx.fragment.app.Fragment
+  com.example.flashpig.View.FlashcardStartFragment o-- com.example.flashpig.ViewModel.FlashcardViewModel : viewModel
+  com.example.flashpig.View.GridSpacingCardDecoration -up-|> androidx.recyclerview.widget.RecyclerView.ItemDecoration
+  com.example.flashpig.View.MainActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.flashpig.View.PairUpActivity -up-|> androidx.appcompat.app.AppCompatActivity
+  com.example.flashpig.View.PairUpActivity o-- com.example.flashpig.ViewModel.PairUpViewModel : viewModel
+  com.example.flashpig.View.PairUpFragmentEnd -up-|> androidx.fragment.app.Fragment
+  com.example.flashpig.View.PairUpFragmentStart .up.|> com.example.flashpig.View.PairUpRecyclerViewAdapter.ItemClickListener
+  com.example.flashpig.View.PairUpFragmentStart -up-|> androidx.fragment.app.Fragment
+  com.example.flashpig.View.PairUpFragmentStart o-- com.example.flashpig.View.PairUpRecyclerViewAdapter : adapter
+  com.example.flashpig.View.PairUpFragmentStart o-- com.example.flashpig.View.PairUpRecyclerViewAdapter2 : adapter2
+  com.example.flashpig.View.PairUpFragmentStart o-- com.example.flashpig.ViewModel.PairUpViewModel : pairUpViewModel
+  com.example.flashpig.View.PairUpRecyclerViewAdapter -up-|> androidx.recyclerview.widget.RecyclerView.Adapter
+  com.example.flashpig.View.PairUpRecyclerViewAdapter o-- com.example.flashpig.View.PairUpRecyclerViewAdapter.ItemClickListener : mClickListener
+  com.example.flashpig.View.PairUpRecyclerViewAdapter +-down- com.example.flashpig.View.PairUpRecyclerViewAdapter.ItemClickListener
+  com.example.flashpig.View.PairUpRecyclerViewAdapter +-down- com.example.flashpig.View.PairUpRecyclerViewAdapter.ViewHolder
+  com.example.flashpig.View.PairUpRecyclerViewAdapter.ViewHolder .up.|> android.view.View.OnClickListener
+  com.example.flashpig.View.PairUpRecyclerViewAdapter.ViewHolder -up-|> androidx.recyclerview.widget.RecyclerView.ViewHolder
+  com.example.flashpig.View.PairUpRecyclerViewAdapter.ViewHolder o-- com.example.flashpig.View.PairUpRecyclerViewAdapter.ItemClickListener : mClickListener
+  com.example.flashpig.View.PairUpRecyclerViewAdapter2 .up.|> java.io.Serializable
+  com.example.flashpig.View.PairUpRecyclerViewAdapter2 -up-|> androidx.recyclerview.widget.RecyclerView.Adapter
+  com.example.flashpig.View.PairUpRecyclerViewAdapter2 o-- com.example.flashpig.Model.Card : card1
+  com.example.flashpig.View.PairUpRecyclerViewAdapter2 o-- com.example.flashpig.Model.Card : card2
+  com.example.flashpig.View.PairUpRecyclerViewAdapter2 o-- com.example.flashpig.View.PairUpRecyclerViewAdapter2.ItemClickListener : mClickListener
+  com.example.flashpig.View.PairUpRecyclerViewAdapter2 +-down- com.example.flashpig.View.PairUpRecyclerViewAdapter2.ItemClickListener
+  com.example.flashpig.View.PairUpRecyclerViewAdapter2 +-down- com.example.flashpig.View.PairUpRecyclerViewAdapter2.ViewHolder
+  com.example.flashpig.View.PairUpRecyclerViewAdapter2.ViewHolder .up.|> android.view.View.OnClickListener
+  com.example.flashpig.View.PairUpRecyclerViewAdapter2.ViewHolder -up-|> androidx.recyclerview.widget.RecyclerView.ViewHolder
+  com.example.flashpig.View.PairUpRecyclerViewAdapter2.ViewHolder o-- com.example.flashpig.View.PairUpRecyclerViewAdapter2.ItemClickListener : mClickListener
+  com.example.flashpig.View.SplashScreen -up-|> androidx.fragment.app.Fragment
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

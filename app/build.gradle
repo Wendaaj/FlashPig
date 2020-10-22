@@ -83,8 +83,6 @@ dependencies {
     testImplementation "androidx.arch.core:core-testing:$arch_version"
 
 
-
-
     //Tests
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
@@ -111,4 +109,5 @@ dependencies {
     //Parceler
     implementation 'org.parceler:parceler-api:1.1.12'
     annotationProcessor 'org.parceler:parceler:1.1.12'
+
 }

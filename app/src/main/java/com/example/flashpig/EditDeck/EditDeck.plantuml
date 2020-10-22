@@ -1,0 +1,153 @@
+@startuml
+
+title __EDITDECK's Class Diagram__\n
+
+  namespace com.example.flashpig {
+    namespace EditDeck {
+      class com.example.flashpig.EditDeck.DeckRecyclerViewAdapter {
+          - cardsList : List<Card>
+          + DeckRecyclerViewAdapter()
+          + getItemCount()
+          + onBindViewHolder()
+          + onCreateViewHolder()
+          ~ setClickListener()
+      }
+    }
+  }
+  
+
+  namespace com.example.flashpig {
+    namespace EditDeck {
+      class com.example.flashpig.EditDeck.DeckRecyclerViewAdapter.EditCardViewHolder {
+          ~ cardImageView : ImageView
+          ~ cardTextView : TextView
+          ~ deleteCardBtn : Button
+          ~ editCardBtn : Button
+          + onClick()
+          ~ EditCardViewHolder()
+      }
+    }
+  }
+  
+
+  namespace com.example.flashpig {
+    namespace EditDeck {
+      interface com.example.flashpig.EditDeck.DeckRecyclerViewAdapter.ItemClickListener {
+          {abstract} + onEditItemBtnClick()
+          {abstract} + onItemClick()
+          {abstract} + onRemoveCardClick()
+      }
+    }
+  }
+  
+
+  namespace com.example.flashpig {
+    namespace EditDeck {
+      class com.example.flashpig.EditDeck.DeckSpinnerAdapter {
+          - context : Context
+          + DeckSpinnerAdapter()
+          + getDropDownView()
+          + getView()
+          + manageVisibility()
+          + setEditBtnVisibility()
+          - initView()
+      }
+    }
+  }
+  
+
+  namespace com.example.flashpig {
+    namespace EditDeck {
+      interface com.example.flashpig.EditDeck.DeckSpinnerAdapter.OnEditItemsClickListener {
+          {abstract} + onRemoveDeckBtnClick()
+      }
+    }
+  }
+  
+
+  namespace com.example.flashpig {
+    namespace EditDeck {
+      class com.example.flashpig.EditDeck.EditDeckFragment {
+          - addCardButton : ImageButton
+          - amountCards : TextView
+          - cardList : RecyclerView
+          - changeSideButton : Button
+          - checkBox : CheckBox
+          - checkBoxDeck : CheckBox
+          - deckName : TextInputLayout
+          - deckNameEditText : EditText
+          - deckNameInput : String
+          - deckSpinner : Spinner
+          - deleteCard : ConstraintLayout
+          - deleteDeck : ConstraintLayout
+          - noBtn : Button
+          - noBtnDeck : Button
+          - saveDeck : Button
+          - yesBtn : Button
+          - yesBtnDeck : Button
+          {static} + hideSpinnerDropDown()
+          + loadPreferencesCard()
+          + loadPreferencesDeck()
+          + onCreate()
+          + onCreateView()
+          + onEditItemBtnClick()
+          + onItemClick()
+          + onRemoveCardClick()
+          + onRemoveDeckBtnClick()
+          + onViewCreated()
+          + savePreferencesCard()
+          + savePreferencesDeck()
+          + setAmountTxt()
+          - cardListGrid()
+          - changeSideButton()
+          - configSpinner()
+          - findViews()
+          - notifySelected()
+          - removeCard()
+          - removeDeckCheckboxHandler()
+          - setSpinnerSelection()
+          - setYesNoBtn()
+          - setYesNoDeckBtn()
+      }
+    }
+  }
+  
+
+  namespace com.example.flashpig {
+    namespace EditDeck {
+      class com.example.flashpig.EditDeck.GridSpacingCardDecoration {
+          - col : int
+          - spacing : int
+          + GridSpacingCardDecoration()
+          + getItemOffsets()
+      }
+    }
+  }
+  
+
+  com.example.flashpig.EditDeck.DeckRecyclerViewAdapter -up-|> androidx.recyclerview.widget.RecyclerView.Adapter
+  com.example.flashpig.EditDeck.DeckRecyclerViewAdapter o-- com.example.flashpig.EditDeck.DeckRecyclerViewAdapter.ItemClickListener : clickListener
+  com.example.flashpig.EditDeck.DeckRecyclerViewAdapter +-down- com.example.flashpig.EditDeck.DeckRecyclerViewAdapter.EditCardViewHolder
+  com.example.flashpig.EditDeck.DeckRecyclerViewAdapter +-down- com.example.flashpig.EditDeck.DeckRecyclerViewAdapter.ItemClickListener
+  com.example.flashpig.EditDeck.DeckRecyclerViewAdapter.EditCardViewHolder .up.|> android.view.View.OnClickListener
+  com.example.flashpig.EditDeck.DeckRecyclerViewAdapter.EditCardViewHolder -up-|> androidx.recyclerview.widget.RecyclerView.ViewHolder
+  com.example.flashpig.EditDeck.DeckSpinnerAdapter -up-|> android.widget.ArrayAdapter
+  com.example.flashpig.EditDeck.DeckSpinnerAdapter o-- com.example.flashpig.EditDeck.DeckSpinnerAdapter.OnEditItemsClickListener : onEditItemClickListener
+  com.example.flashpig.EditDeck.DeckSpinnerAdapter +-down- com.example.flashpig.EditDeck.DeckSpinnerAdapter.OnEditItemsClickListener
+  com.example.flashpig.EditDeck.EditDeckFragment .up.|> com.example.flashpig.EditDeck.DeckRecyclerViewAdapter.ItemClickListener
+  com.example.flashpig.EditDeck.EditDeckFragment .up.|> com.example.flashpig.EditDeck.DeckSpinnerAdapter.OnEditItemsClickListener
+  com.example.flashpig.EditDeck.EditDeckFragment -up-|> androidx.fragment.app.Fragment
+  com.example.flashpig.EditDeck.EditDeckFragment o-- com.example.flashpig.EditDeck.DeckRecyclerViewAdapter : deckRecyclerViewAdapter
+  com.example.flashpig.EditDeck.EditDeckFragment o-- com.example.flashpig.EditDeck.DeckSpinnerAdapter : spinnerAdapter
+  com.example.flashpig.EditDeck.EditDeckFragment o-- com.example.flashpig.ViewModel.DashboardViewModel : viewModel
+  com.example.flashpig.EditDeck.GridSpacingCardDecoration -up-|> androidx.recyclerview.widget.RecyclerView.ItemDecoration
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml
