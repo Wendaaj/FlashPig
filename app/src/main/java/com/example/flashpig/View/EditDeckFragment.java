@@ -92,13 +92,14 @@ public class EditDeckFragment extends Fragment implements DeckRecyclerViewAdapte
             public void onClick(View v) {
                 deckNameInput = deckName.getEditText().getText().toString();
                 if (!deckNameInput.isEmpty()) {
-                    viewModel.getChosenDeck().getValue().setDeckName(deckName.getEditText().getText().toString());
+                    //viewModel.getChosenDeck().getValue().setDeckName(deckName.getEditText().getText().toString());
+                    viewModel.setDeckName(deckNameInput);
                     deckName.getEditText().getText().clear();
                 } else{
                     Toast.makeText(getActivity(), "Please input deck name! OINK! OINK!",
                             Toast.LENGTH_SHORT).show();
                 }
-                Toast.makeText(getContext(), viewModel.getChosenDeck().getValue().getDeckName() + " is saved", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), viewModel.getDeckName() + " is saved", Toast.LENGTH_SHORT).show();
 
                 Bundle bundle = new Bundle();
                 bundle.putParcelable("deck", Parcels.wrap(viewModel.getChosenDeck().getValue()));
@@ -119,7 +120,8 @@ public class EditDeckFragment extends Fragment implements DeckRecyclerViewAdapte
                 view.setBackgroundResource(R.drawable.card_background);
                 notifySelected();
                 setAmountTxt();
-                deckNameEditText.setText(viewModel.getChosenDeck().getValue().getDeckName());
+                //deckNameEditText.setText(viewModel.getChosenDeck().getValue().getDeckName());
+                deckNameEditText.setText(viewModel.getDeckName());
                 spinnerAdapter.setEditBtnVisibility(view);
                 cardListGrid(viewModel.getChosenDeck().getValue());
             }
@@ -145,9 +147,9 @@ public class EditDeckFragment extends Fragment implements DeckRecyclerViewAdapte
         if(viewModel.getChosenDeck().getValue().getAmountCards() == 0){
             amountCards.setText("No cards oink!");
         }else if(viewModel.getChosenDeck().getValue().getAmountCards()>1){
-            amountCards.setText(Integer.toString(viewModel.getChosenDeck().getValue().getAmountCards()) + " cards");
+            amountCards.setText(Integer.toString(viewModel.getAmountCards()) + " cards");
         }else{
-            amountCards.setText(Integer.toString(viewModel.getChosenDeck().getValue().getAmountCards()) + " card");
+            amountCards.setText(Integer.toString(viewModel.getAmountCards()) + " card");
         }
     }
 
