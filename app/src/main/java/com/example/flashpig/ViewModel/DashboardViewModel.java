@@ -80,8 +80,6 @@ public class DashboardViewModel extends ViewModel {
         getAmountCards().setValue(deck.cards.size());
     }
 
-    public void setCard(Card card) { this.card.setValue(card); }
-
     public LiveData<ArrayList<Deck>> getDecks() { return decks; }
 
     public LiveData<Integer> getAmountDecks() { return amountDecks; }

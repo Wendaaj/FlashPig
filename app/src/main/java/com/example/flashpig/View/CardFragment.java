@@ -15,6 +15,7 @@ import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
@@ -28,6 +29,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.flashpig.Model.Card;
 import com.example.flashpig.R;
 import com.example.flashpig.ViewModel.CardViewModel;
 import com.google.android.material.textfield.TextInputEditText;
@@ -81,9 +83,11 @@ public class CardFragment extends Fragment {
 
         viewModel = new ViewModelProvider(getActivity()).get(CardViewModel.class);
         if (getArguments() != null){
-            viewModel.setDeck(Parcels.unwrap(getArguments().getParcelable("deck")));
+            //viewModel.setDeck(Parcels.unwrap(getArguments().getParcelable("deck")));
+            viewModel.getDeck().setValue(Parcels.unwrap(getArguments().getParcelable("deck")));
             if (getArguments().containsKey("card")) {
-                viewModel.setCard(Parcels.unwrap(getArguments().getParcelable("card")));
+                //viewModel.setCard(Parcels.unwrap(getArguments().getParcelable("card")));
+                viewModel.getCard().setValue(Parcels.unwrap(getArguments().getParcelable("card")));
                 ccButtonback1.setEnabled(false);
                 updateViews();
             }
@@ -110,13 +114,14 @@ public class CardFragment extends Fragment {
             public void onClick(View v){
                 String inputText = ccTextinput.getEditText().getText().toString();
                 if (!inputText.isEmpty()||ccImageView.getDrawable()!=null) { //If something is set
-                    viewModel.getCard().getValue().setFrontsideStr(inputText); //Set cards frontside
+                    //viewModel.getCard().getValue().setFrontsideStr(inputText); //Set cards frontside
+                    viewModel.setFrontStr(inputText);
                     ccTextinput.getEditText().getText().clear(); //Clear for the backside
                     isFront = false; //Set is backside
                     enableFront();
                     ccImageView.setImageDrawable(null); //Clear image for backside
                     ccCardn.setText("Add backside nr: " + viewModel.getCardPos(viewModel.getCard().getValue()));
-                    if (viewModel.getCard().getValue().getBackImg() != null || viewModel.getCard().getValue().getBacksideStr() != null){
+                    if (viewModel.getBackImg() != null || viewModel.getBackStr() != null){
                         updateViews();
                     }
                 }
@@ -132,7 +137,8 @@ public class CardFragment extends Fragment {
             public void onClick(View v){
                 String inputText = ccTextinput.getEditText().getText().toString();
                 if (!inputText.isEmpty()||ccImageView.getDrawable()!=null){
-                    viewModel.getCard().getValue().setBacksideStr(inputText);
+                    //viewModel.getCard().getValue().setBacksideStr(inputText);
+                    viewModel.setBackStr(inputText);
                     ccTextinput.getEditText().getText().clear();
                     viewModel.initCard();
                     isFront = true;
@@ -151,7 +157,8 @@ public class CardFragment extends Fragment {
             public void onClick(View view) {
                 String inputText = ccTextinput.getEditText().getText().toString();
                 if (!inputText.isEmpty()||ccImageView.getDrawable()!=null){
-                    viewModel.getCard().getValue().setBacksideStr(inputText);
+                    //viewModel.getCard().getValue().setBacksideStr(inputText);
+                    viewModel.setBackStr(inputText);
                     ccTextinput.getEditText().getText().clear();
                     ccImageView.setImageDrawable(null);
                     ccCardn.setText("Add backside nr: " + viewModel.getCardPos(viewModel.getCard().getValue()));
@@ -176,14 +183,15 @@ public class CardFragment extends Fragment {
             public void onClick(View view) {
                 String inputText = ccTextinput.getEditText().getText().toString();
                 if (!inputText.isEmpty()||ccImageView.getDrawable()!=null){
-                    viewModel.getCard().getValue().setBacksideStr(inputText);
+                    //viewModel.getCard().getValue().setBacksideStr(inputText);
+                    viewModel.setBackStr(inputText);
                     ccTextinput.getEditText().getText().clear();
                     ccImageView.setImageDrawable(null);
                     ccCardn.setText("Add backside nr: " + viewModel.getCardPos(viewModel.getCard().getValue()));
                     viewModel.saveDeck();
                     Bundle bundle = new Bundle();
-                    bundle.putParcelable("deck", Parcels.wrap(viewModel.getDeck().getValue()));
-                    Toast.makeText(getContext(), viewModel.getDeck().getValue().getDeckName() +
+                    bundle.putParcelable("deck", Parcels.wrap(viewModel.getCurrentDeck()));
+                    Toast.makeText(getContext(), viewModel.getDeckName() +
                             " is saved! OINK! OINK!", Toast.LENGTH_SHORT).show();
                     viewModel.resetViewModel();
                     NavHostFragment.findNavController(CardFragment.this)
@@ -218,12 +226,16 @@ public class CardFragment extends Fragment {
 
     private void updateViews(){
         if (isFront) {
-            ccTextEditTxt.setText(viewModel.getCard().getValue().getFrontsideStr());
-            ccImageView.setImageBitmap(viewModel.getCard().getValue().getFrontImg());
+            //ccTextEditTxt.setText(viewModel.getCard().getValue().getFrontsideStr());
+            ccTextEditTxt.setText(viewModel.getFrontStr());
+            //ccImageView.setImageBitmap(viewModel.getCard().getValue().getFrontImg());
+            ccImageView.setImageBitmap(viewModel.getFrontImg());
         }
         else {
-            ccTextEditTxt.setText(viewModel.getCard().getValue().getBacksideStr());
-            ccImageView.setImageBitmap(viewModel.getCard().getValue().getBackImg());
+            //ccTextEditTxt.setText(viewModel.getCard().getValue().getBacksideStr());
+            ccTextEditTxt.setText(viewModel.getBackStr());
+            //ccImageView.setImageBitmap(viewModel.getCard().getValue().getBackImg());
+            ccImageView.setImageBitmap(viewModel.getBackImg());
         }
     }
 
@@ -269,10 +281,12 @@ public class CardFragment extends Fragment {
             ccImageView.setImageBitmap(image);
             hideButtons();
             if(isFront){
-                viewModel.getCard().getValue().setFrontImg(image);
+                //viewModel.getCard().getValue().setFrontImg(image);
+                viewModel.setFrontImg(image);
             }
             else{
-                viewModel.getCard().getValue().setBackImg(image);
+                //viewModel.getCard().getValue().setBackImg(image);
+                viewModel.setBackImg(image);
             }
 
         }
@@ -283,10 +297,12 @@ public class CardFragment extends Fragment {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imageUri);
                 ccImageView.setImageBitmap(bitmap);
                 if(isFront){
-                    viewModel.getCard().getValue().setFrontImg(bitmap);
+                    //viewModel.getCard().getValue().setFrontImg(bitmap);
+                    viewModel.setFrontImg(bitmap);
                 }
                 else{
-                    viewModel.getCard().getValue().setBackImg(bitmap);
+                    //viewModel.getCard().getValue().setBackImg(bitmap);
+                    viewModel.setBackImg(bitmap);
                 }
 
             } catch (IOException e) {
@@ -353,8 +369,10 @@ public class CardFragment extends Fragment {
 
     private  void loadUI(){
         enableFront();
-        ccCardn.setText("Add frontside nr: " + viewModel.getCardPos(viewModel.getCard().getValue()));
-        ccTextTop.setText(viewModel.getDeck().getValue().getDeckName());
+        //ccCardn.setText("Add frontside nr: " + viewModel.getCardPos(viewModel.getCard().getValue()));
+        ccCardn.setText("Add frontside nr: " + viewModel.getCardPos(viewModel.getCurrentCard()));
+        //ccTextTop.setText(viewModel.getDeck().getValue().getDeckName());
+        ccTextTop.setText(viewModel.getDeckName());
     }
 
     /**

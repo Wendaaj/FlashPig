@@ -36,7 +36,7 @@ public class DashboardViewModelTest {
         //card.setFrontImg(bmp);
         deck.addCard(card);
         dashboardViewModel.setChosenDeck(deck);
-        dashboardViewModel.setCard(card);
+        dashboardViewModel.getCard().setValue(card);
     }
 
     @Test
@@ -53,7 +53,7 @@ public class DashboardViewModelTest {
         card.setBacksideStr(null);
         card.setBackImg(null);
         card.setFrontImg(null);
-        dashboardViewModel.setCard(card);
+        dashboardViewModel.getCard().setValue(card);
         assertTrue(dashboardViewModel.checkHasFrontTxtOnly());
     }
 
@@ -71,7 +71,7 @@ public class DashboardViewModelTest {
         card.setFrontsideStr(null);
         card.setBackImg(null);
         card.setFrontImg(null);
-        dashboardViewModel.setCard(card);
+        dashboardViewModel.getCard().setValue(card);
         assertTrue(dashboardViewModel.checkHasBackTxtOnly());
     }
 

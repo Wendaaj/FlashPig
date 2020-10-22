@@ -22,8 +22,8 @@ public class CardViewModelTest {
     public void setup(){
         Card card = new Card();
         Deck deck = new Deck();
-        cardViewModel.setDeck(deck);
-        cardViewModel.setCard(card);
+        cardViewModel.getDeck().setValue(deck);
+        cardViewModel.getCard().setValue(card);
         cardViewModel.initCard();
         cardViewModel.initDeck();
     }
