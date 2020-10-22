@@ -98,7 +98,7 @@ public class DashboardFragment extends Fragment implements DeckSpinnerAdapter.On
             @Override
             public void onClick(View v) {
                 if (viewModel.getAmountDecks().getValue() != 0) {
-                    Parcelable wrappedDeck = Parcels.wrap(viewModel.getChosenDeck().getValue());
+                    Parcelable wrappedDeck = Parcels.wrap(viewModel.getDeck());
                     Intent intent = new Intent(getActivity(), FlashcardActivity.class);
                     intent.putExtra("deck", wrappedDeck);
                     startActivity(intent);
@@ -112,7 +112,7 @@ public class DashboardFragment extends Fragment implements DeckSpinnerAdapter.On
             @Override
             public void onClick(View v) {
                 if (viewModel.getAmountDecks().getValue() != 0) {
-                    Parcelable wrappedDeck = Parcels.wrap(viewModel.getChosenDeck().getValue());
+                    Parcelable wrappedDeck = Parcels.wrap(viewModel.getDeck());
                     Intent intent = new Intent(getActivity(), PairUpActivity.class);
                     intent.putExtra("deck", wrappedDeck);
                     startActivity(intent);
@@ -125,9 +125,9 @@ public class DashboardFragment extends Fragment implements DeckSpinnerAdapter.On
         view.findViewById(R.id.editDeckBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!viewModel.getDecks().getValue().isEmpty()) {
+                if (!viewModel.decksEmpty()) {
                     Bundle bundle = new Bundle();
-                    bundle.putParcelable("deck", Parcels.wrap(viewModel.getChosenDeck().getValue()));
+                    bundle.putParcelable("deck", Parcels.wrap(viewModel.getDeck()));
                     NavHostFragment.findNavController(DashboardFragment.this)
                             .navigate(R.id.action_FirstFragment_to_editDeckFragment, bundle);
                 }else {

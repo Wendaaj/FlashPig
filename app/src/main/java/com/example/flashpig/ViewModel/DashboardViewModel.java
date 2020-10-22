@@ -91,10 +91,14 @@ public class DashboardViewModel extends ViewModel {
     public LiveData<Integer> getAmountDecks() { return amountDecks; }
 
     public LiveData<Deck> getChosenDeck() { return chosenDeck; }
+    public Deck getDeck(){return chosenDeck.getValue();}
 
     public void setDeckName(String deckName){ chosenDeck.getValue().setDeckName(deckName);}
 
     public String getDeckName(){ return chosenDeck.getValue().getDeckName();}
 
     public MutableLiveData<Integer> getAmountCards() { return amountCards; }
+    public boolean decksEmpty(){
+        return decks.getValue().isEmpty();
+    }
 }
