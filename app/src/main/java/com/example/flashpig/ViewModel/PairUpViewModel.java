@@ -120,8 +120,8 @@ public class PairUpViewModel extends ViewModel {
 
     public void reloadDeck(){
         getChosenDeck().getValue().cards.addAll(gameDeck);
-
     }
+
 
     public LiveData<Boolean> isEndOfGame(){ return isEndOfGame; }
 
@@ -140,6 +140,16 @@ public class PairUpViewModel extends ViewModel {
     }
 
     public LiveData<Boolean> getIsMatch() { return isMatch; }
+
+    public Deck getDeck(){return chosenDeck.getValue();}
+
+    public List<Card> getCards(){return chosenDeck.getValue().cards;}
+
+    public boolean cardOneNull() {
+        if (card1.getValue() == null) {return true;
+        }else {return false;}
+    }
+
 
     public void setCard1(Card card1) {
         this.card1.setValue(card1);

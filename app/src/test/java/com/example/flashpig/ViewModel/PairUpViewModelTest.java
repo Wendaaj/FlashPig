@@ -67,4 +67,13 @@ public class PairUpViewModelTest {
         int after = pairUpViewModel.getChosenDeck().getValue().getAmountCards();
         assertTrue(after == before - 3);
     }
+
+    @Test
+    public void cardOneNull() {
+        pairUpViewModel.setCard1(null);
+        assertTrue(pairUpViewModel.cardOneNull());
+    }
+
+
+
 }

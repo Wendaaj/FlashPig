@@ -84,15 +84,15 @@ public class PairUpFragmentStart extends Fragment implements PairUpRecyclerViewA
         findViews(view);
         pairUpViewModel = new ViewModelProvider(getActivity()).get(PairUpViewModel.class);
 
-        adapter = new PairUpRecyclerViewAdapter(getContext(), pairUpViewModel.getChosenDeck().getValue().cards);
-        adapter2 = new PairUpRecyclerViewAdapter2(getContext(),pairUpViewModel.getChosenDeck().getValue().cards);
+        adapter = new PairUpRecyclerViewAdapter(getContext(), pairUpViewModel.getCards());
+        adapter2 = new PairUpRecyclerViewAdapter2(getContext(),pairUpViewModel.getCards());
         decksize = pairUpViewModel.getDeckSize();
 
         int numberOfColumns = 1;
 
         //first rv
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), numberOfColumns));
-        adapter = new PairUpRecyclerViewAdapter(getActivity(), pairUpViewModel.getChosenDeck().getValue().cards);
+        adapter = new PairUpRecyclerViewAdapter(getActivity(), pairUpViewModel.getCards());
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
 
@@ -101,7 +101,7 @@ public class PairUpFragmentStart extends Fragment implements PairUpRecyclerViewA
 
         //second rv
         recyclerView2.setLayoutManager(new GridLayoutManager(getActivity(), numberOfColumns));
-        adapter2 = new PairUpRecyclerViewAdapter2(getActivity(), pairUpViewModel.getChosenDeck().getValue().cards);
+        adapter2 = new PairUpRecyclerViewAdapter2(getActivity(), pairUpViewModel.getCards());
         adapter2.setClickListener(this::onItemClick);
         recyclerView2.setAdapter(adapter2);
 
@@ -110,7 +110,7 @@ public class PairUpFragmentStart extends Fragment implements PairUpRecyclerViewA
 
         setFirstViews();
 
-        pairUpViewModel.getCard2().observe(getViewLifecycleOwner(), new Observer<Card>() {
+        pairUpViewModel.getCard2().observe(getViewLifecycleOwner(), new Observer<Card>() { //Kanske här
             @Override
             public void onChanged(Card card) {
                 pairUpViewModel.isPair();
@@ -138,7 +138,7 @@ public class PairUpFragmentStart extends Fragment implements PairUpRecyclerViewA
             public void onChanged(Boolean lastPair) {
                 if(lastPair){
                     setCorrectFrame(view);
-                    //decksize--;
+
                 }
             }
         });
@@ -186,16 +186,15 @@ public class PairUpFragmentStart extends Fragment implements PairUpRecyclerViewA
 
     @Override
     public void onItemClick(View view, int position) throws InterruptedException {
-        if (pairUpViewModel.getCard1().getValue() == null) { //Select first card
+        if (pairUpViewModel.cardOneNull()) { //Select first card
             pairUpViewModel.setCard1(adapter.getItem(position));
-            //card1 = adapter.getItem(position);
+
             position1 = position;
             view.setClickable(false);
         } else { //Select second card
             position2 = position;
             pairUpViewModel.setCard2(adapter2.getItem(position));
 
-            //card2 = adapter2.getItem(position);
         }
     }
 
@@ -203,13 +202,13 @@ public class PairUpFragmentStart extends Fragment implements PairUpRecyclerViewA
      * Loads the cards to game board and shuffles the order of cards in the deck
      */
     private void setFirstViews() {
-        for (int i = 0; i < pairUpViewModel.getChosenDeck().getValue().cards.size(); i++) {
+        for (int i = 0; i < pairUpViewModel.getChosenDeck().getValue().cards.size(); i++) { //HÄR
             adapter.getItem(i).setFrontside(false);
             //adapter.notifyDataSetChanged();
-            Collections.shuffle(pairUpViewModel.getChosenDeck().getValue().cards);
+            Collections.shuffle(pairUpViewModel.getCards()); //HÄR
         }
 
-        for (int j = 0; j < pairUpViewModel.getChosenDeck().getValue().cards.size(); j++) {
+        for (int j = 0; j < pairUpViewModel.getCards().size(); j++) { //HÄR
             adapter2.getItem(j).setFrontside(true);
             //adapter2.notifyDataSetChanged();
         }
