@@ -1,0 +1,501 @@
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>apply plugin: 'com.android.application'\n\nandroid {\n    compileSdkVersion 30\n    buildToolsVersion \"30.0.2\"\n\n    defaultConfig {\n        applicationId \"com.example.flashpig\"\n        minSdkVersion 16\n        targetSdkVersion 30\n        versionCode 1\n        versionName \"1.0\"\n\n        testInstrumentationRunner \"androidx.test.runner.AndroidJUnitRunner\"\n    }\n\n    buildTypes {\n        release {\n            minifyEnabled false\n            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'\n        }\n    }\n\n    //Java 8 config\n    compileOptions {\n        sourceCompatibility JavaVersion.VERSION_1_8\n        targetCompatibility JavaVersion.VERSION_1_8\n    }\n\n    testOptions {\n        unitTests.returnDefaultValues = true\n    }\n}\n\ndependencies {\n    implementation fileTree(dir: \"libs\", include: [\"*.jar\"])\n    implementation 'androidx.appcompat:appcompat:1.2.0'\n    implementation 'com.google.android.material:material:1.2.1'\n    implementation 'androidx.constraintlayout:constraintlayout:2.0.2'\n    implementation 'androidx.navigation:navigation-fragment:2.3.1'\n    implementation 'androidx.navigation:navigation-ui:2.3.1'\n    implementation 'androidx.gridlayout:gridlayout:1.0.0'\n    implementation 'androidx.legacy:legacy-support-v4:1.0.0'\n    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'\n    implementation 'androidx.legacy:legacy-support-v4:1.0.0'\n    implementation 'androidx.annotation:annotation:1.1.0'\n    implementation 'com.android.support:support-annotations:28.0.0'\n    implementation 'androidx.appcompat:appcompat:1.2.0'\n    \n    def lifecycle_version = \"2.2.0\"\n    def arch_version = \"2.1.0\"\n\n    implementation \"android.arch.lifecycle:extensions:1.0.0\"\n    annotationProcessor \"android.arch.lifecycle:compiler:1.0.0\"\n\n    // ViewModel\n    implementation \"androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version\"\n\n    // LiveData\n    implementation \"androidx.lifecycle:lifecycle-livedata:$lifecycle_version\"\n\n    // Lifecycles only (without ViewModel or LiveData)\n    implementation \"androidx.lifecycle:lifecycle-runtime:$lifecycle_version\"\n\n    // Saved state module for ViewModel\n    implementation \"androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version\"\n\n    // Annotation processor\n    annotationProcessor \"androidx.lifecycle:lifecycle-compiler:$lifecycle_version\"\n    // alternately - if using Java8, use the following instead of lifecycle-compiler\n    implementation \"androidx.lifecycle:lifecycle-common-java8:$lifecycle_version\"\n\n    // optional - helpers for implementing LifecycleOwner in a Service\n    implementation \"androidx.lifecycle:lifecycle-service:$lifecycle_version\"\n\n    // optional - ProcessLifecycleOwner provides a lifecycle for the whole application process\n    implementation \"androidx.lifecycle:lifecycle-process:$lifecycle_version\"\n\n    // optional - ReactiveStreams support for LiveData\n    implementation \"androidx.lifecycle:lifecycle-reactivestreams:$lifecycle_version\"\n\n    // optional - Test helpers for LiveData\n    testImplementation \"androidx.arch.core:core-testing:$arch_version\"\n\n    //Tests\n    testImplementation 'junit:junit:4.13'\n    androidTestImplementation 'androidx.test.ext:junit:1.1.2'\n    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'\n    testImplementation 'androidx.test:core:1.3.0'               // Optional -- Robolectric environment\n    testImplementation 'org.mockito:mockito-core:2.19.0'        // Optional -- Mockito framework\n\n    //Android Jetpack Navigation\n    def nav_version = \"2.3.1\"\n\n    // Java language implementation\n    implementation \"androidx.navigation:navigation-fragment:$nav_version\"\n    implementation \"androidx.navigation:navigation-ui:$nav_version\"\n\n    // Feature module Support\n    implementation \"androidx.navigation:navigation-dynamic-features-fragment:$nav_version\"\n\n    // Testing Navigation\n    androidTestImplementation \"androidx.navigation:navigation-testing:$nav_version\"\n\n    //RecyclerView\n    implementation 'com.android.support:appcompat-v7:30.0.2'\n    implementation 'com.android.support:recyclerview-v7:30.0.2'\n\n    //Parceler\n    implementation 'org.parceler:parceler-api:1.1.12'\n    annotationProcessor 'org.parceler:parceler:1.1.12'\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/build.gradle	(revision 094817a4aa5032c3199f178f5bbdeec89e223d86)
++++ app/build.gradle	(date 1603366907000)
+@@ -88,6 +88,10 @@
+     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+     testImplementation 'androidx.test:core:1.3.0'               // Optional -- Robolectric environment
+     testImplementation 'org.mockito:mockito-core:2.19.0'        // Optional -- Mockito framework
++    testImplementation "android.arch.core:core-testing:1.1.1"
++    testImplementation "androidx.arch.core:core-common:2.1.0"
++    testImplementation "androidx.arch.core:core-runtime:2.1.0"
++    testImplementation "androidx.arch.core:core-testing:2.1.0"
+ 
+     //Android Jetpack Navigation
+     def nav_version = "2.3.1"
+Index: app/src/main/java/com/example/flashpig/DataBase/FakeDataBase.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.flashpig.DataBase;\n\nimport com.example.flashpig.Model.Card;\nimport com.example.flashpig.Model.Deck;\n\nimport org.parceler.Parcel;\n\nimport java.util.ArrayList;\nimport java.util.Random;\n\n/**\n * A fake database that is replaceable when ready.\n *\n * @author wendy\n * @version 2020-10-18\n */\n@Parcel\npublic class FakeDataBase implements DataBase{\n\n    public FakeDataBase() {\n        Random random = new Random();\n        Deck deck0 = new Deck(\"Pig quiz\", random.nextInt());\n        deck0.addCard(new Card(random.nextInt(),\"What are juvenile pigs known as?\",\n                \"Piglets\",null,null));\n        deck0.addCard(new Card(random.nextInt(), \"Pigs, like all suids, are native to where?\",\n                \"The Eurasian and African continents.\",null,null));\n        deck0.addCard(new Card(random.nextInt(), \"Because of the similarities between\" +\n                \" pigs and humans, pigs are used for what?\",\n                \"Human medical research.\",null, null));\n        deck0.addCard(new Card(random.nextInt(), \"Domesticated pigs, are called what?\",\n                \"Swine\", null,null));\n        deck0.addCard(new Card(random.nextInt(), \"Pork is one of the most popular forms of meat for what?\",\n                \"Human consumption.\", null,null));\n        deck0.addCard(new Card(random.nextInt(), \"How much water per day do older pigs consume?\",\n                \"Three to five gallons of water per day.\", null,null));\n\n        Deck deck1 = new Deck(\"Pig puns\", random.nextInt());\n        deck1.cards.add(new Card(random.nextInt(), \"What do you call a Spanish pig?\", \"Porque.\", null, null));\n        deck1.cards.add(new Card(random.nextInt(), \"How do pigs write top secret messages?\", \"With invisible oink!\", null, null));\n        deck1.cards.add(new Card(random.nextInt(), \"What’s it called when a bunch of pigs compete in athletic games?\", \"The Olympigs\", null, null));\n        deck1.cards.add(new Card(random.nextInt(), \"What do you call a pig thief?\", \"A hamburglar.\", null, null));\n        deck1.cards.add(new Card(random.nextInt(), \"What do you call a pig that does a lot of charity work?\", \"Philanthropig\", null, null));\n        deck1.cards.add(new Card(random.nextInt(), \"what do you call a pigs karate punch\", \"Pork chop lol\", null, null));\n        Deck deck2 = new Deck(\"engelska\", random.nextInt());\n        deck2.cards.add(new Card(random.nextInt(), \"hello\", \"bye\", null, null));\n        deck2.cards.add(new Card(random.nextInt(), \"hello\", \"bye\", null, null));\n\n        Deck deck3 = new Deck(\"fysik\", random.nextInt());\n        deck3.cards.add(new Card(random.nextInt(), \"hello\", \"bye\", null, null));\n\n        deckList.add(deck0);\n        deckList.add(deck1);\n        deckList.add(deck2);\n        deckList.add(deck3);\n    }\n\n    @Override\n    public ArrayList<Deck> getDeckList() { return deckList; }\n\n    @Override\n    public void addDeck(Deck deck) { deckList.add(deck); }\n\n    @Override\n    public void removeDeck(Deck deck) { deckList.remove(deck); }\n\n    @Override\n    public void removeCard(Card card, Deck deck) {\n        deckList.get(deckList.indexOf(deck)).deleteCard(card);\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/flashpig/DataBase/FakeDataBase.java	(revision 094817a4aa5032c3199f178f5bbdeec89e223d86)
++++ app/src/main/java/com/example/flashpig/DataBase/FakeDataBase.java	(date 1603300735000)
+@@ -35,12 +35,18 @@
+                 "Three to five gallons of water per day.", null,null));
+ 
+         Deck deck1 = new Deck("Pig puns", random.nextInt());
+-        deck1.cards.add(new Card(random.nextInt(), "What do you call a Spanish pig?", "Porque.", null, null));
+-        deck1.cards.add(new Card(random.nextInt(), "How do pigs write top secret messages?", "With invisible oink!", null, null));
+-        deck1.cards.add(new Card(random.nextInt(), "What’s it called when a bunch of pigs compete in athletic games?", "The Olympigs", null, null));
+-        deck1.cards.add(new Card(random.nextInt(), "What do you call a pig thief?", "A hamburglar.", null, null));
+-        deck1.cards.add(new Card(random.nextInt(), "What do you call a pig that does a lot of charity work?", "Philanthropig", null, null));
+-        deck1.cards.add(new Card(random.nextInt(), "what do you call a pigs karate punch", "Pork chop lol", null, null));
++        deck1.cards.add(new Card(random.nextInt(), "What do you call a Spanish pig?",
++                "Porque.", null, null));
++        deck1.cards.add(new Card(random.nextInt(), "How do pigs write top secret " +
++                "messages?", "With invisible oink!", null, null));
++        deck1.cards.add(new Card(random.nextInt(), "What’s it called when a bunch of" +
++                " pigs compete in athletic games?", "The Olympigs", null, null));
++        deck1.cards.add(new Card(random.nextInt(), "What do you call a pig thief?",
++                "A hamburglar.", null, null));
++        deck1.cards.add(new Card(random.nextInt(), "What do you call a pig that does " +
++                "a lot of charity work?", "Philanthropig", null, null));
++        deck1.cards.add(new Card(random.nextInt(), "what do you call a pigs karate punch",
++                "Pork chop lol", null, null));
+         Deck deck2 = new Deck("engelska", random.nextInt());
+         deck2.cards.add(new Card(random.nextInt(), "hello", "bye", null, null));
+         deck2.cards.add(new Card(random.nextInt(), "hello", "bye", null, null));
+Index: app/src/main/java/com/example/flashpig/ViewModel/PairUpViewModel.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.flashpig.ViewModel;\n\nimport androidx.lifecycle.LiveData;\nimport androidx.lifecycle.MutableLiveData;\nimport androidx.lifecycle.ViewModel;\n\nimport com.example.flashpig.DataBase.Repository;\nimport com.example.flashpig.Model.Card;\nimport com.example.flashpig.Model.Deck;\nimport com.example.flashpig.Model.PairUp;\n\nimport java.util.ArrayList;\nimport java.util.List;\n\n/**\n * The ViewModel for the Pair Up game.\n *\n * @author Madeleine\n * @version 2020-10-19\n */\n\npublic class PairUpViewModel extends ViewModel {\n\n    private MutableLiveData<Card> card1 = new MutableLiveData<>();\n    private MutableLiveData<Card> card2 = new MutableLiveData<>();\n    private MutableLiveData<Deck> chosenDeck = new MutableLiveData<>();\n    private MutableLiveData<PairUp> pairUp = new MutableLiveData<>();\n\n    private MutableLiveData<Boolean> isMatch = new MutableLiveData<>();\n    private MutableLiveData<Boolean> ifLastPair = new MutableLiveData<>();\n    private MutableLiveData<Boolean> isEndOfGame = new MutableLiveData<>();\n    private MutableLiveData<Boolean> loadNewCards = new MutableLiveData<>();\n\n    private MutableLiveData<Boolean> setFirstViews = new MutableLiveData<>();\n\n    public void setIsEndOfGame(boolean isEndOfGame) {\n        this.isEndOfGame.setValue(isEndOfGame);\n    }\n\n    int showingCards = 6;\n    int deckSize;\n    List<Card> gameDeck = new ArrayList<>();\n\n    public PairUpViewModel() {\n        card1.setValue(null);\n        isEndOfGame.setValue(false);\n        ifLastPair.setValue(false);\n    }\n\n    /**\n     * Initialize the view model.\n     */\n    public void init(Deck deck, Repository repo){\n        Deck chosenDeck = repo.getDeck(deck);\n        gameDeck.addAll(chosenDeck.cards);\n        deckSize = chosenDeck.getAmountCards();\n        pairUp.setValue(new PairUp(chosenDeck));\n        this.chosenDeck.setValue(deck);\n    }\n\n    public void isPair(){\n        if (deckSize!=1){\n            if (pairUp.getValue().isMatched(card1.getValue(), card2.getValue()) && showingCards != 2){\n                isMatch.setValue(true);\n                updateAmountCards();\n            } else if (showingCards == 2 ){\n                ifLastPair.setValue(true);\n                updateAmountCards();\n                loadNewCards.setValue(true);\n                loadNewCards();\n            }\n            else {\n                isMatch.setValue(false);\n            }\n            card1.setValue(null);\n        }\n        else{\n            isEndOfGame.setValue(true);\n        }\n    }\n\n    /**\n     * Updates the game board with new cards\n     */\n    private void loadNewCards() {\n        if (deckSize >= 3) {\n            int i = 3;\n            while (i != 0) {\n                chosenDeck.getValue().cards.remove(0);\n                i--;\n            }\n            showingCards = 6;\n\n        }\n        if(deckSize==2){\n            int i = 2;\n            while (i != 0) {\n                chosenDeck.getValue().cards.remove(0);\n                i--;\n            }\n            showingCards = 4;\n        }\n        if(deckSize==1){\n            int i = 1;\n            while (i != 0) {\n                chosenDeck.getValue().cards.remove(0);\n                i--;\n            }\n            showingCards = 2;\n\n        }\n\n    }\n\n    /**\n     * Updates the amount of cards showing on the game board and the amount of car in the deck\n     */\n    private void updateAmountCards(){\n        showingCards -= 2;\n        deckSize--;\n    }\n\n    public void reloadDeck(){ getChosenDeck().getValue().cards.addAll(gameDeck); }\n\n    public LiveData<Boolean> isEndOfGame(){ return isEndOfGame; }\n\n    public LiveData<Boolean> getLoadNewCards() { return loadNewCards; }\n\n    public MutableLiveData<Boolean> getIfLastPair() { return ifLastPair; }\n\n    public LiveData<Card> getCard1() { return card1; }\n\n    public LiveData<Card> getCard2() {\n        return card2;\n    }\n\n    public LiveData<Deck> getChosenDeck() {\n        return chosenDeck;\n    }\n\n    public LiveData<Boolean> getIsMatch() { return isMatch; }\n\n    public void setCard1(Card card1) {\n        this.card1.setValue(card1);\n    }\n\n    public void setCard2(Card card2) { this.card2.setValue(card2); }\n\n    public void setIsMatch(boolean isMatch) { this.isMatch.setValue(isMatch);}\n\n    public int getDeckSize() {\n        return deckSize;\n    }\n\n    public MutableLiveData<Boolean> getSetFirstViews() { return setFirstViews; }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/flashpig/ViewModel/PairUpViewModel.java	(revision 094817a4aa5032c3199f178f5bbdeec89e223d86)
++++ app/src/main/java/com/example/flashpig/ViewModel/PairUpViewModel.java	(date 1603376679000)
+@@ -10,6 +10,8 @@
+ import com.example.flashpig.Model.PairUp;
+ 
+ import java.util.ArrayList;
++import java.util.Collection;
++import java.util.Collections;
+ import java.util.List;
+ 
+ /**
+@@ -25,7 +27,6 @@
+     private MutableLiveData<Card> card2 = new MutableLiveData<>();
+     private MutableLiveData<Deck> chosenDeck = new MutableLiveData<>();
+     private MutableLiveData<PairUp> pairUp = new MutableLiveData<>();
+-
+     private MutableLiveData<Boolean> isMatch = new MutableLiveData<>();
+     private MutableLiveData<Boolean> ifLastPair = new MutableLiveData<>();
+     private MutableLiveData<Boolean> isEndOfGame = new MutableLiveData<>();
+@@ -39,20 +40,22 @@
+ 
+     int showingCards = 6;
+     int deckSize;
+-    List<Card> gameDeck = new ArrayList<>();
+ 
+-    public PairUpViewModel() {
+-        card1.setValue(null);
+-        isEndOfGame.setValue(false);
+-        ifLastPair.setValue(false);
++    public List<Card> getSecondDeck() {
++        return secondDeck;
+     }
++
++    List<Card> secondDeck = new ArrayList<>();
++
++
+ 
+     /**
+      * Initialize the view model.
+      */
+     public void init(Deck deck, Repository repo){
+         Deck chosenDeck = repo.getDeck(deck);
+-        gameDeck.addAll(chosenDeck.cards);
++        secondDeck.addAll(chosenDeck.cards);
++        Collections.shuffle(secondDeck);
+         deckSize = chosenDeck.getAmountCards();
+         pairUp.setValue(new PairUp(chosenDeck));
+         this.chosenDeck.setValue(deck);
+@@ -82,7 +85,7 @@
+     /**
+      * Updates the game board with new cards
+      */
+-    private void loadNewCards() {
++    public void loadNewCards() {
+         if (deckSize >= 3) {
+             int i = 3;
+             while (i != 0) {
+@@ -120,7 +123,8 @@
+         deckSize--;
+     }
+ 
+-    public void reloadDeck(){ getChosenDeck().getValue().cards.addAll(gameDeck); }
++    public void reloadDeck(){
++        getChosenDeck().getValue().cards.addAll(secondDeck);}
+ 
+     public LiveData<Boolean> isEndOfGame(){ return isEndOfGame; }
+ 
+@@ -146,6 +150,10 @@
+ 
+     public void setCard2(Card card2) { this.card2.setValue(card2); }
+ 
++    public void setShowingCards(int i){this.showingCards=i;}
++
++    public void setDeckSize(int i){this.deckSize=i;}
++
+     public void setIsMatch(boolean isMatch) { this.isMatch.setValue(isMatch);}
+ 
+     public int getDeckSize() {
+Index: app/src/test/java/com/example/flashpig/ViewModel/CardViewModelTest.java
+===================================================================
+--- app/src/test/java/com/example/flashpig/ViewModel/CardViewModelTest.java	(date 1603375139000)
++++ app/src/test/java/com/example/flashpig/ViewModel/CardViewModelTest.java	(date 1603375139000)
+@@ -0,0 +1,47 @@
++package com.example.flashpig.ViewModel;
++
++import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
++
++import com.example.flashpig.DataBase.Repository;
++import com.example.flashpig.Model.Card;
++import com.example.flashpig.Model.Deck;
++
++import org.junit.After;
++import org.junit.Before;
++import org.junit.Rule;
++import org.junit.Test;
++import org.junit.runner.RunWith;
++import org.junit.runners.JUnit4;
++
++import static org.junit.Assert.*;
++@RunWith(JUnit4.class)
++public class CardViewModelTest {
++
++    @Rule
++    public InstantTaskExecutorRule instantExecutorRule = new InstantTaskExecutorRule();
++
++    CardViewModel cardViewModel = new CardViewModel();
++    @Before
++    public void setup(){
++        Repository repo = new Repository();
++        Card card = new Card();
++        Deck deck = new Deck();
++        cardViewModel.setDeck(deck);
++        cardViewModel.setCard(card);
++        cardViewModel.initCard(repo);
++        cardViewModel.initDeck(repo);
++    }
++
++
++    @Test
++    public void resetViewModelWorksForCard() {
++        cardViewModel.resetViewModel();
++        assertNull(cardViewModel.getCard().getValue());
++
++    }
++    @Test
++    public void resetViewModelWorksForDeck() {
++        cardViewModel.resetViewModel();
++        assertNull(cardViewModel.getDeck().getValue());
++    }
++}
+\ No newline at end of file
+Index: app/src/main/java/com/example/flashpig/ViewModel/CardViewModel.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.flashpig.ViewModel;\n\nimport androidx.lifecycle.LiveData;\nimport androidx.lifecycle.MutableLiveData;\nimport androidx.lifecycle.ViewModel;\n\nimport com.example.flashpig.DataBase.Repository;\nimport com.example.flashpig.Model.Card;\nimport com.example.flashpig.Model.Deck;\n\npublic class CardViewModel extends ViewModel {\n    private Repository repo;\n    private MutableLiveData<Card> card = new MutableLiveData<>();\n    private MutableLiveData<Deck> deck = new MutableLiveData<>();\n\n    public void initDeck(Repository repo) {\n        this.repo = repo;\n        deck.setValue(new Deck());\n    }\n\n    public void initCard(Repository repo){\n        if (repo == null){\n            this.repo = repo;\n        }\n        card.setValue(new Card());\n        deck.getValue().addCard(card.getValue());\n    }\n\n    public void setDeck(Deck deck) { this.deck.setValue(deck); }\n\n    public void saveDeck() {\n        repo.saveDeck(deck.getValue());\n    }\n\n    public void resetViewModel(){\n        deck.setValue(null);\n        card.setValue(null);\n    }\n\n    public Repository getRepo() { return repo; }\n\n    public void setRepo(Repository repo) { this.repo = repo; }\n\n    public LiveData<Card> getCard() { return card; }\n\n    public void setCard(Card card) { this.card.setValue(card); }\n\n    public LiveData<Deck> getDeck() { return deck; }\n\n    public void setDeckName(String deckName) { deck.getValue().setDeckName(deckName); }\n\n    public int getCardPos(Card card){\n        return (deck.getValue().cards.indexOf(card) + 1);\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/flashpig/ViewModel/CardViewModel.java	(revision 094817a4aa5032c3199f178f5bbdeec89e223d86)
++++ app/src/main/java/com/example/flashpig/ViewModel/CardViewModel.java	(date 1603374035000)
+@@ -19,7 +19,7 @@
+     }
+ 
+     public void initCard(Repository repo){
+-        if (repo == null){
++        if (repo != null){
+             this.repo = repo;
+         }
+         card.setValue(new Card());
+@@ -32,7 +32,7 @@
+         repo.saveDeck(deck.getValue());
+     }
+ 
+-    public void resetViewModel(){
++    public void resetViewModel() {
+         deck.setValue(null);
+         card.setValue(null);
+     }
+Index: app/src/test/java/com/example/flashpig/ViewModel/DashboardViewModelTest.java
+===================================================================
+--- app/src/test/java/com/example/flashpig/ViewModel/DashboardViewModelTest.java	(date 1603372225000)
++++ app/src/test/java/com/example/flashpig/ViewModel/DashboardViewModelTest.java	(date 1603372225000)
+@@ -0,0 +1,97 @@
++package com.example.flashpig.ViewModel;
++
++import android.content.res.Resources;
++import android.graphics.Bitmap;
++import android.graphics.BitmapFactory;
++
++import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
++
++import com.example.flashpig.DataBase.Repository;
++import com.example.flashpig.Model.Card;
++import com.example.flashpig.Model.Deck;
++import com.example.flashpig.R;
++
++import org.junit.Before;
++import org.junit.Rule;
++import org.junit.Test;
++import org.junit.rules.TestRule;
++
++
++import static org.junit.Assert.*;
++
++public class DashboardViewModelTest {
++
++    @Rule
++    public InstantTaskExecutorRule instantExecutorRule = new InstantTaskExecutorRule();
++
++    DashboardViewModel dashboardViewModel;
++    Deck deck;
++    Card card;
++
++    @Before
++    public void setup(){
++        //Bitmap bmp = BitmapFactory.decodeFile("R.drawable.partypig");
++        Repository repo = new Repository();
++        deck = new Deck();
++        card = new Card();
++        dashboardViewModel = new DashboardViewModel();
++        repo.saveDeck(deck);
++        dashboardViewModel.init(repo);
++        card.setFrontsideStr("Test");
++        card.setBacksideStr("Test");
++        //card.setBackImg(bmp);
++        //card.setFrontImg(bmp);
++        deck.addCard(card);
++        dashboardViewModel.setChosenDeck(deck);
++        dashboardViewModel.setCard(card);
++    }
++
++    @Test
++    public void checkHasFrontTxtAndImg() {
++       /* card.setBacksideStr(null);
++        card.setBackImg(null);
++        dashboardViewModel.setCard(card);
++        assertTrue(dashboardViewModel.checkHasFrontTxtAndImg());
++
++        */
++    }
++
++    @Test
++    public void checkHasFrontTxtOnly() {
++        card.setBacksideStr(null);
++        card.setBackImg(null);
++        card.setFrontImg(null);
++        dashboardViewModel.setCard(card);
++        assertTrue(dashboardViewModel.checkHasFrontTxtOnly());
++    }
++
++    @Test
++    public void checkHasBackTxtAndImg() {
++    }
++
++    @Test
++    public void checkHasBackTxtOnly() {
++        card.setFrontsideStr(null);
++        card.setBackImg(null);
++        card.setFrontImg(null);
++        dashboardViewModel.setCard(card);
++        assertTrue(dashboardViewModel.checkHasBackTxtOnly());
++    }
++
++    @Test
++    public void removeDeck() {
++        int before = dashboardViewModel.getAmountDecks().getValue();
++        dashboardViewModel.removeDeck(deck);
++        int after = dashboardViewModel.getAmountDecks().getValue();
++        after=after+1;
++        assertEquals(before,after);
++    }
++
++    @Test
++    public void removeCard() {
++        int amountCardsBefore = dashboardViewModel.getChosenDeck().getValue().getAmountCards();
++        dashboardViewModel.removeCard(card);
++        int amountCardsAfter = dashboardViewModel.getChosenDeck().getValue().getAmountCards();
++        assertEquals(amountCardsBefore,amountCardsAfter+1);
++    }
++}
+\ No newline at end of file
+Index: app/src/main/java/com/example/flashpig/ViewModel/DashboardViewModel.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.flashpig.ViewModel;\n\nimport androidx.lifecycle.LiveData;\nimport androidx.lifecycle.MutableLiveData;\nimport androidx.lifecycle.ViewModel;\n\nimport com.example.flashpig.DataBase.Repository;\nimport com.example.flashpig.Model.Card;\nimport com.example.flashpig.Model.Deck;\n\nimport java.util.ArrayList;\n\npublic class DashboardViewModel extends ViewModel {\n    private Repository repo;\n    private MutableLiveData<ArrayList<Deck>> decks = new MutableLiveData<>();\n    private MutableLiveData<Deck> chosenDeck = new MutableLiveData<>();\n    private MutableLiveData<Integer> amountDecks = new MutableLiveData<>();\n    private MutableLiveData<Card> card = new MutableLiveData<>();\n\n    public void init(Repository repo){\n        this.repo = repo;\n        decks.setValue(repo.getDecks());\n        amountDecks.setValue(repo.getDecks().size());\n    }\n\n    /**\n     * Checks if card has both front text and front image.\n     */\n    public boolean checkHasFrontTxtAndImg() {\n        return (card.getValue().getFrontImg() != null && !card.getValue().getFrontsideStr().isEmpty());\n    }\n\n    /**\n     * Checks if card has only front text.\n     */\n    public boolean checkHasFrontTxtOnly() {\n        return (card.getValue().getFrontImg() == null && !card.getValue().getFrontsideStr().isEmpty());\n    }\n\n    /**\n     * Checks if card has both front text and front image.\n     */\n    public boolean checkHasBackTxtAndImg() {\n        return (card.getValue().getBackImg() != null && !card.getValue().getBacksideStr().isEmpty());\n    }\n\n    /**\n     * Checks if card has only back text.\n     */\n    public boolean checkHasBackTxtOnly() {\n        return (card.getValue().getFrontImg() == null && !card.getValue().getFrontsideStr().isEmpty());\n    }\n\n    public void removeDeck(Deck deck) {\n        repo.removeDeck(deck);\n        amountDecks.setValue(decks.getValue().size());\n    }\n\n    public void removeCard(Card card) {\n        repo.removeCard(card, chosenDeck.getValue());\n        amountDecks.setValue(decks.getValue().size());\n    }\n\n    public int getChosenDeckPos(){\n        int pos = decks.getValue().indexOf(repo.getDeck(chosenDeck.getValue()));\n        return pos;\n    }\n\n    public void setChosenDeck(Deck chosenDeck) {\n        if (chosenDeck != null) {\n            this.chosenDeck.setValue(repo.getDeck(chosenDeck));\n        }else {\n            this.chosenDeck.setValue(chosenDeck);\n        }\n    }\n\n    public LiveData<Card> getCard() { return card; }\n\n    public void setCard(Card card) { this.card.setValue(card); }\n\n    public LiveData<ArrayList<Deck>> getDecks() { return decks; }\n\n    public LiveData<Integer> getAmountDecks() { return amountDecks; }\n\n    public LiveData<Deck> getChosenDeck() { return chosenDeck; }\n\n    public Repository getRepo() { return repo; }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/flashpig/ViewModel/DashboardViewModel.java	(revision 094817a4aa5032c3199f178f5bbdeec89e223d86)
++++ app/src/main/java/com/example/flashpig/ViewModel/DashboardViewModel.java	(date 1603369554000)
+@@ -19,7 +19,8 @@
+ 
+     public void init(Repository repo){
+         this.repo = repo;
+-        decks.setValue(repo.getDecks());
++        ArrayList<Deck> decks = repo.getDecks();
++        this.decks.setValue(repo.getDecks());
+         amountDecks.setValue(repo.getDecks().size());
+     }
+ 
+@@ -48,7 +49,7 @@
+      * Checks if card has only back text.
+      */
+     public boolean checkHasBackTxtOnly() {
+-        return (card.getValue().getFrontImg() == null && !card.getValue().getFrontsideStr().isEmpty());
++        return (card.getValue().getBackImg() == null && !card.getValue().getBacksideStr().isEmpty());
+     }
+ 
+     public void removeDeck(Deck deck) {
+@@ -58,7 +59,7 @@
+ 
+     public void removeCard(Card card) {
+         repo.removeCard(card, chosenDeck.getValue());
+-        amountDecks.setValue(decks.getValue().size());
++        //amountDecks.setValue(decks.getValue().size());
+     }
+ 
+     public int getChosenDeckPos(){
+Index: app/src/test/java/com/example/flashpig/ViewModel/PairUpViewModelTest.java
+===================================================================
+--- app/src/test/java/com/example/flashpig/ViewModel/PairUpViewModelTest.java	(date 1603376679000)
++++ app/src/test/java/com/example/flashpig/ViewModel/PairUpViewModelTest.java	(date 1603376679000)
+@@ -0,0 +1,67 @@
++package com.example.flashpig.ViewModel;
++
++import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
++
++import com.example.flashpig.DataBase.Repository;
++import com.example.flashpig.Model.Card;
++import com.example.flashpig.Model.Deck;
++
++import org.junit.Before;
++import org.junit.Rule;
++import org.junit.Test;
++
++import static org.junit.Assert.*;
++
++public class PairUpViewModelTest {
++    @Rule
++    public InstantTaskExecutorRule instantExecutorRule = new InstantTaskExecutorRule();
++
++    PairUpViewModel pairUpViewModel = new PairUpViewModel();
++    Card card = new Card();
++    Card card2 = new Card();
++    Card card3 = new Card();
++    Deck deck = new Deck();
++    @Before
++    public void setup(){
++        Repository repo = new Repository();
++        deck.addCard(card);
++        deck.addCard(card2);
++        deck.addCard(card3);
++        repo.saveDeck(deck);
++        pairUpViewModel.init(deck,repo);
++
++    }
++
++    @Test
++    public void isPairForDeckSizeAndShowingCardsLarge() {
++        pairUpViewModel.setCard1(card);
++        pairUpViewModel.setCard2(card);
++        pairUpViewModel.isPair();
++        assertTrue(pairUpViewModel.getIsMatch().getValue());
++    }
++    @Test
++    public void isPairForDeckSizeOne() {
++        pairUpViewModel.setCard1(card);
++        pairUpViewModel.setCard2(card);
++        pairUpViewModel.setDeckSize(1);
++        pairUpViewModel.isPair();
++        assertTrue(pairUpViewModel.isEndOfGame().getValue());
++    }
++    @Test
++    public void isPairForShowingCardsTwo() {
++        pairUpViewModel.setCard1(card);
++        pairUpViewModel.setCard2(card);
++        pairUpViewModel.setShowingCards(2);
++        pairUpViewModel.isPair();
++        assertTrue(pairUpViewModel.getLoadNewCards().getValue());
++    }
++
++
++    @Test
++    public void loadNewCards() {
++        int before = pairUpViewModel.getChosenDeck().getValue().getAmountCards();
++        pairUpViewModel.loadNewCards();
++        int after = pairUpViewModel.getChosenDeck().getValue().getAmountCards();
++        assertTrue(after==before-3);
++    }
++}
+\ No newline at end of file
+Index: app/src/test/java/com/example/flashpig/ViewModel/FlashcardViewModelTest.java
+===================================================================
+--- app/src/test/java/com/example/flashpig/ViewModel/FlashcardViewModelTest.java	(date 1603373430000)
++++ app/src/test/java/com/example/flashpig/ViewModel/FlashcardViewModelTest.java	(date 1603373430000)
+@@ -0,0 +1,45 @@
++package com.example.flashpig.ViewModel;
++
++import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
++
++import com.example.flashpig.DataBase.Repository;
++import com.example.flashpig.Model.Card;
++import com.example.flashpig.Model.Deck;
++
++import org.junit.Before;
++import org.junit.Rule;
++import org.junit.Test;
++
++import static org.junit.Assert.*;
++
++public class FlashcardViewModelTest {
++
++    @Rule
++    public InstantTaskExecutorRule instantExecutorRule = new InstantTaskExecutorRule();
++
++
++    @Before
++    public void setup(){
++        Repository repo = new Repository();
++        Deck deck = new Deck();
++        Card card = new Card();
++        card.setFrontsideStr("Test");
++        card.setBacksideStr("Test");
++        deck.addCard(card);
++        repo.saveDeck(deck);
++        FlashcardViewModel flashcardviewmodel = new FlashcardViewModel();
++        flashcardviewmodel.init(deck,repo);
++    }
++
++    @Test
++    public void setCardsDifficulty() {
++    }
++
++    @Test
++    public void hasFrontTxtAndImg() {
++    }
++
++    @Test
++    public void hasBackTxtAndImg() {
++    }
++}
+\ No newline at end of file
+Index: app/src/main/java/com/example/flashpig/View/Adapters/PairUpRecyclerViewAdapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.flashpig.View.Adapters;\n\nimport android.content.Context;\nimport android.view.LayoutInflater;\nimport android.view.View;\nimport android.view.ViewGroup;\nimport android.widget.ImageView;\nimport android.widget.TextView;\n\nimport androidx.annotation.NonNull;\nimport androidx.recyclerview.widget.RecyclerView;\n\nimport com.example.flashpig.Model.Card;\nimport com.example.flashpig.R;\n\nimport java.util.List;\n\n/**\n * Displays the cards in Pair Up game as a list with a RecyclerView\n *\n * @author Madeleine\n * @version 2020-10-16\n */\n\npublic class PairUpRecyclerViewAdapter extends\n        RecyclerView.Adapter<PairUpRecyclerViewAdapter.ViewHolder>  {\n\n    private List<Card> cardsList;\n    private ItemClickListener mClickListener;\n    public Context mContext;\n    int amountRows = 3;\n\n    /**\n     * The Pair Up RecyclerViewAdapter constructor\n     * @param context the current context\n     * @param cardsList the list of cards\n     */\n\n    public PairUpRecyclerViewAdapter(Context context, List<Card> cardsList) {\n        this.mContext = context;\n        this.cardsList = cardsList;\n    }\n\n    /**\n     * Used when a new card is added to the recyclerView.\n     *\n     * @param parent the parent\n     * @param viewType the viewType\n     * @return\n     */\n\n    @NonNull\n    @Override\n    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {\n        View itemView = LayoutInflater.\n                from(parent.getContext()).\n                inflate(R.layout.pairup_card, parent, false);\n        return new ViewHolder(itemView, mClickListener);\n    }\n\n    /**\n     * Adds the content we want to show on each card.\n     * The method checks also if the front or backside of the cards is showing.\n     *\n     * @param holder the current viewHolder\n     * @param position the current position\n     */\n\n    @Override\n    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {\n        Card card = cardsList.get(position);\n        holder.frontSideTextView.setText(card.getFrontsideStr());\n        holder.frontSideTextView.setTag(position);\n        holder.backSideTextView.setText(card.getBacksideStr());\n        holder.itemView.setBackgroundResource(R.drawable.frame_default);\n        holder.itemView.setClickable(true);\n\n        if(!card.isFrontside()){\n               holder.frontSideTextView.setVisibility(View.INVISIBLE);\n               holder.frontImageView.setVisibility(View.INVISIBLE);\n               holder.backImageView.setVisibility(View.VISIBLE);\n               holder.backSideTextView.setVisibility(View.VISIBLE);\n        } else {\n                holder.frontSideTextView.setVisibility(View.VISIBLE);\n                holder.frontImageView.setVisibility(View.VISIBLE);\n                holder.backImageView.setVisibility(View.INVISIBLE);\n                holder.backSideTextView.setVisibility(View.INVISIBLE);\n        }\n    }\n\n    /**\n     * Gets the items current id\n     *\n     * @param position the items position\n     * @return the items id\n     */\n\n    @Override\n    public long getItemId(int position) {\n        return position;\n    }\n\n    /**\n     * Gives the amount of rows the recycler view should have\n     *\n     * @return the amount of rows on the game board\n     */\n\n    @Override\n    public int getItemCount() { return amountRows; }\n\n    /**\n     * Viewholder class that stores and recycles views as they are scrolled off screen\n     */\n\n    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {\n        TextView frontSideTextView, backSideTextView;\n        ImageView frontImageView, backImageView;\n        private ItemClickListener mClickListener;\n\n\n        /**\n         * ViewHolder constructor\n         *\n         * @param itemView the current itemView\n         * @param mClickListener a listener to clicks from the user\n         */\n\n        ViewHolder(View itemView, ItemClickListener mClickListener) {\n            super(itemView);\n            frontSideTextView = itemView.findViewById(R.id.frontCardTextView);\n            backSideTextView = itemView.findViewById(R.id.backCardTextView);\n            frontImageView = itemView.findViewById(R.id.frontCardImageView);\n            backImageView = itemView.findViewById(R.id.backCardImageView);\n            this.mClickListener = mClickListener;\n            itemView.setOnClickListener(this);\n        }\n\n        /**\n         * Handles to click events\n         *\n         * @param view the clicked view\n         */\n\n        @Override\n        public void onClick(View view) {\n             if (mClickListener != null){\n                try {\n                    mClickListener.onItemClick(view, getAdapterPosition());\n                } catch (InterruptedException e) {\n                    e.printStackTrace();\n                }\n            }\n        }\n    }\n\n    /**\n     * Gets the item viewType\n     *\n     * @param position the position of the view\n     *\n     * @return the position of the view\n     */\n\n    @Override\n    public int getItemViewType(int position) {\n        return position;\n    }\n\n    /**\n     * Decides if the item should remain the same after a notifyDataSetchanged() call\n     *\n     * @param hasStableIds boolean is is should remain the same\n     */\n\n    @Override\n    public void setHasStableIds(boolean hasStableIds) {\n        super.setHasStableIds(hasStableIds);\n    }\n\n    /**\n     * Getting data at click position\n     *\n     * @param position the position of the view\n     * @return a card on the specific position\n     */\n\n\n    public Card getItem(int position) {\n        return cardsList.get(position);\n    }\n\n    /**\n     * Allows clicks events to be caught\n     *\n     * @param itemClickListener a listener to clicks from the user\n     */\n\n    public void setClickListener(ItemClickListener itemClickListener) {\n        this.mClickListener = itemClickListener;\n    }\n\n    /**\n     * Parent activity will implement this method to respond to click events\n     *\n     */\n\n    public interface ItemClickListener {\n        void onItemClick(View view, int position) throws InterruptedException;\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/flashpig/View/Adapters/PairUpRecyclerViewAdapter.java	(revision 094817a4aa5032c3199f178f5bbdeec89e223d86)
++++ app/src/main/java/com/example/flashpig/View/Adapters/PairUpRecyclerViewAdapter.java	(date 1603300735000)
+@@ -13,6 +13,8 @@
+ import com.example.flashpig.Model.Card;
+ import com.example.flashpig.R;
+ 
++import java.util.Collection;
++import java.util.Collections;
+ import java.util.List;
+ 
+ /**

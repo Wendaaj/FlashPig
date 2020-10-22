@@ -188,13 +188,16 @@ public class PairUpFragmentStart extends Fragment implements PairUpRecyclerViewA
     @Override
     public void onItemClick(View view, int position) throws InterruptedException {
         if (pairUpViewModel.cardOneNull()) { //Select first card
-            pairUpViewModel.setCard1(adapter.getItem(position));
+            //pairUpViewModel.setCard1(adapter.getItem(position));
+            pairUpViewModel.setCard1(pairUpViewModel.getItem(position));
+            //göra det i viewmodel skicka in positionen
 
             position1 = position;
             view.setClickable(false);
         } else { //Select second card
             position2 = position;
-            pairUpViewModel.setCard2(adapter2.getItem(position));
+            //pairUpViewModel.setCard1(adapter.getItem(position));
+            pairUpViewModel.setCard2(pairUpViewModel.getItem(position));
 
         }
     }

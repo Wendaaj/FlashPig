@@ -150,6 +150,9 @@ public class PairUpViewModel extends ViewModel {
         if (card1.getValue() == null) {return true;
         }else {return false;}
     }
+    public Card getItem(int position) {
+        return getCards().get(position);
+    }
 
 
     public void setCard1(Card card1) {
