@@ -144,7 +144,7 @@ public class EditDeckFragment extends Fragment implements DeckRecyclerViewAdapte
     }
 
     public void setAmountTxt() {
-        if(viewModel.getChosenDeck().getValue().getAmountCards() == 0){
+        if(viewModel.getAmountCards() == 0){
             amountCards.setText("No cards oink!");
         }else if(viewModel.getChosenDeck().getValue().getAmountCards()>1){
             amountCards.setText(Integer.toString(viewModel.getAmountCards()) + " cards");
