@@ -17,6 +17,7 @@ public class DashboardViewModel extends ViewModel {
     private MutableLiveData<Deck> chosenDeck = new MutableLiveData<>();
     private MutableLiveData<Integer> amountDecks = new MutableLiveData<>();
     private MutableLiveData<Card> card = new MutableLiveData<>();
+    private MutableLiveData<Integer> amountCards = new MutableLiveData<>();
 
     public DashboardViewModel() {
         decks.setValue(repo.getDecks());
@@ -67,11 +68,19 @@ public class DashboardViewModel extends ViewModel {
         }else {
             this.chosenDeck.setValue(chosenDeck);
         }
+        amountCards.setValue(chosenDeck.cards.size());
     }
 
-    public LiveData<Card> getCard() { return card; }
+    public MutableLiveData<Card> getCard() { return card; }
 
-    public void setCard(Card card) { this.card.setValue(card); }
+    public void setCardAtPos(int pos){ card.setValue(chosenDeck.getValue().cards.get(pos));}
+
+    public void removeCard(int pos, Deck deck){
+        repo.removeCard(pos, deck);
+        getAmountCards().setValue(deck.cards.size());
+    }
+
+    //public void setCard(Card card) { this.card.setValue(card); }
 
     public LiveData<ArrayList<Deck>> getDecks() { return decks; }
 
@@ -83,6 +92,5 @@ public class DashboardViewModel extends ViewModel {
 
     public String getDeckName(){ return chosenDeck.getValue().getDeckName();}
 
-    public int getAmountCards() { return chosenDeck.getValue().getAmountCards();}
-
+    public MutableLiveData<Integer> getAmountCards() { return amountCards; }
 }

@@ -3,6 +3,7 @@ package com.example.flashpig.DataBase;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.flashpig.Model.Card;
 import com.example.flashpig.Model.Deck;
 
 import java.util.ArrayList;
@@ -26,6 +27,8 @@ public class Repository {
         }
         return instance;
     }
+
+    public void removeCard(int postion, Deck deck){ db.removeCard(postion, deck);}
 
     public void saveDeck(Deck deck){
         db.addDeck(deck);

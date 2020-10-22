@@ -4,6 +4,7 @@ import com.example.flashpig.Model.Card;
 import com.example.flashpig.Model.Deck;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -56,4 +57,7 @@ public class FakeDataBase implements DataBase{
 
     @Override
     public void removeDeck(Deck deck) { deckList.remove(deck); }
+
+    @Override
+    public void removeCard(int pos, Deck deck) { deckList.get(deckList.indexOf(deck)).deleteCard(deck.getCard(pos)); }
 }

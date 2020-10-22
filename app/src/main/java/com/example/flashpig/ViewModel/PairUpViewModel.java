@@ -44,12 +44,6 @@ public class PairUpViewModel extends ViewModel {
     int deckSize;
     List<Card> gameDeck = new ArrayList<>();
 
-    public PairUpViewModel() {
-        card1.setValue(null);
-        isEndOfGame.setValue(false);
-        ifLastPair.setValue(false);
-    }
-
     /**
      * Initialize the view model.
      */

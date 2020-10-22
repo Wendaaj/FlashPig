@@ -17,6 +17,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.flashpig.Model.Card;
+import com.example.flashpig.Model.Deck;
 import com.example.flashpig.R;
 import com.example.flashpig.ViewModel.DashboardViewModel;
 
@@ -26,12 +27,10 @@ import java.util.List;
  * An adapter class for the recyclerView
  */
 public class DeckRecyclerViewAdapter extends RecyclerView.Adapter<DeckRecyclerViewAdapter.EditCardViewHolder> {
-    private List<Card> cardsList;
     private ItemClickListener clickListener;
     private DashboardViewModel viewModel;
 
-    public DeckRecyclerViewAdapter(Context context, List<Card> cardsList, ViewModel viewmodel) {
-        this.cardsList = cardsList;
+    public DeckRecyclerViewAdapter(Context context, ViewModel viewmodel) {
         this.viewModel = (DashboardViewModel) viewmodel;
     }
 
@@ -59,20 +58,20 @@ public class DeckRecyclerViewAdapter extends RecyclerView.Adapter<DeckRecyclerVi
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
     public void onBindViewHolder(@NonNull EditCardViewHolder holder, int position) {
-        viewModel.setCard(cardsList.get(position));
+        viewModel.setCardAtPos(position);
         setCardsValues(holder);
 
         holder.deleteCardBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickListener.onRemoveCardClick(viewModel.getCard().getValue(), cardsList);
+                clickListener.onRemoveCardClick(position);
             }
         });
 
         holder.editCardBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               clickListener.onEditItemBtnClick(cardsList.get(position));
+               clickListener.onEditItemBtnClick();
             }
         });
     }
@@ -123,7 +122,7 @@ public class DeckRecyclerViewAdapter extends RecyclerView.Adapter<DeckRecyclerVi
 
     @Override
     public int getItemCount() {
-        return cardsList.size();
+        return viewModel.getAmountCards().getValue();
     }
 
     /**
@@ -166,9 +165,8 @@ public class DeckRecyclerViewAdapter extends RecyclerView.Adapter<DeckRecyclerVi
         // parent activity will implement this method to respond to click events
         public interface ItemClickListener {
             void onItemClick(View view, int position);
-            void onRemoveCardClick(Card card, List<Card> cardsList);
-            void onEditItemBtnClick(Card card);
-
+            void onRemoveCardClick(int pos);
+            void onEditItemBtnClick();
         }
 }
 

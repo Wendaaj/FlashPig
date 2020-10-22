@@ -68,11 +68,13 @@ public class EditDeckFragment extends Fragment implements DeckRecyclerViewAdapte
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         findViews(view);
+        loadPreferencesCard();
 
         viewModel = new ViewModelProvider(getActivity()).get(DashboardViewModel.class);
         viewModel.setChosenDeck(Parcels.unwrap(getArguments().getParcelable("deck")));
 
         configSpinner();
+        setAmountTxt();
 
         changeSideButton.setText(R.string.front_to_back);
         changeSideButton.setOnClickListener(v -> changeSideButton(viewModel.getChosenDeck().getValue()));
@@ -119,7 +121,7 @@ public class EditDeckFragment extends Fragment implements DeckRecyclerViewAdapte
                 viewModel.setChosenDeck((Deck) parent.getItemAtPosition(position));
                 view.setBackgroundResource(R.drawable.card_background);
                 notifySelected();
-                setAmountTxt();
+                //setAmountTxt();
                 //deckNameEditText.setText(viewModel.getChosenDeck().getValue().getDeckName());
                 deckNameEditText.setText(viewModel.getDeckName());
                 spinnerAdapter.setEditBtnVisibility(view);
@@ -144,19 +146,25 @@ public class EditDeckFragment extends Fragment implements DeckRecyclerViewAdapte
     }
 
     public void setAmountTxt() {
-        if(viewModel.getAmountCards() == 0){
-            amountCards.setText("No cards oink!");
-        }else if(viewModel.getChosenDeck().getValue().getAmountCards()>1){
-            amountCards.setText(Integer.toString(viewModel.getAmountCards()) + " cards");
-        }else{
-            amountCards.setText(Integer.toString(viewModel.getAmountCards()) + " card");
-        }
+        viewModel.getAmountCards().observe(getViewLifecycleOwner(), new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer i) {
+                if (i == 0){
+                    amountCards.setText("No cards oink!");
+                }else if (i > 1){
+                    amountCards.setText(Integer.toString(i) + " cards");
+                }else {
+                    amountCards.setText(Integer.toString(i) + " card");
+                }
+            }
+        });
     }
+
 
     private void cardListGrid(Deck deck){
         cardList.addItemDecoration(new GridSpacingCardDecoration(2, 30));
         cardList.setLayoutManager(new GridLayoutManager(getContext(), 2));
-        deckRecyclerViewAdapter = new DeckRecyclerViewAdapter(getContext(), deck.cards, viewModel);
+        deckRecyclerViewAdapter = new DeckRecyclerViewAdapter(getContext(), viewModel);
         cardList.setAdapter(deckRecyclerViewAdapter);
         deckRecyclerViewAdapter.setClickListener(this);
     }
@@ -217,19 +225,6 @@ public class EditDeckFragment extends Fragment implements DeckRecyclerViewAdapte
     }
 
     @Override
-    public void onRemoveCardClick(Card card, List<Card> cardsList) {
-        deleteCard.setVisibility(View.VISIBLE);
-        if(!checkBox.isChecked()){
-            setYesNoBtn(card, cardsList);
-        }else{
-            removeCard(card, cardsList);
-            savePreferencesCard();
-            loadPreferencesCard();
-            deleteCard.setVisibility(View.INVISIBLE);
-        }
-    }
-
-    @Override
     public void onRemoveDeckBtnClick(ConstraintLayout constraintLayout, TextView deckName, TextView amountCards, int position) {
         if (viewModel.getDecks().getValue().size() != 1){ //If not the last deck
             removeDeckCheckboxHandler(constraintLayout, deckName, amountCards, position);
@@ -285,11 +280,24 @@ public class EditDeckFragment extends Fragment implements DeckRecyclerViewAdapte
         }
     }
 
-    private void setYesNoBtn(Card card, List<Card> cardsList){
+    @Override
+    public void onRemoveCardClick(int postion) {
+        deleteCard.setVisibility(View.VISIBLE);
+        if(!checkBox.isChecked()){
+            setYesNoBtn(postion);
+        }else{
+            viewModel.removeCard(postion, viewModel.getChosenDeck().getValue());
+            deleteCard.setVisibility(View.INVISIBLE);
+        }
+        savePreferencesCard();
+        deckRecyclerViewAdapter.notifyDataSetChanged();
+    }
+
+    private void setYesNoBtn(int position){
         yesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                removeCard(card, cardsList);
+                viewModel.removeCard(position, viewModel.getChosenDeck().getValue());
                 deleteCard.setVisibility(View.INVISIBLE);
             }
         });
@@ -301,17 +309,11 @@ public class EditDeckFragment extends Fragment implements DeckRecyclerViewAdapte
         });
     }
 
-    private void removeCard(Card card, List<Card> cardsList){
-        cardsList.remove(card);
-        deckRecyclerViewAdapter.notifyDataSetChanged();
-        setAmountTxt();
-    }
-
     @Override
-    public void onEditItemBtnClick(Card card) {
+    public void onEditItemBtnClick() {
         Bundle bundle = new Bundle();
         bundle.putParcelable("deck", Parcels.wrap(viewModel.getChosenDeck().getValue()));
-        bundle.putParcelable("card", Parcels.wrap(card));
+        bundle.putParcelable("card", Parcels.wrap(viewModel.getCard().getValue()));
         NavHostFragment.findNavController(EditDeckFragment.this)
                 .navigate(R.id.action_editDeckFragment_to_cardFragment2, bundle);
 

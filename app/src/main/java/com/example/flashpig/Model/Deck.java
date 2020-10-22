@@ -69,6 +69,8 @@ public class Deck {
         }
     }
 
+    public Card getCard(int pos){ return cards.get(pos); }
+
     /**
      * Deletes all cards in a deck.
      *
