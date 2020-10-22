@@ -162,6 +162,7 @@ public class PairUpViewModel extends ViewModel {
     }
 
 
+
     public void setCard1(Card card1) {
         this.card1.setValue(card1);
     }

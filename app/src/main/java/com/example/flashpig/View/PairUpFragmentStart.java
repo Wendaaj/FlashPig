@@ -111,7 +111,7 @@ public class PairUpFragmentStart extends Fragment implements PairUpRecyclerViewA
 
         setFirstViews();
 
-        pairUpViewModel.getCard2().observe(getViewLifecycleOwner(), new Observer<Card>() { //Kanske här
+        pairUpViewModel.getCard2().observe(getViewLifecycleOwner(), new Observer<Card>() {
             @Override
             public void onChanged(Card card) {
                 pairUpViewModel.isPair();
@@ -158,10 +158,8 @@ public class PairUpFragmentStart extends Fragment implements PairUpRecyclerViewA
             @Override
             public void onChanged(Boolean setFirstView) {
                 if(setFirstView){
-
                     adapter.notifyDataSetChanged();
                     adapter.notifyDataSetChanged();
-
                     adapter2.setReload(true);
                 }
             }
@@ -187,16 +185,12 @@ public class PairUpFragmentStart extends Fragment implements PairUpRecyclerViewA
 
     @Override
     public void onItemClick(View view, int position) throws InterruptedException {
-        if (pairUpViewModel.cardOneNull()) { //Select first card
-            //pairUpViewModel.setCard1(adapter.getItem(position));
+        if (pairUpViewModel.cardOneNull()) {
             pairUpViewModel.setCard1(pairUpViewModel.getItem(position));
-            //göra det i viewmodel skicka in positionen
-
             position1 = position;
             view.setClickable(false);
-        } else { //Select second card
+        } else {
             position2 = position;
-            //pairUpViewModel.setCard1(adapter.getItem(position));
             pairUpViewModel.setCard2(pairUpViewModel.getItem(position));
 
         }
@@ -206,17 +200,13 @@ public class PairUpFragmentStart extends Fragment implements PairUpRecyclerViewA
      * Loads the cards to game board and shuffles the order of cards in the deck
      */
     private void setFirstViews() {
-        for (int i = 0; i < pairUpViewModel.getChosenDeck().getValue().cards.size(); i++) { //HÄR
-            //adapter.getItem(i).setFrontside(false);
+        for (int i = 0; i < pairUpViewModel.getCards().size(); i++) {
             pairUpViewModel.setFrontPosFalse(i);
-            //adapter.notifyDataSetChanged();
-            Collections.shuffle(pairUpViewModel.getCards()); //HÄR
+            Collections.shuffle(pairUpViewModel.getCards());
         }
 
-        for (int j = 0; j < pairUpViewModel.getCards().size(); j++) { //HÄR
-            //adapter2.getItem(j).setFrontside(true);
+        for (int j = 0; j < pairUpViewModel.getCards().size(); j++) {
             pairUpViewModel.setFrontPosTrue(j);
-            //adapter2.notifyDataSetChanged();
         }
     }
 
