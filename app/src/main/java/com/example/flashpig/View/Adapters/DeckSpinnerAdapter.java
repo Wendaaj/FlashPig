@@ -13,11 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.lifecycle.ViewModel;
 
 import com.example.flashpig.Model.Deck;
 import com.example.flashpig.R;
-import com.example.flashpig.ViewModel.DashboardViewModel;
 
 import java.util.ArrayList;
 

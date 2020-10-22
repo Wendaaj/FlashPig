@@ -130,10 +130,6 @@ public class PairUpViewModel extends ViewModel {
 
     public MutableLiveData<Boolean> getIfLastPair() { return ifLastPair; }
 
-    public LiveData<Card> getCard2() {
-        return card2;
-    }
-
     public MutableLiveData<Deck> getChosenDeck() {
         return chosenDeck;
     }
@@ -143,9 +139,8 @@ public class PairUpViewModel extends ViewModel {
     public Deck getDeck(){return chosenDeck.getValue();}
 
     public List<Card> getCards(){return chosenDeck.getValue().cards;}
-    public Card getItem(int position) {
-        return getCards().get(position);
-    }
+
+    public Card getItem(int position) { return getCards().get(position); }
 
     public void setFrontPosTrue(int position){
         getItem(position).setFrontside(true);
@@ -160,10 +155,6 @@ public class PairUpViewModel extends ViewModel {
     }
 
     public void setCard2(Card card2) { this.card2.setValue(card2); }
-
-    public int getDeckSize() {
-        return deckSize;
-    }
 
     public void setDeckSize(int i){this.deckSize=i;}
 

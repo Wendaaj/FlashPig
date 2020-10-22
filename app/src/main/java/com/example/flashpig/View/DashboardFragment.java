@@ -79,7 +79,7 @@ public class DashboardFragment extends Fragment implements DeckSpinnerAdapter.On
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 viewModel.getChosenDeck().setValue((Deck) parent.getItemAtPosition(position));
                 view.setBackgroundResource(R.drawable.card_background);
-                notifySelected();
+                Toast.makeText(getActivity(), viewModel.getDeckName() + " selected", Toast.LENGTH_SHORT).show();
                 spinnerAdapter.setEditBtnVisibility(view);
             }
 
@@ -131,7 +131,7 @@ public class DashboardFragment extends Fragment implements DeckSpinnerAdapter.On
                     NavHostFragment.findNavController(DashboardFragment.this)
                             .navigate(R.id.action_FirstFragment_to_editDeckFragment, bundle);
                 }else {
-                    //Add toast
+                    Toast.makeText(getActivity(), "Please create a deck first! OINK!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -152,18 +152,6 @@ public class DashboardFragment extends Fragment implements DeckSpinnerAdapter.On
             @Override
             public void onClick(View view) {
                 Toast.makeText(getActivity(), "This part is not unlocked OINK", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    /**
-     * Sends a toast if the chosen deck is changed.
-     */
-    private void notifySelected() {
-        viewModel.getChosenDeck().observe(getViewLifecycleOwner(), new Observer<Deck>() {
-            @Override
-            public void onChanged(Deck deck) {
-                Toast.makeText(getActivity(), viewModel.getDeckName() + " selected", Toast.LENGTH_SHORT).show();
             }
         });
     }
