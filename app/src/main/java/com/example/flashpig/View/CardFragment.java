@@ -101,8 +101,7 @@ public class CardFragment extends Fragment {
         ccToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavHostFragment.findNavController(CardFragment.this)
-                        .navigate(R.id.action_cardFragment_to_createDeckFragment);
+                setBackPressed();
             }
         });
 
@@ -181,7 +180,6 @@ public class CardFragment extends Fragment {
                     ccTextinput.getEditText().getText().clear();
                     ccImageView.setImageDrawable(null);
                     ccCardn.setText("Add backside nr: " + viewModel.getCardPos());
-                    viewModel.saveDeck();
                     Bundle bundle = new Bundle();
                     bundle.putParcelable("deck", Parcels.wrap(viewModel.getCurrentDeck()));
                     Toast.makeText(getContext(), viewModel.getDeckName() +
@@ -215,6 +213,18 @@ public class CardFragment extends Fragment {
                 }else{ pickImageFromGallery(); }
             }
         });
+    }
+
+    private void setBackPressed(){
+        if (getArguments() != null){
+            Bundle bundle = new Bundle();
+            bundle.putParcelable("deck", Parcels.wrap(viewModel.getCurrentDeck()));
+            NavHostFragment.findNavController(CardFragment.this)
+                    .navigate(R.id.action_cardFragment_to_editDeckFragment, bundle);
+        } else {
+            NavHostFragment.findNavController(CardFragment.this)
+                    .navigate(R.id.action_cardFragment_to_createDeckFragment);
+        }
     }
 
     private void updateViews(){

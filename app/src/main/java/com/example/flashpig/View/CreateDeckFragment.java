@@ -63,7 +63,7 @@ public class CreateDeckFragment extends Fragment {
         loadPreferences();
 
         viewModel.getDeck().observe(getViewLifecycleOwner(), deck -> {
-            if (viewModel.getDeck().getValue() == null){
+            if (viewModel.getDeck().getValue() != null){
                 dcTextInputLayout.getEditText().setText(viewModel.getDeck().getValue().getDeckName());
             }
         });

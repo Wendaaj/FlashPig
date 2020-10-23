@@ -285,10 +285,10 @@ public class EditDeckFragment extends Fragment implements DeckRecyclerViewAdapte
     }
 
     @Override
-    public void onEditItemBtnClick() {
+    public void onEditItemBtnClick(int pos) {
         Bundle bundle = new Bundle();
         bundle.putParcelable("deck", Parcels.wrap(viewModel.getChosenDeck().getValue()));
-        bundle.putParcelable("card", Parcels.wrap(viewModel.getCard().getValue()));
+        bundle.putParcelable("card", Parcels.wrap(viewModel.getCardAtPos(pos)));
         NavHostFragment.findNavController(EditDeckFragment.this)
                 .navigate(R.id.action_editDeckFragment_to_cardFragment2, bundle);
 

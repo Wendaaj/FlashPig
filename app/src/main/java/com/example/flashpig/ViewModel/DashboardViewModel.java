@@ -79,6 +79,8 @@ public class DashboardViewModel extends ViewModel {
 
     public void setCardAtPos(int pos){ card.setValue(chosenDeck.getValue().cards.get(pos));}
 
+    public Card getCardAtPos(int pos){ return chosenDeck.getValue().cards.get(pos);}
+
     public String getCardFrontTxt(){ return card.getValue().getFrontsideStr();}
 
     public Bitmap getCardFrontImg(){ return card.getValue().getFrontImg();}

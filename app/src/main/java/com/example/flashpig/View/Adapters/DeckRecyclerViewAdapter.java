@@ -70,7 +70,7 @@ public class DeckRecyclerViewAdapter extends RecyclerView.Adapter<DeckRecyclerVi
         holder.editCardBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               clickListener.onEditItemBtnClick();
+               clickListener.onEditItemBtnClick(position);
             }
         });
     }
@@ -165,7 +165,7 @@ public class DeckRecyclerViewAdapter extends RecyclerView.Adapter<DeckRecyclerVi
         public interface ItemClickListener {
             void onItemClick(View view, int position);
             void onRemoveCardClick(int pos);
-            void onEditItemBtnClick();
+            void onEditItemBtnClick(int pos);
         }
 }
 
