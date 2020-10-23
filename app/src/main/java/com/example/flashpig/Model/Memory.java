@@ -19,38 +19,29 @@ public class Memory extends GameLogic implements MemoryPairUpLogic {
     }
 
     /**
+     * Check if it is end of game
+     * @return Returns true if a game is done
+     */
+    @Override
+    public boolean gameIsOver() { return deck.cards.size() == 0; }
+
+    /**
      *  Compare two cards from a deck
      *  @param chosenCard1 The card first selected
      *  @param chosenCard2 The card second selected
      *  @return Returns true if it the chosen card are a pair
      */
-
-
     @Override
     public boolean isMatched(Card chosenCard1, Card chosenCard2, Deck deck) {
         int deckSize;
         if (chosenCard1.getId() == chosenCard2.getId()) {
             deckSize = (deck.getAmountCards()/2) - 1;
-            isEndOfGame(deckSize);
+            gameIsOver();
             return true;
         } else {
             return false;
         }
     }
-
-    /**
-     * Check if it is end of game
-     * @param deckSize Amount of cards in a deck
-     * @return Returns true if a game is done
-     */
-
-        @Override
-        public boolean isEndOfGame(int deckSize) {
-            if (deckSize == 0) {
-                return true;
-            }
-            return false;
-        }
 
     /**
      * Method to turn a card

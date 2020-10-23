@@ -19,7 +19,5 @@ public abstract class GameLogic {
         this.deck = deck;
     }
 
-    public boolean gameWon(Deck deck) {
-        return deck.getAmountCards() == 0;
-    }
+    public abstract boolean gameIsOver();
 }

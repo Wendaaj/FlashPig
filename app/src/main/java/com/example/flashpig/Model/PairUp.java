@@ -14,7 +14,6 @@ public class PairUp extends GameLogic {
         super(deck);
     }
 
-
     /**
      *  Compare two cards from a deck
      *  @param chosenCard1 The card first selected
@@ -30,9 +29,6 @@ public class PairUp extends GameLogic {
      * Check if it is end of game
      * @return Returns true if a game is done
      */
-
-    public boolean isEndOfGame() {
-        return deck.cards.size() == 0;
-        //return true;
-    }
+    @Override
+    public boolean gameIsOver() { return deck.cards.size() == 1; }
 }

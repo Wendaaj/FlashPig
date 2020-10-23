@@ -50,7 +50,7 @@ public class PairUpViewModel extends ViewModel {
     }
 
     public void isPair(){
-        if (deckSize!=1){
+        if (!pairUp.getValue().gameIsOver()){
             if (pairUp.getValue().isMatched(card1.getValue(), card2.getValue()) && showingCards != 2){
                 isMatch.setValue(true);
                 updateAmountCards();

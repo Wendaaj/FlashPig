@@ -53,7 +53,7 @@ public class FlashcardViewModel extends ViewModel {
      */
     private void update(){
         updateDifficultyAmount();
-        if (!flashcard.getValue().roundIsOver()){
+        if (!flashcard.getValue().gameIsOver()){
             currentCard.setValue(flashcard.getValue().getCurrentCard());
             checkHasFrontTxtAndImg();
             checkHasBackTxtAndImg();

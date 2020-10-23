@@ -25,11 +25,13 @@ public class Flashcard extends GameLogic {
         updateDifficultyAmount();
     }
 
+
     /**
      * Check if the round is over.
      * @return Returns true if round is over.
      */
-    public boolean roundIsOver() {
+    @Override
+    public boolean gameIsOver() {
         if (gameDeck.isEmpty()) {
             gameDeck.addAll(deck.cards);
             return true;
