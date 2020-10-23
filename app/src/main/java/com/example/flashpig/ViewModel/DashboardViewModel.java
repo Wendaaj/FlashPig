@@ -87,6 +87,8 @@ public class DashboardViewModel extends ViewModel {
 
     public Bitmap getCardBackImg(){ return card.getValue().getBackImg();}
 
+    public int getAmountCardsAtPos(int pos){ return decks.getValue().get(pos).cards.size();}
+
     public LiveData<ArrayList<Deck>> getDecks() { return decks; }
 
     public LiveData<Integer> getAmountDecks() { return amountDecks; }
@@ -108,4 +110,5 @@ public class DashboardViewModel extends ViewModel {
     public boolean decksEmpty(){
         return decks.getValue().isEmpty();
     }
+
 }

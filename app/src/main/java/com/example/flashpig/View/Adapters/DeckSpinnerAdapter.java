@@ -14,8 +14,8 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.example.flashpig.Model.Deck;
 import com.example.flashpig.R;
+import com.example.flashpig.ViewModel.DashboardViewModel;
 
 import java.util.ArrayList;
 
@@ -25,14 +25,16 @@ import java.util.ArrayList;
  * @version 22-10-20
  */
 
-public class DeckSpinnerAdapter extends ArrayAdapter<Deck> {
+public class DeckSpinnerAdapter extends ArrayAdapter<Object> {
     private Context context;
     private OnEditItemsClickListener onEditItemClickListener;
+    private DashboardViewModel viewModel;
 
-    public DeckSpinnerAdapter(Context context, ArrayList<Deck> deckArrayList, OnEditItemsClickListener onEditItemClickListener){
+    public DeckSpinnerAdapter(Context context, ArrayList<Object> deckArrayList, OnEditItemsClickListener onEditItemClickListener, DashboardViewModel viewModel){
         super(context, 0, deckArrayList);
         this.context = context;
         this.onEditItemClickListener = onEditItemClickListener;
+        this.viewModel = viewModel;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -72,8 +74,9 @@ public class DeckSpinnerAdapter extends ArrayAdapter<Deck> {
             }
         });
 
-        deckName.setText(getItem(position).getDeckName());
-        amountCards.setText(Integer.toString(getItem(position).getAmountCards()));
+        viewModel.getChosenDeck().setValue(viewModel.getDeckAtPos(position));
+        deckName.setText(viewModel.getDeckName());
+        amountCards.setText(Integer.toString(viewModel.getAmountCardsAtPos(position)));
         if (position % 2 == 0) { // we're on an even row
             convertView.setBackgroundColor(context.getResources().getColor(R.color.spinner1));
         } else {

@@ -156,9 +156,12 @@ public class PairUpViewModel extends ViewModel {
 
     public void setCard2(Card card) { card2.setValue(card); }
 
-    public void setDeckSize(int i){this.deckSize=i;}
-
-    public void setShowingCards(int i){this.showingCards =i;}
-
     public MutableLiveData<Boolean> getSetFirstViews() { return setFirstViews; }
+
+    public String getFrontTxtAtPos(int pos){ return gameDeck.get(pos).getFrontsideStr();}
+
+    public String getBackTxtAtPos(int pos){ return gameDeck.get(pos).getBacksideStr();}
+
+    public boolean getIsFrontsideAtPos(int pos){ return gameDeck.get(pos).isFrontside();}
+
 }

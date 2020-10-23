@@ -25,6 +25,9 @@ import com.example.flashpig.ViewModel.DashboardViewModel;
 
 import org.parceler.Parcels;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  *
@@ -59,7 +62,9 @@ public class DashboardFragment extends Fragment implements DeckSpinnerAdapter.On
     private void configSpinner(){
         deckSpinner = getActivity().findViewById(R.id.chooseDeckSpinner);
         ndecks = getActivity().findViewById(R.id.ndeckstext);
-        spinnerAdapter = new DeckSpinnerAdapter(getActivity(), viewModel.getDecks().getValue(), this);
+        ArrayList<Object> objectList = new ArrayList<>();
+        objectList.addAll(viewModel.getDecks().getValue());
+        spinnerAdapter = new DeckSpinnerAdapter(getActivity(), objectList, this, viewModel);
         deckSpinner.setAdapter(spinnerAdapter);
     }
 
@@ -77,7 +82,7 @@ public class DashboardFragment extends Fragment implements DeckSpinnerAdapter.On
         deckSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                viewModel.getChosenDeck().setValue((Deck) parent.getItemAtPosition(position));
+                viewModel.getChosenDeck().setValue(viewModel.getDeckAtPos(position));
                 view.setBackgroundResource(R.drawable.card_background);
                 Toast.makeText(getActivity(), viewModel.getDeckName() + " selected", Toast.LENGTH_SHORT).show();
                 spinnerAdapter.setEditBtnVisibility(view);
@@ -98,9 +103,8 @@ public class DashboardFragment extends Fragment implements DeckSpinnerAdapter.On
             @Override
             public void onClick(View v) {
                 if (viewModel.getAmountDecks().getValue() != 0) {
-                    Parcelable wrappedDeck = Parcels.wrap(viewModel.getDeck());
                     Intent intent = new Intent(getActivity(), FlashcardActivity.class);
-                    intent.putExtra("deck", wrappedDeck);
+                    intent.putExtra("deck", Parcels.wrap(viewModel.getDeck()));
                     startActivity(intent);
                 }else {
                     Toast.makeText(getActivity(), "Please create a deck first! OINK!", Toast.LENGTH_SHORT).show();
@@ -112,9 +116,8 @@ public class DashboardFragment extends Fragment implements DeckSpinnerAdapter.On
             @Override
             public void onClick(View v) {
                 if (viewModel.getAmountDecks().getValue() != 0) {
-                    Parcelable wrappedDeck = Parcels.wrap(viewModel.getDeck());
                     Intent intent = new Intent(getActivity(), PairUpActivity.class);
-                    intent.putExtra("deck", wrappedDeck);
+                    intent.putExtra("deck", Parcels.wrap(viewModel.getDeck()));
                     startActivity(intent);
                 }else {
                     Toast.makeText(getActivity(), "Please create a deck first! OINK!", Toast.LENGTH_SHORT).show();

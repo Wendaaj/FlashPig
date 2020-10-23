@@ -14,7 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -63,9 +62,11 @@ public class CreateDeckFragment extends Fragment {
         setView();
         loadPreferences();
 
-        if (viewModel.getDeck().getValue() != null){
-            dcTextInputLayout.getEditText().setText(viewModel.getDeck().getValue().getDeckName());
-        }
+        viewModel.getDeck().observe(getViewLifecycleOwner(), deck -> {
+            if (viewModel.getDeck().getValue() == null){
+                dcTextInputLayout.getEditText().setText(viewModel.getDeck().getValue().getDeckName());
+            }
+        });
 
         dcButton.setOnClickListener(new View.OnClickListener() {
             @Override

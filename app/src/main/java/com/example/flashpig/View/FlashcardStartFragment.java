@@ -74,15 +74,7 @@ public class FlashcardStartFragment extends Fragment implements View.OnClickList
             }
         });
 
-        viewModel.getCurrentCard().observe(getViewLifecycleOwner(), new Observer<Card>() {
-            @Override
-            public void onChanged(Card card) {
-                setBackTxt(viewModel.getCardBackTxt());
-                setFrontTxt(viewModel.getCardFrontTxt());
-                setBackImg(viewModel.getCardBackImg());
-                setFrontImg(viewModel.getCardFrontImg());
-            }
-        });
+        viewModel.getCurrentCard().observe(getViewLifecycleOwner(), card -> { updateCardValues();});
 
         btnEasy.setOnClickListener(this);
         btnMedium.setOnClickListener(this);
@@ -121,6 +113,13 @@ public class FlashcardStartFragment extends Fragment implements View.OnClickList
                 hardAmount.setText(Integer.toString(amount));
             }
         });
+    }
+
+    private void updateCardValues(){
+        setBackTxt(viewModel.getCardBackTxt());
+        setFrontTxt(viewModel.getCardFrontTxt());
+        setBackImg(viewModel.getCardBackImg());
+        setFrontImg(viewModel.getCardFrontImg());
     }
 
     /**

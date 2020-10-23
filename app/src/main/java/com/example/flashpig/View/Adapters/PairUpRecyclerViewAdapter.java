@@ -63,13 +63,13 @@ public class PairUpRecyclerViewAdapter extends RecyclerView.Adapter<PairUpRecycl
      */
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.frontSideTextView.setText(viewModel.getItem(position).getFrontsideStr());
+        holder.frontSideTextView.setText(viewModel.getFrontTxtAtPos(position));
         holder.frontSideTextView.setTag(position);
-        holder.backSideTextView.setText(viewModel.getItem(position).getBacksideStr());
+        holder.backSideTextView.setText(viewModel.getBackTxtAtPos(position));
         holder.itemView.setBackgroundResource(R.drawable.frame_default);
         holder.itemView.setClickable(true);
 
-        if(!viewModel.getItem(position).isFrontside()){
+        if(!viewModel.getIsFrontsideAtPos(position)){
             holder.frontSideTextView.setVisibility(View.INVISIBLE);
             holder.frontImageView.setVisibility(View.INVISIBLE);
             holder.backImageView.setVisibility(View.VISIBLE);

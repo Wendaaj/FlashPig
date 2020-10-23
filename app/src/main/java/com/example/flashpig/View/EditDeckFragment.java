@@ -33,6 +33,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import org.parceler.Parcels;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -76,15 +77,12 @@ public class EditDeckFragment extends Fragment implements DeckRecyclerViewAdapte
 
         viewModel = new ViewModelProvider(getActivity()).get(DashboardViewModel.class);
 
-        viewModel.getChosenDeck().observe(getViewLifecycleOwner(), new Observer<Deck>() {
-            @Override
-            public void onChanged(Deck deck) {
-                viewModel.getAmountCards().setValue(deck.cards.size());
-                viewModel.getIsFrontside().setValue(deck.isFrontside);
+        viewModel.getChosenDeck().observe(getViewLifecycleOwner(), deck ->  {
+            viewModel.getAmountCards().setValue(viewModel.getChosenDeck().getValue().cards.size());
+            viewModel.getIsFrontside().setValue(viewModel.getChosenDeck().getValue().isFrontside);
 
-                if (deck != null) {
-                    Toast.makeText(getActivity(), deck.getDeckName() + " selected", Toast.LENGTH_SHORT).show();
-                }
+            if (viewModel.getChosenDeck().getValue() != null) {
+                Toast.makeText(getActivity(), viewModel.getDeckName() + " selected", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -128,13 +126,15 @@ public class EditDeckFragment extends Fragment implements DeckRecyclerViewAdapte
     }
 
     private void configSpinner(){
-        spinnerAdapter = new DeckSpinnerAdapter(getContext(), viewModel.getDecks().getValue(), this);
+        ArrayList<Object> objectList = new ArrayList<>();
+        objectList.addAll(viewModel.getDecks().getValue());
+        spinnerAdapter = new DeckSpinnerAdapter(getContext(), objectList, this, viewModel);
         deckSpinner.setAdapter(spinnerAdapter);
         deckSpinner.setSelection(viewModel.getChosenDeckPos());
         deckSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                viewModel.getChosenDeck().setValue((Deck) parent.getItemAtPosition(position));
+                viewModel.getChosenDeck().setValue(viewModel.getDeckAtPos(position));
                 view.setBackgroundResource(R.drawable.card_background);
                 deckNameEditText.setText(viewModel.getDeckName());
                 spinnerAdapter.setEditBtnVisibility(view);
