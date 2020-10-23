@@ -54,7 +54,7 @@ public class ModelTest {
         Assert.assertEquals(card2.getDifficulty(), Difficulty.MEDIUM);
     }
 
-//Test Deck
+    //Test Deck
     @Test
     public void testAddCard() {
         deck.addCard(card0);
@@ -111,8 +111,6 @@ public class ModelTest {
     @Test
     public void testIsEndOffGame() {
         Deck memoryDeck = new Deck();
-        Card memoryCard = new Card();
-        memoryDeck.addCard(memoryCard);
         Memory memory = new Memory(memoryDeck);
         Assert.assertTrue(memory.gameIsOver());
     }

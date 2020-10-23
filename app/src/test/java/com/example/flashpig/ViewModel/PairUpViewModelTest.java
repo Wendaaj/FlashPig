@@ -23,6 +23,8 @@ public class PairUpViewModelTest {
     Card card3 = new Card();
     Deck deck = new Deck();
 
+
+
     @Before
     public void setup() {
         Repository repo = Repository.getInstance();
@@ -37,6 +39,8 @@ public class PairUpViewModelTest {
 
     @Test
     public void isPairForDeckSizeAndShowingCardsLarge() {
+
+
         pairUpViewModel.setDeckSize(4);
         pairUpViewModel.setShowingCards(4);
         pairUpViewModel.setCard1(card);
@@ -77,4 +81,7 @@ public class PairUpViewModelTest {
         pairUpViewModel.setCard1(null);
         assertTrue(pairUpViewModel.cardOneNull());
     }
+
+
+
 }
