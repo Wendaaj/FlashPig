@@ -88,6 +88,7 @@ public class CardFragment extends Fragment {
                 updateViews();
             }else {
                 viewModel.initCard();
+                ccButtonback1.setEnabled(false);
             }
         }
         else {
