@@ -30,7 +30,7 @@ public class FlashcardViewModelTest {
         deck.addCard(card);
         repo.saveDeck(deck);
         FlashcardViewModel flashcardviewmodel = new FlashcardViewModel();
-        flashcardviewmodel.init(deck);
+        flashcardviewmodel.getDeck().setValue(deck);
     }
 
     @Test

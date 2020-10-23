@@ -35,7 +35,7 @@ public class DashboardViewModelTest {
         //card.setBackImg(bmp);
         //card.setFrontImg(bmp);
         deck.addCard(card);
-        dashboardViewModel.setChosenDeck(deck);
+        dashboardViewModel.getChosenDeck().setValue(deck);
         dashboardViewModel.getCard().setValue(card);
     }
 
@@ -78,7 +78,7 @@ public class DashboardViewModelTest {
     @Test
     public void removeDeck() {
         int before = dashboardViewModel.getAmountDecks().getValue();
-        dashboardViewModel.removeDeck(deck);
+        dashboardViewModel.removeDeck(0);
         int after = dashboardViewModel.getAmountDecks().getValue();
         after = after + 1;
         assertEquals(before, after);
@@ -87,7 +87,7 @@ public class DashboardViewModelTest {
     @Test
     public void removeCard() {
         int amountCardsBefore = dashboardViewModel.getChosenDeck().getValue().getAmountCards();
-        dashboardViewModel.removeCard(0, deck);
+        dashboardViewModel.removeCard(0, 4);
         int amountCardsAfter = dashboardViewModel.getChosenDeck().getValue().getAmountCards();
         assertEquals(amountCardsBefore, amountCardsAfter + 1);
     }

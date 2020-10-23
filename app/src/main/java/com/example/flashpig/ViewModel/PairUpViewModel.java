@@ -150,11 +150,11 @@ public class PairUpViewModel extends ViewModel {
         getItem(position).setFrontside(true);
     }
 
-    public void setCard1(Card card1) {
-        this.card1.setValue(card1);
+    public void setCard1(Card card) {
+        card1.setValue(card);
     }
 
-    public void setCard2(Card card2) { this.card2.setValue(card2); }
+    public void setCard2(Card card) { card2.setValue(card); }
 
     public void setDeckSize(int i){this.deckSize=i;}
 

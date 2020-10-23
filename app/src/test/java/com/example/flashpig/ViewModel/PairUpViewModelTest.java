@@ -5,6 +5,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 import com.example.flashpig.DataBase.Repository;
 import com.example.flashpig.Model.Card;
 import com.example.flashpig.Model.Deck;
+import com.example.flashpig.Model.PairUp;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -22,6 +23,8 @@ public class PairUpViewModelTest {
     Card card3 = new Card();
     Deck deck = new Deck();
 
+
+
     @Before
     public void setup() {
         Repository repo = Repository.getInstance();
@@ -29,12 +32,17 @@ public class PairUpViewModelTest {
         deck.addCard(card2);
         deck.addCard(card3);
         repo.saveDeck(deck);
-        pairUpViewModel.init(deck);
+        pairUpViewModel.getChosenDeck().setValue(deck);
+        pairUpViewModel.init();
 
     }
 
     @Test
     public void isPairForDeckSizeAndShowingCardsLarge() {
+
+
+        pairUpViewModel.setDeckSize(4);
+        pairUpViewModel.setShowingCards(4);
         pairUpViewModel.setCard1(card);
         pairUpViewModel.setCard2(card);
         pairUpViewModel.isPair();
