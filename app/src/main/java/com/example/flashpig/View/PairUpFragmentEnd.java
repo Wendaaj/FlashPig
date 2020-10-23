@@ -11,6 +11,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.flashpig.R;
 import com.example.flashpig.ViewModel.CardViewModel;
@@ -62,7 +63,6 @@ public class PairUpFragmentEnd extends Fragment {
      * @param view The view returned by onCreateView(LayoutInflater, ViewGroup, bundle)
      * @param savedInstanceState Saved instance state
      */
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -83,8 +83,12 @@ public class PairUpFragmentEnd extends Fragment {
             public void onClick(View v) {
                 pairUpViewModel.setIsEndOfGame(false);
                 pairUpViewModel.reloadDeck();
+                Toast.makeText(getContext(), "Under construction...OINK", Toast.LENGTH_SHORT).show();
+                /*
                 NavHostFragment.findNavController(PairUpFragmentEnd.this)
                         .navigate(R.id.action_pairUpFragmentEnd_to_pairUpFragmentStart);
+
+                */
             }
         });
 
