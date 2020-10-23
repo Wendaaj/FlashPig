@@ -133,4 +133,20 @@ public class ModelTest {
         Memory memory = new Memory(memoryDeck);
         Assert.assertTrue(memory.isMatched(memoryCard,memoryCard,deck));
     }
+    @Test
+    public void testSetFrontside() {
+        Deck deck = new Deck();
+        Card card = new Card();
+        deck.addCard(card);
+        deck.setFrontside();
+        Assert.assertTrue(card.isFrontside()==false);
+    }
+    @Test
+    public void testGetCards() {
+        Deck deck = new Deck();
+        Card card = new Card();
+        deck.addCard(card);
+        deck.setFrontside();
+        Assert.assertTrue(deck.getCards(Difficulty.NOTHING).size()==1);
+    }
 }

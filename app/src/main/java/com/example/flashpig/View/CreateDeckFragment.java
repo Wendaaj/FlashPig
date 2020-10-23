@@ -112,6 +112,9 @@ public class CreateDeckFragment extends Fragment {
         pig = view.findViewById(R.id.imageView3);
     }
 
+    /**
+     * Method to handle the checkbox for going back.
+     */
     private void goBackCheckboxHandler(){
         if (!cccheckBox.isChecked()) {
             setCheckboxView();
@@ -127,6 +130,9 @@ public class CreateDeckFragment extends Fragment {
 
         }
     }
+    /**
+     * Setting visibility of the checkbox while hiding others.
+     */
     private void setCheckboxView(){
         dcTextView.setVisibility(View.INVISIBLE);
         dcTextInputLayout.setVisibility(View.INVISIBLE);
@@ -137,6 +143,9 @@ public class CreateDeckFragment extends Fragment {
         ccNoBtn.setVisibility(View.VISIBLE);
         goBack.setVisibility(View.VISIBLE);
     }
+    /**
+     * Setting visibility of components.
+     */
     private void setView(){
         dcTextView.setVisibility(View.VISIBLE);
         dcTextInputLayout.setVisibility(View.VISIBLE);
@@ -148,6 +157,9 @@ public class CreateDeckFragment extends Fragment {
         goBack.setVisibility(View.INVISIBLE);
     }
 
+    /**
+     * Setting function of yes and no button for checkbox.
+     */
     private void setYesNoDeckBtn() {
         ccYesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -170,11 +182,19 @@ public class CreateDeckFragment extends Fragment {
         });
     }
 
+    /**
+     * Loading preferences for checkbox.
+     */
+
     public void loadPreferences(){
         SharedPreferences sharedPreferences = getActivity().getPreferences(MODE_PRIVATE);
         boolean state = sharedPreferences.getBoolean("state", false);
         cccheckBox.setChecked(state);
     }
+
+    /**
+     * Saving preferences for checkbox.
+     */
 
     public void savePreferences(){
         SharedPreferences sharedPreferences =  getActivity().getPreferences(MODE_PRIVATE);
