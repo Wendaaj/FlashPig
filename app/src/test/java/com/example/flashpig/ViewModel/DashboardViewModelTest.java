@@ -87,7 +87,7 @@ public class DashboardViewModelTest {
     @Test
     public void removeCard() {
         int amountCardsBefore = dashboardViewModel.getChosenDeck().getValue().getAmountCards();
-        dashboardViewModel.removeCard(0, 4);
+        dashboardViewModel.removeCard(0, dashboardViewModel.getChosenDeckPos()); // if you run this test individualy change deckpos to 4.
         int amountCardsAfter = dashboardViewModel.getChosenDeck().getValue().getAmountCards();
         assertEquals(amountCardsBefore, amountCardsAfter + 1);
     }

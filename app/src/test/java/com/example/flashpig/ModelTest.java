@@ -3,6 +3,7 @@ package com.example.flashpig;
 import com.example.flashpig.Model.Card;
 import com.example.flashpig.Model.Deck;
 import com.example.flashpig.Model.FlashcardProgress;
+import com.example.flashpig.Model.Memory;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -107,5 +108,29 @@ public class ModelTest {
         deck.addCard(card1);
         Assert.assertFalse(deck.deckContainsCard(card2));
     }
-
+    @Test
+    public void testIsEndOffGame() {
+        Deck memoryDeck = new Deck();
+        Card memoryCard = new Card();
+        memoryDeck.addCard(memoryCard);
+        Memory memory = new Memory(memoryDeck);
+        Assert.assertTrue(memory.isEndOfGame(0));
+    }
+    @Test
+    public void testIsFlipCard() {
+        Deck memoryDeck = new Deck();
+        Card memoryCard = new Card();
+        memoryDeck.addCard(memoryCard);
+        Memory memory = new Memory(memoryDeck);
+        memory.flipCard(memoryCard);
+        Assert.assertTrue(memoryCard.isFrontside()==false);
+    }
+    @Test
+    public void testIsMatched() {
+        Deck memoryDeck = new Deck();
+        Card memoryCard = new Card();
+        memoryDeck.addCard(memoryCard);
+        Memory memory = new Memory(memoryDeck);
+        Assert.assertTrue(memory.isMatched(memoryCard,memoryCard,deck));
+    }
 }
