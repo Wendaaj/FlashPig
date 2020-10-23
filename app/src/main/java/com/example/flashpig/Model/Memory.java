@@ -32,7 +32,7 @@ public class Memory extends GameLogic implements MemoryPairUpLogic {
      *  @return Returns true if it the chosen card are a pair
      */
     @Override
-    public boolean isMatched(Card chosenCard1, Card chosenCard2, Deck deck) {
+    public boolean isMatched(Card chosenCard1, Card chosenCard2) {
         int deckSize;
         if (chosenCard1.getId() == chosenCard2.getId()) {
             deckSize = (deck.getAmountCards()/2) - 1;

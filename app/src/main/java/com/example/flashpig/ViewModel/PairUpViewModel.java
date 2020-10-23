@@ -164,4 +164,8 @@ public class PairUpViewModel extends ViewModel {
 
     public boolean getIsFrontsideAtPos(int pos){ return gameDeck.get(pos).isFrontside();}
 
+    public void setDeckSize(int i){this.deckSize=i;}
+
+    public void setShowingCards(int i){this.showingCards =i;}
+
 }

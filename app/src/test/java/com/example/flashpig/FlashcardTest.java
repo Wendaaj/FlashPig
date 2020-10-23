@@ -43,9 +43,9 @@ public class FlashcardTest {
 
     @Test
     public void checkIfRoundIsOver(){
-        Assert.assertFalse(flashcard.roundIsOver());
+        Assert.assertFalse(flashcard.gameIsOver());
         flashcard.gameDeck.clear();
-        Assert.assertTrue(flashcard.roundIsOver());
+        Assert.assertTrue(flashcard.gameIsOver());
     }
 
     @Test

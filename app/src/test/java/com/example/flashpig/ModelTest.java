@@ -114,7 +114,7 @@ public class ModelTest {
         Card memoryCard = new Card();
         memoryDeck.addCard(memoryCard);
         Memory memory = new Memory(memoryDeck);
-        Assert.assertTrue(memory.isEndOfGame(0));
+        Assert.assertTrue(memory.gameIsOver());
     }
     @Test
     public void testIsFlipCard() {
@@ -131,7 +131,7 @@ public class ModelTest {
         Card memoryCard = new Card();
         memoryDeck.addCard(memoryCard);
         Memory memory = new Memory(memoryDeck);
-        Assert.assertTrue(memory.isMatched(memoryCard,memoryCard,deck));
+        Assert.assertTrue(memory.isMatched(memoryCard,memoryCard));
     }
     @Test
     public void testSetFrontside() {

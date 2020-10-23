@@ -9,7 +9,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class ModelMemoryPairUpTest {
-    /*
 
     Card chosenCard1 = new Card(1, "Vem är Zorri?",
             "Kungen", null, null);
@@ -45,85 +44,60 @@ public class ModelMemoryPairUpTest {
         Assert.assertFalse(chosenCard1.isFrontside());
 
     }
+
     @Test
     public void whenMatchedPositive() {
-
-
-        boolean isGameWon = memory.gameWon(deck);
-
-        memory.isEndOfGame(deck.getAmountCards());
-
+        boolean isGameWon = memory.gameIsOver();
+        memory.gameIsOver();
         Assert.assertTrue(isGameWon);
     }
 
     @Test
     public void whenMatchedNegative() {
-
         deck.addCard(chosenCard1); // deckSize = 1
-
-        memory.isEndOfGame(deck.getAmountCards());
-
-        boolean isGameWon = memory.gameWon(deck);
-
+        memory.gameIsOver();
+        boolean isGameWon = memory.gameIsOver();
         Assert.assertFalse(isGameWon);
-
     }
 
     @Test
     public void memoryIsMatchPositive() {
-
         deck.addCard(chosenCard1);
         deck.addCard(chosenCard2);
-
         chosenCard1.setId(1);
         chosenCard2.setId(1);
-
-        memory.isMatched(chosenCard1, chosenCard2, deck);
-
-        Assert.assertTrue(memory.isMatched(chosenCard1, chosenCard2,deck));
-}
+        memory.isMatched(chosenCard1, chosenCard2);
+        Assert.assertTrue(memory.isMatched(chosenCard1, chosenCard2));
+    }
 
     @Test
     public void memoryIsMatchNegative() {
-
         deck.addCard(chosenCard1);
         deck.addCard(chosenCard2); // 2 cards in deck
-
         chosenCard1.setId(2);
         chosenCard2.setId(77);
-
-        memory.isMatched(chosenCard1, chosenCard2, deck);
-
-        Assert.assertFalse(memory.isMatched(chosenCard1, chosenCard2,deck));
+        memory.isMatched(chosenCard1, chosenCard2);
+        Assert.assertFalse(memory.isMatched(chosenCard1, chosenCard2));
     }
 
     @Test
     public void pairUpIsMatchPositive() {
-
         deck.addCard(chosenCard1);
         deck.addCard(chosenCard2);
-
         chosenCard1.setId(1);
         chosenCard2.setId(1);
-
-        pairUp.isMatched(chosenCard1, chosenCard2, deck);
-
-        Assert.assertTrue(pairUp.isMatched(chosenCard1, chosenCard2,deck));
+        pairUp.isMatched(chosenCard1, chosenCard2);
+        Assert.assertTrue(pairUp.isMatched(chosenCard1, chosenCard2));
     }
 
-   @Test
+    @Test
     public void pairUpIsMatchNegative() {
-
-       deck.addCard(chosenCard1);
-       deck.addCard(chosenCard2); // 2 cards in deck
-
-       chosenCard1.setId(2);
-       chosenCard2.setId(77);
-
-       pairUp.isMatched(chosenCard1, chosenCard2, deck);
-
-       Assert.assertFalse(pairUp.isMatched(chosenCard1, chosenCard2,deck));
-
-     */
+        deck.addCard(chosenCard1);
+        deck.addCard(chosenCard2); // 2 cards in deck
+        chosenCard1.setId(2);
+        chosenCard2.setId(77);
+        pairUp.isMatched(chosenCard1, chosenCard2);
+        Assert.assertFalse(pairUp.isMatched(chosenCard1, chosenCard2));
     }
+}
 

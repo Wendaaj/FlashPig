@@ -20,7 +20,6 @@ public class PairUp extends GameLogic {
      *  @param chosenCard2 The card second selected
      *  @return Returns true if it the chosen card are a pair
      */
-
     public boolean isMatched(Card chosenCard1, Card chosenCard2) {
         return chosenCard1.getId() == chosenCard2.getId();
     }
