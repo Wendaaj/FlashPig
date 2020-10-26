@@ -41,6 +41,7 @@ public class DashboardFragment extends Fragment implements DeckSpinnerAdapter.On
     private Spinner deckSpinner;
     private TextView ndecks;
     private DashboardViewModel viewModel;
+    private ArrayList<Object> objectList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -62,10 +63,13 @@ public class DashboardFragment extends Fragment implements DeckSpinnerAdapter.On
     private void configSpinner(){
         deckSpinner = getActivity().findViewById(R.id.chooseDeckSpinner);
         ndecks = getActivity().findViewById(R.id.ndeckstext);
-        ArrayList<Object> objectList = new ArrayList<>();
+        objectList = new ArrayList<>();
         objectList.addAll(viewModel.getDecks().getValue());
         spinnerAdapter = new DeckSpinnerAdapter(getActivity(), objectList, this, viewModel);
         deckSpinner.setAdapter(spinnerAdapter);
+        if (viewModel.getChosenDeck().getValue() != null) {
+            deckSpinner.setSelection(viewModel.getChosenDeckPos());
+        }
     }
 
     /**
@@ -169,15 +173,16 @@ public class DashboardFragment extends Fragment implements DeckSpinnerAdapter.On
     @Override
     public void onRemoveDeckBtnClick(ConstraintLayout c, TextView deckName, TextView amountCards, int pos) {
         if (viewModel.getDecks().getValue().size() != 1){ //If not the last deck
-            viewModel.removeDeck(pos); //Remove the last deck
+            viewModel.removeDeck(pos);
             spinnerAdapter.manageVisibility(c, deckName, amountCards);
             setSpinnerSelection(pos);
         }else {
             spinnerAdapter.manageVisibility(c, deckName, amountCards);
             viewModel.removeDeck(pos); //Remove the last deck
-            spinnerAdapter.notifyDataSetChanged();
             Toast.makeText(getActivity(), "OINK! You have no decks left!", Toast.LENGTH_SHORT).show();
         }
+        objectList.clear();
+        objectList.addAll(viewModel.getDecks().getValue());
     }
 
     /**

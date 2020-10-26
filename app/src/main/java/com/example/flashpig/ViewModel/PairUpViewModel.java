@@ -57,8 +57,8 @@ public class PairUpViewModel extends ViewModel {
             } else if (showingCards == 2 ){
                 ifLastPair.setValue(true);
                 updateAmountCards();
-                loadNewCards.setValue(true);
                 loadNewCards();
+                loadNewCards.setValue(true);
             }
             else {
                 isMatch.setValue(false);
@@ -77,7 +77,8 @@ public class PairUpViewModel extends ViewModel {
         if (deckSize >= 3) {
             int i = 3;
             while (i != 0) {
-                chosenDeck.getValue().cards.remove(0);
+                //chosenDeck.getValue().cards.remove(0);
+                gameDeck.remove(0);
                 i--;
             }
             showingCards = 6;
@@ -86,7 +87,8 @@ public class PairUpViewModel extends ViewModel {
         if(deckSize==2){
             int i = 2;
             while (i != 0) {
-                chosenDeck.getValue().cards.remove(0);
+                //chosenDeck.getValue().cards.remove(0);
+                gameDeck.remove(0);
                 i--;
             }
             showingCards = 4;
@@ -94,13 +96,13 @@ public class PairUpViewModel extends ViewModel {
         if(deckSize==1){
             int i = 1;
             while (i != 0) {
-                chosenDeck.getValue().cards.remove(0);
+                //chosenDeck.getValue().cards.remove(0);
+                gameDeck.remove(0);
                 i--;
             }
             showingCards = 2;
 
         }
-
     }
 
     /**

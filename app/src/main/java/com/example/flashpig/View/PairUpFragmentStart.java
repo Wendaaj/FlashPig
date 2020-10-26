@@ -124,8 +124,9 @@ public class PairUpFragmentStart extends Fragment implements PairUpRecyclerViewA
             @Override
             public void onChanged(Boolean lastPair) {
                 if(lastPair){
-                    setCorrectFrame(view);
-
+                    //setCorrectFrame(view);
+                    View card2 = recyclerView2.findViewHolderForAdapterPosition(position2).itemView;
+                    setCorrectFrame(card2);
                 }
             }
         });

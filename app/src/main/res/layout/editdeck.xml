@@ -75,20 +75,6 @@
         app:layout_constraintEnd_toEndOf="@+id/editCardToolbar"
         app:layout_constraintStart_toEndOf="@+id/pigImageView" />
 
-    <TextView
-        android:id="@+id/ammountCardsTextView"
-        android:layout_width="wrap_content"
-
-        android:layout_height="wrap_content"
-        android:layout_marginStart="35dp"
-        android:layout_marginLeft="35dp"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/roboto_slab_bold"
-        android:textColor="@color/mainColor"
-        android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout3" />
-
     <ImageView
         android:id="@+id/pigImageView"
         android:layout_width="146dp"
@@ -138,6 +124,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editCardToolbar" />
 
+    <TextView
+        android:id="@+id/amountCardsTextView"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/roboto_slab_bold"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout3" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cardRecyclerView"
         android:layout_width="0dp"
@@ -155,7 +154,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/relativeLayout3"
         app:layout_constraintVertical_bias="1.0"
-        app:layout_optimizationLevel="graph_wrap" />
+        app:layout_optimizationLevel="graph_wrap" >
+
+    </androidx.recyclerview.widget.RecyclerView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/deleteCard"

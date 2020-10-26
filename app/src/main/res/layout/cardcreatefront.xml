@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="46dp"
         android:fontFamily="@font/roboto_slab_bold"
-        android:text="TextView"
+        android:text="Deck name"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

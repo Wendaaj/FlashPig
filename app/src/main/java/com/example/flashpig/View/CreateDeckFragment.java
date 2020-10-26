@@ -74,10 +74,10 @@ public class CreateDeckFragment extends Fragment {
                 inputText = dcTextInputLayout.getEditText().getText().toString();
                 if (!inputText.isEmpty()) {
                     if(viewModel.getDeck().getValue() != null){
-                        viewModel.setDeckName(dcTextInputLayout.getEditText().getText().toString());
+                        viewModel.setDeckName(inputText);
                     }else{
                         viewModel.initDeck();
-                        viewModel.setDeckName(dcTextInputLayout.getEditText().getText().toString());
+                        viewModel.setDeckName(inputText);
                     }
                     dcTextInputLayout.getEditText().getText().clear();
                     NavHostFragment.findNavController(CreateDeckFragment.this)
